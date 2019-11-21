@@ -1,6 +1,6 @@
 module.exports = ({ loginRoute }) => {
-    loginRoute.get('/', (ctx, next) => {
-        ctx.body = 'Login';
+    loginRoute.get('/', async (ctx, next) => {
+        await ctx.render('login', true);
     });
 }
 

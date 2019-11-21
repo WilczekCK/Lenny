@@ -1,6 +1,6 @@
 module.exports = ({ homepageRoute }) => {
-    homepageRoute.get('/', (ctx, next) => {
-        ctx.body = 'Homepage';
+    homepageRoute.get('/', async (ctx, next) => {
+        await ctx.render('index', true)
     });
 }
 
