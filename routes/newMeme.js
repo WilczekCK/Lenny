@@ -1,6 +1,6 @@
 module.exports = ({ newMemeRoute }) => {
-    newMemeRoute.get('/', (ctx, next) => {
-        ctx.body = 'New memes!';
+    newMemeRoute.get('/', async (ctx, next) => {
+        await ctx.render('newMeme', true);
     });
 }
 

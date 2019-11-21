@@ -21,10 +21,12 @@
     "7": "0.0.1",
     "koa": "^2.11.0",
     "koa-logger": "^3.2.1",
+    "koa-pug": "^4.0.2",
     "koa-router": "^7.4.0",
     "node-sass": "^4.13.0",
     "nodejs": "0.0.0",
-    "nodemon": "^2.0.0"
+    "nodemon": "^2.0.0",
+    "underscore": "^1.9.1"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
