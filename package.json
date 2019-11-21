@@ -1,0 +1,33 @@
+{
+  "name": "osumem.es",
+  "version": "1.0.0",
+  "description": "Page about the osu!memes",
+  "main": "app.js",
+  "scripts": {
+    "init": "node app.js", 
+    "test": "jest --watchAll",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [
+    "osu",
+    "memes",
+    "api",
+    "osu!"
+  ],
+  "author": "Pawel Wilk",
+  "license": "ISC",
+  "dependencies": {
+    "7": "0.0.1",
+    "koa": "^2.11.0",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^7.4.0",
+    "nodejs": "0.0.0",
+    "nodemon": "^2.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/register": "^7.7.0",
+    "jest": "^24.9.0",
+    "supertest": "^4.0.2"
+  }
+}
