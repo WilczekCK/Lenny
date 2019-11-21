@@ -2,13 +2,16 @@
 const Koa = require('koa');
 const Router = require('koa-router');
 const logger = require('koa-logger');
+const scss = require('koa-scss');
+const serve = require('koa-static');
+
 const app = new Koa();
 //dependencies
 
 //Router
-const homepageRoute = new Router({prefix:'/'});
-const loginRoute = new Router({prefix:'/login'});
-const newMemeRoute = new Router({prefix:'/newMeme'});
+const homepageRoute = new Router({ prefix: '/' });
+const loginRoute = new Router({ prefix: '/login' });
+const newMemeRoute = new Router({ prefix: '/newMeme' });
 
 require('./routes/index')({ homepageRoute });
 require('./routes/login')({ loginRoute });
@@ -29,6 +32,11 @@ app.use(async (ctx, next) => {
 
 //Addons
 app.use(logger());
+app.use(scss({
+    src: __dirname + '/public/scss/',
+    dest: __dirname + '/public/css/'
+}));
+app.use(serve('./public'));
 //Addons
 
 //Routes
