@@ -2,8 +2,10 @@
 const Koa = require('koa');
 const Router = require('koa-router');
 const logger = require('koa-logger');
-const path = require('path')
 const Pug = require('koa-pug')
+const mysql = require('koa-mysql');
+
+const path = require('path')
 const app = new Koa();
 //dependencies
 
