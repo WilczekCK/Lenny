@@ -6,9 +6,9 @@ const app = new Koa();
 //dependencies
 
 //Router
-const homepageRoute = new Router({prefix:'/'});
-const loginRoute = new Router({prefix:'/login'});
-const newMemeRoute = new Router({prefix:'/newMeme'});
+const homepageRoute = new Router({ prefix: '/' });
+const loginRoute = new Router({ prefix: '/login' });
+const newMemeRoute = new Router({ prefix: '/newMeme' });
 
 require('./routes/index')({ homepageRoute });
 require('./routes/login')({ loginRoute });
