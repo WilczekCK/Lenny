@@ -8,19 +8,12 @@ mysql_controller = {
         database: 'memePage',
         host: 'localhost'
     },
-    connection: () => mysql.createConnection({
-        user: 'root',
-        password: 'rootpass',
-        database: 'memePage',
-        host: 'localhost',
-    }),
-    queries: {
-        get: async (query) => {
-            const connection = await mysql_controller.connection();
-            const [rows, fields] = await connection.execute(query)
-
-            return rows;
-        }
+    connection: () => mysql.createConnection(mysql_controller.auth),
+    query: async (query) => {
+        const connection = await mysql_controller.connection();
+        const [rows, fields] = await connection.execute(query)
+        connection.end();
+        return rows;
     }
 }
 
