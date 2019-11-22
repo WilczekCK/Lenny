@@ -28,6 +28,8 @@ describe('Mysql tests', () => {
         
         for(table of response){
             incomingTable.push(table.Tables_in_memepage)
+            //remember to change the TABLES IN MEMEPAGE if you change 
+            //the database name ;)
         }
 
         expect(incomingTable).toEqual(expect.arrayContaining(actualTables));

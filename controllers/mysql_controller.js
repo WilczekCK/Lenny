@@ -5,7 +5,7 @@ mysql_controller = {
     auth: {
         user: 'root',
         password: 'rootpass',
-        database: 'memePage',
+        database: 'memepage',
         host: 'localhost'
     },
     connection: _ => mysql.createConnection(mysql_controller.auth),
