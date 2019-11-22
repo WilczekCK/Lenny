@@ -2,8 +2,10 @@
 const Koa = require('koa');
 const Router = require('koa-router');
 const logger = require('koa-logger');
-const path = require('path')
 const Pug = require('koa-pug')
+const mysql = require('koa-mysql');
+
+const path = require('path')
 const app = new Koa();
 //dependencies
 
@@ -17,6 +19,8 @@ require('./routes/login')({ loginRoute });
 require('./routes/newMeme')({ newMemeRoute });
 //Router
 
+
+
 //Error handler
 app.use(async (ctx, next) => {
     try {
@@ -27,6 +31,7 @@ app.use(async (ctx, next) => {
         ctx.app.emit('error', err, ctx);
     }
 });
+
 //Error handler
 
 //Addons
@@ -54,5 +59,5 @@ app.use(newMemeRoute.routes());
 app.use(newMemeRoute.allowedMethods());
 //Routes
 
-const server = app.listen(3000);
+const server = app.listen(6969);
 module.exports = server;

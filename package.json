@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "init": "node app.js",
-    "test": "jest --watchAll",
+    "test": "jest --watchAll --maxWorkers=1",
     "dev": "nodemon app.js",
     "sass": "node-sass --include-path scss public/scss/main.scss public/css/main.css"
   },
@@ -21,8 +21,10 @@
     "7": "0.0.1",
     "koa": "^2.11.0",
     "koa-logger": "^3.2.1",
+    "koa-mysql": "^1.0.3",
     "koa-pug": "^4.0.2",
     "koa-router": "^7.4.0",
+    "mysql2": "^2.0.1",
     "node-sass": "^4.13.0",
     "nodejs": "0.0.0",
     "nodemon": "^2.0.0",
