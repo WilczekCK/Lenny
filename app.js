@@ -19,6 +19,8 @@ require('./routes/login')({ loginRoute });
 require('./routes/newMeme')({ newMemeRoute });
 //Router
 
+
+
 //Error handler
 app.use(async (ctx, next) => {
     try {
@@ -29,6 +31,7 @@ app.use(async (ctx, next) => {
         ctx.app.emit('error', err, ctx);
     }
 });
+
 //Error handler
 
 //Addons
@@ -56,5 +59,5 @@ app.use(newMemeRoute.routes());
 app.use(newMemeRoute.allowedMethods());
 //Routes
 
-const server = app.listen(3000);
+const server = app.listen(6969);
 module.exports = server;

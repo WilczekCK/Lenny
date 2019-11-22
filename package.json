@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "init": "node app.js",
-    "test": "jest --watchAll",
+    "test": "jest --watchAll --maxWorkers=1",
     "dev": "nodemon app.js",
     "sass": "node-sass --include-path scss public/scss/main.scss public/css/main.css"
   },
