@@ -1,5 +1,114 @@
 .menu__container{
     position: fixed;
-    width:20%;
-    max-width:300%;
+    overflow:scroll;
+    width:300px;
+    height:100vh;
+
+    .menu__container__wrap__logo{
+        h2{
+            font-size:36px;
+        }
+    }
+
+    .menu__container__wrap__menu{
+        ul{
+            padding:0;
+            margin:0;
+
+            li{
+                max-width: inherit;
+                padding:20px 0px;
+                list-style-type: none;
+
+                &::after{
+                    content:'';
+                    position: absolute;
+                    width:90%;
+                    height:2px;
+                    background: black;
+                    left:20px;
+                    display:block;
+                }
+
+                &:last-of-type{
+                    input{
+                        width: 90%;
+                        text-align: center;
+                        margin-left: 10px;
+                        font-size: 20px;
+                        border: none;
+                        background:white;
+                    }
+                }
+
+                a{
+                    text-decoration: none;
+                    font-size:24px;
+                    color:$osupoli-gray;
+
+
+                &:hover{
+                    color:$osupoli-orange;
+                    -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
+                    transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+                }
+                }
+
+            }
+
+            .menu__auth__button{
+                position: relative;
+                background: none;
+                color: $osupoli-gray;
+                text-transform: uppercase;
+                text-decoration: none;
+                border: 0.2em solid $osupoli-gray;
+                padding: 0.5em 1em;
+                top:125px;
+
+                &::before {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    width: 10%;
+                    background: $osupoli-orange;
+                    height: 0.3em;
+                    right: 20%;
+                    top: -0.21em;
+                    transform: skewX(-45deg);
+                    -webkit-transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+                    transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+                }
+
+                &::after {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    width: 10%;
+                    background: $osupoli-orange;
+                    height: 0.3em;
+                    left: 20%;
+                    bottom: -0.25em;
+                    transform: skewX(45deg);
+                    -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
+                    transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+                }
+
+                &:hover {
+                    color:$osupoli-orange;
+                    -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
+                    transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+
+                    &::before {
+                        right: 80%;
+                    }
+
+                    &::after {
+                        left: 80%;
+                    }
+                }
+
+            }
+        }
+    }
 }
