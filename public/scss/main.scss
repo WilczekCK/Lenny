@@ -1,7 +1,8 @@
 @import 'colors.scss';
 
-@import 'templates/content.scss';
 @import 'templates/menu.scss';
+@import 'templates/content.scss';
+@import 'templates/footer.scss';
 
 html{
     padding:0;
@@ -10,5 +11,5 @@ html{
 }
 
 body{
-    background: $osupoli_orange;
+
 }

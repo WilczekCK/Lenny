@@ -1,15 +1,17 @@
-.content {
-  color: #ffa179; }
-
 .menu__container {
-  position: static;
+  position: fixed;
   width: 20%;
   max-width: 300%; }
+
+.content__container {
+  width: 80%;
+  height: 100%;
+  float: right; }
+
+.footer__container {
+  clear: both; }
 
 html {
   padding: 0;
   margin: 0 auto;
   text-align: center; }
-
-body {
-  background: #ffa179; }
