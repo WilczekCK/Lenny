@@ -1,2 +1,15 @@
+.content {
+  color: #ffa179; }
+
+.menu__container {
+  position: static;
+  width: 20%;
+  max-width: 300%; }
+
+html {
+  padding: 0;
+  margin: 0 auto;
+  text-align: center; }
+
 body {
   background: #ffa179; }

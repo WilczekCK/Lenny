@@ -1,4 +1,13 @@
-@import 'templates/base.scss';
+@import 'colors.scss';
+
+@import 'templates/content.scss';
+@import 'templates/menu.scss';
+
+html{
+    padding:0;
+    margin:0 auto;
+    text-align:center;
+}
 
 body{
     background: $osupoli_orange;
