@@ -1,1 +1,55 @@
-h1='Homepage'
+extends layout.pug
+
+block content
+    .meme__container()
+        .meme__item(class='standard')
+            figure(class="c4-izmir c4-border-ccc-2 c4-gradient-bottom-left")
+                img(src='https://i.kym-cdn.com/entries/icons/original/000/025/909/T9bCWCQ.jpg')
+                figcaption(class="c4-layout-bottom-left")
+                    div(class="c4-reveal-right")
+                        h2="Creator: Admin"
+                        br
+                        i(class="fas fa-heart")!='&nbsp59'
+                        i(class="fas fa-heart-broken")!='&nbsp20'
+                        br
+                        h3="Share it!"
+        .meme__item(class='taiko')
+            figure(class="c4-izmir c4-border-ccc-2 c4-gradient-bottom-left")
+                img(src='https://i.ytimg.com/vi/tYBk4kLHPkk/maxresdefault.jpg')
+                figcaption(class="c4-layout-bottom-left")
+                    div(class="c4-reveal-right")
+                        h2="Creator: Admin"
+                        br
+                        i(class="fas fa-heart")!='&nbsp59'
+                        i(class="fas fa-heart-broken")!='&nbsp20'
+                        br
+                        h3="Share it!"
+        .meme__item(class='taiko')
+            figure(class="c4-izmir c4-border-ccc-2 c4-gradient-bottom-left")
+                img(src='http://thumbor-prod-us-east-1.photo.aws.arc.pub/fc3OLRwF4WW4jmL-haFokfDvITU=/arc-anglerfish-arc2-prod-dmn/public/ZYDRGWJMBAYXRLTG3VI3C6YO4I.jpg')
+                figcaption(class="c4-layout-bottom-left")
+                    div(class="c4-reveal-right")
+                        h2="Creator: Admin"
+                        br
+                        i(class="fas fa-heart")!='&nbsp59'
+                        i(class="fas fa-heart-broken")!='&nbsp20'
+                        br
+                        h3="Share it!"
+        .meme__item(class='mania')
+            figure(class="c4-izmir c4-border-ccc-2 c4-gradient-bottom-left")
+                img(src='http://duffy.agency/wp-content/uploads/2019/05/example-of-Dos-Equis-meme.png')
+                figcaption(class="c4-layout-bottom-left")
+                    div(class="c4-reveal-right")
+                        h2="Creator: Admin"
+                        br
+                        i(class="fas fa-heart")!='&nbsp59'
+                        i(class="fas fa-heart-broken")!='&nbsp20'
+                        br
+                        h3="Share it!"
+
+block footer
+    script(src='scripts/jquery.js')
+    script(src="https://kit.fontawesome.com/33ef3f59f0.js" crossorigin="anonymous")
+    script(src='https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js')
+    script(src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js")
+    script(src='scripts/isotopeConfig.js')

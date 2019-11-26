@@ -4,6 +4,7 @@ const Router = require('koa-router');
 const logger = require('koa-logger');
 const Pug = require('koa-pug')
 const mysql = require('koa-mysql');
+const serve = require('koa-static');
 
 const path = require('path')
 const app = new Koa();
@@ -36,13 +37,14 @@ app.use(async (ctx, next) => {
 
 //Addons
 app.use(logger());
+app.use(serve(__dirname + '/public'));
 
 const pug = new Pug({
     viewPath: path.resolve(__dirname, './views'),
     basedir: './views',
     locals: { /* soon auth will be here */ },
     helperPath: [
-      { _: require('underscore') }
+      { _: require('underscore')},
     ],
     app: app 
   })
@@ -59,5 +61,5 @@ app.use(newMemeRoute.routes());
 app.use(newMemeRoute.allowedMethods());
 //Routes
 
-const server = app.listen(6969);
+const server = app.listen(3000);
 module.exports = server;

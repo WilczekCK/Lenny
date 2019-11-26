@@ -1,5 +1,23 @@
-@import 'templates/base.scss';
+@import 'colors.scss';
+@import 'fonts.scss';
+
+@import 'templates/menu.scss';
+@import 'templates/content.scss';
+@import 'templates/footer.scss';
+
+@import 'templates/meme.scss';
+@import 'izimir/main.scss';
+
+html{
+    padding:0;
+    margin:0 auto;
+    text-align:center;
+}
 
 body{
-    background: $osupoli_orange;
+    font-family:'osu-regular';
+}
+
+[v-cloak] {
+    display:none;
 }
