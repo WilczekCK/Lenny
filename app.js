@@ -44,7 +44,7 @@ const pug = new Pug({
     basedir: './views',
     locals: { /* soon auth will be here */ },
     helperPath: [
-      { _: require('underscore') }
+      { _: require('underscore')},
     ],
     app: app 
   })

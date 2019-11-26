@@ -1,7 +1,7 @@
 .menu__container{
     position: fixed;
-    overflow:scroll;
-    width:300px;
+    overflow-y:scroll;
+    max-width:300px;
     height:100vh;
 
     .menu__container__wrap__logo{

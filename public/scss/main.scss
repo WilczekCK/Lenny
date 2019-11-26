@@ -5,6 +5,9 @@
 @import 'templates/content.scss';
 @import 'templates/footer.scss';
 
+@import 'templates/meme.scss';
+@import 'izimir/main.scss';
+
 html{
     padding:0;
     margin:0 auto;
@@ -13,4 +16,8 @@ html{
 
 body{
     font-family:'osu-regular';
+}
+
+[v-cloak] {
+    display:none;
 }
