@@ -15,6 +15,13 @@ mysql_controller = {
         const [rows, fields] = await connection.execute(query)
         connection.end();
         return rows;
+    },
+    insert: async (table, rowNames, rowValue , cbId) => {
+        const connection = await mysql_controller.connection();
+        const [results] = await connection.query(`INSERT INTO ${table} (${rowNames}) VALUES (${rowValue})`);
+        connection.end();
+
+        return results.insertId;
     }
 }
 
