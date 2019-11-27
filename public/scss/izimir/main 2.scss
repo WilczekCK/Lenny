@@ -1,0 +1,32 @@
+/* Izmir - ImageHover CSS LIbrary
+  ----------------------------- */
+
+// -----------------------------------------
+// Base
+//-------------------------------------------
+@import "base/variables";
+@import "base/base";
+
+// -----------------------------------------
+// Modules
+//-------------------------------------------
+@import "modules/animate-border";
+@import "modules/animate-image";
+@import "modules/animate-delay";
+@import "modules/animate-text";
+@import "modules/gradient";
+@import "modules/layout";
+
+// -----------------------------------------
+// Style
+//-------------------------------------------
+@import "style/style";
+
+
+// ---------
+// Custom Styles
+  .c4-izmir{
+    text-shadow:0px 0px 1px black;
+    i{padding-right:10px}
+  }
+// ------
