@@ -7,10 +7,11 @@ module.exports = ({ loginRoute }) => {
 
     loginRoute.get('/callback', passport.authenticate('oauth2', {
         session: false,
-        failureRedirect: 'failed'
-      }), ({req}) => {
+        failureRedirect: 'failed',
+        successRedirect: '/'
+      }), async ({req}) => {
         const {user} = req;
-        auth.oAuth2.convertToken(user.accessToken);
+        await auth.oAuth2.convertToken(user.accessToken);
     });
 
     loginRoute.get('/failed', async (ctx, next) => {

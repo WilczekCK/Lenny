@@ -1,12 +1,13 @@
 const passport = require('koa-passport')
      , OAuth2Strategy = require('passport-oauth2').Strategy;
 const axios = require('axios');
+const user = require('./user_controller');
 
 var auth_controller = auth_controller || {}
 auth_controller = {
     oAuth2: {
-        client_id: 'NOPE',
-        client_secret: 'DUDE, NO CHANCES',
+        client_id: '426',
+        client_secret: 'du3b7Y3wqgaePeWX3ZkHU1k45hlg0exU7rEPdTH7',
         callback_url: 'http://11e79779.ngrok.io/login/callback',
         init: function (){
             passport.use(new OAuth2Strategy({ 
@@ -41,7 +42,7 @@ auth_controller = {
                         id: data.id,
                         username: data.username,
                         country: data.country,
-                        joined: join_date,
+                        joined: data.join_date,
                         avatar_url: data.avatar_url,
                         cover_url: data.cover_url,
                         playmode: data.playmode
