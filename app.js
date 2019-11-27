@@ -3,8 +3,9 @@ const Koa = require('koa');
 const Router = require('koa-router');
 const logger = require('koa-logger');
 const Pug = require('koa-pug')
-const mysql = require('koa-mysql');
 const serve = require('koa-static');
+const passport = require('koa-passport');
+const session = require('koa-session');
 
 const path = require('path')
 const app = new Koa();
@@ -49,6 +50,11 @@ const pug = new Pug({
     app: app 
   })
 //Addons
+
+//Passport
+app.use(passport.initialize());
+app.use(passport.session());
+//Passport
 
 //Routes
 app.use(homepageRoute.routes());
