@@ -17,11 +17,17 @@ mysql_controller = {
         return rows;
     },
     insert: async (table, rowNames, rowValue , cbId) => {
+        //example mysql.insert("images", "author_id, added_in, tags", "123123, '2019-02-01', 'std'");
+
         const connection = await mysql_controller.connection();
         const [results] = await connection.query(`INSERT INTO ${table} (${rowNames}) VALUES (${rowValue})`);
         connection.end();
 
         return results.insertId;
+    },
+    update: async (table, changingRows, condition) => {
+        //example mysql.update("images", "tags = 'mania'", "id = 12332")
+        await mysql_controller.query(`UPDATE ${table} SET ${changingRows} WHERE ${condition}`);
     }
 }
 
