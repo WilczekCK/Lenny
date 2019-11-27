@@ -13,11 +13,11 @@ const app = new Koa();
 //Router
 const homepageRoute = new Router({ prefix: '/' });
 const loginRoute = new Router({ prefix: '/login' });
-const newMemeRoute = new Router({ prefix: '/newMeme' });
+const memeRoute = new Router({ prefix: '/meme' });
 
 require('./routes/index')({ homepageRoute });
 require('./routes/login')({ loginRoute });
-require('./routes/newMeme')({ newMemeRoute });
+require('./routes/meme')({ memeRoute });
 //Router
 
 
@@ -57,8 +57,8 @@ app.use(homepageRoute.allowedMethods());
 app.use(loginRoute.routes());
 app.use(loginRoute.allowedMethods());
 
-app.use(newMemeRoute.routes());
-app.use(newMemeRoute.allowedMethods());
+app.use(memeRoute.routes());
+app.use(memeRoute.allowedMethods());
 //Routes
 
 const server = app.listen(3000);
