@@ -16,7 +16,7 @@ mysql_controller = {
         connection.end();
         return rows;
     },
-    insert: async (table, rowNames, rowValue , cbId) => {
+    insert: async (table, rowNames, rowValue) => {
         //example mysql.insert("images", "author_id, added_in, tags", "123123, '2019-02-01', 'std'");
 
         const connection = await mysql_controller.connection();
@@ -28,6 +28,10 @@ mysql_controller = {
     update: async (table, changingRows, condition) => {
         //example mysql.update("images", "tags = 'mania'", "id = 12332")
         await mysql_controller.query(`UPDATE ${table} SET ${changingRows} WHERE ${condition}`);
+    },
+    delete: async (table, condition) => {
+        //example mysql.delete("images", "id = 12332")
+        await mysql_controller.query(`DELETE FROM ${table} WHERE ${condition}`);
     }
 }
 
