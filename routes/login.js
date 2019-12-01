@@ -3,7 +3,12 @@ const passport = require('koa-passport')
 
 module.exports = ({ loginRoute }) => {
     auth.oAuth2.init();
-    loginRoute.get('/', passport.authenticate('oauth2'));
+
+    loginRoute.get('/', async(ctx, next) => {
+        ctx.redirect('login/auth');
+    }); 
+
+    loginRoute.get('/auth', passport.authenticate('oauth2'));
 
     loginRoute.get('/callback', passport.authenticate('oauth2', {
         session: false,

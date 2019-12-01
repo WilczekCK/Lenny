@@ -21,11 +21,11 @@ describe('Route tests', () => {
 
     test('Is login route available?  "/login" ', async () => {
         const response = await request(server).get('/login');
-        expect(response.status).toEqual(200);
+        expect(response.status).toEqual(302);
     });
 
-    test('Is adding meme route available?  "/newMeme" ', async () => {
-        const response = await request(server).get('/newMeme');
+    test('Is adding meme route available?  "/meme" ', async () => {
+        const response = await request(server).get('/meme');
         expect(response.status).toEqual(200);
     });
 });
