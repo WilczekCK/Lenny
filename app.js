@@ -36,6 +36,24 @@ app.use(async (ctx, next) => {
 
 //Error handler
 
+
+//SESSIONS
+app.keys = ['keybo@rd'];
+const configSession = {
+  key: 'koa:sess', 
+  maxAge: 86400000,
+  autoCommit: true,
+  overwrite: true,
+  httpOnly: false,
+  signed: true,
+  rolling: false,
+  renew: false, 
+}
+
+app.use(session(configSession, app))
+//SESSIONS
+
+
 //Addons
 app.use(logger());
 app.use(serve(__dirname + '/public'));

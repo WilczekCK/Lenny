@@ -1,7 +1,9 @@
 const passport = require('koa-passport')
      , OAuth2Strategy = require('passport-oauth2').Strategy;
 const axios = require('axios');
+const session = require('koa-session');
 const user = require('./user_controller');
+
 
 var auth_controller = auth_controller || {}
 auth_controller = {
@@ -48,10 +50,21 @@ auth_controller = {
                         playmode: data.playmode
                     }
 
+                    auth_controller.sess.create(inGame)
                     user.creation(inGame);
               });
         }
     },
+    sess:{
+      create: async function(ingame){
+        session.loggedIn = {
+          username: ingame.username,
+          id: ingame.id
+        }
+
+        console.log(session)
+      }
+    }
 }
 
 
