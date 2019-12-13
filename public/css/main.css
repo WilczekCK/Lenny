@@ -88,6 +88,8 @@
             right: 80%; }
           .menu__container .menu__container__wrap__menu .menu__container__wrap__menu__user .menu__auth__button:hover::after {
             left: 80%; }
+  .menu__container #modal__add__meme {
+    display: none; }
 
 .content__container {
   width: 100%;
@@ -105,12 +107,76 @@
   height: 30px; }
 
 .meme__container {
-  margin: 0 auto; }
+  margin: 0 auto;
+  z-index: 0; }
   .meme__container .meme__item {
     margin: 5px; }
     .meme__container .meme__item img {
       min-width: 315px;
       max-width: 415px; }
+
+input {
+  clear: both;
+  width: 100%; }
+
+label {
+  font-weight: 800; }
+
+.tags__provider {
+  padding: 5px;
+  width: 90%;
+  height: auto;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 40px 50px rgba(0, 0, 0, 0.25);
+  border: 2px solid #ffa179;
+  outline: none;
+  font-size: 1em;
+  position: relative; }
+  .tags__provider input {
+    outline: none;
+    width: auto;
+    border: 0;
+    float: left;
+    padding: 8px;
+    background: none; }
+  .tags__provider::before {
+    content: '';
+    display: table; }
+  .tags__provider::after {
+    content: '';
+    display: table;
+    clear: both; }
+
+.tag {
+  border-radius: 3px;
+  background: #ffa179;
+  float: left;
+  margin: 3px;
+  padding: 4px;
+  font-size: 1em;
+  vertical-align: middle;
+  box-shadow: 0px 1px 4px #c6c6c6, 0px 2px 17px #d1d1d1; }
+  .tag a {
+    color: #000;
+    padding-right: 10px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-right: 5px; }
+  .tag span {
+    padding-right: 10px;
+    padding-left: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px; }
+
+.modal h2 {
+  margin-top: 0px; }
+
+.modal .tip {
+  font-size: 0.8em;
+  font-style: italic !important;
+  padding-bottom: 20px; }
 
 /* Izmir - ImageHover CSS LIbrary
   ----------------------------- */

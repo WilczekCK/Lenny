@@ -18,7 +18,7 @@
                 if userInfo
                     img(src=`https://a.ppy.sh/${userInfo.ingame_id}` alt=`${userInfo.username}_avatar`)
                     h2!=userInfo.username
-                    a.menu__auth__button(href='meme/add')
+                    a.menu__meme__button(class="menu__auth__button" href="#modal__add__meme")
                         ='Add new meme'
                     if userInfo.role > 0
                         p(style='margin-top:25px')
@@ -27,3 +27,17 @@
                 else
                     a.menu__auth__button(href="login")
                         ="Login with osu!"
+    #modal__add__meme(class="modal" rel="model:open")
+        h2="Upload your meme below:"
+        label(for="tags")
+            ="Select an image:"
+        input(type="file" id="meme" name="meme")
+        .tip
+            ="Only .jpg extension accepted!"
+        label(for="tags")
+            ="Provide tags for your image:"
+        .tags__provider
+            .tagHere
+            input(type='text' autofocus value="tags")
+        .tip
+            ="Use a spacebar to input a tag"
