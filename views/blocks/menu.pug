@@ -20,6 +20,10 @@
                     h2!=userInfo.username
                     a.menu__auth__button(href='meme/add')
                         ='Add new meme'
+                    if userInfo.role > 0
+                        p(style='margin-top:25px')
+                            a.menu__auth__button(href='admin/meme')
+                                ='Admin Panel'
                 else
                     a.menu__auth__button(href="login")
                         ="Login with osu!"
