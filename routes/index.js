@@ -4,8 +4,9 @@ module.exports = ({ homepageRoute }) => {
     const session = require('koa-session');
     
     homepageRoute.get('/', async (ctx, next) => {
-        const user_in_session = await auth.sess.status(ctx.session);
-        await ctx.render('index', {userInfo: user_in_session[0]});
+        const is_player_logged = ctx.req.body[0];
+        console.log(is_player_logged)
+        await ctx.render('index', {userInfo: is_player_logged});
         next();
     });
 }

@@ -7,7 +7,7 @@ const serve = require('koa-static');
 const passport = require('koa-passport');
 const session = require('koa-session'),
       MysqlStore = require('koa-mysql-session')
-const mysql = require('./controllers/mysql_controller');
+const auth = require('./controllers/auth_controller');
 
 const path = require('path')
 const app = new Koa();
@@ -27,10 +27,17 @@ require('./routes/meme')({ memeRoute });
 app.keys = ['your-session-secret']
 app.use(session(app));
 
-app.use(async (ctx, next) =>{
-  
+const myLogger = async function(ctx, next){
+  const myLogger = await auth.sess.status(ctx.session)
+  if(myLogger){
+    ctx.req.body = myLogger;
+  }else{
+    ctx.req.body = [];
+  }
   await next()
-})
+};
+
+app.use(myLogger);
 //SESSIONS
 
 //Error handler
