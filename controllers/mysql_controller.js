@@ -20,6 +20,7 @@ mysql_controller = {
         //example mysql.insert("images", "author_id, added_in, tags", "123123, '2019-02-01', 'std'");
 
         const connection = await mysql_controller.connection();
+        console.log(`INSERT INTO ${table} (${rowNames}) VALUES (${rowValue}`);
         const [results] = await connection.query(`INSERT INTO ${table} (${rowNames}) VALUES (${rowValue})`);
         connection.end();
 

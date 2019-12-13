@@ -14,6 +14,8 @@
                     a(href='#'  id="taiko") #taiko
                 li
                     input(type="text" disabled placeholder="search w.i.p.")
-                    
-            a.menu__auth__button(href="#")
-                ="Login with osu!"
+            if userInfo
+                h2!=userInfo.username
+            else
+                a.menu__auth__button(href="login")
+                    ="Login with osu!"

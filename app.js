@@ -5,7 +5,9 @@ const logger = require('koa-logger');
 const Pug = require('koa-pug')
 const serve = require('koa-static');
 const passport = require('koa-passport');
-const session = require('koa-session');
+const session = require('koa-session'),
+      MysqlStore = require('koa-mysql-session')
+const mysql = require('./controllers/mysql_controller');
 
 const path = require('path')
 const app = new Koa();
@@ -21,7 +23,15 @@ require('./routes/login')({ loginRoute });
 require('./routes/meme')({ memeRoute });
 //Router
 
+//SESSIONS
+app.keys = ['your-session-secret']
+app.use(session(app));
 
+app.use(async (ctx, next) =>{
+  
+  await next()
+})
+//SESSIONS
 
 //Error handler
 app.use(async (ctx, next) => {
@@ -37,21 +47,7 @@ app.use(async (ctx, next) => {
 //Error handler
 
 
-//SESSIONS
-app.keys = ['keybo@rd'];
-const configSession = {
-  key: 'koa:sess', 
-  maxAge: 86400000,
-  autoCommit: true,
-  overwrite: true,
-  httpOnly: false,
-  signed: true,
-  rolling: false,
-  renew: false, 
-}
 
-app.use(session(configSession, app))
-//SESSIONS
 
 
 //Addons
@@ -59,14 +55,14 @@ app.use(logger());
 app.use(serve(__dirname + '/public'));
 
 const pug = new Pug({
-    viewPath: path.resolve(__dirname, './views'),
-    basedir: './views',
-    locals: { /* soon auth will be here */ },
-    helperPath: [
-      { _: require('underscore')},
-    ],
-    app: app 
-  })
+  viewPath: path.resolve(__dirname, './views'),
+  basedir: './views',
+  locals: { },
+  helperPath: [
+    { _: require('underscore')},
+  ],
+  app: app 
+})
 //Addons
 
 //Passport
