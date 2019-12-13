@@ -3,14 +3,16 @@ $(window).on('load', _ => {
   imagesLoaded('.meme__container', function () {
     var $grid = $('.meme__container').isotope({
       itemSelector: '.meme__item',
-      layoutMode: 'masonry',
-      percentPosition: true,
+      masonry: {
+        columnWidth: 40,
+        isFitWidth: true
+        }
     })
 
     $('.menu__container__wrap__menu li a').on('click', function () {
       var filterValue = `.${this.id}`;
       // use filterFn if matches value
-      $grid.isotope({ filter: filterValue });
+      $grid.isotope({ filter: filterValue, layoutMode: 'fitRows' });
     })
 
 

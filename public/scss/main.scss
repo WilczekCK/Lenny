@@ -16,6 +16,8 @@ html{
 
 body{
     font-family:'osu-regular';
+    display:flex;
+    flex-direction: row;
 }
 
 [v-cloak] {

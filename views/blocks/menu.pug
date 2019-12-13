@@ -3,7 +3,7 @@
         .menu__container__wrap__logo
             h2(class="logo")="osu!memes"
         .menu__container__wrap__menu
-            ul
+            ul.filters
                 li
                     a(href='#' id="std") #std
                 li
@@ -14,8 +14,12 @@
                     a(href='#'  id="taiko") #taiko
                 li
                     input(type="text" disabled placeholder="search w.i.p.")
-            if userInfo
-                h2!=userInfo.username
-            else
-                a.menu__auth__button(href="login")
-                    ="Login with osu!"
+            .menu__container__wrap__menu__user
+                if userInfo
+                    img(src=`https://a.ppy.sh/${userInfo.ingame_id}` alt=`${userInfo.username}_avatar`)
+                    h2!=userInfo.username
+                    a.menu__auth__button(href='meme/add')
+                        ='Add new meme'
+                else
+                    a.menu__auth__button(href="login")
+                        ="Login with osu!"

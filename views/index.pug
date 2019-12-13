@@ -2,6 +2,7 @@ extends layout.pug
 
 block content
     .meme__container()
+        .gutter-sizer
         .meme__item(class='standard')
             figure(class="c4-izmir c4-border-ccc-2 c4-gradient-bottom-left")
                 img(src='https://i.kym-cdn.com/entries/icons/original/000/025/909/T9bCWCQ.jpg')
@@ -50,6 +51,8 @@ block content
 block footer
     script(src='scripts/jquery.js')
     script(src="https://kit.fontawesome.com/33ef3f59f0.js" crossorigin="anonymous")
-    script(src='https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js')
+    script(src='https://unpkg.com/isotope-layout@3.0.6/dist/isotope.pkgd.min.js')
+    script(src='https://isotope.metafizzy.co/isotope.pkgd.js')
     script(src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js")
+    script(src='scripts/isotopePackery.js')
     script(src='scripts/isotopeConfig.js')

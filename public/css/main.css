@@ -7,14 +7,12 @@
   overflow-y: scroll;
   max-width: 300px;
   height: 100vh; }
-  .menu__container .menu__container__wrap__logo {
-    height: 15%; }
-    .menu__container .menu__container__wrap__logo h2 {
-      font-size: 36px; }
+  .menu__container .menu__container__wrap__logo h2 {
+    font-size: 36px; }
   .menu__container .menu__container__wrap__menu {
     display: flex;
     flex-direction: column;
-    height: 85%; }
+    height: 800px; }
     .menu__container .menu__container__wrap__menu ul {
       padding: 0;
       margin: 0; }
@@ -45,54 +43,59 @@
             color: #ffa179;
             -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
             transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1); }
-    .menu__container .menu__container__wrap__menu .menu__auth__button {
-      position: relative;
-      background: none;
-      color: #333333;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: 0.2em solid #333333;
-      padding: 0.5em 1em;
-      transform: translate(0%, 50%);
-      width: 50%;
-      margin: 0 auto; }
-      .menu__container .menu__container__wrap__menu .menu__auth__button::before {
-        content: "";
-        display: block;
-        position: absolute;
-        width: 10%;
-        background: #ffa179;
-        height: 0.3em;
-        right: 20%;
-        top: -0.21em;
-        transform: skewX(-45deg);
-        -webkit-transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
-        transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1); }
-      .menu__container .menu__container__wrap__menu .menu__auth__button::after {
-        content: "";
-        display: block;
-        position: absolute;
-        width: 10%;
-        background: #ffa179;
-        height: 0.3em;
-        left: 20%;
-        bottom: -0.25em;
-        transform: skewX(45deg);
-        -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
-        transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1); }
-      .menu__container .menu__container__wrap__menu .menu__auth__button:hover {
-        color: #ffa179;
-        -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
-        transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1); }
-        .menu__container .menu__container__wrap__menu .menu__auth__button:hover::before {
-          right: 80%; }
-        .menu__container .menu__container__wrap__menu .menu__auth__button:hover::after {
-          left: 80%; }
+    .menu__container .menu__container__wrap__menu .menu__container__wrap__menu__user {
+      margin-top: 25px; }
+      .menu__container .menu__container__wrap__menu .menu__container__wrap__menu__user .menu__auth__button {
+        position: relative;
+        background: none;
+        color: #333333;
+        text-transform: uppercase;
+        text-decoration: none;
+        border: 0.2em solid #333333;
+        padding: 0.5em 1em;
+        transform: translate(0%, 50%);
+        width: 50%;
+        margin: 0 auto; }
+        .menu__container .menu__container__wrap__menu .menu__container__wrap__menu__user .menu__auth__button::before {
+          content: "";
+          display: block;
+          position: absolute;
+          width: 10%;
+          background: #ffa179;
+          height: 0.3em;
+          right: 20%;
+          top: -0.21em;
+          transform: skewX(-45deg);
+          -webkit-transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+          transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1); }
+        .menu__container .menu__container__wrap__menu .menu__container__wrap__menu__user .menu__auth__button::after {
+          content: "";
+          display: block;
+          position: absolute;
+          width: 10%;
+          background: #ffa179;
+          height: 0.3em;
+          left: 20%;
+          bottom: -0.25em;
+          transform: skewX(45deg);
+          -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
+          transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1); }
+        .menu__container .menu__container__wrap__menu .menu__container__wrap__menu__user .menu__auth__button:hover {
+          color: #ffa179;
+          -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
+          transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1); }
+          .menu__container .menu__container__wrap__menu .menu__container__wrap__menu__user .menu__auth__button:hover::before {
+            right: 80%; }
+          .menu__container .menu__container__wrap__menu .menu__container__wrap__menu__user .menu__auth__button:hover::after {
+            left: 80%; }
 
 .content__container {
-  width: 78.5%;
+  width: 100%;
   height: 100%;
-  float: right; }
+  margin-left: 280px; }
+
+.gutter-sizer {
+  width: 1.5%; }
 
 .footer__container {
   display: none;
@@ -107,7 +110,7 @@
     margin: 5px; }
     .meme__container .meme__item img {
       min-width: 315px;
-      max-width: 500px; }
+      max-width: 415px; }
 
 /* Izmir - ImageHover CSS LIbrary
   ----------------------------- */
@@ -1074,7 +1077,9 @@ html {
   text-align: center; }
 
 body {
-  font-family: 'osu-regular'; }
+  font-family: 'osu-regular';
+  display: flex;
+  flex-direction: row; }
 
 [v-cloak] {
   display: none; }
