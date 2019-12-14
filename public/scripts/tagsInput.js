@@ -1,6 +1,8 @@
 $(document).ready(function(){
+    const providedTags = [];
     var $input = $(".tags__provider input"),
         $appendHere = $(".tagHere"),
+        $actualTags = [],
         oldKey = 0, newKey,
         SPACEKEY = 32;
     $input.focus();
@@ -20,6 +22,7 @@ $(document).ready(function(){
       
       if($(this).val() == '' && e.keyCode === 8) {
         $(".tag:last-child").remove();
+        $actualTags.pop();
       }
       
     })
@@ -31,11 +34,21 @@ $(document).ready(function(){
       $span.text($(element).val());
       $a.bind('click', function(){
         $(this).parent().remove();
+        let deletedElement = $(this).parent()[0].innerText;
+        let positionOfEl = $actualTags.indexOf(deletedElement);
+        $actualTags.splice(positionOfEl, 1);
         $(this).unbind('click');
       });
+
       $a.appendTo($tag);
       $span.appendTo($tag);
       $tag.appendTo($appendHere);
       $(element).val('');
+      $actualTags.push($tag[0].innerText);
+      providedTags.push($(element).val());
     }
+
+    $('#tags__submit').on('click', function(e){
+      $('.tags__provided').attr('value', $actualTags);
+    })
   });

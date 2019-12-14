@@ -23,6 +23,8 @@
     "indexeddb": "0.0.0",
     "isotope-layout": "^3.0.6",
     "koa": "^2.11.0",
+    "koa-body": "^4.1.1",
+    "koa-bodyparser": "^4.2.1",
     "koa-convert": "^1.2.0",
     "koa-logger": "^3.2.1",
     "koa-mysql": "^1.0.3",

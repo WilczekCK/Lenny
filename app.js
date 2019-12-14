@@ -6,7 +6,8 @@ const Pug = require('koa-pug')
 const serve = require('koa-static');
 const passport = require('koa-passport');
 const session = require('koa-session'),
-      MysqlStore = require('koa-mysql-session')
+      MysqlStore = require('koa-mysql-session');
+const koaBody = require('koa-body')
 const auth = require('./controllers/auth_controller');
 
 const path = require('path')
@@ -32,7 +33,7 @@ const myLogger = async function(ctx, next){
   if(myLogger){
     ctx.req.body = myLogger;
   }else{
-    ctx.req.body = [];
+    ctx.req.body = {};
   }
   await next()
 };

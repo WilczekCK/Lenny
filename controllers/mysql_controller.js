@@ -28,6 +28,7 @@ mysql_controller = {
     },
     update: async (table, changingRows, condition) => {
         //example mysql.update("images", "tags = 'mania'", "id = 12332")
+        console.log(`UPDATE ${table} SET ${changingRows} WHERE ${condition}`)
         await mysql_controller.query(`UPDATE ${table} SET ${changingRows} WHERE ${condition}`);
     },
     delete: async (table, condition) => {

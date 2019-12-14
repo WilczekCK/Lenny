@@ -29,15 +29,18 @@
                         ="Login with osu!"
     #modal__add__meme(class="modal" rel="model:open")
         h2="Upload your meme below:"
-        label(for="tags")
-            ="Select an image:"
-        input(type="file" id="meme" name="meme")
-        .tip
-            ="Only .jpg extension accepted!"
-        label(for="tags")
-            ="Provide tags for your image:"
-        .tags__provider
-            .tagHere
-            input(type='text' autofocus value="tags")
-        .tip
-            ="Use a spacebar to input a tag"
+        form(action='meme/add' method='POST')
+            label(for="tags")
+                ="Select an image:"
+            input(type="file" id="meme" name="meme")
+            .tip
+                ="Only .jpg extension accepted!"
+            label(for="tags")
+                ="Provide tags for your image:"
+            .tags__provider
+                .tagHere
+                input(type="hidden" name="tags" class="tags__provided")
+                input(type='text' autofocus value="tagiiiii")
+            .tip
+                ="Use a spacebar to input a tag"
+            input(type="submit" value="UPLOAD" id="tags__submit")
