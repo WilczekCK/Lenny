@@ -3,7 +3,7 @@ const meme = require('../controllers/meme_controller');
 const session = require('koa-session');
 const koaBody = require('koa-body');
 const multer = require('@koa/multer');
-const upload = multer({ dest: './public/uploads/' });
+const upload = multer({ dest: './public/uploads/', limits:{fileSize: 500000}});
 const moment = require('moment')
 
 module.exports = ({ memeRoute }) => {
@@ -29,9 +29,9 @@ module.exports = ({ memeRoute }) => {
     ]), async (ctx, next) => {
         if (!ctx.request) return ctx.throw(400, 'One of the fields is missing');
         const { filename } = ctx.request.files.meme[0]; //image-id
-        const { tags, author_id } = ctx.request.body;
+        const { tags, author_id, author_username } = ctx.request.body;
 
-        const uploadedSqlID = await meme.insertToDB(`${author_id}`, `${moment().format('YYYY-MM-DD')}`, `${tags}`)
+        const uploadedSqlID = await meme.insertToDB(`${author_id}`, `${author_username}` ,`${moment().format('YYYY-MM-DD')}`, `${tags}`)
         await meme.changeImageName(`${filename}`, `${uploadedSqlID}`);
 
         await ctx.redirect('/');

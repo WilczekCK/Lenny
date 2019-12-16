@@ -7,8 +7,8 @@ meme_controller = {
         const memesRecord = await mysql.query(`SELECT id FROM images ORDER BY 'added_in' DESC`);
         return memesRecord;
     },
-    insertToDB: async (author_id, date, tags) => {
-        const uploadedSqlID = await mysql.insert(`images`, `author_id, added_in, tags`, `${author_id}, '${date}', '${tags}'`);
+    insertToDB: async (author_id, author_username, date, tags) => {
+        const uploadedSqlID = await mysql.insert(`images`, `author_id, author_username, added_in, tags`, `${author_id}, '${author_username}' ,'${date}', '${tags}'`);
         return uploadedSqlID;
     },
     changeImageName: async (oldName, newName) => {
