@@ -14,10 +14,13 @@ $(window).on('load', _ => {
       // use filterFn if matches value
       $grid.isotope({ filter: filterValue, layoutMode: 'fitRows' });
     })
-
-
+  
+    
+  $('.tag__finder').on('keypress', function(e){
+    if(e.which == 13){
+      const filterValue = `.${$(this)[0].value}`
+      $grid.isotope({ filter: filterValue, layoutMode: 'fitRows' });
+    }
+  })
   });
-
-
-
 })
