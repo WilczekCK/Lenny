@@ -3,7 +3,7 @@ const meme = require('../controllers/meme_controller');
 const session = require('koa-session');
 const koaBody = require('koa-body');
 const multer = require('@koa/multer');
-const upload = multer({ dest: './uploads/' });
+const upload = multer({ dest: './public/uploads/' });
 const moment = require('moment')
 
 module.exports = ({ memeRoute }) => {

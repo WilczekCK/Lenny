@@ -3,13 +3,16 @@ const fs = require('fs')
 
 var meme_controller = meme_controller || {}
 meme_controller = {
+    displayMemes: async _ => {
+        const memesRecord = await mysql.query(`SELECT id FROM images ORDER BY 'added_in' DESC`);
+        return memesRecord;
+    },
     insertToDB: async (author_id, date, tags) => {
-        console.log(tags)
         const uploadedSqlID = await mysql.insert(`images`, `author_id, added_in, tags`, `${author_id}, '${date}', '${tags}'`);
         return uploadedSqlID;
     },
     changeImageName: async (oldName, newName) => {
-        fs.rename(`./uploads/${oldName}`, `./uploads/${newName}.jpg`, (err) => {
+        fs.rename(`./public/uploads/${oldName}`, `./public/uploads/${newName}.jpg`, (err) => {
             if (err) throw err;
         });
     }
