@@ -5,14 +5,18 @@ const logger = require('koa-logger');
 const Pug = require('koa-pug')
 const serve = require('koa-static');
 const passport = require('koa-passport');
-const session = require('koa-session'),
-      MysqlStore = require('koa-mysql-session');
-const koaBody = require('koa-body')
+const session = require('koa-session');
+const koaBody = require('koa-body');
 const auth = require('./controllers/auth_controller');
+const fs = require('fs');
 
 const path = require('path')
 const app = new Koa();
 //dependencies
+
+//Image sending
+//app.use(koaBody({multipart: true}))
+//Image sendin
 
 //Router
 const homepageRoute = new Router({ prefix: '/' });
@@ -53,9 +57,6 @@ app.use(async (ctx, next) => {
 });
 
 //Error handler
-
-
-
 
 
 //Addons
