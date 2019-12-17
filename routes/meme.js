@@ -56,5 +56,12 @@ module.exports = ({ memeRoute }) => {
         await ctx.redirect('/meme/moderate');
         await next();
     })
+
+    memeRoute.post('/:id', async (ctx, next) => {
+        const meme_id = ctx.originalUrl.slice(6);
+        const who_liked = ctx.req.body[0].ingame_id;
+        
+        meme.like(meme_id, who_liked);
+    })
 }
 

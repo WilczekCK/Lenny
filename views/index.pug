@@ -8,13 +8,14 @@ block content
         else
             each meme in memes
                 .meme__item(class='standard '+meme.tags)
-                    figure(class="c4-izmir c4-border-ccc-2 c4-gradient-bottom-left")
+                    figure(class="c4-izmir c4-border-ccc-2 c4-gradient-bottom-left" meme_id!=meme.id)
                         img(src='/uploads/'+meme.id+'.jpg')
                         figcaption(class="c4-layout-bottom-left")
                             div(class="c4-reveal-right")
                                 h2="Creator: "+meme.author_username
                                 br
-                                i(class="fas fa-heart")=meme.likes
+                                div(class="pp_button")
+                                    i(class="fas fa-heart")=meme.likes
                                 br
                                 .tag(style='box-shadow:unset')=meme.tags
 block footer
@@ -28,3 +29,4 @@ block footer
     script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js")
     script(src='scripts/modalsConfig.js')
     script(src='scripts/tagsInput.js')
+    script(src='scripts/ppFetch.js')

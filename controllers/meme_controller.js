@@ -1,4 +1,5 @@
 const mysql = require('../controllers/mysql_controller');
+const _ = require('underscore')
 const fs = require('fs')
 
 var meme_controller = meme_controller || {}
@@ -13,7 +14,6 @@ meme_controller = {
     },
     insertToDB: async (author_id, author_username, date, tags) => {
         const replacedTags = tags.replace(/,/g, " ");
-        console.log(replacedTags)
         const uploadedSqlID = await mysql.insert(`images`, `author_id, author_username, added_in, tags`, `${author_id}, '${author_username}' ,'${date}', '${replacedTags}'`);
         return uploadedSqlID;
     },
@@ -29,6 +29,13 @@ meme_controller = {
         }else{
             mysql.update(`images`, `status = 1`, `id = ${meme_id}`);
         }
+    },
+    like: async (meme_id, who_liked) => {
+        let responseFromDB = await mysql.query(`SELECT id FROM likes WHERE ingame_id = ${who_liked} AND meme_id = ${meme_id}`);
+        if(!_.isEmpty(responseFromDB) || _.isEmpty(who_liked)) return 0;
+
+        mysql.insert(`likes`, `meme_id, ingame_id`, `${meme_id}, ${who_liked}`);
+        mysql.update(`images`, `likes = likes + 1`, `id = ${meme_id}`);
     }
 }
 
