@@ -15,7 +15,8 @@ block content
                                 h2="Creator: "+meme.author_username
                                 br
                                 i(class="fas fa-heart")=meme.likes
-
+                                br
+                                .tag(style='box-shadow:unset')=meme.tags
 block footer
     script(src='scripts/jquery.js')
     script(src="https://kit.fontawesome.com/33ef3f59f0.js" crossorigin="anonymous")

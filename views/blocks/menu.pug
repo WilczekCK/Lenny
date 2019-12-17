@@ -13,7 +13,7 @@
                 li
                     a(href='#'  id="taiko") #taiko
                 li
-                    input(type="text" class="tag__finder" placeholder="search w.i.p.")
+                    input(type="text" class="tag__finder" placeholder="custom tag finder")
             .menu__container__wrap__menu__user
                 if userInfo
                     img(src=`https://a.ppy.sh/${userInfo.ingame_id}` alt=`${userInfo.username}_avatar`)
@@ -22,8 +22,8 @@
                         ='Add new meme'
                     if userInfo.role > 0
                         p(style='margin-top:25px')
-                            a.menu__auth__button(href='admin/meme')
-                                ='Admin Panel'
+                            a.menu__auth__button(href='meme/moderate')
+                                ='Moderate Panel'
                     
                     #modal__add__meme(class="modal" rel="model:open")
                         h2="Upload your meme below:"
