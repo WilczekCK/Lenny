@@ -57,7 +57,7 @@ module.exports = ({ memeRoute }) => {
         await next();
     })
 
-    memeRoute.post('/:id', async (ctx, next) => {
+    memeRoute.post('/like/:id', async (ctx, next) => {
         const meme_id = ctx.originalUrl.slice(6);
         const who_liked = ctx.req.body[0].ingame_id;
         

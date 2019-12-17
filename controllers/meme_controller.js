@@ -32,7 +32,7 @@ meme_controller = {
     },
     like: async (meme_id, who_liked) => {
         let responseFromDB = await mysql.query(`SELECT id FROM likes WHERE ingame_id = ${who_liked} AND meme_id = ${meme_id}`);
-        if(!_.isEmpty(responseFromDB) || _.isEmpty(who_liked)) return 0;
+        if(!_.isEmpty(responseFromDB) || _.isEmpty(who_liked)) return false;
 
         mysql.insert(`likes`, `meme_id, ingame_id`, `${meme_id}, ${who_liked}`);
         mysql.update(`images`, `likes = likes + 1`, `id = ${meme_id}`);
