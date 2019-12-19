@@ -3,98 +3,116 @@
   src: url("../fonts/Aller_Rg.ttf"); }
 
 .menu__container {
+  width: 100%;
+  height: 75px;
+  display: flex;
+  flex-direction: row;
   position: fixed;
-  overflow-y: scroll;
-  max-width: 300px;
-  height: 100vh; }
-  .menu__container .menu__container__wrap__logo h2 {
-    font-size: 36px; }
-  .menu__container .menu__container__wrap__menu {
-    display: flex;
-    flex-direction: column;
-    height: 800px; }
-    .menu__container .menu__container__wrap__menu ul {
-      padding: 0;
-      margin: 0; }
-      .menu__container .menu__container__wrap__menu ul li {
-        max-width: inherit;
-        padding: 20px 0px;
-        list-style-type: none; }
-        .menu__container .menu__container__wrap__menu ul li::after {
-          content: '';
-          position: absolute;
-          width: 80%;
-          height: 2px;
-          background: black;
-          left: 10%;
-          display: block; }
-        .menu__container .menu__container__wrap__menu ul li:last-of-type input {
-          width: 90%;
-          text-align: center;
-          margin-left: 10px;
-          font-size: 20px;
-          border: none;
-          background: white; }
-        .menu__container .menu__container__wrap__menu ul li a {
+  z-index: 999;
+  background: #191919;
+  color: white; }
+  .menu__container .menu__container__wrap {
+    width: 100%;
+    display: flex; }
+    .menu__container .menu__container__wrap .menu__container__wrap__logo h1 {
+      font-size: 36px;
+      margin: 14px 14px; }
+      .menu__container .menu__container__wrap .menu__container__wrap__logo h1 a {
+        color: inherit;
+        text-decoration: unset; }
+      .menu__container .menu__container__wrap .menu__container__wrap__logo h1 span {
+        color: #ffa179; }
+    .menu__container .menu__container__wrap .menu__container__wrap__menu {
+      display: flex;
+      flex-direction: row;
+      width: 100%; }
+      .menu__container .menu__container__wrap .menu__container__wrap__menu ul {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        text-align: right; }
+        .menu__container .menu__container__wrap .menu__container__wrap__menu ul li {
+          max-width: inherit;
+          padding: 20px 10px;
+          list-style-type: none;
+          display: inline-block; }
+          .menu__container .menu__container__wrap .menu__container__wrap__menu ul li:last-of-type input {
+            width: 85%;
+            margin-right: 15px;
+            text-align: center;
+            border: none;
+            background: transparent;
+            color: white;
+            border-bottom: 2px solid white;
+            margin-right: 5px; }
+          .menu__container .menu__container__wrap .menu__container__wrap__menu ul li a {
+            text-decoration: none;
+            font-size: 24px;
+            color: inherit; }
+            .menu__container .menu__container__wrap .menu__container__wrap__menu ul li a:hover {
+              color: #ffa179;
+              -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
+              transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1); }
+      .menu__container .menu__container__wrap .menu__container__wrap__menu .menu__container__wrap__menu__user {
+        display: flex;
+        flex-direction: column;
+        width: 80px;
+        margin-left: 10px; }
+        .menu__container .menu__container__wrap .menu__container__wrap__menu .menu__container__wrap__menu__user img {
+          margin-top: 5px;
+          max-width: 45px;
+          border-radius: 50%;
+          border: 5px solid black; }
+        .menu__container .menu__container__wrap .menu__container__wrap__menu .menu__container__wrap__menu__user .menu__auth__button {
+          position: relative;
+          background: none;
+          color: white;
+          text-transform: uppercase;
           text-decoration: none;
-          font-size: 24px;
-          color: #333333; }
-          .menu__container .menu__container__wrap__menu ul li a:hover {
+          border: 0.2em solid #ffa179;
+          height: 53px;
+          padding: 0.5em 1em;
+          width: 50%;
+          margin: 0 auto; }
+          .menu__container .menu__container__wrap .menu__container__wrap__menu .menu__container__wrap__menu__user .menu__auth__button::before {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 10%;
+            background: white;
+            height: 0.3em;
+            right: 20%;
+            top: -0.21em;
+            transform: skewX(-45deg);
+            -webkit-transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+            transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1); }
+          .menu__container .menu__container__wrap .menu__container__wrap__menu .menu__container__wrap__menu__user .menu__auth__button::after {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 10%;
+            background: white;
+            height: 0.3em;
+            left: 20%;
+            bottom: -0.25em;
+            transform: skewX(45deg);
+            -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
+            transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1); }
+          .menu__container .menu__container__wrap .menu__container__wrap__menu .menu__container__wrap__menu__user .menu__auth__button:hover {
             color: #ffa179;
             -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
             transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1); }
-    .menu__container .menu__container__wrap__menu .menu__container__wrap__menu__user {
-      margin-top: 25px; }
-      .menu__container .menu__container__wrap__menu .menu__container__wrap__menu__user .menu__auth__button {
-        position: relative;
-        background: none;
-        color: #333333;
-        text-transform: uppercase;
-        text-decoration: none;
-        border: 0.2em solid #333333;
-        padding: 0.5em 1em;
-        transform: translate(0%, 50%);
-        width: 50%;
-        margin: 0 auto; }
-        .menu__container .menu__container__wrap__menu .menu__container__wrap__menu__user .menu__auth__button::before {
-          content: "";
-          display: block;
-          position: absolute;
-          width: 10%;
-          background: #ffa179;
-          height: 0.3em;
-          right: 20%;
-          top: -0.21em;
-          transform: skewX(-45deg);
-          -webkit-transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
-          transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1); }
-        .menu__container .menu__container__wrap__menu .menu__container__wrap__menu__user .menu__auth__button::after {
-          content: "";
-          display: block;
-          position: absolute;
-          width: 10%;
-          background: #ffa179;
-          height: 0.3em;
-          left: 20%;
-          bottom: -0.25em;
-          transform: skewX(45deg);
-          -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
-          transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1); }
-        .menu__container .menu__container__wrap__menu .menu__container__wrap__menu__user .menu__auth__button:hover {
-          color: #ffa179;
-          -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
-          transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1); }
-          .menu__container .menu__container__wrap__menu .menu__container__wrap__menu__user .menu__auth__button:hover::before {
-            right: 80%; }
-          .menu__container .menu__container__wrap__menu .menu__container__wrap__menu__user .menu__auth__button:hover::after {
-            left: 80%; }
+            .menu__container .menu__container__wrap .menu__container__wrap__menu .menu__container__wrap__menu__user .menu__auth__button:hover::before {
+              right: 80%; }
+            .menu__container .menu__container__wrap .menu__container__wrap__menu .menu__container__wrap__menu__user .menu__auth__button:hover::after {
+              left: 80%; }
   .menu__container #modal__add__meme {
     display: none; }
 
 .content__container {
   width: 100%;
   height: 100%;
-  margin-left: 280px; }
+  margin-top: 85px; }
 
 .gutter-sizer {
   width: 1.5%; }
@@ -1145,7 +1163,11 @@ html {
 body {
   font-family: 'osu-regular';
   display: flex;
-  flex-direction: row; }
+  flex-direction: column;
+  background: #333333; }
 
 [v-cloak] {
   display: none; }
+
+.active {
+  color: #ffa179 !important; }

@@ -1,55 +1,68 @@
 .menu__container{
-    position: fixed;
-    overflow-y:scroll;
-    max-width:300px;
-    height:100vh;
+    width:100%;
+    height:75px;
+    display:flex;
+    flex-direction: row;
+    position:fixed;
+    z-index:999;
+    background:$osupoli_black;
+    color:white;
+
+    .menu__container__wrap{
+        width:100%;
+        display:flex;
+   
 
     .menu__container__wrap__logo{
-        h2{
+        h1{
             font-size:36px;
+            margin: 14px 14px;
+
+            a{
+                color:inherit;
+                text-decoration: unset;
+            }
+
+            span{
+                color:$osupoli-orange;
+            }
         }
     }
 
     .menu__container__wrap__menu{
         display:flex;
-        flex-direction: column;
-        height:800px;
+        flex-direction: row;
+        width:100%;
 
         ul{
             padding:0;
             margin:0;
+            width:100%;
+            text-align:right;
 
             li{
                 max-width: inherit;
-                padding:20px 0px;
+                padding:20px 10px;
                 list-style-type: none;
-
-                &::after{
-                    content:'';
-                    position: absolute;
-                    width:80%;
-                    height:2px;
-                    background: black;
-                    left:10%;
-                    display:block;
-                }
+                display:inline-block;
 
                 &:last-of-type{
                     input{
-                        width: 90%;
+                        width: 85%;
+                        margin-right: 15px;
                         text-align: center;
-                        margin-left: 10px;
-                        font-size: 20px;
                         border: none;
-                        background:white;
+                        background:transparent;
+                        color:white;
+                        border-bottom:2px solid white;
+                        margin-right:5px;
                     }
                 }
 
                 a{
                     text-decoration: none;
                     font-size:24px;
-                    color:$osupoli-gray;
-
+                    color:inherit;
 
                 &:hover{
                     color:$osupoli-orange;
@@ -62,17 +75,27 @@
         }
 
         .menu__container__wrap__menu__user{
-            margin-top:25px;
+            display:flex;
+            flex-direction: column;
+            width:80px;
+            margin-left:10px;
+
+            img{
+                margin-top:5px;
+                max-width: 45px;
+                border-radius: 50%;
+                border: 5px solid black;
+            }
 
             .menu__auth__button{
                 position: relative;
                 background: none;
-                color: $osupoli-gray;
+                color: white;
                 text-transform: uppercase;
                 text-decoration: none;
-                border: 0.2em solid $osupoli-gray;
+                border: 0.2em solid $osupoli-orange;
+                height:53px;
                 padding: 0.5em 1em;
-                transform:translate(0%, 50%);
                 width:50%;
                 margin:0 auto;
     
@@ -81,7 +104,7 @@
                     display: block;
                     position: absolute;
                     width: 10%;
-                    background: $osupoli-orange;
+                    background: white;
                     height: 0.3em;
                     right: 20%;
                     top: -0.21em;
@@ -95,7 +118,7 @@
                     display: block;
                     position: absolute;
                     width: 10%;
-                    background: $osupoli-orange;
+                    background: white;
                     height: 0.3em;
                     left: 20%;
                     bottom: -0.25em;
@@ -123,6 +146,7 @@
         
     }
 
+}
     #modal__add__meme{
         display:none;
     }

@@ -19,9 +19,13 @@ html{
 body{
     font-family:'osu-regular';
     display:flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 [v-cloak] {
     display:none;
+}
+
+.active{
+    color: $osupoli-orange !important;
 }

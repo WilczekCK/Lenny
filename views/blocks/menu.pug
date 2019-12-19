@@ -1,7 +1,10 @@
 .menu__container
     .menu__container__wrap
         .menu__container__wrap__logo
-            h2(class="logo")="osu!memes"
+            h1(class="logo")
+                a(href="/")
+                    span=`osu!`
+                    =`memes`
         .menu__container__wrap__menu
             ul.filters
                 li
@@ -13,7 +16,8 @@
                 li
                     a(href='#'  id="taiko") #taiko
                 li
-                    input(type="text" class="tag__finder" placeholder="custom tag finder")
+                    input(type="text" class="tag__finder" placeholder="custom tag finder" style="display:none")
+                    i(id="tag__finder" class="fas fa-search")
             .menu__container__wrap__menu__user
                 if userInfo
                     img(src=`https://a.ppy.sh/${userInfo.ingame_id}` alt=`${userInfo.username}_avatar`)
