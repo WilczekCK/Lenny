@@ -15,9 +15,12 @@ block content
                                 h2="Creator: "+meme.author_username
                                 br
                                 div(class="pp_button")
-                                    i(class="fas fa-heart")=meme.likes
+                                    i(class="fas fa-heart")
+                                    .pp__counter(style="float:right;")
+                                        =meme.likes
                                 br
                                 .tag(style='box-shadow:unset')=meme.tags
+    include blocks/alert_popups
 block footer
     script(src='scripts/jquery.js')
     script(src="https://kit.fontawesome.com/33ef3f59f0.js" crossorigin="anonymous")

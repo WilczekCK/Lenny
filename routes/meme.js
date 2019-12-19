@@ -50,7 +50,7 @@ module.exports = ({ memeRoute }) => {
     memeRoute.post('/moderate', koaBody(), async (ctx, next) => {
         const is_player_logged = ctx.req.body[0];
         if (!is_player_logged || is_player_logged.role < 1) ctx.throw(400, 'User is not logged in or is not administrator');
-        const {meme_id, decision} = ctx.request.body;
+        const { meme_id, decision } = ctx.request.body;
         meme.moderate(meme_id, decision);
 
         await ctx.redirect('/meme/moderate');
@@ -58,10 +58,11 @@ module.exports = ({ memeRoute }) => {
     })
 
     memeRoute.post('/like/:id', async (ctx, next) => {
-        const meme_id = ctx.originalUrl.slice(6);
+        const meme_id = ctx.originalUrl.slice(11);
         const who_liked = ctx.req.body[0].ingame_id;
-        
-        meme.like(meme_id, who_liked);
+
+        const alreadyGaveLike = await meme.like(meme_id, who_liked);
+        if (alreadyGaveLike) { ctx.body = true; } else { ctx.body = false; }
     })
 }
 
