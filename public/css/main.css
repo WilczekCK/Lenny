@@ -11,9 +11,15 @@
   z-index: 999;
   background: #191919;
   color: white; }
+  @media (max-width: 768px) {
+    .menu__container {
+      height: unset; } }
   .menu__container .menu__container__wrap {
     width: 100%;
     display: flex; }
+    @media (max-width: 768px) {
+      .menu__container .menu__container__wrap {
+        flex-direction: row; } }
     .menu__container .menu__container__wrap .menu__container__wrap__logo h1 {
       font-size: 36px;
       margin: 14px 14px; }
