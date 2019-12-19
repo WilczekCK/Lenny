@@ -10,9 +10,9 @@ html(lang="en")
         title Osu!meme page
         include blocks/head-link.pug
     body
-        #fb-root
-        script(src='scripts/fb-integration.js')
         include blocks/menu.pug
+        if userInfo
+            include blocks/logged_and_admin
         .content__container
             block content
         block footer

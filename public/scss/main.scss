@@ -6,6 +6,7 @@
 @import 'templates/footer.scss';
 
 @import 'templates/meme.scss';
+@import 'templates/logged_content.scss';
 @import 'templates/inputs.scss';
 @import 'templates/modals.scss';
 @import 'izimir/main.scss';
@@ -20,6 +21,7 @@ body{
     font-family:'osu-regular';
     display:flex;
     flex-direction: column;
+    background:$osupoli_gray;
 }
 
 [v-cloak] {
