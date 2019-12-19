@@ -23,6 +23,7 @@ $('ul.filters li').click((e => {
             }else{
                 $(`#${focused}`).addClass('active');
                 $(`#${focused}`).on('click', _ => {
+                    $(`#${focused}`).removeClass('active');
                     $(`.${focused}`).fadeOut();
                 });
             }
