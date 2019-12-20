@@ -32,7 +32,7 @@ module.exports = ({ memeRoute }) => {
         const { filename } = ctx.request.files.meme[0]; //image-id
         const { tags, author_id, author_username } = ctx.request.body;
 
-        const uploadedSqlID = await meme.insertToDB(`${author_id}`, `${author_username}`, `${moment().format('YYYY-MM-DD')}`, `${tags}`)
+        const uploadedSqlID = await meme.insertToDB(`${author_id}`, `${author_username}`, `${moment().format('YYYY-MM-DD HH:mm:ss')}`, `${tags}`)
         await meme.changeImageName(`${filename}`, `${uploadedSqlID}`);
 
         await ctx.redirect('/');
