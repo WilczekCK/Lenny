@@ -3,12 +3,12 @@
         a(class="logged__add__meme" href="#modal__add__meme")
             i(class="fas fa-plus")
         if userInfo.role > 0
-            a(href='meme/moderate')
+            a(href='/meme/moderate')
                 i(class="far fa-clock")
         a(class='mobile__user__container logged' style=`background-image:url(https://a.ppy.sh/${userInfo.ingame_id}); height:20px; margin-bottom:-20px;`)
         #modal__add__meme(class="modal" rel="model:open")
             h2="Upload your meme below:"
-            form(action='meme/add' method='POST' enctype='multipart/form-data')
+            form(action='/meme/add' method='POST' enctype='multipart/form-data')
                 label(for="tags")
                     ="Select an image:"
                 input(type="file" id="meme" name="meme")
