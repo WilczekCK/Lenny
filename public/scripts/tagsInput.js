@@ -44,7 +44,8 @@ $(document).ready(function(){
       $span.appendTo($tag);
       $tag.appendTo($appendHere);
       $(element).val('');
-      $actualTags.push($tag[0].innerText);
+      const lowerCased = $tag[0].innerText.toLowerCase();
+      $actualTags.push(lowerCased);
       providedTags.push($(element).val());
     }
 
