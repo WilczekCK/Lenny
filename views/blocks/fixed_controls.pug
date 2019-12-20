@@ -1,0 +1,31 @@
+.fixed__controls__content
+    if userInfo
+        a(class="logged__add__meme" href="#modal__add__meme")
+            i(class="fas fa-plus")
+        if userInfo.role > 0
+            a(href='meme/moderate')
+                i(class="far fa-clock")
+        a(class='mobile__user__container logged' style=`background-image:url(https://a.ppy.sh/${userInfo.ingame_id}); height:20px; margin-bottom:-20px;`)
+        #modal__add__meme(class="modal" rel="model:open")
+            h2="Upload your meme below:"
+            form(action='meme/add' method='POST' enctype='multipart/form-data')
+                label(for="tags")
+                    ="Select an image:"
+                input(type="file" id="meme" name="meme")
+                .tip
+                    ="Only .jpg extension accepted!"
+                label(for="tags")
+                    ="Provide tags for your image:"
+                .tags__provider
+                    .tagHere
+                    input(type="hidden" name="tags" class="tags__provided")
+                    input(type="hidden" name="author_username" value=userInfo.username)
+                    input(type="hidden" name="author_id" value=userInfo.ingame_id)
+                    input(type='text' autofocus value="tagiiiii")
+                .tip
+                    ="Use a spacebar to input a tag"
+                input(type="submit" value="UPLOAD" id="tags__submit")
+
+    else
+        a(class='mobile__user__container' href='/login')
+            i(class="fas fa-sign-in-alt")

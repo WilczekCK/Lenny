@@ -1,6 +1,7 @@
 .menu__container{
     @media (max-width:768px){
         height:unset;
+        padding-bottom:10px;
     }
 
     width:100%;
@@ -47,22 +48,48 @@
             width:100%;
             text-align:right;
 
+            @media (max-width:768px){
+                text-align:center;
+            }
+
             li{
                 max-width: inherit;
                 padding:20px 10px;
                 list-style-type: none;
                 display:inline-block;
+                
+                @media (max-width:768px){
+                    font-size:1.2em;
+                    padding:5px 2.5px;
+                }
 
                 &:last-of-type{
+
+                    @media (max-width:768px){
+                        display:flex;
+                        margin-top:10px;
+
+                        i{
+                            display:none;
+                        }
+                    }
+
                     input{
+
+                        @media (max-width:768px){
+                            display:block !important;
+                            min-width: 300px;
+                            max-width: 400px;
+                            margin:0 auto;
+                        }
+    
+
                         width: 85%;
-                        margin-right: 15px;
                         text-align: center;
                         border: none;
                         background:transparent;
                         color:white;
                         border-bottom:2px solid white;
-                        margin-right:5px;
                     }
                 }
 
@@ -70,6 +97,10 @@
                     text-decoration: none;
                     font-size:24px;
                     color:inherit;
+
+                    @media (max-width:768px){
+                        font-size:1em;
+                    }
 
                 &:hover{
                     color:$osupoli-orange;
@@ -86,6 +117,10 @@
             flex-direction: column;
             width:80px;
             margin-left:10px;
+
+            @media (max-width:786px){
+                display:none;
+            }
 
             img{
                 margin-top:5px;

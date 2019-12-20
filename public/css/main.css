@@ -13,7 +13,8 @@
   color: white; }
   @media (max-width: 768px) {
     .menu__container {
-      height: unset; } }
+      height: unset;
+      padding-bottom: 10px; } }
   .menu__container .menu__container__wrap {
     width: 100%;
     display: flex; }
@@ -37,24 +38,44 @@
         margin: 0;
         width: 100%;
         text-align: right; }
+        @media (max-width: 768px) {
+          .menu__container .menu__container__wrap .menu__container__wrap__menu ul {
+            text-align: center; } }
         .menu__container .menu__container__wrap .menu__container__wrap__menu ul li {
           max-width: inherit;
           padding: 20px 10px;
           list-style-type: none;
           display: inline-block; }
+          @media (max-width: 768px) {
+            .menu__container .menu__container__wrap .menu__container__wrap__menu ul li {
+              font-size: 1.2em;
+              padding: 5px 2.5px; } }
+          @media (max-width: 768px) {
+            .menu__container .menu__container__wrap .menu__container__wrap__menu ul li:last-of-type {
+              display: flex;
+              margin-top: 10px; }
+              .menu__container .menu__container__wrap .menu__container__wrap__menu ul li:last-of-type i {
+                display: none; } }
           .menu__container .menu__container__wrap .menu__container__wrap__menu ul li:last-of-type input {
             width: 85%;
-            margin-right: 15px;
             text-align: center;
             border: none;
             background: transparent;
             color: white;
-            border-bottom: 2px solid white;
-            margin-right: 5px; }
+            border-bottom: 2px solid white; }
+            @media (max-width: 768px) {
+              .menu__container .menu__container__wrap .menu__container__wrap__menu ul li:last-of-type input {
+                display: block !important;
+                min-width: 300px;
+                max-width: 400px;
+                margin: 0 auto; } }
           .menu__container .menu__container__wrap .menu__container__wrap__menu ul li a {
             text-decoration: none;
             font-size: 24px;
             color: inherit; }
+            @media (max-width: 768px) {
+              .menu__container .menu__container__wrap .menu__container__wrap__menu ul li a {
+                font-size: 1em; } }
             .menu__container .menu__container__wrap .menu__container__wrap__menu ul li a:hover {
               color: #ffa179;
               -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
@@ -64,6 +85,9 @@
         flex-direction: column;
         width: 80px;
         margin-left: 10px; }
+        @media (max-width: 786px) {
+          .menu__container .menu__container__wrap .menu__container__wrap__menu .menu__container__wrap__menu__user {
+            display: none; } }
         .menu__container .menu__container__wrap .menu__container__wrap__menu .menu__container__wrap__menu__user img {
           margin-top: 5px;
           max-width: 55px;
@@ -119,6 +143,9 @@
   width: 100%;
   height: 100%;
   margin-top: 85px; }
+  @media (max-width: 768px) {
+    .content__container {
+      margin-top: 160px !important; } }
 
 .gutter-sizer {
   width: 1.5%; }
@@ -139,26 +166,38 @@
       min-width: 315px;
       max-width: 415px; }
 
-.logged_content {
+.fixed__controls__content {
   color: white;
   position: fixed;
   right: 10px;
   bottom: 10px;
   z-index: 999; }
-  .logged_content a {
+  .fixed__controls__content a {
     margin: 5px;
     float: none;
     clear: both;
-    background: #191919;
+    background-color: #191919;
     border-radius: 50%;
     padding: 15px;
     display: inline-block;
     width: 20px;
     color: inherit; }
-    .logged_content a i {
+    .fixed__controls__content a i {
       cursor: pointer; }
-    .logged_content a:hover {
+    .fixed__controls__content a:hover {
       color: #ffa179; }
+  .fixed__controls__content a.mobile__user__container {
+    display: none; }
+    @media (max-width: 768px) {
+      .fixed__controls__content a.mobile__user__container {
+        display: inline-block; } }
+  .fixed__controls__content a.mobile__user__container.logged {
+    display: none;
+    background-size: cover;
+    background-position: center; }
+    @media (max-width: 768px) {
+      .fixed__controls__content a.mobile__user__container.logged {
+        display: inline-block; } }
 
 input {
   clear: both;

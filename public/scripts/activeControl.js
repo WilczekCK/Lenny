@@ -23,8 +23,10 @@ $('ul.filters li').click((e => {
             }else{
                 $(`#${focused}`).addClass('active');
                 $(`#${focused}`).on('click', _ => {
-                    $(`#${focused}`).removeClass('active');
                     $(`.${focused}`).fadeOut();
+                    setTimeout(_ => {
+                        $(`#${focused}`).removeClass('active');
+                    }, 500)
                 });
             }
         }

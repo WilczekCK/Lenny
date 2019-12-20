@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $('.pp_button').on('click', (e) => {
-        if($('.logged_content').length == 0) return $('#alert__not__logged').modal({
+        if($('.logged__add__meme').length == 0) return $('#alert__not__logged').modal({
             fadeDuration: 100
         });
 

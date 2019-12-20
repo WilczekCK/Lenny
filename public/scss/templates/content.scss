@@ -2,6 +2,10 @@
     width:100%;
     height:100%;
     margin-top:85px;
+
+    @media (max-width:768px){
+        margin-top:160px !important;
+    }
 }
 
 .gutter-sizer{

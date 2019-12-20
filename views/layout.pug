@@ -11,8 +11,7 @@ html(lang="en")
         include blocks/head-link.pug
     body
         include blocks/menu.pug
-        if userInfo
-            include blocks/logged_and_admin
+        include blocks/fixed_controls.pug
         .content__container
             block content
         block footer
