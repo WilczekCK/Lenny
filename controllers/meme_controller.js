@@ -37,6 +37,13 @@ meme_controller = {
         mysql.insert(`likes`, `meme_id, ingame_id`, `${meme_id}, ${who_liked}`);
         mysql.update(`images`, `likes = likes + 1`, `id = ${meme_id}`);
         return false;
+    },
+    infiniteScroll: async (loadCount) => {
+        const startFrom = (5 * loadCount) + 1;
+        const memesToLoad = (10 * loadCount);
+
+        const lastMemeID = await mysql.query(`SELECT id, author_username, tags, likes, status, added_in FROM images WHERE status = 1 ORDER BY added_in DESC LIMIT ${startFrom}, ${memesToLoad}`)
+        return lastMemeID;
     }
 }
 

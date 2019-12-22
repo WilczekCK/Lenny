@@ -59,10 +59,17 @@ module.exports = ({ memeRoute }) => {
 
     memeRoute.post('/like/:id', async (ctx, next) => {
         const meme_id = ctx.originalUrl.slice(11);
-        const who_liked = ctx.req.body[0].ingame_id;
+        //slice the strings from the url, leave the id only
 
+        const who_liked = ctx.req.body[0].ingame_id;
         const alreadyGaveLike = await meme.like(meme_id, who_liked);
         if (alreadyGaveLike) { ctx.body = true; } else { ctx.body = false; }
+    })
+
+    memeRoute.post('/load', koaBody(), async (ctx, next) => {
+        const howManyLoads = ctx.request.header.loadcount;
+        const lastMemeID = await meme.infiniteScroll(howManyLoads)
+        ctx.body = lastMemeID;
     })
 }
 

@@ -6,20 +6,27 @@ block content
         if(!memes)
             h3='Unfortunately, there is no memes yet'
         else
+            -var x = 0;
             each meme in memes
-                .meme__item(class='standard '+meme.tags)
-                    figure(class="c4-izmir c4-border-ccc-2 c4-gradient-bottom-left" meme_id!=meme.id)
-                        img(src='/uploads/'+meme.id+'.jpg')
-                        figcaption(class="c4-layout-bottom-left")
-                            div(class="c4-reveal-right")
-                                h2="Creator: "+meme.author_username
-                                br
-                                div(class="pp_button")
-                                    i(class="fas fa-heart")
-                                    .pp__counter(style="float:right;")
-                                        =meme.likes
-                                br
-                                .tag(style='box-shadow:unset')=meme.tags
+                - x = x + 1
+                -if(x <= 5)
+                    .meme__item(class='standard '+meme.tags)
+                        figure(class="c4-izmir c4-border-ccc-2 c4-gradient-bottom-left" meme_id!=meme.id)
+                            img(src='/uploads/'+meme.id+'.jpg')
+                            figcaption(class="c4-layout-bottom-left")
+                                div(class="c4-reveal-right")
+                                    h2="Creator: "+meme.author_username
+                                    br
+                                    div(class="pp_button")
+                                        i(class="fas fa-heart")
+                                        .pp__counter(style="float:right;")
+                                            =meme.likes
+                                    br
+                                    .tag(style='box-shadow:unset')=meme.tags
+
+    button.load__more__memes
+        ="load more"
+
     include blocks/alert_popups
 block footer
     script(src='/scripts/jquery.js')
@@ -32,5 +39,5 @@ block footer
     script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js")
     script(src='/scripts/modalsConfig.js')
     script(src='/scripts/tagsInput.js')
-    script(src='/scripts/ppFetch.js')
+    script(src='/scripts/fetchInfo.js')
     script(src='/scripts/activeControl.js')
