@@ -1,45 +1,60 @@
 $(window).on('load', _ => {
-  //masonry
- // imagesLoaded('.meme__container', function () {
-    var $grid = $('.meme__container').isotope({
-      itemSelector: '.meme__item',
-      masonry: {
-        columnWidth: 40,
-        isFitWidth: true
-        }
-    })
+  var $grid = $('.meme__container').isotope({
+    itemSelector: '.meme__item',
+    masonry: {
+      columnWidth: 40,
+      isFitWidth: true
+    }
+  })
 
-    $('.menu__container__wrap__menu li a').on('click', function () {
-      var filterValue = `.${this.id}`;
-      // use filterFn if matches value
-      $grid.isotope({ filter: filterValue, layoutMode: 'fitRows' });
-    })
-  
-    
-  $('.tag__finder').on('keypress', function(e){
-    if(e.which == 13){
+  $('.menu__container__wrap__menu li a').on('click', function () {
+    var filterValue = `.${this.id}`;
+    $grid.isotope({ filter: filterValue, layoutMode: 'fitRows' });
+  })
+
+  $('.tag__finder').on('keypress', function (e) {
+    if (e.which == 13) {
       const filterValue = `.${$(this)[0].value}`.toLowerCase()
       $grid.isotope({ filter: filterValue, layoutMode: 'fitRows' });
     }
   })
- // });
-})
 
 
-let whichClick = 0;
-$('.load__more__memes').on('click', _ => {
-  whichClick = whichClick + 1;
-  fetch(`meme/load`,{
-    method: "post",
-    headers:{
-      loadCount: whichClick
-    } 
-})
-.then(resp => resp.json())
-.then(resp => {
-  let elArray = '';
-  resp.forEach(meme => {
-    elArray = elArray + `<div class="meme__item ${meme.tags}"> 
+  //Viewport - check if element is on screen
+  $.fn.isInViewport = function () {
+    let elementTop = $(this).offset().top;
+    let elementBottom = elementTop + $(this).outerHeight();
+
+    let viewportTop = $(window).scrollTop();
+    let viewportBottom = viewportTop + $(window).height();
+
+    return elementBottom > viewportTop && elementTop < viewportBottom;
+  };
+  //Viewport - check if element is on screen
+
+
+  //Infinite Scroll
+  let loadTimes = 0;
+
+  $(window).scroll(function () {
+    if ($('.load__more__memes').isInViewport()) {
+      loadTimes = loadTimes + 1;
+      return loadMemes(loadTimes)
+    }
+  });
+
+  function loadMemes(loadTimes) {
+    fetch(`meme/load`, {
+      method: "post",
+      headers: {
+        loadCount: loadTimes
+      }
+    })
+      .then(resp => resp.json())
+      .then(resp => {
+        let elArray = '';
+        resp.forEach(meme => {
+          elArray = elArray + `<div class="meme__item ${meme.tags}"> 
         <figure class="c4-izmir c4-border-ccc-2 c4-gradient-bottom-left" meme_id=${meme.id}>
           <img src='/uploads/${meme.id}.jpg' />
           <figcaption class="c4-layout-bottom-left">
@@ -60,13 +75,19 @@ $('.load__more__memes').on('click', _ => {
           </figcaption>
         </figure> 
       </div>`
-  });
+        });
 
-  $('.meme__container').isotope( 'insert', $(elArray));
-  imagesLoaded('.meme__container', function () {
-    $('.meme__container').isotope({})
-  })
+        if (resp.length != 0) {
+          $('.meme__container').isotope('insert', $(elArray));
+          imagesLoaded('.meme__container', function () {
+            $grid.isotope();
+          })
+        } else {
+          return 0;
+        }
+
+      })
+  }
+  //Infinite Scroll
+
 })
-
-
-})  
