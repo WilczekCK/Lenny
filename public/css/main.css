@@ -150,6 +150,10 @@
 .gutter-sizer {
   width: 1.5%; }
 
+.load__more__memes {
+  color: white;
+  padding: 15px; }
+
 .footer__container {
   display: none;
   clear: both;

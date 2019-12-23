@@ -3,6 +3,9 @@ $(window).on('load', _ => {
     infiniteScroll = {
         loadTimes: 0,
         memesLoad: '',
+        howMuchToLoad: 5,
+        loadMoreSelector: $('.load__more__memes'),
+        grid: $('.meme__container'),
         isInViewport: function(el){
             let elementTop = $(el).offset().top;
             let elementBottom = elementTop + $(el).outerHeight();
@@ -12,7 +15,6 @@ $(window).on('load', _ => {
         
             return elementBottom > viewportTop && elementTop < viewportBottom;
         },
-        grid: $('.meme__container'),
         areMemesAvailable: function (dbCallback) {
             if (dbCallback.length != 0) {
                 infiniteScroll.grid.isotope('insert', $(infiniteScroll.memesLoad));
@@ -20,14 +22,16 @@ $(window).on('load', _ => {
                     infiniteScroll.grid.isotope();
                 })
             } else {
-                return 0;
+                if(infiniteScroll.loadMoreSelector.hasClass('noMemes')) return 0;
+                else infiniteScroll.loadMoreSelector.html(`You reached the end of osumemes`).addClass('noMemes')
             }
         },
         loadMemes: function () {
             fetch(`meme/load`, {
                 method: "post",
                 headers: {
-                    loadCount: infiniteScroll.loadTimes
+                    loadCount: infiniteScroll.loadTimes,
+                    loadElements: infiniteScroll.howMuchToLoad
                 }
             })
             .then(resp => resp.json())

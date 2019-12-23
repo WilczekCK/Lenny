@@ -68,7 +68,8 @@ module.exports = ({ memeRoute }) => {
 
     memeRoute.post('/load', koaBody(), async (ctx, next) => {
         const howManyLoads = ctx.request.header.loadcount;
-        const lastMemeID = await meme.infiniteScroll(howManyLoads)
+        const howManyElements = ctx.request.header.loadelements;
+        const lastMemeID = await meme.infiniteScroll(howManyLoads, howManyElements)
         ctx.body = lastMemeID;
     })
 }
