@@ -4,12 +4,15 @@ const fs = require('fs')
 
 var meme_controller = meme_controller || {}
 meme_controller = {
-    displayMemes: async _ => {
-        const memesRecord = await mysql.query(`SELECT id, author_username, tags, likes, status, added_in  FROM images WHERE status = 1 ORDER BY added_in DESC`);
+    displayMemes: async (limit) => {
+        if(limit) limit = `limit ${limit}`
+        else limit = '';
+
+        const memesRecord = await mysql.query(`SELECT id, author_username, tags, likes, status, added_in  FROM images WHERE status = 1 ORDER BY added_in DESC ${limit}`);
         return memesRecord;
     },
     displayWaitingMemes: async _ => {
-        const memesRecord = await mysql.query(`SELECT id, author_username, tags, likes, status, added_in  FROM images WHERE status = 0 ORDER BY added_in DESC`);
+        const memesRecord = await mysql.query(`SELECT id, author_username, tags, likes, status, added_in  FROM images WHERE status = 0 ORDER BY added_in DESC `);
         return memesRecord;
     },
     insertToDB: async (author_id, author_username, date, tags) => {
