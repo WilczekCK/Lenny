@@ -73,5 +73,10 @@ $(window).on('load', _ => {
             return infiniteScroll.loadMemes(infiniteScroll.loadTimes)
         }
     });
+
+    $(document).on('click', '.load__more__memes', () => {
+        infiniteScroll.loadTimes = infiniteScroll.loadTimes + 1;
+        return infiniteScroll.loadMemes(infiniteScroll.loadTimes)
+    })
     //Listeners
 })

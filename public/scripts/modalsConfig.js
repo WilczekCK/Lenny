@@ -3,3 +3,8 @@ $('.logged__add__meme').click(_ => {
         fadeDuration: 100
     });
 })
+
+//slideshow of memes, disable
+$('.popup__image').on($.modal.CLOSE, function(event, modal) {
+    $(document).off("keydown");
+});
