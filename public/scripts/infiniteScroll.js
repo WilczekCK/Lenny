@@ -61,7 +61,7 @@ $(window).on('load', _ => {
                 </div>`
                 });
 
-                infiniteScroll.areMemesAvailable(resp)
+                infiniteScroll.areMemesAvailable(resp);
             })
         }
     }

@@ -31,7 +31,16 @@ $(window).on('load', _ => {
         },
         checkSiblings: (e) => {
             const path = imageModal.objectPathRecog(e);
-            if(path.nextSibling !== null && path.nextSibling.nextSibling === null) $('.load__more__memes').trigger('click');
+            if (path.nextSibling == null || path.nextSibling.nextSibling === null) {
+                $('.load__more__memes').trigger('click')
+
+                //some time after fetching
+                setTimeout(() => {
+                    imageModal.config.actualSiblings.previous = path.previousSibling;
+                    imageModal.config.actualSiblings.next = path.nextSibling
+                }, 1500)
+
+            }
 
             imageModal.config.actualSiblings.previous = path.previousSibling;
             imageModal.config.actualSiblings.next = path.nextSibling;
