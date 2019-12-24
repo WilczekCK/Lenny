@@ -3,6 +3,7 @@ $(document).ready(function(){
     likesFetch = {
         config:{
             fadeTime: 100,
+            buttonName: '.pp_button',
             counterSelector: '.pp__counter',
             popupNotLogged: '.alert__not__logged',
             popupGavePP: '.alert__already__gave__pp',
@@ -31,7 +32,9 @@ $(document).ready(function(){
         }
 
     }
-    $('.pp_button').on('click', (e) => {
+
+
+    $(document).on('click', likesFetch.config.buttonName , (e) => {
         likesFetch.giveLike(e)
     })
 })

@@ -30,7 +30,7 @@ $(document).ready(function(){
         }
     }
 
-    $(imageModal.config.clickableEl).on('click', (e) => {
+    $(document).on('click', imageModal.config.clickableEl, (e) => {
         console.log(e)
         if(!imageModal.isLoveButtonClicked(e)){
             imageModal.clearContainer();
