@@ -4,8 +4,8 @@ $(document).ready(function(){
         config:{
             fadeTime: 100,
             counterSelector: '.pp__counter',
-            popupNotLogged: '#alert__not__logged',
-            popupGavePP: '#alert__already__gave__pp',
+            popupNotLogged: '.alert__not__logged',
+            popupGavePP: '.alert__already__gave__pp',
             isLogged: '.logged__add__meme',
         },
         memeLiked: (el) => $(el.currentTarget).parent().parent().parent()[0].attributes.meme_id.nodeValue,

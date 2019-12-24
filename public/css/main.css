@@ -266,6 +266,11 @@ label {
   font-style: italic !important;
   padding-bottom: 20px; }
 
+.popup__image {
+  text-align: center !important; }
+  .popup__image img {
+    width: 100%; }
+
 /* Izmir - ImageHover CSS LIbrary
   ----------------------------- */
 .c4-izmir {
