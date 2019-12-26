@@ -2,14 +2,16 @@ $(document).ready(function(){
     var likesFetch = likesFetch || {};
     likesFetch = {
         config:{
-            fadeTime: 100,
-            buttonName: '.pp_button',
+            fadeTime: 300,
+            buttonName: '.pp__counter',
             counterSelector: '.pp__counter',
             popupNotLogged: '.alert__not__logged',
             popupGavePP: '.alert__already__gave__pp',
             isLogged: '.logged__add__meme',
         },
-        memeLiked: (el) => $(el.currentTarget).parent().parent().parent()[0].attributes.meme_id.nodeValue,
+        memeLiked: (el) => {
+            return $(el.currentTarget)[0].attributes.meme_id.value;
+        },
         giveLike: (el) => {
             if($(likesFetch.config.isLogged).length == 0) return $(likesFetch.config.popupNotLogged).modal({
                 fadeDuration: likesFetch.config.fadeTime
