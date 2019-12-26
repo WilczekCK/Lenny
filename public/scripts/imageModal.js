@@ -3,7 +3,9 @@ $(window).on('load', _ => {
     imageModal = {
         config: {
             clickableEl: '.meme__item',
-            imageContainer: '.popup__image',
+            mainContainer: '.meme__modal',
+            imageContainer: '.meme__modal__image',
+            infoContainer: '.meme__modal__desc',
             ppButton: '.pp__counter',
             actualSiblings: {
                 previous: '',
@@ -23,31 +25,46 @@ $(window).on('load', _ => {
             const childImage = $(path).find('img')[0];
             return childImage;
         },
+        findDescOnClick: (e) => {
+            const path = imageModal.objectPathRecog(e);
+
+            const childDesc = {author_id:$(path).find('h2')[0], pp:$(path).find('.pp_button')[0].innerHTML}
+            return childDesc;
+        },
         appendImage: (image) => $(image).clone().appendTo(imageModal.config.imageContainer),
-        clearContainer: _ => $(imageModal.config.imageContainer).html(''),
-        showImage: (e) => {
-            const image = imageModal.findImageOnClick(e);
+        appendDesc: (desc) => {
+            $(desc.pp).clone().appendTo(imageModal.config.infoContainer)
+            $(desc.author_id).clone().appendTo(imageModal.config.infoContainer)
+        },
+        clearContainer: _ => {
+            $(imageModal.config.imageContainer).html('');
+            $(imageModal.config.infoContainer).html('');
+        },
+        showImage: (itemSelected) => {
+            const image = imageModal.findImageOnClick(itemSelected);
             return imageModal.appendImage(image);
+        },
+        showDesc: (e) => {
+            const desc = imageModal.findDescOnClick(e);
+            return imageModal.appendDesc(desc);
         },
         checkSiblings: (e) => {
             const path = imageModal.objectPathRecog(e);
-            if (path.nextSibling == null || path.nextSibling.nextSibling === null) {
+            if (path.nextSibling === null || path.nextSibling.nextSibling === null) {
                 $('.load__more__memes').trigger('click')
-
-                //some time after fetching
-                setTimeout(() => {
-                    imageModal.config.actualSiblings.previous = path.previousSibling;
-                    imageModal.config.actualSiblings.next = path.nextSibling
-                }, 1500)
-
             }
 
+            // if($(path.previousSibling).css('display') != 'block'){
+            //     return imageModal.checkSiblings(path.nextSibling)
+            // }
+            
             imageModal.config.actualSiblings.previous = path.previousSibling;
             imageModal.config.actualSiblings.next = path.nextSibling;
         },
         prepareContainer: (e) => {
             imageModal.clearContainer()
             imageModal.showImage(e)
+            imageModal.showDesc(e)
             imageModal.checkSiblings(e)
         },
         objectPathRecog: function (e) {
@@ -57,24 +74,11 @@ $(window).on('load', _ => {
             if (!$(e)[0].currentTarget) path = $(e)[0];
 
             return path;
-        }
-
-    }
-
-
-    //listeners
-
-    $(document).on('click', imageModal.config.clickableEl, (e) => {
-        if (!imageModal.isLoveButtonClicked(e)) {
-            imageModal.prepareContainer(e);
-
-            $(imageModal.config.imageContainer).modal({
-                fadeDuration: 100
-            });
-
+        },
+        arrowsNavigation: _ => {
             $(document).on("keydown", (e) => {
                 const keyClicked = e.originalEvent.key;
-
+                
                 switch (keyClicked) {
                     case 'ArrowRight':
                         if (imageModal.config.actualSiblings.next === null) return 0;
@@ -88,6 +92,20 @@ $(window).on('load', _ => {
             })
         }
 
+    }
+
+
+    //listeners
+    var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ? true : false;
+    $(document).on('click', imageModal.config.clickableEl, (e) => {
+        if (!imageModal.isLoveButtonClicked(e) && !isMobile) {
+            imageModal.prepareContainer(e);
+            imageModal.arrowsNavigation();
+
+            $(imageModal.config.mainContainer).modal({
+                fadeDuration: 100
+            });
+        }
         return 0;
     })
 

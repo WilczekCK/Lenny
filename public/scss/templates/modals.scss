@@ -10,10 +10,28 @@
     }
 }
 
-.popup__image{
+.meme__modal{
     text-align:center !important;
 
     img{
         width:100%;
+    }
+
+
+    .meme__modal__desc{
+        display:flex;
+        padding-top:10px;
+
+        .pp__counter{
+            float:right;
+            padding-left:10px;
+        }
+
+        h2{
+            width:100%;
+            text-align:right;
+            padding:0;
+            margin:0;
+        }
     }
 }

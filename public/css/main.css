@@ -266,10 +266,21 @@ label {
   font-style: italic !important;
   padding-bottom: 20px; }
 
-.popup__image {
+.meme__modal {
   text-align: center !important; }
-  .popup__image img {
+  .meme__modal img {
     width: 100%; }
+  .meme__modal .meme__modal__desc {
+    display: flex;
+    padding-top: 10px; }
+    .meme__modal .meme__modal__desc .pp__counter {
+      float: right;
+      padding-left: 10px; }
+    .meme__modal .meme__modal__desc h2 {
+      width: 100%;
+      text-align: right;
+      padding: 0;
+      margin: 0; }
 
 /* Izmir - ImageHover CSS LIbrary
   ----------------------------- */
