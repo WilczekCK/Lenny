@@ -60,9 +60,12 @@ $(window).on('load', _ => {
             imageModal.config.actualSiblings.previous = $(path).prev(":visible");
             imageModal.config.actualSiblings.next = $(path).next(":visible");
 
+
             if (typeof $(path).next(":visible").val() == 'undefined') {
                 imageModal.config.actualSiblings.next = null;
-            } else if (typeof $(path).prev(":visible").val() == 'undefined') {
+            } 
+            
+            if (typeof $(path).prev(":visible").val() == 'undefined') {
                 imageModal.config.actualSiblings.previous = null;
             }
 
