@@ -46,9 +46,9 @@ $(window).on('load', _ => {
                         <h2>Creator: ${meme.author_username}</h2>  
                         <br>
                         <div class="pp_button">
-                            <i class="fas fa-heart"></i>
-                            <div class="pp__counter" style="float:right">
+                            <div class="pp__counter" style="float:right" meme_id=${meme.id}>
                             ${meme.likes}
+                            <i class="fas fa-heart"></i>
                             </div>
                         </div>
                         <br>

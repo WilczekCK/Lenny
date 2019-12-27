@@ -53,13 +53,12 @@ $(window).on('load', _ => {
             if (path.nextSibling === null || path.nextSibling.nextSibling === null) {
                 $('.load__more__memes').trigger('click')
             }
-
-            // if($(path.previousSibling).css('display') != 'block'){
-            //     return imageModal.checkSiblings(path.nextSibling)
-            // }
             
             imageModal.config.actualSiblings.previous = path.previousSibling;
             imageModal.config.actualSiblings.next = path.nextSibling;
+
+        //    console.log(['Actual', path.previousSibling, path.nextSibling])
+        //    console.log(['Variable', imageModal.config.actualSiblings.previous, imageModal.config.actualSiblings.next])
         },
         prepareContainer: (e) => {
             imageModal.clearContainer()
@@ -75,20 +74,22 @@ $(window).on('load', _ => {
 
             return path;
         },
-        arrowsNavigation: _ => {
-            $(document).on("keydown", (e) => {
+        arrowsNavigation: () => {
+            $(document).off("keydown"); //just in case, for excluding stacking
+            $(document).on('keydown', (e) => {
                 const keyClicked = e.originalEvent.key;
-                
+
                 switch (keyClicked) {
                     case 'ArrowRight':
-                        if (imageModal.config.actualSiblings.next === null) return 0;
+                        if(imageModal.config.actualSiblings.next === null) return 0;
                         imageModal.prepareContainer(imageModal.config.actualSiblings.next)
                         break;
                     case 'ArrowLeft':
-                        if (imageModal.config.actualSiblings.previous === null) return 0;
+                        if(imageModal.config.actualSiblings.previous === null) return 0;
                         imageModal.prepareContainer(imageModal.config.actualSiblings.previous)
                         break;
                 }
+
             })
         }
 
@@ -100,7 +101,7 @@ $(window).on('load', _ => {
     $(document).on('click', imageModal.config.clickableEl, (e) => {
         if (!imageModal.isLoveButtonClicked(e) && !isMobile) {
             imageModal.prepareContainer(e);
-            imageModal.arrowsNavigation();
+            imageModal.arrowsNavigation(e);
 
             $(imageModal.config.mainContainer).modal({
                 fadeDuration: 100
