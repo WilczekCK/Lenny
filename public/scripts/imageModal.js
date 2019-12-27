@@ -12,21 +12,25 @@ $(window).on('load', _ => {
                 next: ''
             }
         },
-        isLoveButtonClicked: (e) => {
-            if (`.${e.target.className}` == `${imageModal.config.ppButton}`) {
+        isLoveButtonClicked: (loveIcon) => {
+            //recognize, if you clicked in
+            //the like icon (trigger to like meme) or image (triggers the modal)
+            //prevent turning on pp modal if you already liked the meme
+
+            if (`.${loveIcon.target.className}` == `${imageModal.config.ppButton}`) {
                 return true;
             }
 
             return false;
         },
-        findImageOnClick: (e) => {
-            const path = imageModal.objectPathRecog(e);
+        findImageOnClick: (meme_image) => {
+            const path = imageModal.objectPathRecog(meme_image);
 
             const childImage = $(path).find('img')[0];
             return childImage;
         },
-        findDescOnClick: (e) => {
-            const path = imageModal.objectPathRecog(e);
+        findDescOnClick: (meme_desc) => {
+            const path = imageModal.objectPathRecog(meme_desc);
 
             const childDesc = { author_id: $(path).find('h2')[0], pp: $(path).find('.pp_button')[0].innerHTML }
             return childDesc;
@@ -40,23 +44,16 @@ $(window).on('load', _ => {
             $(imageModal.config.imageContainer).html('');
             $(imageModal.config.infoContainer).html('');
         },
-        showImage: (itemSelected) => {
-            const image = imageModal.findImageOnClick(itemSelected);
+        showImage: (meme_item) => {
+            const image = imageModal.findImageOnClick(meme_item);
             return imageModal.appendImage(image);
         },
-        showDesc: (e) => {
-            const desc = imageModal.findDescOnClick(e);
+        showDesc: (meme_item) => {
+            const desc = imageModal.findDescOnClick(meme_item);
             return imageModal.appendDesc(desc);
         },
-        loadMore: (path) => {
-            if ($(path).next(":visible").val() == 'undefined' || $(path).next(":visible").next(":visible").val() == 'undefined') {
-                $('.load__more__memes').trigger('click')
-            }
-        },
-        checkSiblings: (e) => {
-            const path = imageModal.objectPathRecog(e);
-            imageModal.loadMore(path);
-
+        checkSiblings: (meme_item) => {
+            const path = imageModal.objectPathRecog(meme_item);
             imageModal.config.actualSiblings.previous = $(path).prev(":visible");
             imageModal.config.actualSiblings.next = $(path).next(":visible");
 
@@ -70,24 +67,23 @@ $(window).on('load', _ => {
             }
 
         },
-        prepareContainer: (e) => {
+        prepareContainer: (meme_container) => {
             imageModal.clearContainer()
-            imageModal.showImage(e)
-            imageModal.showDesc(e)
-            imageModal.checkSiblings(e)
+            imageModal.showImage(meme_container)
+            imageModal.showDesc(meme_container)
+            imageModal.checkSiblings(meme_container)
         },
-        objectPathRecog: function (e) {
+        objectPathRecog: function (meme_item) {
             //recognize if element is clicked by mouse or 
             //moved by keys.
-            let path = $(e)[0].currentTarget;
-            if (!$(e)[0].currentTarget) path = $(e)[0];
+            let path = $(meme_item)[0].currentTarget;
+            if (!$(meme_item)[0].currentTarget) path = $(meme_item)[0];
 
             return path;
         },
-        arrowsNavigation: () => {
-            $(document).off("keydown"); //just in case, for excluding stacking
-            $(document).on('keydown', (e) => {
-                const keyClicked = e.originalEvent.key;
+        arrowsNavigation: _ => {
+            $(document).off("keydown").on('keydown', (keyboardClick) => {
+                const keyClicked = keyboardClick.originalEvent.key;
 
                 switch (keyClicked) {
                     case 'ArrowRight':
@@ -108,10 +104,10 @@ $(window).on('load', _ => {
 
     //listeners
     var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ? true : false;
-    $(document).on('click', imageModal.config.clickableEl, (e) => {
-        if (!imageModal.isLoveButtonClicked(e) && !isMobile) {
-            imageModal.prepareContainer(e);
-            imageModal.arrowsNavigation(e);
+    $(document).on('click', imageModal.config.clickableEl, (clicked_meme) => {
+        if (!imageModal.isLoveButtonClicked(clicked_meme) && !isMobile) {
+            imageModal.prepareContainer(clicked_meme);
+            imageModal.arrowsNavigation(clicked_meme);
 
             $(imageModal.config.mainContainer).modal({
                 fadeDuration: 100
