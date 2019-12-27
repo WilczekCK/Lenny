@@ -28,7 +28,7 @@ $(window).on('load', _ => {
         findDescOnClick: (e) => {
             const path = imageModal.objectPathRecog(e);
 
-            const childDesc = {author_id:$(path).find('h2')[0], pp:$(path).find('.pp_button')[0].innerHTML}
+            const childDesc = { author_id: $(path).find('h2')[0], pp: $(path).find('.pp_button')[0].innerHTML }
             return childDesc;
         },
         appendImage: (image) => $(image).clone().appendTo(imageModal.config.imageContainer),
@@ -48,17 +48,24 @@ $(window).on('load', _ => {
             const desc = imageModal.findDescOnClick(e);
             return imageModal.appendDesc(desc);
         },
-        checkSiblings: (e) => {
-            const path = imageModal.objectPathRecog(e);
-            if (path.nextSibling === null || path.nextSibling.nextSibling === null) {
+        loadMore: (path) => {
+            if ($(path).next(":visible").val() == 'undefined' || $(path).next(":visible").next(":visible").val() == 'undefined') {
                 $('.load__more__memes').trigger('click')
             }
-            
-            imageModal.config.actualSiblings.previous = path.previousSibling;
-            imageModal.config.actualSiblings.next = path.nextSibling;
+        },
+        checkSiblings: (e) => {
+            const path = imageModal.objectPathRecog(e);
+            imageModal.loadMore(path);
 
-        //    console.log(['Actual', path.previousSibling, path.nextSibling])
-        //    console.log(['Variable', imageModal.config.actualSiblings.previous, imageModal.config.actualSiblings.next])
+            imageModal.config.actualSiblings.previous = $(path).prev(":visible");
+            imageModal.config.actualSiblings.next = $(path).next(":visible");
+
+            if (typeof $(path).next(":visible").val() == 'undefined') {
+                imageModal.config.actualSiblings.next = null;
+            } else if (typeof $(path).prev(":visible").val() == 'undefined') {
+                imageModal.config.actualSiblings.previous = null;
+            }
+
         },
         prepareContainer: (e) => {
             imageModal.clearContainer()
@@ -81,11 +88,11 @@ $(window).on('load', _ => {
 
                 switch (keyClicked) {
                     case 'ArrowRight':
-                        if(imageModal.config.actualSiblings.next === null) return 0;
+                        if (imageModal.config.actualSiblings.next === null) return 0;
                         imageModal.prepareContainer(imageModal.config.actualSiblings.next)
                         break;
                     case 'ArrowLeft':
-                        if(imageModal.config.actualSiblings.previous === null) return 0;
+                        if (imageModal.config.actualSiblings.previous === null) return 0;
                         imageModal.prepareContainer(imageModal.config.actualSiblings.previous)
                         break;
                 }
