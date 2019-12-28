@@ -7,6 +7,7 @@ $(window).on('load', _ => {
             imageContainer: '.meme__modal__image',
             infoContainer: '.meme__modal__desc',
             ppButton: '.pp__counter',
+            actualItem: '',
             actualSiblings: {
                 previous: '',
                 next: ''
@@ -54,11 +55,13 @@ $(window).on('load', _ => {
         },
         checkSiblings: (meme_item) => {
             const path = imageModal.objectPathRecog(meme_item);
+            imageModal.config.actualItem = $(path);
             imageModal.config.actualSiblings.previous = $(path).prev(":visible");
             imageModal.config.actualSiblings.next = $(path).next(":visible");
 
 
             if (typeof $(path).next(":visible").val() == 'undefined') {
+                $('.load__more__memes').trigger('click');
                 imageModal.config.actualSiblings.next = null;
             } 
             
@@ -81,9 +84,18 @@ $(window).on('load', _ => {
 
             return path;
         },
+        checkIfFetched: () => {
+            if($(imageModal.config.actualItem).next(":visible")[0]){
+                imageModal.config.actualSiblings.next = $(imageModal.config.actualItem).next(":visible")
+            } 
+        },
         arrowsNavigation: _ => {
             $(document).off("keydown").on('keydown', (keyboardClick) => {
                 const keyClicked = keyboardClick.originalEvent.key;
+
+                if(imageModal.config.actualSiblings.next === null){
+                    imageModal.checkIfFetched();
+                }
 
                 switch (keyClicked) {
                     case 'ArrowRight':
