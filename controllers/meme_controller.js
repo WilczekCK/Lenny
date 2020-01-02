@@ -43,9 +43,11 @@ meme_controller = {
     },
     infiniteScroll: async (loadCount, loadElements) => {
         const startFrom = (loadElements * loadCount) + 1;
-        const memesToLoad = (loadElements * 2) * loadCount;
+        const memesToLoad = parseInt(startFrom) + parseInt(loadElements) - 1;
 
-        const lastMemeID = await mysql.query(`SELECT id, author_username, tags, likes, status, added_in FROM images WHERE status = 1 ORDER BY added_in DESC LIMIT ${startFrom}, ${memesToLoad}`)
+        console.log([startFrom, memesToLoad])
+
+        const lastMemeID = await mysql.query(`SELECT id, author_username, tags, likes, status, added_in FROM images WHERE status = 1 ORDER BY added_in DESC LIMIT ${loadElements} OFFSET ${startFrom}`)
         return lastMemeID;
     }
 }

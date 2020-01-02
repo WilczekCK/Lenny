@@ -3,7 +3,7 @@ $(window).on('load', _ => {
     infiniteScroll = {
         loadTimes: 0,
         memesLoad: '',
-        howMuchToLoad: 5,
+        howMuchToLoad: 2,
         loadMoreSelector: $('.load__more__memes'),
         grid: $('.meme__container'),
         isInViewport: function(el){
@@ -37,7 +37,9 @@ $(window).on('load', _ => {
             .then(resp => resp.json())
             .then(resp => {
                 infiniteScroll.memesLoad = '';
+                console.log(resp)
                 resp.forEach(meme => {
+                    console.log(meme)
                     infiniteScroll.memesLoad = infiniteScroll.memesLoad + `<div class="meme__item ${meme.tags}"> 
                     <figure class="c4-izmir c4-border-ccc-2 c4-gradient-bottom-left" meme_id=${meme.id}>
                     <img src='/uploads/${meme.id}.jpg' />
