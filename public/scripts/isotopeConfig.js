@@ -8,7 +8,10 @@ $(window).on('load', _ => {
   })
 
   $('.menu__container__wrap__menu li a').on('click', function () {
-    var filterValue = `.${this.id}`;
+    const filterValue = `.${this.id}`;
+    const menuItem = $(this)[0];
+
+    if($(menuItem).hasClass('active')) return $grid.isotope({ filter: '*', layoutMode: 'fitRows' }); //if active, reset grid
     $grid.isotope({ filter: filterValue, layoutMode: 'fitRows' });
   })
 

@@ -3,6 +3,8 @@ $(window).on('load', _ => {
     activeMenu = {
         config : {
             menuItems: 'ul.filters li',
+            itemsContainer: '.meme__container',
+            itemsName: '.meme__item',
             activeName: 'active',
             tags: ['std', 'mania', 'ctb', 'taiko'],
             finder: '#tag__finder',
@@ -15,6 +17,10 @@ $(window).on('load', _ => {
         activateItem: (menu_item) => {
             return $(menu_item).addClass(activeMenu.config.activeName);
         },
+        disableItem: _ => {
+            console.log('shuffle')
+            $(activeMenu.config.itemsName).css('display','block');
+        },
         removeActiveAll: _ => {
             $(`${activeMenu.config.menuItems} *`).removeClass('active');
         },
@@ -24,7 +30,8 @@ $(window).on('load', _ => {
         clickedMenuItem: (menu_item) => {
             const infoAbout = $(menu_item)[0];
             if(activeMenu.isItemActive(infoAbout)){
-                console.log('active')
+                activeMenu.removeActiveAll();
+                return 0; //isotopeConfig.js - setup the grid from beginning
             }else{
                 activeMenu.removeActiveAll();
                 activeMenu.activateItem(menu_item)
@@ -32,7 +39,6 @@ $(window).on('load', _ => {
                 if(menu_item === '#tag__finder'){
                     activeMenu.handleTagFinder();
                 }
-                console.log('not active')
             }
 
             return 0;
