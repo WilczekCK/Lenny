@@ -2,7 +2,7 @@ $(window).on('load', _ => {
   var $grid = $('.meme__container').isotope({
     itemSelector: '.meme__item',
     masonry: {
-      columnWidth: 40,
+      columnWidth: 50,
       isFitWidth: true
     }
   })
@@ -15,9 +15,10 @@ $(window).on('load', _ => {
     $grid.isotope({ filter: filterValue, layoutMode: 'fitRows' });
   })
 
-  $('.tag__finder').on('keypress', function (e) {
+  $('#tag__finder').on('keypress', function (e) {
     if (e.which == 13) {
       const filterValue = `.${$(this)[0].value}`.toLowerCase()
+      if (filterValue == '.') return $grid.isotope({ filter: '*', layoutMode: 'fitRows' }); //empty, reset grid
       $grid.isotope({ filter: filterValue, layoutMode: 'fitRows' });
     }
   })

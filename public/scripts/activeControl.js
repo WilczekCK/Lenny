@@ -7,7 +7,8 @@ $(window).on('load', _ => {
             itemsName: '.meme__item',
             activeName: 'active',
             tags: ['std', 'mania', 'ctb', 'taiko'],
-            finder: '#tag__finder',
+            finderIcon: '#tag__finder__icon',
+            finderField: '#tag__finder',
             fadeSpeed: 300
         },
         isItemActive: (menu_item) => {
@@ -17,35 +18,37 @@ $(window).on('load', _ => {
         activateItem: (menu_item) => {
             return $(menu_item).addClass(activeMenu.config.activeName);
         },
-        disableItem: _ => {
-            console.log('shuffle')
-            $(activeMenu.config.itemsName).css('display','block');
-        },
         removeActiveAll: _ => {
             $(`${activeMenu.config.menuItems} *`).removeClass('active');
         },
-        handleTagFinder: _ => {
-                        
+        handleTagFinder: (menu_item) => {
+            if($(menu_item).hasClass('active') && $(activeMenu.config.finderField).css('opacity') == '1'){
+                activeMenu.removeActiveAll();
+                $(activeMenu.config.finderField).fadeOut(activeMenu.config.fadeSpeed)
+            }else{
+                activeMenu.removeActiveAll();
+                activeMenu.activateItem(activeMenu.config.finderIcon)
+                $(activeMenu.config.finderField).fadeIn(activeMenu.config.fadeSpeed)
+            }
         },
         clickedMenuItem: (menu_item) => {
             const infoAbout = $(menu_item)[0];
+
             if(activeMenu.isItemActive(infoAbout)){
                 activeMenu.removeActiveAll();
                 return 0; //isotopeConfig.js - setup the grid from beginning
             }else{
+                if($(activeMenu.config.finderField).css('opacity') == '1') $(activeMenu.config.finderField).fadeOut(activeMenu.config.fadeSpeed);
                 activeMenu.removeActiveAll();
                 activeMenu.activateItem(menu_item)
-                
-                if(menu_item === '#tag__finder'){
-                    activeMenu.handleTagFinder();
-                }
             }
 
             return 0;
         },
         init: _ => {
             $('ul.filters li').click((e => {
-               const focused = `#${$(e.currentTarget)[0].lastChild.id}`;
+               const focused = `#${$(e.currentTarget)[0].firstChild.id}`;
+               if(focused === '#tag__finder__icon' || focused == '#tag__finder') return activeMenu.handleTagFinder(focused);
                activeMenu.clickedMenuItem(focused);
             }))
         }
@@ -53,44 +56,3 @@ $(window).on('load', _ => {
 
     activeMenu.init();
 })
-
-
-
-
-
-// $('ul.filters li').click((e => {
-//     const focused = $(e.currentTarget)[0].lastChild.id;
-//     $('ul.filters *').removeClass('active');
-
-//     switch (focused){
-//         case 'std': 
-//             $(`a#${focused}`).addClass('active');
-//             break;
-//         case 'mania':
-//             $(`a#${focused}`).addClass('active');
-//             break;
-//         case 'ctb':
-//             $(`a#${focused}`).addClass('active');
-//             break;
-//         case 'taiko':
-//             $(`a#${focused}`).addClass('active');
-//             break;
-//         case 'tag__finder':
-//             if($(`.${focused}`).css('display') == 'none'){
-//                 $(`.${focused}`).fadeIn();
-//                 $(`#${focused}`).addClass('active');
-//             }else{
-//                 $(`#${focused}`).addClass('active');
-//                 $(`#${focused}`).on('click', _ => {
-//                     $(`.${focused}`).fadeOut();
-//                     setTimeout(_ => {
-//                         $(`#${focused}`).removeClass('active');
-//                     }, 500)
-//                 });
-//             }
-//         }
-
-//         if($('#tag__finder').hasClass('active') == false){$('.tag__finder').fadeOut()}
-//}));
-
-

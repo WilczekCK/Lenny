@@ -50,13 +50,7 @@
             .menu__container .menu__container__wrap .menu__container__wrap__menu ul li {
               font-size: 1.2em;
               padding: 5px 2.5px; } }
-          @media (max-width: 768px) {
-            .menu__container .menu__container__wrap .menu__container__wrap__menu ul li:last-of-type {
-              display: flex;
-              margin-top: 10px; }
-              .menu__container .menu__container__wrap .menu__container__wrap__menu ul li:last-of-type i {
-                display: none; } }
-          .menu__container .menu__container__wrap .menu__container__wrap__menu ul li:last-of-type input {
+          .menu__container .menu__container__wrap .menu__container__wrap__menu ul li input {
             width: 85%;
             text-align: center;
             border: none;
@@ -64,11 +58,17 @@
             color: white;
             border-bottom: 2px solid white; }
             @media (max-width: 768px) {
-              .menu__container .menu__container__wrap .menu__container__wrap__menu ul li:last-of-type input {
+              .menu__container .menu__container__wrap .menu__container__wrap__menu ul li input {
                 display: block !important;
                 min-width: 300px;
                 max-width: 400px;
                 margin: 0 auto; } }
+          @media (max-width: 768px) {
+            .menu__container .menu__container__wrap .menu__container__wrap__menu ul li:last-of-type {
+              display: flex;
+              margin-top: 10px; }
+              .menu__container .menu__container__wrap .menu__container__wrap__menu ul li:last-of-type i {
+                display: none; } }
           .menu__container .menu__container__wrap .menu__container__wrap__menu ul li a {
             text-decoration: none;
             font-size: 24px;
