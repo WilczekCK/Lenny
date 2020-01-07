@@ -8,16 +8,16 @@ meme_controller = {
         if(limit) limit = `limit ${limit}`
         else limit = '';
 
-        const memesRecord = await mysql.query(`SELECT id, author_username, tags, likes, status, added_in  FROM images WHERE status = 1 ORDER BY added_in DESC ${limit}`);
+        const memesRecord = await mysql.query(`SELECT id, author_username, tags, likes, status, added_in, meme_title  FROM images WHERE status = 1 ORDER BY added_in DESC ${limit}`);
         return memesRecord;
     },
     displayWaitingMemes: async _ => {
-        const memesRecord = await mysql.query(`SELECT id, author_username, tags, likes, status, added_in  FROM images WHERE status = 0 ORDER BY added_in DESC `);
+        const memesRecord = await mysql.query(`SELECT id, author_username, tags, likes, status, added_in, meme_title  FROM images WHERE status = 0 ORDER BY added_in DESC `);
         return memesRecord;
     },
-    insertToDB: async (author_id, author_username, date, tags) => {
+    insertToDB: async (author_id, author_username, date, tags, meme_title) => {
         const replacedTags = tags.replace(/,/g, " ");
-        const uploadedSqlID = await mysql.insert(`images`, `author_id, author_username, added_in, tags`, `${author_id}, '${author_username}' ,'${date}', '${replacedTags}'`);
+        const uploadedSqlID = await mysql.insert(`images`, `author_id, author_username, added_in, tags, meme_title`, `${author_id}, '${author_username}' ,'${date}', '${replacedTags}', '${meme_title}'`);
         return uploadedSqlID;
     },
     changeImageName: async (oldName, newName) => {

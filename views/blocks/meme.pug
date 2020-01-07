@@ -6,7 +6,8 @@ mixin meme_item(meme)
             span.pp__counter
                 i(class='fab fa-pied-piper-pp')
                 !=meme.likes
-            span.title Lorem Ipsum Dolor
+            span.title
+                !=meme.meme_title
             span.info
                 ='Made by: '
                 !=meme.author_username

@@ -30,9 +30,9 @@ module.exports = ({ memeRoute }) => {
     ]), async (ctx, next) => {
         if (_.isEmpty(ctx.request.files) || _.isEmpty(ctx.request.body)) return ctx.throw(400, 'One of the fields is missing');
         const { filename } = ctx.request.files.meme[0]; //image-id
-        const { tags, author_id, author_username } = ctx.request.body;
+        const { tags, author_id, author_username, meme_title } = ctx.request.body;
 
-        const uploadedSqlID = await meme.insertToDB(`${author_id}`, `${author_username}`, `${moment().format('YYYY-MM-DD HH:mm:ss')}`, `${tags}`)
+        const uploadedSqlID = await meme.insertToDB(`${author_id}`, `${author_username}`, `${moment().format('YYYY-MM-DD HH:mm:ss')}`, `${tags}`, `${meme_title}`)
         await meme.changeImageName(`${filename}`, `${uploadedSqlID}`);
 
         await ctx.redirect('/');

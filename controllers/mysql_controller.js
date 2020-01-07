@@ -46,7 +46,8 @@ mysql_controller = {
             Name - Text
             Tags - Text
             Likes - INT
-            Dislikes - INT
+            Status = integer
+            author_id = integer
 
         Table: Users
             ID - INT
@@ -55,6 +56,11 @@ mysql_controller = {
             SumLikes - INT
             SumDislikes - INT
             Role - INT
+
+        Table: Likes
+            ID - int
+            MEME_ID - integer
+            ingame_id - integer
 */
 
 module.exports = mysql_controller || 'There is a problem with a MySQL controller file';

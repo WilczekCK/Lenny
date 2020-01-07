@@ -3,7 +3,7 @@ $(window).on('load', _ => {
     infiniteScroll = {
         loadTimes: 0,
         memesLoad: '',
-        howMuchToLoad: 2,
+        howMuchToLoad: 5,
         loadMoreSelector: $('.load__more__memes'),
         grid: $('.meme__container'),
         isInViewport: function(el){
