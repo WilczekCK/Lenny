@@ -222,7 +222,8 @@
       .meme__container .meme__item .details .pp__counter {
         padding-left: 10px;
         left: 5px;
-        font-size: 24px; }
+        font-size: 24px;
+        width: 120px; }
         .meme__container .meme__item .details .pp__counter i {
           margin-right: 5px; }
     .meme__container .meme__item:focus:before,

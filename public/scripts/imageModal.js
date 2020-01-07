@@ -33,7 +33,8 @@ $(window).on('load', _ => {
         findDescOnClick: (meme_desc) => {
             const path = imageModal.objectPathRecog(meme_desc);
 
-            const childDesc = { author_id: $(path).find('h2')[0], pp: $(path).find('.pp_button')[0].innerHTML }
+            //, pp: $(path).find('.pp__counter')[0].innerHTML - if you want pp to display
+            const childDesc = { author_id: $(path).find('.info') }
             return childDesc;
         },
         appendImage: (image) => $(image).clone().appendTo(imageModal.config.imageContainer),
