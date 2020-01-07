@@ -40,27 +40,29 @@ $(window).on('load', _ => {
                 console.log(resp)
                 resp.forEach(meme => {
                     console.log(meme)
-                    infiniteScroll.memesLoad = infiniteScroll.memesLoad + `<div class="meme__item ${meme.tags}"> 
-                    <figure class="c4-izmir c4-border-ccc-2 c4-gradient-bottom-left" meme_id=${meme.id}>
-                    <img src='/uploads/${meme.id}.jpg' />
-                    <figcaption class="c4-layout-bottom-left">
-                        <div class="c4-reveal-right">
-                        <h2>Creator: ${meme.author_username}</h2>  
-                        <br>
-                        <div class="pp_button">
-                            <div class="pp__counter" style="float:right" meme_id=${meme.id}>
-                            ${meme.likes}
-                            <i class="fas fa-heart"></i>
+                    infiniteScroll.memesLoad = infiniteScroll.memesLoad + `
+                        <div class="meme__item ${meme.tags}">
+                            <img src="/uploads/${meme.id}.jpg"/>
+                            <div class="details">
+                                <span class="tag">
+                                    ${meme.tags}
+                                </span>
+
+                                <span class="pp__counter">
+                                    <i class="fab fa-pied-piper-pp"></i>
+                                    ${meme.likes}
+                                </span>
+
+                                <span class="title">
+                                    Lorem Ipsum
+                                </span>
+
+                                <span class="info">
+                                    Made by: ${meme.author_username}
+                                </span>
                             </div>
                         </div>
-                        <br>
-                        <div class="tag" style="box-shadow:unset">
-                            ${meme.tags}
-                        </div>
-                        </div>
-                    </figcaption>
-                    </figure> 
-                </div>`
+                    `
                 });
 
                 infiniteScroll.areMemesAvailable(resp);

@@ -1,0 +1,12 @@
+mixin meme_item(meme)
+    .meme__item(class!=meme.tags)
+        img(src='/uploads/'+meme.id+'.jpg')
+        .details
+            span.tag!=meme.tags
+            span.pp__counter
+                i(class='fab fa-pied-piper-pp')
+                !=meme.likes
+            span.title Lorem Ipsum Dolor
+            span.info
+                ='Made by: '
+                !=meme.author_username
