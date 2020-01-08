@@ -9,18 +9,24 @@ block content
         else
             each meme in memes
                 .meme__item(class='standard '+meme.tags)
-                    figure(class="c4-izmir c4-border-ccc-2 c4-gradient-bottom-left")
-                        img(src='/uploads/'+meme.id+'.jpg')
-                        figcaption(class="c4-layout-bottom-left")
-                            div(class="c4-reveal-right")
-                                h2="Creator: "+meme.author_username
-                                br
-                                form(action="/meme/moderate" method="POST")
-                                    input(type="hidden" name="meme_id" value=meme.id)
-                                    input(type="submit" value="Submit" name="decision")
-                                    input(type="submit" value="Remove" name="decision")
-                                br
-                                .tag(style='box-shadow:unset')=meme.tags
+                    img(src='/uploads/'+meme.id+'.jpg')
+                    .details
+                        span.tag!=meme.tags
+                        span.pp__counter(meme_id!=meme.id)
+                            i(class='fab fa-pied-piper-pp')
+                            .pp__amount
+                                =meme.likes
+                        span.title
+                            !=meme.meme_title
+                        span.info
+                            ='Made by: '
+                            !=meme.author_username
+                        span(style='max-width:90%; margin-top:10px;')
+                            form(action="/meme/moderate" method="POST")
+                                input(type="hidden" name="meme_id" value=meme.id)
+                                input(type="submit" value="Submit" name="decision")
+                                input(type="submit" value="Remove" name="decision")
+
 block footer
     script(src='/scripts/jquery.js')
     script(src="https://kit.fontawesome.com/33ef3f59f0.js" crossorigin="anonymous")
