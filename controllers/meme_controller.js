@@ -17,7 +17,8 @@ meme_controller = {
     },
     insertToDB: async (author_id, author_username, date, tags, meme_title) => {
         const replacedTags = tags.replace(/,/g, " ");
-        const uploadedSqlID = await mysql.insert(`images`, `author_id, author_username, added_in, tags, meme_title`, `${author_id}, '${author_username}' ,'${date}', '${replacedTags}', '${meme_title}'`);
+        
+        const uploadedSqlID = await mysql.insert(`images`, `author_id, author_username, added_in, tags, meme_title`, `${author_id}, '${author_username}' ,'${date}', '${_.escape(replacedTags)}', '${_.escape(meme_title)}'`);
         return uploadedSqlID;
     },
     changeImageName: async (oldName, newName) => {
@@ -27,8 +28,8 @@ meme_controller = {
     },
     moderate: async (meme_id, decision) => {
         if(decision != 'Submit'){
-            fs.unlinkSync(`./public/uploads/${meme_id}.jpg`);
             mysql.delete(`images`, `id = ${meme_id}`);
+            fs.unlinkSync(`./public/uploads/${meme_id}.jpg`);
         }else{
             mysql.update(`images`, `status = 1`, `id = ${meme_id}`);
         }
