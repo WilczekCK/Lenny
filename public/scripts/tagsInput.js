@@ -15,6 +15,10 @@ $(document).ready(function(){
           if($(this).val() == '' || $(this).val() == ' ') {
             return false;
           }
+
+          if(providedTags.length >= 5){
+            return false
+          }
           addTag($(this));
         }
         return false;
