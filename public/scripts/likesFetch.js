@@ -4,7 +4,7 @@ $(document).ready(function(){
         config:{
             fadeTime: 300,
             buttonName: '.pp__counter',
-            counterSelector: '.pp__counter',
+            counterSelector: '.pp__amount',
             popupNotLogged: '.alert__not__logged',
             popupGavePP: '.alert__already__gave__pp',
             isLogged: '.logged__add__meme',

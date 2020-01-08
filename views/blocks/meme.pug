@@ -3,9 +3,10 @@ mixin meme_item(meme)
         img(src='/uploads/'+meme.id+'.jpg')
         .details
             span.tag!=meme.tags
-            span.pp__counter
+            span.pp__counter(meme_id!=meme.id)
                 i(class='fab fa-pied-piper-pp')
-                !=meme.likes
+                .pp__amount
+                    =meme.likes
             span.title
                 !=meme.meme_title
             span.info

@@ -18,7 +18,8 @@ $(window).on('load', _ => {
             //the like icon (trigger to like meme) or image (triggers the modal)
             //prevent turning on pp modal if you already liked the meme
 
-            if (`.${loveIcon.target.className}` == `${imageModal.config.ppButton}`) {
+            console.log(loveIcon)
+            if (`.${loveIcon.target.offsetParent.className}` == `${imageModal.config.ppButton}`) {
                 return true;
             }
 

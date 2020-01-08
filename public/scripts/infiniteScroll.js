@@ -39,7 +39,6 @@ $(window).on('load', _ => {
                 infiniteScroll.memesLoad = '';
                 console.log(resp)
                 resp.forEach(meme => {
-                    console.log(meme)
                     infiniteScroll.memesLoad = infiniteScroll.memesLoad + `
                         <div class="meme__item ${meme.tags}">
                             <img src="/uploads/${meme.id}.jpg"/>
@@ -48,13 +47,15 @@ $(window).on('load', _ => {
                                     ${meme.tags}
                                 </span>
 
-                                <span class="pp__counter">
+                                <span class="pp__counter" meme_id=${meme.id}>
                                     <i class="fab fa-pied-piper-pp"></i>
-                                    ${meme.likes}
+                                    <div class="pp__amount">
+                                        ${meme.likes}
+                                    </div>
                                 </span>
 
                                 <span class="title">
-                                    Lorem Ipsum
+                                    ${meme.meme_title}
                                 </span>
 
                                 <span class="info">
