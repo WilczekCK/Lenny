@@ -23,10 +23,12 @@ app.use(methodOverride('_method'))
 const homepageRoute = new Router({ prefix: '/' });
 const loginRoute = new Router({ prefix: '/login' });
 const memeRoute = new Router({ prefix: '/meme' });
+const errorRoute = new Router({ prefix: '/error' });
 
 require('./routes/index')({ homepageRoute });
 require('./routes/login')({ loginRoute });
 require('./routes/meme')({ memeRoute });
+require('./routes/error')({ errorRoute });
 //Router
 
 //SESSIONS
@@ -88,6 +90,9 @@ app.use(loginRoute.allowedMethods());
 
 app.use(memeRoute.routes());
 app.use(memeRoute.allowedMethods());
+
+app.use(errorRoute.routes());
+app.use(errorRoute.allowedMethods());
 //Routes
 
 const server = app.listen(3000);
