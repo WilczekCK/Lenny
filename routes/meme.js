@@ -47,7 +47,7 @@ module.exports = ({ memeRoute }) => {
         await ctx.render('moderate', { userInfo: is_player_logged, memes: allMemesID });
     })
 
-    memeRoute.post('/moderate', koaBody(), async (ctx, next) => {
+    memeRoute.patch('/moderate', koaBody(), async (ctx, next) => {
         const is_player_logged = ctx.req.body[0];
         if (!is_player_logged || is_player_logged.role < 1) ctx.throw(400, 'User is not logged in or is not administrator');
         const { meme_id, decision } = ctx.request.body;
@@ -57,7 +57,7 @@ module.exports = ({ memeRoute }) => {
         await next();
     })
 
-    memeRoute.post('/like/:id', async (ctx, next) => {
+    memeRoute.patch('/like/:id', async (ctx, next) => {
         const meme_id = ctx.originalUrl.slice(11);
         //slice the strings from the url, leave the id only
 
@@ -66,7 +66,7 @@ module.exports = ({ memeRoute }) => {
         if (alreadyGaveLike) { ctx.body = true; } else { ctx.body = false; }
     })
 
-    memeRoute.post('/load', koaBody(), async (ctx, next) => {
+    memeRoute.get('/load', koaBody(), async (ctx, next) => {
         const howManyLoads = ctx.request.header.loadcount;
         const howManyElements = ctx.request.header.loadelements;
         const lastMemeID = await meme.infiniteScroll(howManyLoads, howManyElements)

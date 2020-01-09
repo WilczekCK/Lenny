@@ -28,7 +28,7 @@ $(window).on('load', _ => {
         },
         loadMemes: function () {
             fetch(`meme/load`, {
-                method: "post",
+                method: "get",
                 headers: {
                     loadCount: infiniteScroll.loadTimes,
                     loadElements: infiniteScroll.howMuchToLoad

@@ -4,6 +4,7 @@ const Router = require('koa-router');
 const logger = require('koa-logger');
 const Pug = require('koa-pug')
 const serve = require('koa-static');
+var methodOverride = require('koa-methodoverride');
 const passport = require('koa-passport');
 const session = require('koa-session');
 const koaBody = require('koa-body');
@@ -14,9 +15,9 @@ const path = require('path')
 const app = new Koa();
 //dependencies
 
-//Image sending
-//app.use(koaBody({multipart: true}))
-//Image sendin
+//MethodOverride
+app.use(methodOverride('_method'))
+//MethodOverride
 
 //Router
 const homepageRoute = new Router({ prefix: '/' });
@@ -55,7 +56,6 @@ app.use(async (ctx, next) => {
         ctx.app.emit('error', err, ctx);
     }
 });
-
 //Error handler
 
 

@@ -18,7 +18,7 @@ $(document).ready(function(){
             });
 
             fetch(`meme/like/${likesFetch.memeLiked(el)}`,{
-                method: "post",
+                method: "PATCH",
             })
             .then(resp => resp.json())
             .then(resp => {

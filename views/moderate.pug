@@ -22,7 +22,7 @@ block content
                             ='Made by: '
                             !=meme.author_username
                         span(style='max-width:90%; margin-top:10px;')
-                            form(action="/meme/moderate" method="POST")
+                            form(action="/meme/moderate?_method=PATCH" method="POST" enctype="application/x-www-form-urlencoded")
                                 input(type="hidden" name="meme_id" value=meme.id)
                                 input(type="submit" value="Submit" name="decision")
                                 input(type="submit" value="Remove" name="decision")
