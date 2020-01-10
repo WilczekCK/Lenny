@@ -11,7 +11,7 @@ const upload = multer({
         cb(null, true);
     },
     dest: './public/uploads/',
-    limits: { fileSize: 500000 } 
+    limits: { fileSize: 1000000 } 
 });
 const moment = require('moment')
 const _ = require('underscore')
