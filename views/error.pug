@@ -1,11 +1,13 @@
 extends layout.pug
 block content
     .error__container
-        h3='Something went wrong'
+        h3='OOPS!'
         if message
             p=message
         else
             p='Contact the administrator, undefined error'
+        a(href='/' class="osupoli-button")
+            ='Go back'
 block footer
     script(src='/scripts/jquery.js')
     script(src="https://kit.fontawesome.com/33ef3f59f0.js" crossorigin="anonymous")
