@@ -58,6 +58,12 @@ app.use(async (ctx, next) => {
         ctx.app.emit('error', err, ctx);
     }
 });
+
+
+app.on('error', (err, ctx) => {
+  ctx.session.error = err.message;
+  return ctx.redirect('/error')
+})
 //Error handler
 
 

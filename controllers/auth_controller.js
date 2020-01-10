@@ -12,7 +12,7 @@ auth_controller = {
   oAuth2: {
     client_id: '426',
     client_secret: 'du3b7Y3wqgaePeWX3ZkHU1k45hlg0exU7rEPdTH7',
-    callback_url: 'http://a1643879.ngrok.io/login/callback',
+    callback_url: 'http://ba9dc4e2.ngrok.io/login/callback',
     init: function () {
       passport.use(new OAuth2Strategy({
         authorizationURL: 'https://osu.ppy.sh/oauth/authorize',

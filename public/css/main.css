@@ -241,6 +241,14 @@
     .meme__container .meme__item:focus .info, .meme__container .meme__item:hover .info {
       transition-delay: 0.25s; }
 
+.error__container {
+  color: white;
+  width: 315px;
+  margin: 0 auto; }
+  .error__container h3 {
+    color: #ffa179;
+    border-bottom: 2px solid #ffa179; }
+
 .fixed__controls__content {
   color: white;
   position: fixed;
