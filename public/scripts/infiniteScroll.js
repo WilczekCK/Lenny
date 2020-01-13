@@ -6,28 +6,48 @@ $(window).on('load', _ => {
         howMuchToLoad: 5,
         loadMoreSelector: $('.load__more__memes'),
         grid: $('.meme__container'),
-        hasScrollbar: (element) => {
-            var scrollHeight = $(element).get(0).scrollHeight;
-            
-            if ($(element).height() < scrollHeight){
-                return true;
+        hasScrollbar: () => {
+            if ($("body").height() > $(window).height()){
+                $(window).scroll(function(){
+                    infiniteScroll.scrollRecog.onScroll();
+                })
             }else{
-                return false;
+                infiniteScroll.loadTimes = infiniteScroll.loadTimes + 1;
+                infiniteScroll.loadMemes();
+                
+                setTimeout(function(){
+                    if(infiniteScroll.loadMoreSelector.hasClass('noMemes')) return 0; 
+                    //prevent loading memes, when there is no more of them and scroll bar is not visible
+                    
+                    infiniteScroll.hasScrollbar();
+                }, 1000)
             }
         },
-        isInViewport: {
+        scrollRecog: { 
             scrollTimeout: '',
             onScroll: () => {
-                if (infiniteScroll.isInViewport.scrollTimeout) {
+                if (infiniteScroll.scrollRecog.scrollTimeout) {
 					// clear the timeout, if one is pending
-					clearTimeout(infiniteScroll.isInViewport.scrollTimeout);
-					infiniteScroll.isInViewport.scrollTimeout = null;
+					clearTimeout(infiniteScroll.scrollRecog.scrollTimeout);
+					infiniteScroll.scrollRecog.scrollTimeout = null;
 				}
-				infiniteScroll.isInViewport.scrollTimeout = setTimeout(infiniteScroll.isInViewport.scrollHandler, 250);
+				infiniteScroll.scrollRecog.scrollTimeout = setTimeout(infiniteScroll.scrollRecog.scrollHandler, 250);
             },
             scrollHandler: () => {
-                console.log('noice')
-            }, 
+                if(infiniteScroll.isInViewport()) {
+                    infiniteScroll.loadTimes = infiniteScroll.loadTimes + 1;
+                    infiniteScroll.loadMemes();
+                }               
+            }
+        },
+        isInViewport: () => {
+            let elementTop = $(infiniteScroll.loadMoreSelector).offset().top;
+            let elementBottom = elementTop + $(infiniteScroll.loadMoreSelector).outerHeight();
+        
+            let viewportTop = $(window).scrollTop();
+            let viewportBottom = viewportTop + $(window).height();
+        
+            return elementBottom > viewportTop && elementTop < viewportBottom;
         },
         areMemesAvailable: function (dbCallback) {
             if (dbCallback.length != 0) {
@@ -86,17 +106,15 @@ $(window).on('load', _ => {
     }
 
     //Listeners
-    infiniteScroll.hasScrollbar('.meme__container')
-
-    $(window).scroll(function(){
-        infiniteScroll.isInViewport.onScroll();
-    })
-
-
-
+    infiniteScroll.hasScrollbar();
+    
     $(document).on('click', '.load__more__memes', () => {
         infiniteScroll.loadTimes = infiniteScroll.loadTimes + 1;
-        return infiniteScroll.loadMemes(infiniteScroll.loadTimes)
+        return infiniteScroll.loadMemes()
+    })
+
+    $(document).on('click', '.menu__container__wrap__menu li a', () => {
+        infiniteScroll.hasScrollbar();
     })
     //Listeners
 })

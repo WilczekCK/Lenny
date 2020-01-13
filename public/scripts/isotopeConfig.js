@@ -11,6 +11,12 @@ $(window).on('load', _ => {
     const filterValue = `.${this.id}`;
     const menuItem = $(this)[0];
 
+    $(window).on('resize', function(){
+      imagesLoaded('.meme__container', function () {
+        $grid.isotope({ filter: filterValue, masonry: {columnWidth: 50} });
+      })
+    })
+
     if($(menuItem).hasClass('active')) return $grid.isotope({ filter: '*', masonry: {columnWidth: 50} }); //if active, reset grid
     $grid.isotope({ filter: filterValue, masonry: {columnWidth: 50} });
   })
