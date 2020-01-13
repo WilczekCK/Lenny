@@ -6,14 +6,19 @@ $(window).on('load', _ => {
         howMuchToLoad: 5,
         loadMoreSelector: $('.load__more__memes'),
         grid: $('.meme__container'),
-        isInViewport: function(el){
-            let elementTop = $(el).offset().top;
-            let elementBottom = elementTop + $(el).outerHeight();
-        
-            let viewportTop = $(window).scrollTop();
-            let viewportBottom = viewportTop + $(window).height();
-        
-            return elementBottom > viewportTop && elementTop < viewportBottom;
+        isInViewport: {
+            scrollTimeout: '',
+            onScroll: () => {
+                if (infiniteScroll.isInViewport.scrollTimeout) {
+					// clear the timeout, if one is pending
+					clearTimeout(infiniteScroll.isInViewport.scrollTimeout);
+					infiniteScroll.isInViewport.scrollTimeout = null;
+				}
+				infiniteScroll.isInViewport.scrollTimeout = setTimeout(infiniteScroll.isInViewport.scrollHandler, 250);
+            },
+            scrollHandler: () => {
+                console.log('noice')
+            }
         },
         areMemesAvailable: function (dbCallback) {
             if (dbCallback.length != 0) {
@@ -72,12 +77,12 @@ $(window).on('load', _ => {
     }
 
     //Listeners
-    $(window).scroll(function () {
-        if (infiniteScroll.isInViewport('.load__more__memes')) {
-            infiniteScroll.loadTimes = infiniteScroll.loadTimes + 1;
-            return infiniteScroll.loadMemes(infiniteScroll.loadTimes)
-        }
-    });
+
+    $(window).scroll(function(){
+        infiniteScroll.isInViewport.onScroll();
+    })
+
+
 
     $(document).on('click', '.load__more__memes', () => {
         infiniteScroll.loadTimes = infiniteScroll.loadTimes + 1;
