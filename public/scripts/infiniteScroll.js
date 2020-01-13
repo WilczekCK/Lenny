@@ -6,6 +6,13 @@ $(window).on('load', _ => {
         howMuchToLoad: 5,
         loadMoreSelector: $('.load__more__memes'),
         grid: $('.meme__container'),
+        loadingScreen: () => {
+            $('.meme__loading__open').trigger('click');
+
+            imagesLoaded('.meme__container', function () {
+                $('.meme__loading__close').trigger('click');
+            })
+        },
         hasScrollbar: () => {
             if ($("body").height() > $(window).height()){
                 $(window).scroll(function(){
@@ -18,7 +25,7 @@ $(window).on('load', _ => {
                 setTimeout(function(){
                     if(infiniteScroll.loadMoreSelector.hasClass('noMemes')) return 0; 
                     //prevent loading memes, when there is no more of them and scroll bar is not visible
-                    
+
                     infiniteScroll.hasScrollbar();
                 }, 1000)
             }
@@ -51,6 +58,7 @@ $(window).on('load', _ => {
         },
         areMemesAvailable: function (dbCallback) {
             if (dbCallback.length != 0) {
+                infiniteScroll.loadingScreen()
                 infiniteScroll.grid.isotope('insert', $(infiniteScroll.memesLoad));
                 imagesLoaded('.meme__container', function () {
                     infiniteScroll.grid.isotope();
@@ -61,6 +69,7 @@ $(window).on('load', _ => {
             }
         },
         loadMemes: function () {
+            if(infiniteScroll.loadMoreSelector.hasClass('noMemes')) return 0;
             fetch(`meme/load`, {
                 method: "get",
                 headers: {
