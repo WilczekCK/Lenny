@@ -6,6 +6,15 @@ $(window).on('load', _ => {
         howMuchToLoad: 5,
         loadMoreSelector: $('.load__more__memes'),
         grid: $('.meme__container'),
+        hasScrollbar: (element) => {
+            var scrollHeight = $(element).get(0).scrollHeight;
+            
+            if ($(element).height() < scrollHeight){
+                return true;
+            }else{
+                return false;
+            }
+        },
         isInViewport: {
             scrollTimeout: '',
             onScroll: () => {
@@ -18,7 +27,7 @@ $(window).on('load', _ => {
             },
             scrollHandler: () => {
                 console.log('noice')
-            }
+            }, 
         },
         areMemesAvailable: function (dbCallback) {
             if (dbCallback.length != 0) {
@@ -77,6 +86,7 @@ $(window).on('load', _ => {
     }
 
     //Listeners
+    infiniteScroll.hasScrollbar('.meme__container')
 
     $(window).scroll(function(){
         infiniteScroll.isInViewport.onScroll();
