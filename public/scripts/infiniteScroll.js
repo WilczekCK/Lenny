@@ -1,7 +1,7 @@
 $(window).on('load', _ => {
     var infiniteScroll = infiniteScroll || {};
     infiniteScroll = {
-        loadTimes: 0,
+        loadTimes: 1,
         memesLoad: '',
         howMuchToLoad: 5,
         loadMoreSelector: $('.load__more__memes'),
@@ -9,8 +9,11 @@ $(window).on('load', _ => {
         loadingScreen: () => {
             $('.meme__loading__open').trigger('click');
 
+            const $grid = $(infiniteScroll.grid).isotope({});
             imagesLoaded('.meme__container', function () {
-                $('.meme__loading__close').trigger('click');
+                $grid.on('layoutComplete', () => {
+                    $('.meme__loading__close').trigger('click');
+                })
             })
         },
         hasScrollbar: () => {
@@ -19,7 +22,6 @@ $(window).on('load', _ => {
                     infiniteScroll.scrollRecog.onScroll();
                 })
             }else{
-                infiniteScroll.loadTimes = infiniteScroll.loadTimes + 1;
                 infiniteScroll.loadMemes();
                 
                 setTimeout(function(){
@@ -42,7 +44,6 @@ $(window).on('load', _ => {
             },
             scrollHandler: () => {
                 if(infiniteScroll.isInViewport()) {
-                    infiniteScroll.loadTimes = infiniteScroll.loadTimes + 1;
                     infiniteScroll.loadMemes();
                 }               
             }
@@ -58,7 +59,6 @@ $(window).on('load', _ => {
         },
         areMemesAvailable: function (dbCallback) {
             if (dbCallback.length != 0) {
-                infiniteScroll.loadingScreen()
                 infiniteScroll.grid.isotope('insert', $(infiniteScroll.memesLoad));
                 imagesLoaded('.meme__container', function () {
                     infiniteScroll.grid.isotope();
@@ -70,6 +70,9 @@ $(window).on('load', _ => {
         },
         loadMemes: function () {
             if(infiniteScroll.loadMoreSelector.hasClass('noMemes')) return 0;
+
+            infiniteScroll.loadingScreen()
+            infiniteScroll.loadTimes = infiniteScroll.loadTimes + 1;
             fetch(`meme/load`, {
                 method: "get",
                 headers: {
@@ -118,7 +121,6 @@ $(window).on('load', _ => {
     infiniteScroll.hasScrollbar();
     
     $(document).on('click', '.load__more__memes', () => {
-        infiniteScroll.loadTimes = infiniteScroll.loadTimes + 1;
         return infiniteScroll.loadMemes()
     })
 
