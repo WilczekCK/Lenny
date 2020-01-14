@@ -9,9 +9,8 @@ $(window).on('load', _ => {
         loadingScreen: () => {
             $('.meme__loading__open').trigger('click');
 
-            const $grid = $(infiniteScroll.grid).isotope({});
             imagesLoaded('.meme__container', function () {
-                $grid.on('layoutComplete', () => {
+                $(infiniteScroll.grid).isotope().on('layoutComplete', () => {
                     $('.meme__loading__close').trigger('click');
                 })
             })

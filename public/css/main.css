@@ -26,6 +26,9 @@
     .menu__container {
       height: unset;
       padding-bottom: 10px; } }
+  @media (hover: none) {
+    .menu__container a:hover {
+      color: white; } }
   .menu__container .menu__container__wrap {
     width: 100%;
     display: flex; }

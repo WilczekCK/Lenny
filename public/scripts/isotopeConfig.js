@@ -7,9 +7,20 @@ $(window).on('load', _ => {
     }
   })
 
-  $('.menu__container__wrap__menu li a').on('click', function () {
-    const filterValue = `.${this.id}`;
-    const menuItem = $(this)[0];
+  $('.menu__container__wrap__menu li').on('click', function () {
+    let filterValue;
+    let menuItem;
+
+    switch (this.firstChild.localName){
+      case 'a':
+        filterValue = `.${$(this).find('a')[0].id}`;
+        menuItem = $(this).find('a')[0];
+        break
+      case 'i':
+        filterValue = `.${$(this).find('i')[0].id}`;
+        menuItem = $(this).find('i')[0];
+        break
+    }
 
     $(window).on('resize', function(){
       imagesLoaded('.meme__container', function () {
@@ -17,8 +28,10 @@ $(window).on('load', _ => {
       })
     })
 
-    if($(menuItem).hasClass('active')) return $grid.isotope({ filter: '*', masonry: {columnWidth: 50} }); //if active, reset grid
-    $grid.isotope({ filter: filterValue, masonry: {columnWidth: 50} });
+    if($(menuItem).hasClass('active') && !menuItem ) return $grid.isotope({ filter: '*', masonry: {columnWidth: 50} }); //if active, reset grid
+    if(!$(menuItem).hasClass('active') && !menuItem ){
+      return $grid.isotope({ filter: filterValue, masonry: {columnWidth: 50} });
+    } 
   })
 
   $('#tag__finder').on('keypress', function (e) {

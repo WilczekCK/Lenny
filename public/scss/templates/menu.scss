@@ -3,6 +3,12 @@
         height:unset;
         padding-bottom:10px;
     }
+    
+    @media (hover: none) {
+        a:hover {
+           color: white;
+        }
+     }
 
     width:100%;
     height:75px;
