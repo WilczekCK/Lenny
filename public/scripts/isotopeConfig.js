@@ -29,7 +29,7 @@ $(window).on('load', _ => {
     })
 
     if($(menuItem).hasClass('active') && !menuItem ) return $grid.isotope({ filter: '*', masonry: {columnWidth: 50} }); //if active, reset grid
-    if(!$(menuItem).hasClass('active') && !menuItem ){
+    if(!$(menuItem).hasClass('active') ){
       return $grid.isotope({ filter: filterValue, masonry: {columnWidth: 50} });
     } 
   })
