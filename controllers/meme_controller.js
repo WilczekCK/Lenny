@@ -11,6 +11,10 @@ meme_controller = {
         const memesRecord = await mysql.query(`SELECT id, author_username, tags, likes, status, added_in, meme_title  FROM images WHERE status = 1 ORDER BY added_in DESC ${limit}`);
         return memesRecord;
     },
+    displayMemesFromUser: async (user) => {
+        const memesRecord = await mysql.query(`SELECT id, author_username, tags, likes, status, added_in, meme_title  FROM images WHERE status = 1 AND author_id = ${user} ORDER BY added_in DESC`);
+        return memesRecord;
+    },
     displayWaitingMemes: async _ => {
         const memesRecord = await mysql.query(`SELECT id, author_username, tags, likes, status, added_in, meme_title  FROM images WHERE status = 0 ORDER BY added_in DESC `);
         return memesRecord;

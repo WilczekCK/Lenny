@@ -79,6 +79,7 @@ const pug = new Pug({
   locals: { },
   helperPath: [
     { _: require('underscore')},
+    { moment: require('moment')},
   ],
   app: app 
 })

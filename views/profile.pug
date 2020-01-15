@@ -1,1 +1,30 @@
-h1='profile page'
+extends layout.pug
+include blocks/meme.pug
+block content
+    .profile__container
+        .profile__container__header
+            .profile__container__header--cover(style=`background:url(https://i.pinimg.com/originals/0b/43/2b/0b432bace74295219a5a65144bf90782.jpg)`)
+            .profile__container__header--avatar
+                 img(src=`https://a.ppy.sh/${profile.ingame_id}` alt=`${profile.username}_avatar`)
+            .profile__container__header--nickname
+                !=profile.username
+            .profile__container__header--role
+                if profile.role == 1
+                    ='ADMINISTRATOR'
+                else
+                    ='USER'
+            .profile__container__header--joinedDate
+                !='since: ' 
+                #{moment(profile.registered).format('YYYY-MM-DD')}
+        .profile__container__content
+            .profile__container__content__stats
+                .profile__container__content__stats--uploadedMemes
+                    ='Uploaded memes:'
+                    p!=detailed.memes_count
+                .profile__container__content__stats--ppSum
+                    ='Total reach PP:'
+                    p!=detailed.sum_likes
+                .profile__container__content__stats--osuProfile
+                    ='OSU profile:'
+                    p!=profile.ingame_id
+            .profile__container__content--memes

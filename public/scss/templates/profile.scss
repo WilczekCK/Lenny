@@ -1,0 +1,65 @@
+.profile__container{
+    min-width:300px;
+    max-width:400px;
+    background: $osupoli_black;
+    display:flex;
+    margin:0 auto;
+    justify-content: center;
+    color:white;
+    border-radius: 6px;
+    padding-bottom:20px;
+    flex-direction: column;
+
+    .profile__container__header{
+        width:100%;
+
+        & > *:not(.profile__container__header--cover){
+            padding:10px;
+            padding-bottom:unset;
+        }
+
+        .profile__container__header--cover{
+            height:150px;
+            background-size:cover !important;
+            border-radius:6px;
+        }
+
+        .profile__container__header--avatar{
+            margin-top:-100px;
+        }
+
+        .profile__container__header--nickname{
+            font-size:1.5em;
+        }
+
+        .profile__container__header--role{
+            font-size:.8em;
+        }
+
+        .profile__container__header--joinedDate{
+            font-size:.8em;
+        }
+    }
+
+    .profile__container__content{
+        display: flex;
+        flex-direction: column;
+        padding-top: 20px;
+        width:75%;
+        margin:0 auto;
+        text-transform: uppercase;
+
+        .profile__container__content__stats{
+            & > * {
+                display:flex;
+                flex-direction:row;
+                justify-content: space-between;
+
+                p{
+                    color:$osupoli-orange;
+                    margin:0;
+                }
+            }
+        }
+    }
+}

@@ -1,4 +1,4 @@
-const mysql = require('../controllers/mysql_controller');
+const meme = require('../controllers/meme_controller');
 const user = require('../controllers/user_controller');
 const _ = require('underscore');
 module.exports = ({ profileRoute }) => {
@@ -8,10 +8,12 @@ module.exports = ({ profileRoute }) => {
 
     profileRoute.get('/:id', async (ctx, next) => {
         const idToFind = ctx.params.id;
-        const userInfo = user.find(idToFind);
+        const userInfo = await user.find(idToFind);
+        const detailed_meme_stats = await user.profile_detailed_meme(idToFind);
+        const userMemes = await meme.displayMemesFromUser(idToFind);
 
-        if(!userInfo) ctx.throw(404, 'There is no user with ID like that')
-        else ctx.render('profile', userInfo)
+        if(!userInfo) await ctx.throw(404, 'There is no user with ID like that')
+        else await ctx.render('profile', {profile: userInfo[0], detailed: detailed_meme_stats[0], memes: userMemes})
     })
 }
 
