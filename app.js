@@ -24,11 +24,13 @@ const homepageRoute = new Router({ prefix: '/' });
 const loginRoute = new Router({ prefix: '/login' });
 const memeRoute = new Router({ prefix: '/meme' });
 const errorRoute = new Router({ prefix: '/error' });
+const profileRoute = new Router({ prefix: '/profile' });
 
 require('./routes/index')({ homepageRoute });
 require('./routes/login')({ loginRoute });
 require('./routes/meme')({ memeRoute });
 require('./routes/error')({ errorRoute });
+require('./routes/profile')({ profileRoute });
 //Router
 
 //SESSIONS
@@ -99,6 +101,9 @@ app.use(memeRoute.allowedMethods());
 
 app.use(errorRoute.routes());
 app.use(errorRoute.allowedMethods());
+
+app.use(profileRoute.routes());
+app.use(profileRoute.allowedMethods());
 //Routes
 
 const server = app.listen(3000);
