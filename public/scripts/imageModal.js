@@ -63,8 +63,10 @@ $(window).on('load', _ => {
 
 
             if (typeof $(path).next(":visible").val() == 'undefined') {
-                $('.load__more__memes').trigger('click');
                 imageModal.config.actualSiblings.next = null;
+
+                //slow down a little bit, prevent closing popup while lazy load
+                setTimeout(() => {($('.load__more__memes').trigger('click'))}, 200);
             } 
             
             if (typeof $(path).prev(":visible").val() == 'undefined') {
