@@ -70,7 +70,6 @@ $(window).on('load', _ => {
         loadMemes: function () {
             if(infiniteScroll.loadMoreSelector.hasClass('noMemes')) return 0;
 
-            console.log($('.meme__modal').css('display'))
             if($('.meme__modal').css('display') == 'none') infiniteScroll.loadingScreen()
             infiniteScroll.loadTimes = infiniteScroll.loadTimes + 1;
             fetch(`meme/load`, {
@@ -83,7 +82,6 @@ $(window).on('load', _ => {
             .then(resp => resp.json())
             .then(resp => {
                 infiniteScroll.memesLoad = '';
-                console.log(resp)
                 resp.forEach(meme => {
                     infiniteScroll.memesLoad = infiniteScroll.memesLoad + `
                         <div class="meme__item ${meme.tags}">
