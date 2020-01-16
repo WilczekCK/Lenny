@@ -62,13 +62,19 @@
 				line-height: 1;
 				font-weight: 600;
                 font-size: 18px;
-                clear:both;
+				clear:both;
 			}
 			
 			.info {
 				line-height: 1.2;
 				margin-top: 5px;
 				font-size: 14px;
+
+								
+				a{
+					color:inherit;
+					text-decoration:none;
+				}
             }
             
             .tag{

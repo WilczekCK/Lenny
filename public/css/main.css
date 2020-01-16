@@ -305,6 +305,9 @@
         line-height: 1.2;
         margin-top: 5px;
         font-size: 14px; }
+        .meme__container .meme__item .details .info a {
+          color: inherit;
+          text-decoration: none; }
       .meme__container .meme__item .details .tag {
         font-size: 10px;
         margin-left: 0px; }

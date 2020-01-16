@@ -11,4 +11,5 @@ mixin meme_item(meme)
                 !=meme.meme_title
             span.info
                 ='Made by: '
-                !=meme.author_username
+                a(href=`/profile/${meme.author_id}`)
+                    !=meme.author_username

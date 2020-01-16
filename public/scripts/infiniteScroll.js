@@ -10,7 +10,7 @@ $(window).on('load', _ => {
             $('.meme__loading__open').trigger('click');
 
             imagesLoaded('.meme__container', function () {
-                $(infiniteScroll.grid).isotope().on('layoutComplete', () => {
+                $(infiniteScroll.grid).isotope().on('arrangeComplete', () => {
                     $('.meme__loading__close').trigger('click');
                 })
             })
