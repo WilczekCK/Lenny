@@ -26,5 +26,25 @@ block content
                     p!=detailed.sum_likes
                 .profile__container__content__stats--osuProfile
                     ='OSU profile:'
-                    p!=profile.ingame_id
-            .profile__container__content--memes
+                    a(href=`https://osu.ppy.sh/u/${profile.ingame_id}` target="_blank")
+                        p='LINK'
+            .profile__container__content__memes
+                each meme in memes
+                    .profile__container__content__memes__single
+                        .profile__container__content__memes__single--image
+                            img(src='/uploads/'+meme.id+'.jpg')
+                        .profile__container__content__memes__single--id
+                            span='ID'
+                            =meme.id
+                        .profile__container__content__memes__single--date
+                            span='DATE'
+                            #{moment(meme.added_in).format('YYYY-MM-DD')}
+                        .profile__container__content__memes__single--status
+                            span='STATUS'
+                            if meme.status == 1
+                                ='ACCEPTED'
+                            else
+                                ='WAITING'
+                        .profile__container__content__memes__single--pp
+                            span='PP'
+                            !=meme.likes
