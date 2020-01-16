@@ -12,7 +12,7 @@ auth_controller = {
   oAuth2: {
     client_id: '426',
     client_secret: 'du3b7Y3wqgaePeWX3ZkHU1k45hlg0exU7rEPdTH7',
-    callback_url: 'http://ba9dc4e2.ngrok.io/login/callback',
+    callback_url: 'http://d5d1819c.ngrok.io/login/callback',
     init: function () {
       passport.use(new OAuth2Strategy({
         authorizationURL: 'https://osu.ppy.sh/oauth/authorize',
@@ -42,6 +42,7 @@ auth_controller = {
           Authorization: 'Bearer ' + token
         }
       }).then( async ({data}) => {
+        console.log(data)
         const inGame = {
           id: data.id,
           username: data.username,
@@ -50,7 +51,9 @@ auth_controller = {
           avatar_url: data.avatar_url,
           cover_url: data.cover_url,
           playmode: data.playmode,
-          refresh_token : refreshToken
+          cover_img: data.cover_url,
+          country: data.country.code,
+          refresh_token : refreshToken, 
         }
 
         user.creation(inGame);

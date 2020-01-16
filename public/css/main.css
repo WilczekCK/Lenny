@@ -177,14 +177,14 @@
 
 .profile__container {
   min-width: 300px;
-  max-width: 400px;
+  max-width: 500px;
   background: #191919;
   display: flex;
   margin: 0 auto;
   justify-content: center;
   color: white;
   border-radius: 6px;
-  padding-bottom: 20px;
+  padding-bottom: 30px;
   flex-direction: column; }
   .profile__container .profile__container__header {
     width: 100%; }
@@ -202,7 +202,7 @@
     .profile__container .profile__container__header .profile__container__header--nickname {
       font-size: 1.5em; }
     .profile__container .profile__container__header .profile__container__header--role {
-      font-size: .8em; }
+      font-size: 1em; }
     .profile__container .profile__container__header .profile__container__header--joinedDate {
       font-size: .8em; }
   .profile__container .profile__container__content {
@@ -221,10 +221,8 @@
     .profile__container .profile__container__content .profile__container__content__stats .profile__container__content__stats--osuProfile a {
       text-decoration: none; }
     .profile__container .profile__container__content .profile__container__content__memes {
-      display: flex;
-      flex-direction: column;
-      max-height: 150px;
-      overflow-y: scroll;
+      height: 150px;
+      overflow-y: auto;
       margin-top: 20px; }
       .profile__container .profile__container__content .profile__container__content__memes > *:nth-child(odd) {
         background: #333333; }
@@ -238,12 +236,12 @@
           flex-basis: 20%;
           display: flex;
           flex-direction: column;
-          font-size: .8em;
+          font-size: .9em;
           box-sizing: border-box;
           padding: 5px; }
           .profile__container .profile__container__content .profile__container__content__memes .profile__container__content__memes__single > *:not(.profile__container__content__memes__single--image) span {
             color: #ff7f66;
-            font-size: .7em; }
+            font-size: .8em; }
         .profile__container .profile__container__content .profile__container__content__memes .profile__container__content__memes__single .profile__container__content__memes__single--image img {
           height: 50px;
           width: 50px;

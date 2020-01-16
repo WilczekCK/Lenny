@@ -1,13 +1,13 @@
 .profile__container{
     min-width:300px;
-    max-width:400px;
+    max-width:500px;
     background: $osupoli_black;
     display:flex;
     margin:0 auto;
     justify-content: center;
     color:white;
     border-radius: 6px;
-    padding-bottom:20px;
+    padding-bottom:30px;
     flex-direction: column;
 
     .profile__container__header{
@@ -36,7 +36,7 @@
         }
 
         .profile__container__header--role{
-            font-size:.8em;
+            font-size:1em;
         }
 
         .profile__container__header--joinedDate{
@@ -71,10 +71,8 @@
         }
 
         .profile__container__content__memes{
-            display:flex;
-            flex-direction: column;
-            max-height:150px;
-            overflow-y:scroll;
+            height:150px;
+            overflow-y:auto;
             margin-top:20px;
 
             & > *:nth-child(odd){
@@ -92,13 +90,13 @@
                     flex-basis:20%;
                     display:flex;
                     flex-direction:column;
-                    font-size:.8em;
+                    font-size:.9em;
                     box-sizing: border-box;
                     padding: 5px;
 
                     span{
                         color:$osupoli-orange;
-                        font-size:.7em;
+                        font-size:.8em;
                     }
                 }
 

@@ -1,9 +1,9 @@
 extends layout.pug
-include blocks/meme.pug
+include blocks/memes_profile.pug
 block content
     .profile__container
         .profile__container__header
-            .profile__container__header--cover(style=`background:url(https://i.pinimg.com/originals/0b/43/2b/0b432bace74295219a5a65144bf90782.jpg)`)
+            .profile__container__header--cover(style=`background:url(${profile.cover_url})`)
             .profile__container__header--avatar
                  img(src=`https://a.ppy.sh/${profile.ingame_id}` alt=`${profile.username}_avatar`)
             .profile__container__header--nickname
@@ -23,28 +23,10 @@ block content
                     p!=detailed.memes_count
                 .profile__container__content__stats--ppSum
                     ='Total reach PP:'
-                    p!=detailed.sum_likes
+                    p!=detailed.sum_likes  || '0'
                 .profile__container__content__stats--osuProfile
                     ='OSU profile:'
                     a(href=`https://osu.ppy.sh/u/${profile.ingame_id}` target="_blank")
                         p='LINK'
             .profile__container__content__memes
-                each meme in memes
-                    .profile__container__content__memes__single
-                        .profile__container__content__memes__single--image
-                            img(src='/uploads/'+meme.id+'.jpg')
-                        .profile__container__content__memes__single--id
-                            span='ID'
-                            =meme.id
-                        .profile__container__content__memes__single--date
-                            span='DATE'
-                            #{moment(meme.added_in).format('YYYY-MM-DD')}
-                        .profile__container__content__memes__single--status
-                            span='STATUS'
-                            if meme.status == 1
-                                ='ACCEPTED'
-                            else
-                                ='WAITING'
-                        .profile__container__content__memes__single--pp
-                            span='PP'
-                            !=meme.likes
+                +meme_profile_item(memes)
