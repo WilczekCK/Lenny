@@ -181,6 +181,7 @@
   background: #191919;
   display: flex;
   margin: 0 auto;
+  margin-top: 20px;
   justify-content: center;
   color: white;
   border-radius: 6px;

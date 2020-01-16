@@ -13,6 +13,8 @@ block content
                     ='ADMINISTRATOR'
                 else
                     ='USER'
+            .profile__container__header--country
+                img(src=`https://www.countryflags.io/${profile.country}/shiny/32.png`)
             .profile__container__header--joinedDate
                 !='since: ' 
                 #{moment(profile.registered).format('YYYY-MM-DD')}
