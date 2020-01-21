@@ -1,17 +1,23 @@
 $(window).on('load', _ => {
     var infiniteScroll = infiniteScroll || {};
     infiniteScroll = {
-        loadTimes: 1,
+        loadTimes: 0,
         memesLoad: '',
         howMuchToLoad: 5,
         loadMoreSelector: $('.load__more__memes'),
         grid: $('.meme__container'),
+        memeLoading: {
+            open: '.meme__loading__open',
+            close: '.meme__loading__close'
+        },
         loadingScreen: () => {
-            $('.meme__loading__open').trigger('click');
+            $(infiniteScroll.memeLoading.open).trigger('click');
 
             imagesLoaded('.meme__container', function () {
+                if(!infiniteScroll.memesLoad) return $(infiniteScroll.memeLoading.close).trigger('click');
+
                 $(infiniteScroll.grid).isotope().on('arrangeComplete', () => {
-                    $('.meme__loading__close').trigger('click');
+                    $(infiniteScroll.memeLoading.close).trigger('click');
                 })
             })
         },
@@ -63,15 +69,22 @@ $(window).on('load', _ => {
                     infiniteScroll.grid.isotope();
                 })
             } else {
-                if(infiniteScroll.loadMoreSelector.hasClass('noMemes')) return 0;
-                else infiniteScroll.loadMoreSelector.html(`You reached the end of osumemes`).addClass('noMemes')
+                if(infiniteScroll.loadMoreSelector.hasClass('noMemes')) {
+                    $(infiniteScroll.memeLoading.close).trigger('click');
+                    return 0;
+                }
+                else{
+                    infiniteScroll.loadMoreSelector.html(`You reached the end of osumemes`).addClass('noMemes')
+                    $(infiniteScroll.memeLoading.close).trigger('click');
+                } 
+                
             }
         },
         loadMemes: function () {
             if(infiniteScroll.loadMoreSelector.hasClass('noMemes')) return 0;
-
             if($('.meme__modal' || $('#modal__add__meme')).css('display') == 'none') infiniteScroll.loadingScreen()
             infiniteScroll.loadTimes = infiniteScroll.loadTimes + 1;
+
             fetch(`meme/load`, {
                 method: "get",
                 headers: {
