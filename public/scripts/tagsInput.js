@@ -2,14 +2,14 @@ $(document).ready(function(){
     const providedTags = [];
     var $input = $(".tags__provider input"),
         $appendHere = $(".tagHere"),
-        $actualTags = [],
-        oldKey = 0, newKey,
-        SPACEKEY = 32;
+        $actualTags = []
+
     $input.focus();
+    $input.on('input', function(e){
     
-    $input.keydown(function(e){
-    
-      if(e.keyCode == SPACEKEY) {
+      let lastChar = e.target.value[e.target.value.length-1];
+
+      if(lastChar == ' ') {
         if(e.preventDefault) {
           e.preventDefault();
           if($(this).val() == '' || $(this).val() == ' ') {
