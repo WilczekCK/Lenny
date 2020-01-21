@@ -13,7 +13,8 @@ module.exports = ({ loginRoute }) => {
     })
 
     loginRoute.get('/success', async (ctx, next) => {
-        ctx.redirect('..');
+        ctx.body = 'Success, redirecting to the homepage!';
+        ctx.redirect('..').timeout(1024);
     })
 
     loginRoute.get('/failed', async (ctx, next) => {
