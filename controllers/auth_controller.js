@@ -56,8 +56,8 @@ auth_controller = {
           refresh_token : refreshToken, 
         }
 
-        user.creation(inGame);
-        auth_controller.sess.status(main_sess, inGame);
+        await user.creation(inGame);
+        await auth_controller.sess.status(main_sess, inGame);
       });
     }
   },
@@ -66,7 +66,7 @@ auth_controller = {
       if(_.isEmpty(main_sess.passport)) return 0;
       const findRefreshToken = await mysql.query(`SELECT * FROM users WHERE refresh_token = '${main_sess.passport.user.refreshToken}'`);
       
-      if(_.isEmpty(findRefreshToken)) return auth_controller.sess.refresh(main_sess.passport.user.refreshToken, inGame);
+      if(_.isEmpty(findRefreshToken)) return await auth_controller.sess.refresh(main_sess.passport.user.refreshToken, inGame);
       return findRefreshToken;
     },
     refresh: async (refreshToken, inGame) => {

@@ -7,13 +7,12 @@ module.exports = ({ loginRoute }) => {
     loginRoute.get('/', passport.authenticate('oauth2'));
 
     loginRoute.get('/callback',
-        passport.authenticate('oauth2'), async (ctx, next) => {
-            await auth.oAuth2.convertToken(ctx.session, ctx.req.user.accessToken, ctx.req.user.refreshToken);
-            await ctx.redirect('success')
-    })
+        passport.authenticate('oauth2', {successRedirect: '/login/success',
+        failureRedirect: '/login/failed'}))
 
     loginRoute.get('/success', async (ctx, next) => {
-        ctx.body = 'Success, redirecting to the homepage!';
+        await auth.oAuth2.convertToken(ctx.session, ctx.req.user.accessToken, ctx.req.user.refreshToken);
+        await ctx.redirect('/')
     })
 
     loginRoute.get('/failed', async (ctx, next) => {
