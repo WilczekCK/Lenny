@@ -492,33 +492,9 @@ input#meme_title {
   overflow: hidden;
   opacity: 1; }
 
-@font-face {
-  font-family: "Open Sans";
-  font-style: normal;
-  font-weight: normal;
-  src: url("../fonts/OpenSans-Regular.ttf") format("truetype"); }
-
-@font-face {
-  font-family: "Open Sans";
-  font-style: italic;
-  font-weight: normal;
-  src: url("../fonts/OpenSans-Italic.ttf") format("truetype"); }
-
-@font-face {
-  font-family: "Open Sans";
-  font-style: normal;
-  font-weight: bold;
-  src: url("../fonts/OpenSans-Bold.ttf") format("truetype"); }
-
-@font-face {
-  font-family: "Open Sans";
-  font-style: italic;
-  font-weight: bold;
-  src: url("../fonts/OpenSans-BoldItalic.ttf") format("truetype"); }
-
 .myalert-wrapper {
   width: 200px;
-  font-family: 'Open Sans'; }
+  font-family: 'osu-regular'; }
 
 .myalert {
   background-color: #666;

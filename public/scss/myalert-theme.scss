@@ -25,11 +25,6 @@
   }
 }
 
-@include font-face("Open Sans", '../fonts/OpenSans-Regular', normal, normal, ttf);
-@include font-face("Open Sans", '../fonts/OpenSans-Italic', normal, italic, ttf);
-@include font-face("Open Sans", '../fonts/OpenSans-Bold', bold, normal, ttf);
-@include font-face("Open Sans", '../fonts/OpenSans-BoldItalic', bold, italic, ttf);
-
 @import "icons/css/icon-font.css";
 @import "icons/css/icon-font-ie7.css";
 @import "icons/css/icon-font-ie7-codes.css";
@@ -39,7 +34,7 @@
 
 .myalert-wrapper {
   width: 200px;
-  font-family: 'Open Sans';
+  font-family: 'osu-regular';
 }
 
 .myalert {
