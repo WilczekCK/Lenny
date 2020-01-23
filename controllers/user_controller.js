@@ -7,11 +7,8 @@ user_controller = {
     creation: async (inGame) => {
         const [results] = await mysql.query(`SELECT * FROM users WHERE ingame_id = ${inGame.id}`);
         if(!results) return user_controller.newPlayer(inGame);
-        console.log('Good Old fella')
     },
     newPlayer: async (inGame) => {
-        console.log('New fella')
-
         mysql.query(`SELECT * FROM users WHERE ingame_id = ${inGame.id}`);
         await mysql.insert(`users`,
         `ingame_id, username, registered, role, refresh_token, cover_url, country`,
