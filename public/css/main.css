@@ -345,6 +345,18 @@
     font-weight: 800;
     margin-bottom: 0px; }
 
+.success__container {
+  color: white;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .success__container h3 {
+    color: #ff7f66;
+    font-size: 72px;
+    font-weight: 800;
+    margin-bottom: 0px; }
+
 .fixed__controls__content {
   color: white;
   position: fixed;
