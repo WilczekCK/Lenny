@@ -42,7 +42,6 @@ auth_controller = {
           Authorization: 'Bearer ' + token
         }
       }).then( async ({data}) => {
-        console.log(data)
         const inGame = {
           id: data.id,
           username: data.username,
@@ -56,8 +55,8 @@ auth_controller = {
           refresh_token : refreshToken, 
         }
 
-        user.creation(inGame);
-        auth_controller.sess.status(main_sess, inGame);
+        await user.creation(inGame);
+        await auth_controller.sess.status(main_sess, inGame);
       });
     }
   },
@@ -65,13 +64,13 @@ auth_controller = {
     status: async (main_sess, inGame) => {
       if(_.isEmpty(main_sess.passport)) return 0;
       const findRefreshToken = await mysql.query(`SELECT * FROM users WHERE refresh_token = '${main_sess.passport.user.refreshToken}'`);
-      
-      if(_.isEmpty(findRefreshToken)) return auth_controller.sess.refresh(main_sess.passport.user.refreshToken, inGame);
+
+      if(_.isEmpty(findRefreshToken)) return await auth_controller.sess.refresh(main_sess.passport.user.refreshToken, inGame);
       return findRefreshToken;
     },
     refresh: async (refreshToken, inGame) => {
-     if(_.isEmpty(inGame) || _.isEmpty(refreshToken)) return 0;
-     await mysql.update(`users`, `refresh_token = '${refreshToken}'`, `ingame_id = ${inGame.id}`);
+      if(_.isEmpty(inGame) || _.isEmpty(refreshToken)) return 0;
+      await mysql.update(`users`, `refresh_token = '${refreshToken}'`, `ingame_id = ${inGame.id}`);
     }
   }
 }

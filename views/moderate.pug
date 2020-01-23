@@ -20,7 +20,8 @@ block content
                             !=meme.meme_title
                         span.info
                             ='Made by: '
-                            !=meme.author_username
+                            a(href=`/profile/${meme.author_id}`)
+                                !=meme.author_username
                         span(style='max-width:90%; margin-top:10px;')
                             form(action="/meme/moderate?_method=PATCH" method="POST" enctype="application/x-www-form-urlencoded")
                                 input(type="hidden" name="meme_id" value=meme.id)
