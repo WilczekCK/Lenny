@@ -69,8 +69,8 @@
   border-color: darken(#E42727, 12);
 }
 .myalert-warning {
-  background-color: #F37C13;
-  border-color: darken(#F37C13, 12);
+  background-color: $osupoli-orange;
+  border-color: darken($osupoli-orange, 12);
 }
 .myalert-success {
   background-color: #03B635;
