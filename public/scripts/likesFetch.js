@@ -13,9 +13,7 @@ $(document).ready(function(){
             return $(el.currentTarget)[0].attributes.meme_id.value;
         },
         giveLike: (el) => {
-            if($(likesFetch.config.isLogged).length == 0) return $(likesFetch.config.popupNotLogged).modal({
-                fadeDuration: likesFetch.config.fadeTime
-            });
+            if($(likesFetch.config.isLogged).length == 0) return myAlert("You have to be logged to like memes!", "myalert-danger");
 
             fetch(`meme/like/${likesFetch.memeLiked(el)}`,{
                 method: "PATCH",
@@ -24,9 +22,7 @@ $(document).ready(function(){
             .then(resp => {
                 let actualLikes = 0;
 
-                if(resp) return $(likesFetch.config.popupGavePP).modal({
-                    fadeDuration: likesFetch.config.fadeTime
-                });
+                if(resp) return myAlert("You already gave PP for this meme!", "myalert-warning");                   
 
                 actualLikes = parseInt($(el.currentTarget).find(likesFetch.config.counterSelector)[0].innerHTML) + 1;
                 $(el.currentTarget).find(likesFetch.config.counterSelector)[0].innerHTML = actualLikes;

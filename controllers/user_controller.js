@@ -27,5 +27,4 @@ user_controller = {
 }
 
 
-
 module.exports = user_controller || 'There is a problem with an user controller file';

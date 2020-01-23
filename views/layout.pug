@@ -12,6 +12,7 @@ html(lang="en")
     body
         include blocks/menu.pug
         include blocks/fixed_controls.pug
+        #slidingNotification(data-myalert data-myalert-max="5")
         .content__container
             block content
         block footer
