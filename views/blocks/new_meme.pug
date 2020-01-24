@@ -1,20 +1,23 @@
-#modal__add__meme(class="modal" rel="model:open")
-    h2="Upload your meme below:"
+#modal__add__meme--first(class="modal" rel="model:open")
+    img(src='/images/upload-cloud.png')
+    h2="Upload your"
+        span=' JPG ' 
+        ="file:"
+    .tip(style="text-align:center;")
+        ="(maximum size at the moment is 1MB)"
+    button.file__add
+        ='BROWSE'
+    a.nextSlide(href='#modal__add__meme--second' rel="modal:open" style="display:none")
+#modal__add__meme--second(class="modal")
     form(action='/meme/add' method='POST' enctype='multipart/form-data')
+        input(type="file" id="meme" name="meme" class='file' onchange="$('a.nextSlide').click();" accept="image/jpeg")
         label(for="meme_title")
-            ="What is the name of your meme?"
-        input(type="name" id="meme_title" name="meme_title" maxlength="25")
+            ="Name of your meme"
+        input(type="name" id="meme_title" name="meme_title" maxlength="25" placeholder="Provide the name of your meme")
         .tip
-            ="25 letters limitation"
-        
+            ="(25 letters limitation)"                    
         label(for="tags")
-            ="Select an image:"
-        input(type="file" id="meme" name="meme")
-        .tip
-            ="Only .jpg extension accepted!"
-        
-        label(for="tags")
-            ="Provide tags for your image:"
+            ="Tags related to the meme:"
         .tags__provider
             .tagHere
             input(type="hidden" name="tags" class="tags__provided")
@@ -22,5 +25,5 @@
             input(type="hidden" name="author_id" value=userInfo.ingame_id)
             input(type='text' autofocus placeholder="Provide your tags" maxlength="10")
         .tip
-            ="Use a spacebar to input a tag, up to 5 tags"
+            ="(Use a spacebar to input a tag, up to 5 tags)"
         input(type="submit" value="UPLOAD" id="tags__submit")
