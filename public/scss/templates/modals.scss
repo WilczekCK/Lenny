@@ -1,12 +1,23 @@
 .modal{
+    background:$osupoli_black !important;
+    text-align:center !important;
+    color:white !important;
+    
     h2{
-        margin-top:0px;
+        margin:0px;
+
+        span{
+            color:$osupoli-orange;
+        }
     }
+
+
 
     .tip{
         font-size:0.8em;
         font-style: italic !important;
         padding-bottom:20px;
+        text-align:left;
     }
 }
 
@@ -34,4 +45,9 @@
             margin:0;
         }
     }
+}
+
+
+#modal__add__meme--second{
+    padding-top:30px;
 }
