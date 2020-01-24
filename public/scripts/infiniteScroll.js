@@ -6,18 +6,14 @@ $(window).on('load', _ => {
         howMuchToLoad: 5,
         loadMoreSelector: $('.load__more__memes'),
         grid: $('.meme__container'),
-        memeLoading: {
-            open: '.meme__loading__open',
-            close: '.meme__loading__close'
-        },
         loadingScreen: () => {
-            $(infiniteScroll.memeLoading.open).trigger('click');
+            $('body').css('overflow', 'hidden');
+            myAlertSaving(true, "Wait, loading...", "myalert-info");
 
             imagesLoaded('.meme__container', function () {
-                if(!infiniteScroll.memesLoad) return $(infiniteScroll.memeLoading.close).trigger('click');
-
                 $(infiniteScroll.grid).isotope().on('arrangeComplete', () => {
-                    $(infiniteScroll.memeLoading.close).trigger('click');
+                    $('body').css('overflow', 'unset');
+                    return myAlertSaving(false);
                 })
             })
         },
@@ -70,12 +66,14 @@ $(window).on('load', _ => {
                 })
             } else {
                 if(infiniteScroll.loadMoreSelector.hasClass('noMemes')) {
-                    $(infiniteScroll.memeLoading.close).trigger('click');
+                    $('body').css('overflow', 'unset');
+                    myAlertSaving(false);
                     return 0;
                 }
                 else{
                     infiniteScroll.loadMoreSelector.html(`You reached the end of osumemes`).addClass('noMemes')
-                    $(infiniteScroll.memeLoading.close).trigger('click');
+                    $('body').css('overflow', 'unset');
+                    return myAlertSaving(false);
                 } 
                 
             }

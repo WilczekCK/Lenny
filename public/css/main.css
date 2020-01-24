@@ -1,3 +1,15 @@
+@import url(icons/css/icon-font.css);
+@import url(icons/css/icon-font-ie7.css);
+@import url(icons/css/icon-font-ie7-codes.css);
+@import url(icons/css/icon-font-embedded.css);
+@import url(icons/css/icon-font-codes.css);
+@import url(icons/css/animation.css);
+@import url(icons/css/icon-font.css);
+@import url(icons/css/icon-font-ie7.css);
+@import url(icons/css/icon-font-ie7-codes.css);
+@import url(icons/css/icon-font-embedded.css);
+@import url(icons/css/icon-font-codes.css);
+@import url(icons/css/animation.css);
 @font-face {
   font-family: 'osu-regular';
   src: url("../fonts/Aller_Rg.ttf"); }
@@ -452,6 +464,77 @@ input#meme_title {
     padding-left: 0px;
     padding-top: 5px;
     padding-bottom: 5px; }
+
+@keyframes alert-in {
+  from {
+    left: -25px;
+    opacity: 0; }
+  to {
+    left: 0;
+    opacity: 1; } }
+
+.myalert-wrapper {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+  box-sizing: borderbox; }
+  .myalert-wrapper * {
+    box-sizing: border-box; }
+
+.myalert {
+  position: relative;
+  animation: alert-in .5s;
+  margin-top: 15px;
+  transition: .3s;
+  overflow: hidden;
+  opacity: 1; }
+
+.myalert-wrapper {
+  width: 200px;
+  font-family: 'osu-regular'; }
+
+.myalert {
+  background-color: #666;
+  color: #fff;
+  padding: 15px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 5px 1px rgba(34, 34, 34, 0.05);
+  border-left: 4px solid #474747; }
+  .myalert p {
+    margin: 0;
+    font-size: .9rem; }
+  .myalert:hover .myalert-close {
+    opacity: 1;
+    visibility: visible; }
+
+.myalert-close {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  font-size: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: .2s;
+  cursor: pointer; }
+
+.myalert-danger {
+  background-color: #E42727;
+  border-color: #b71717; }
+
+.myalert-warning {
+  background-color: #ff7f66;
+  border-color: #ff4c29; }
+
+.myalert-success {
+  background-color: #03B635;
+  border-color: #027a23; }
+
+.myalert-info {
+  background-color: #2B6CCC;
+  border-color: #205199; }
 
 .modal h2 {
   margin-top: 0px; }
