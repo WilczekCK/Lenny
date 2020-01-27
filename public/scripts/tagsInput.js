@@ -1,6 +1,6 @@
 $(document).ready(function(){
     const providedTags = [];
-    var $input = $(".tags__provider input"),
+    var $input = $(".tags__input"),
         $appendHere = $(".tagHere"),
         $actualTags = []
 
