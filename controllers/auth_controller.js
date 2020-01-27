@@ -72,6 +72,10 @@ auth_controller = {
       if(_.isEmpty(inGame) || _.isEmpty(refreshToken)) return 0;
       await mysql.update(`users`, `refresh_token = '${refreshToken}'`, `ingame_id = ${inGame.id}`);
     }
+  }, 
+  logout: function(main_sess){
+    main_sess.session = null;
+    main_sess.req.body = null;
   }
 }
 

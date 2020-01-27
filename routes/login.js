@@ -15,6 +15,11 @@ module.exports = ({ loginRoute }) => {
         await ctx.render('login_success');        
     })
 
+    loginRoute.get('/out', async (ctx, next) => {
+        await auth.logout(ctx);
+        await ctx.redirect('/');
+    })
+
     loginRoute.get('/failed', async (ctx, next) => {
         ctx.throw(400, 'Error while logging')
     })
