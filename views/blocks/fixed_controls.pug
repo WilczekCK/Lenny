@@ -6,6 +6,8 @@
             a(href='/meme/moderate')
                 i(class="far fa-clock")
         a(class='mobile__user__container logged' style=`background-image:url(https://a.ppy.sh/${userInfo.ingame_id}); height:20px; margin-bottom:-20px;`)
+        a(href='/login/out')
+            i(class="fas fa-sign-out-alt")
         include new_meme.pug
     else
         a(class='mobile__user__container' href='/login')

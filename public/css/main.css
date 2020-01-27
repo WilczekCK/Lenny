@@ -72,6 +72,8 @@
           padding: 20px 10px;
           list-style-type: none;
           display: inline-block; }
+          .menu__container .menu__container__wrap .menu__container__wrap__menu ul li:nth-last-child(2) {
+            padding: 20px 0px; }
           @media (max-width: 768px) {
             .menu__container .menu__container__wrap .menu__container__wrap__menu ul li {
               font-size: 1.2em;
@@ -108,17 +110,21 @@
               transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1); }
       .menu__container .menu__container__wrap .menu__container__wrap__menu .menu__container__wrap__menu__user {
         display: flex;
-        flex-direction: column;
-        width: 80px;
-        margin-left: 10px; }
+        flex-direction: row;
+        margin-left: 20px;
+        margin-right: 20px; }
         @media (max-width: 786px) {
           .menu__container .menu__container__wrap .menu__container__wrap__menu .menu__container__wrap__menu__user {
             display: none; } }
         .menu__container .menu__container__wrap .menu__container__wrap__menu .menu__container__wrap__menu__user img {
           margin-top: 5px;
           max-width: 55px;
+          max-height: 55px;
           border-radius: 50%;
           border: 5px solid black; }
+        .menu__container .menu__container__wrap .menu__container__wrap__menu .menu__container__wrap__menu__user .menu__dropdown {
+          width: 30px;
+          align-self: center; }
         .menu__container .menu__container__wrap .menu__container__wrap__menu .menu__container__wrap__menu__user .menu__auth__button {
           position: relative;
           background: none;
@@ -126,10 +132,9 @@
           text-transform: uppercase;
           text-decoration: none;
           border: 0.2em solid #ff7f66;
-          height: 53px;
+          height: 35px;
           padding: 0.5em 1em;
-          width: 50%;
-          margin: 0 auto; }
+          margin-top: 8px; }
           .menu__container .menu__container__wrap .menu__container__wrap__menu .menu__container__wrap__menu__user .menu__auth__button::before {
             content: "";
             display: block;
