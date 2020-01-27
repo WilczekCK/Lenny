@@ -39,3 +39,8 @@ body{
 .active{
     color: $osupoli-orange !important;
 }
+
+//mobile hover fix
+@media (pointer:coarse) {
+    a:not(.active):hover { color: white !important; }
+  }

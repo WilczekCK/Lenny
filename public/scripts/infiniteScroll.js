@@ -114,7 +114,9 @@ $(window).on('load', _ => {
                                 </span>
 
                                 <span class="info">
-                                    Made by: ${meme.author_username}
+                                    <a href="/profile/${meme.author_id}">
+                                        Made by: ${meme.author_username}
+                                    </a>
                                 </span>
                             </div>
                         </div>

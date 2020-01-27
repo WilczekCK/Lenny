@@ -23,7 +23,7 @@
             input(type="hidden" name="tags" class="tags__provided")
             input(type="hidden" name="author_username" value=userInfo.username)
             input(type="hidden" name="author_id" value=userInfo.ingame_id)
-            input(type='text' autofocus placeholder="Provide your tags" maxlength="10")
+            input(type='text' autofocus placeholder="Provide your tags" maxlength="10" class="tags__input")
         .tip
             ="(Use a spacebar to input a tag, up to 5 tags)"
         input(type="submit" value="UPLOAD" id="tags__submit")

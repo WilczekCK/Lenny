@@ -11,7 +11,7 @@
 		position: relative;
 		border-radius: 3px;
 		box-shadow: 0 0 20px 0 rgba(0,0,0,.05);
-		
+
 		&:before {
 			content: '';
 			background: linear-gradient(
@@ -37,6 +37,13 @@
 			max-height:600px;
 			backface-visibility: hidden;
 			-webkit-backface-visibility: hidden;
+
+					
+			@media (max-width:768px){
+				max-width:250px;
+				min-width:250px;
+			}
+
 		}
 		
 		.details {

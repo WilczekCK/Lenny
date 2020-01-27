@@ -6,7 +6,7 @@ $(window).on('load', _ => {
     $grid: $('.meme__container').isotope({
       itemSelector: '.meme__item',
       masonry: {
-        columnWidth: 50,
+        columnWidth: 25,
         isFitWidth: true
       }
     }),

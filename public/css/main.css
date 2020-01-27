@@ -171,7 +171,7 @@
   margin-top: 85px; }
   @media (max-width: 768px) {
     .content__container {
-      margin-top: 160px !important; } }
+      margin-top: 180px !important; } }
 
 .gutter-sizer {
   width: 1.5%; }
@@ -292,6 +292,10 @@
       max-height: 600px;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden; }
+      @media (max-width: 768px) {
+        .meme__container .meme__item img {
+          max-width: 250px;
+          min-width: 250px; } }
     .meme__container .meme__item .details {
       font-size: 16px;
       padding: 15px;
@@ -615,3 +619,7 @@ body {
 
 .active {
   color: #ff7f66 !important; }
+
+@media (pointer: coarse) {
+  a:not(.active):hover {
+    color: white !important; } }

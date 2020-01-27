@@ -1,13 +1,15 @@
 const meme = require('../controllers/meme_controller');
 const user = require('../controllers/user_controller');
 const _ = require('underscore');
+const koaBody = require('koa-body');
+
 module.exports = ({ profileRoute }) => {
-    profileRoute.get('/', async (ctx, next) => {
+    profileRoute.get('/', koaBody(), async (ctx, next) => {
         const is_player_logged = ctx.req.body[0];
         await ctx.throw(400, 'Missing the ID of profile!')
     });
 
-    profileRoute.get('/:id', async (ctx, next) => {
+    profileRoute.get('/:id', koaBody(), async (ctx, next) => {
         const idToFind = ctx.params.id;
         const userInfo = await user.find(idToFind);
         const detailed_meme_stats = await user.profile_detailed_meme(idToFind);
