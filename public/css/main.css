@@ -615,3 +615,7 @@ body {
 
 .active {
   color: #ff7f66 !important; }
+
+@media (pointer: coarse) {
+  a:not(.active):hover {
+    color: white !important; } }
