@@ -111,7 +111,8 @@
       .menu__container .menu__container__wrap .menu__container__wrap__menu .menu__container__wrap__menu__user {
         display: flex;
         flex-direction: row;
-        margin-left: 20px; }
+        margin-left: 20px;
+        margin-right: 20px; }
         @media (max-width: 786px) {
           .menu__container .menu__container__wrap .menu__container__wrap__menu .menu__container__wrap__menu__user {
             display: none; } }

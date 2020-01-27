@@ -21,6 +21,7 @@
                     i(id="tag__finder__icon" class="fas fa-search")
             .menu__container__wrap__menu__user
                 if userInfo
-                    img(src=`https://a.ppy.sh/${userInfo.ingame_id}` alt=`${userInfo.username}_avatar`)
+                    a(href=`/profile/${userInfo.ingame_id}`)
+                        img(src=`https://a.ppy.sh/${userInfo.ingame_id}` alt=`${userInfo.username}_avatar`)
                 else
                     a.menu__auth__button(href="/login")="Login with osu!"
