@@ -132,10 +132,9 @@
           text-transform: uppercase;
           text-decoration: none;
           border: 0.2em solid #ff7f66;
-          height: 53px;
+          height: 35px;
           padding: 0.5em 1em;
-          width: 50%;
-          margin: 0 auto; }
+          margin-top: 8px; }
           .menu__container .menu__container__wrap .menu__container__wrap__menu .menu__container__wrap__menu__user .menu__auth__button::before {
             content: "";
             display: block;
