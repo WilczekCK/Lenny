@@ -523,6 +523,14 @@ input#meme_title {
     margin: 0 auto;
     margin-top: 5px; }
 
+.rules__container {
+  color: white;
+  padding: 25px; }
+  .rules__container li {
+    padding-top: 15px; }
+    .rules__container li::marker {
+      color: #ff7f66; }
+
 @keyframes alert-in {
   from {
     left: -25px;
