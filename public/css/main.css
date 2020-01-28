@@ -534,6 +534,25 @@ input#meme_title {
     .rules__container li::marker {
       color: #ff7f66; }
 
+.info__container {
+  color: white;
+  margin: 0 auto;
+  text-align: justfy;
+  max-width: 768px; }
+  .info__container li {
+    padding: 20px 0px;
+    text-align: left;
+    font-size: 1.2em;
+    color: #ff7f66; }
+    .info__container li a {
+      color: #ff7f66;
+      text-decoration: none;
+      font-size: 1em; }
+    .info__container li p {
+      margin: 0;
+      font-size: .8em;
+      color: white; }
+
 @keyframes alert-in {
   from {
     left: -25px;

@@ -31,9 +31,35 @@
         max-width: 768px;
         margin: 0 auto;
         text-align: justify;
-        
+
         &::marker{
             color:$osupoli_orange;
+        }
+    }
+}
+
+.info__container{
+    color:white;
+    margin:0 auto;
+    text-align:justfy;
+    max-width:768px;
+
+    li{
+        padding:20px 0px;
+        text-align:left;
+        font-size:1.2em;
+        color:$osupoli_orange;
+
+        a{
+            color:$osupoli_orange;
+            text-decoration:none;
+            font-size:1em;
+        }
+
+        p{
+            margin:0;
+            font-size:.8em;
+            color:white;
         }
     }
 }
