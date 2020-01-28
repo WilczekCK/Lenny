@@ -504,6 +504,55 @@ input#meme_title {
   #tags__submit:hover {
     opacity: .8; }
 
+.gdpr__container {
+  position: fixed;
+  background: #191919;
+  padding: 10px;
+  bottom: 0;
+  color: white;
+  width: 100%;
+  z-index: 99; }
+  .gdpr__container a {
+    color: #ff7f66;
+    text-decoration: none; }
+  .gdpr__container .gdpr__container__close {
+    cursor: pointer;
+    background: #ff7f66;
+    padding: 5px;
+    width: 150px;
+    margin: 0 auto;
+    margin-top: 5px; }
+
+.rules__container {
+  color: white;
+  padding: 25px; }
+  .rules__container li {
+    padding-top: 15px;
+    max-width: 768px;
+    margin: 0 auto;
+    text-align: justify; }
+    .rules__container li::marker {
+      color: #ff7f66; }
+
+.info__container {
+  color: white;
+  margin: 0 auto;
+  text-align: justfy;
+  max-width: 768px; }
+  .info__container li {
+    padding: 20px 0px;
+    text-align: left;
+    font-size: 1.2em;
+    color: #ff7f66; }
+    .info__container li a {
+      color: #ff7f66;
+      text-decoration: none;
+      font-size: 1em; }
+    .info__container li p {
+      margin: 0;
+      font-size: .8em;
+      color: white; }
+
 @keyframes alert-in {
   from {
     left: -25px;

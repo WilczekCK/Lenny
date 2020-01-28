@@ -8,7 +8,14 @@ meme_controller = {
         if(limit) limit = `limit ${limit}`
         else limit = '';
 
+        
         const memesRecord = await mysql.query(`SELECT id, author_username, author_id, tags, likes, status, added_in, meme_title  FROM images WHERE status = 1 ORDER BY added_in DESC ${limit}`);
+        
+        //create array from simple string - for tags
+       // memesRecord.forEach(mem => {
+         //   mem.tags = mem.tags.split(' ');
+        //})
+
         return memesRecord;
     },
     displayMemesFromUser: async (user) => {

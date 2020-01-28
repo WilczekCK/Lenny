@@ -1,0 +1,65 @@
+.gdpr__container{
+    position:fixed;
+    background:$osupoli_black;
+    padding:10px;
+    bottom:0;
+    color:white;
+    width:100%;
+    z-index:99;
+
+    a{
+        color:$osupoli_orange;
+        text-decoration: none;
+    }
+
+    .gdpr__container__close{
+        cursor:pointer;
+        background:$osupoli_orange;
+        padding:5px;
+        width:150px;
+        margin:0 auto;
+        margin-top:5px;
+    }
+}
+
+.rules__container{
+    color:white;
+    padding:25px;
+
+    li{
+        padding-top:15px;
+        max-width: 768px;
+        margin: 0 auto;
+        text-align: justify;
+
+        &::marker{
+            color:$osupoli_orange;
+        }
+    }
+}
+
+.info__container{
+    color:white;
+    margin:0 auto;
+    text-align:justfy;
+    max-width:768px;
+
+    li{
+        padding:20px 0px;
+        text-align:left;
+        font-size:1.2em;
+        color:$osupoli_orange;
+
+        a{
+            color:$osupoli_orange;
+            text-decoration:none;
+            font-size:1em;
+        }
+
+        p{
+            margin:0;
+            font-size:.8em;
+            color:white;
+        }
+    }
+}

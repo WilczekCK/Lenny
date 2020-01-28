@@ -1,13 +1,15 @@
 .fixed__controls__content
+    a(href="/info")
+        i(class="fas fa-info")
     if userInfo
         a(class="logged__add__meme" href="#modal__add__meme")
             i(class="fas fa-plus")
         if userInfo.role > 0
             a(href='/meme/moderate')
                 i(class="far fa-clock")
-        a(class='mobile__user__container logged' style=`background-image:url(https://a.ppy.sh/${userInfo.ingame_id}); height:20px; margin-bottom:-20px;`)
         a(href='/login/out')
             i(class="fas fa-sign-out-alt")
+        a(class='mobile__user__container logged' style=`background-image:url(https://a.ppy.sh/${userInfo.ingame_id}); height:20px; margin-bottom:-20px;`)
         include new_meme.pug
     else
         a(class='mobile__user__container' href='/login')

@@ -8,7 +8,8 @@ module.exports = ({ homepageRoute }) => {
     homepageRoute.get('/', koaBody(), async (ctx, next) => {
         const is_player_logged = ctx.req.body[0];
         const allMemesID = await meme.displayMemes(5);
-        
+
+
         await ctx.render('index', {userInfo: is_player_logged, memes: allMemesID});
         next();
     });
