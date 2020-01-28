@@ -527,7 +527,10 @@ input#meme_title {
   color: white;
   padding: 25px; }
   .rules__container li {
-    padding-top: 15px; }
+    padding-top: 15px;
+    max-width: 768px;
+    margin: 0 auto;
+    text-align: justify; }
     .rules__container li::marker {
       color: #ff7f66; }
 
