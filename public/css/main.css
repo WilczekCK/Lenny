@@ -290,10 +290,16 @@
       z-index: 2;
       transition-property: top, opacity;
       transition-duration: .3s; }
+    .meme__container .meme__item iframe {
+      width: 350px;
+      height: 250px; }
+      @media (max-width: 768px) {
+        .meme__container .meme__item iframe {
+          width: 250px;
+          height: 200px; } }
     .meme__container .meme__item img {
       display: block;
-      max-width: 350px;
-      min-width: 315px;
+      width: 350px;
       max-height: 600px;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden; }
