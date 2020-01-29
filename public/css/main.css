@@ -434,7 +434,7 @@ button.file__add {
   button.file__add:hover {
     opacity: .8; }
 
-input#meme_title {
+input#meme_title, input#meme_video_id {
   padding-bottom: 20px;
   background: #333333;
   border-radius: 4px;
@@ -654,7 +654,20 @@ input#meme_title {
       padding: 0;
       margin: 0; }
 
-#modal__add__meme--second {
+.meme__selection {
+  display: flex;
+  flex-direction: row; }
+  .meme__selection a {
+    color: white;
+    text-decoration: none;
+    padding-top: 15px; }
+    .meme__selection a:hover {
+      background: #ff7f66;
+      opacity: .9; }
+  .meme__selection * {
+    flex-grow: 1; }
+
+#modal__add__meme__image--second {
   padding-top: 30px; }
 
 html {

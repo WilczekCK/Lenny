@@ -1,5 +1,5 @@
 $('.logged__add__meme').click(_ => {
-    $("#modal__add__meme--first").modal({
+    $("#modal__selection__meme__type").modal({
         fadeDuration: 100,
         closeExisting: false
     });
