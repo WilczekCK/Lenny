@@ -320,7 +320,6 @@
         display: block;
         opacity: 0;
         position: relative;
-        top: 100px;
         transition-property: top, opacity;
         transition-duration: .3s;
         transition-delay: 0s; }

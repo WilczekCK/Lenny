@@ -94,37 +94,66 @@ $(window).on('load', _ => {
             .then(resp => {
                 infiniteScroll.memesLoad = '';
                 resp.forEach(meme => {
-                    infiniteScroll.memesLoad = infiniteScroll.memesLoad + `
-                        <div class="meme__item ${meme.tags}">
-                            <img src="/uploads/${meme.id}.jpg"/>
-                            <div class="details">
-                                <span class="tag">
-                                    ${meme.tags}
-                                </span>
-
-                                <span class="pp__counter" meme_id=${meme.id}>
-                                    <i class="fab fa-pied-piper-pp"></i>
-                                    <div class="pp__amount">
-                                        ${meme.likes}
-                                    </div>
-                                </span>
-
-                                <span class="title">
-                                    ${meme.meme_title}
-                                </span>
-
-                                <span class="info">
-                                    <a href="/profile/${meme.author_id}">
-                                        Made by: ${meme.author_username}
-                                    </a>
-                                </span>
-                            </div>
-                        </div>
-                    `
+                    infiniteScroll.memesLoad = infiniteScroll.memesLoad + infiniteScroll.recognizeMemeType(meme);
                 });
 
                 infiniteScroll.areMemesAvailable(resp);
             })
+        },
+        recognizeMemeType: function (meme){
+            if(meme.video_id == '0'){
+                return `<div class="meme__item ${meme.tags}">
+                <img src="/uploads/${meme.id}.jpg"/>
+                <div class="details">
+                    <span class="tag">
+                        ${meme.tags}
+                    </span>
+
+                    <span class="pp__counter" meme_id=${meme.id}>
+                        <i class="fab fa-pied-piper-pp"></i>
+                        <div class="pp__amount">
+                            ${meme.likes}
+                        </div>
+                    </span>
+
+                    <span class="title">
+                        ${meme.meme_title}
+                    </span>
+
+                    <span class="info">
+                        <a href="/profile/${meme.author_id}">
+                            Made by: ${meme.author_username}
+                        </a>
+                    </span>
+                </div>
+            </div>`
+            }else{
+                return `<div class="meme__item ${meme.tags}">
+                <iframe src='http://www.youtube.com/embed/${meme.video_id}?controls=0&modestbranding=1' frameborder='0' />
+                <div class="details">
+                    <span class="tag">
+                        ${meme.tags}
+                    </span>
+
+                    <span class="pp__counter" meme_id=${meme.id}>
+                        <i class="fab fa-pied-piper-pp"></i>
+                        <div class="pp__amount">
+                            ${meme.likes}
+                        </div>
+                    </span>
+
+                    <span class="title">
+                        ${meme.meme_title}
+                    </span>
+
+                    <span class="info">
+                        <a href="/profile/${meme.author_id}">
+                            Made by: ${meme.author_username}
+                        </a>
+                    </span>
+                </div>
+            </div>`
+            }
         }
     }
 

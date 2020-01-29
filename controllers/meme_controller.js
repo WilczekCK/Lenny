@@ -57,7 +57,7 @@ meme_controller = {
         const startFrom = (loadElements * loadCount);
         const memesToLoad = parseInt(startFrom) + parseInt(loadElements) - 1;
 
-        const lastMemeID = await mysql.query(`SELECT id, author_username, author_id, tags, likes, status, added_in, meme_title FROM images WHERE status = 1 ORDER BY added_in DESC LIMIT ${loadElements} OFFSET ${startFrom}`)
+        const lastMemeID = await mysql.query(`SELECT id, author_username, author_id, tags, likes, status, added_in, meme_title, video_id FROM images WHERE status = 1 ORDER BY added_in DESC LIMIT ${loadElements} OFFSET ${startFrom}`)
         return lastMemeID;
     }
 }
