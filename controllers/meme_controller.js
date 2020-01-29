@@ -26,10 +26,10 @@ meme_controller = {
         const memesRecord = await mysql.query(`SELECT id, author_username, author_id,  tags, likes, status, added_in, meme_title  FROM images WHERE status = 0 ORDER BY added_in DESC `);
         return memesRecord;
     },
-    insertToDB: async (author_id, author_username, date, tags, meme_title) => {
+    insertToDB: async (author_id, author_username, date, tags, meme_title, meme_video_id) => {
         const replacedTags = tags.replace(/,/g, " ");
         
-        const uploadedSqlID = await mysql.insert(`images`, `author_id, author_username, added_in, tags, meme_title`, `${author_id}, '${author_username}' ,'${date}', '${_.escape(replacedTags)}', '${_.escape(meme_title)}'`);
+        const uploadedSqlID = await mysql.insert(`images`, `author_id, author_username, added_in, tags, meme_title, video_id`, `${author_id}, '${author_username}' ,'${date}', '${_.escape(replacedTags)}', '${_.escape(meme_title)}', '${meme_video_id}'`);
         return uploadedSqlID;
     },
     changeImageName: async (oldName, newName) => {
