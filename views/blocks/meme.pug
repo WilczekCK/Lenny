@@ -1,6 +1,9 @@
 mixin meme_item(meme)
     .meme__item(class!=meme.tags)
-        img(src='/uploads/'+meme.id+'.jpg')
+        if meme.video_id != NULL
+            iframe(src=`http://www.youtube.com/embed/${meme.video_id}?controls=0&modestbranding=1` frameborder="0")
+        else    
+            img(src='/uploads/'+meme.id+'.jpg')
         .details
             span.tag!=meme.tags
             span.pp__counter(meme_id!=meme.id)

@@ -47,7 +47,26 @@
     }
 }
 
+.meme__selection{
+    display:flex;
+    flex-direction: row;
 
-#modal__add__meme--second{
+    a{
+        color:white;
+        text-decoration:none;
+        padding-top:15px;
+
+        &:hover{
+            background:$osupoli-orange;
+            opacity:.9;
+        }
+    }
+    & *{
+        flex-grow:1;
+    }
+}
+
+
+#modal__add__meme__image--second{
     padding-top:30px;
 }

@@ -6,7 +6,6 @@ $(document).ready(function(){
 
     $input.focus();
     $input.on('input', function(e){
-    
       let lastChar = e.target.value[e.target.value.length-1];
 
       if(lastChar == ' ') {
@@ -50,10 +49,11 @@ $(document).ready(function(){
       $(element).val('');
       const lowerCased = $tag[0].innerText.toLowerCase();
       $actualTags.push(lowerCased);
+      console.log(lowerCased)
       providedTags.push($(element).val());
     }
 
-    $('#tags__submit').on('click', function(e){
+    $('.tags__submit').on('click', function(e){
       $('.tags__provided').attr('value', $actualTags);
     })
   });
