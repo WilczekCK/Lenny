@@ -101,7 +101,7 @@ $(window).on('load', _ => {
             })
         },
         recognizeMemeType: function (meme){
-            if(meme.video_id == '0'){
+            if(meme.video_id == null){
                 return `<div class="meme__item ${meme.tags}">
                 <img src="/uploads/${meme.id}.jpg"/>
                 <div class="details">
