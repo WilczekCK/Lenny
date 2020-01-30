@@ -2,6 +2,10 @@
     margin:0 auto;
     z-index:0;
 
+	@media (max-width:320px){
+		width:315px !important;
+	}
+
     .meme__item{
         display: inline-block;
 		margin: 10px;
@@ -11,6 +15,10 @@
 		position: relative;
 		border-radius: 3px;
 		box-shadow: 0 0 20px 0 rgba(0,0,0,.05);
+
+		@media (max-width:768px){
+			margin-bottom:15px;
+		}
 
 		&:before {
 			content: '';
@@ -35,8 +43,8 @@
 			height:250px;
 
 			@media (max-width:768px){
-				width:250px;
-				height:200px;
+				width:280px;
+				height:220px;
 			}
 		}
 		
@@ -49,8 +57,7 @@
 
 					
 			@media (max-width:768px){
-				max-width:250px;
-				min-width:250px;
+				width:280px;
 			}
 
 		}

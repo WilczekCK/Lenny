@@ -6,7 +6,7 @@ $(window).on('load', _ => {
     $grid: $('.meme__container').isotope({
       itemSelector: '.meme__item',
       masonry: {
-        columnWidth: 25,
+        columnWidth:25,
         isFitWidth: true
       }
     }),
@@ -27,11 +27,11 @@ $(window).on('load', _ => {
     },
     tagClicked: (filterValue) => {
       if($(isotopeConf.menuItem).hasClass('active')){
-        return isotopeConf.$grid.isotope({ filter: '*', masonry: {columnWidth: 25} });
+        return isotopeConf.$grid.isotope({ filter: '*', masonry: {columnWidth:25} });
       }
 
       if(!$(isotopeConf.menuItem).hasClass('active')){
-        return isotopeConf.$grid.isotope({ filter: filterValue, masonry: {columnWidth: 25} });
+        return isotopeConf.$grid.isotope({ filter: filterValue, masonry: {columnWidth:25} });
       } 
     }
   }
@@ -46,8 +46,8 @@ $(window).on('load', _ => {
   $('#tag__finder').on('keypress', function (e) {
     if (e.which == 13) {
       const filterValue = `.${$(this)[0].value}`.toLowerCase()
-      if (filterValue == '.') return isotopeConf.$grid.isotope({ filter: '*', masonry: {columnWidth: 25} }); //empty, reset grid
-      isotopeConf.$grid.isotope({ filter: filterValue, masonry: {columnWidth: 25} });
+      if (filterValue == '.') return isotopeConf.$grid.isotope({ filter: '*', masonry: {columnWidth:25} }); //empty, reset grid
+      isotopeConf.$grid.isotope({ filter: filterValue, masonry: {columnWidth:25} });
     }
   })
 })

@@ -44,6 +44,12 @@
     text-align:justfy;
     max-width:768px;
 
+    ul{
+        @media(max-width:768px){
+            padding-left:25px;
+        }
+    }
+
     li{
         padding:20px 0px;
         text-align:left;
