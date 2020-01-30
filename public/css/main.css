@@ -538,6 +538,13 @@ input#meme_title, input#meme_video_id {
 .rules__container {
   color: white;
   padding: 25px; }
+  @media (max-width: 768px) {
+    .rules__container {
+      padding: 10px; } }
+  @media (max-width: 768px) {
+    .rules__container ol {
+      padding-right: 25px;
+      padding-left: 25px; } }
   .rules__container li {
     padding-top: 15px;
     max-width: 768px;
