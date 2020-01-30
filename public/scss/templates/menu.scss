@@ -71,6 +71,14 @@
                 @media (max-width:768px){
                     font-size:1.2em;
                     padding:5px 2.5px;
+
+                    &:last-of-type{
+                        display:none;
+                    }
+
+                    &:nth-last-child(2){
+                        display:none;
+                    }
                 }
 
                 input{
@@ -89,18 +97,6 @@
                     background:transparent;
                     color:white;
                     border-bottom:2px solid white;
-                }
-
-                &:last-of-type{
-
-                    @media (max-width:768px){
-                        display:flex;
-                        margin-top:10px;
-
-                        i{
-                            display:none;
-                        }
-                    }
                 }
 
                 a{
