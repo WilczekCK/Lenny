@@ -6,6 +6,8 @@
     color:white;
     width:100%;
     z-index:99;
+    box-sizing:border-box;
+    left:0;
 
     a{
         color:$osupoli_orange;
@@ -26,6 +28,17 @@
     color:white;
     padding:25px;
 
+    @media(max-width:768px){
+        padding:10px;
+    }
+
+    ol{
+        @media(max-width:768px){
+            padding-right:25px;
+            padding-left:25px;
+        }
+    }
+
     li{
         padding-top:15px;
         max-width: 768px;
@@ -43,6 +56,12 @@
     margin:0 auto;
     text-align:justfy;
     max-width:768px;
+
+    ul{
+        @media(max-width:768px){
+            padding-left:25px;
+        }
+    }
 
     li{
         padding:20px 0px;
