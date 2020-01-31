@@ -14,7 +14,6 @@ $(document).ready(function(){
         },
         giveLike: (el) => {
             if($(likesFetch.config.isLogged).length == 0) return myAlert("You have to be logged to like memes!", "myalert-danger");
-
             fetch(`meme/like/${likesFetch.memeLiked(el)}`,{
                 method: "PATCH",
             })

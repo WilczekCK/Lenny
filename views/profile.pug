@@ -11,6 +11,8 @@ block content
             .profile__container__header--role
                 if profile.role == 1
                     ='ADMINISTRATOR'
+                else if profile.role == -1
+                    ='BANNED'
                 else
                     ='USER'
             .profile__container__header--country
