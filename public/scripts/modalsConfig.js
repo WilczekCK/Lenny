@@ -10,8 +10,16 @@ $('.popup__image').on($.modal.CLOSE, function(event, modal) {
     $(document).off("keydown");
 });
 
-
 //input button in form field
 $('button.file__add').on('click', function(){
     $('input.file').trigger('click'); 
- });
+});
+
+//admin removing meme, alert button
+$('.moderation__remove__meme button').on('click', function(e){
+    if (confirm('Are you sure you want to remove this meme from the database?')) {
+        return true;
+    } else {
+        return false;
+    }
+})

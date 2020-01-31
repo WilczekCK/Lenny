@@ -516,6 +516,22 @@ input#meme_title, input#meme_video_id {
   #tags__submit:hover {
     opacity: .8; }
 
+.moderation__remove__meme {
+  width: 100px;
+  top: 5px;
+  position: absolute;
+  right: 5px;
+  text-align: right; }
+  .moderation__remove__meme button {
+    border: none;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    color: white;
+    transition: .3s all; }
+    .moderation__remove__meme button:hover {
+      color: #ff7f66;
+      cursor: pointer; }
+
 .gdpr__container {
   position: fixed;
   background: #191919;
@@ -523,7 +539,9 @@ input#meme_title, input#meme_video_id {
   bottom: 0;
   color: white;
   width: 100%;
-  z-index: 99; }
+  z-index: 99;
+  box-sizing: border-box;
+  left: 0; }
   .gdpr__container a {
     color: #ff7f66;
     text-decoration: none; }

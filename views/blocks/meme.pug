@@ -16,3 +16,8 @@ mixin meme_item(meme)
                 ='Made by: '
                 a(href=`/profile/${meme.author_id}`)
                     !=meme.author_username
+        if userInfo && userInfo.role > 0
+            form(class="moderation__remove__meme" action="/meme/moderate?_method=PATCH" method="POST" enctype="application/x-www-form-urlencoded")
+                input(type="hidden" name="meme_id" value=meme.id)
+                button(value="Remove" name="decision" type="submit")
+                    i(class="fas fa-trash")

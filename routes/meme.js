@@ -80,7 +80,7 @@ module.exports = ({ memeRoute }) => {
         const { meme_id, decision } = ctx.request.body;
         meme.moderate(meme_id, decision);
 
-        await ctx.redirect('/meme/moderate');
+        await ctx.redirect('back');
         await next();
     })
 

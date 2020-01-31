@@ -113,3 +113,23 @@ input#meme_title, input#meme_video_id{
       opacity:.8;
     }
   }
+
+  .moderation__remove__meme{
+    width:100px;
+    top: 5px;
+    position: absolute;
+    right: 5px;
+    text-align:right;
+
+    button{
+      border:none;
+      background:rgba(0,0,0,.5);
+      padding:5px; 
+      color:white;
+      transition:.3s all;
+      &:hover{
+        color:$osupoli-orange;
+        cursor:pointer;
+      }
+    }
+  }
