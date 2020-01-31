@@ -23,6 +23,9 @@ user_controller = {
         const memesInfo = await mysql.query(`SELECT COUNT(id) AS memes_count, SUM(likes) as sum_likes FROM images WHERE author_id = ${ingame_id}`);
         if(_.isEmpty(memesInfo)) return false;
         else return memesInfo;
+    },
+    blockUser: async (ingame_id) => {
+        return await mysql.update(`users`, `role = -1`, `ingame_id = ${ingame_id}`);
     }
 }
 

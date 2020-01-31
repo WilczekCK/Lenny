@@ -5,7 +5,6 @@ const koaBody = require('koa-body');
 
 module.exports = ({ profileRoute }) => {
     profileRoute.get('/', koaBody(), async (ctx, next) => {
-        const is_player_logged = ctx.req.body[0];
         await ctx.throw(400, 'Missing the ID of profile!')
     });
 
@@ -18,6 +17,20 @@ module.exports = ({ profileRoute }) => {
 
         if(!userInfo) await ctx.throw(404, 'There is no user with ID like that')
         else await ctx.render('profile', {profile: userInfo[0], detailed: detailed_meme_stats[0], memes: userMemes, userInfo: is_player_logged})
+    })
+
+    profileRoute.patch('/block', koaBody(), async (ctx, next) => {
+        const is_player_logged = ctx.req.body[0];
+        if (!is_player_logged || is_player_logged.role < 1) return ctx.throw(401, {message:'User is not logged in or is not administrator'});
+        
+        const idToFind = ctx.request.body.user_id;
+        const userInfo = await user.find(idToFind);
+
+        if(_.isEmpty(userInfo)) await ctx.throw(404, 'There is no user with ID like that')
+        else await user.blockUser(idToFind);
+
+        await ctx.redirect('back');
+        await next();
     })
 }
 
