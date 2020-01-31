@@ -13,5 +13,11 @@ module.exports = ({ infoRoute }) => {
         await ctx.render('rules', { userInfo: is_player_logged})
         next();
     });
+
+    infoRoute.get('/banned', async (ctx, next) => {
+        const is_player_logged = ctx.req.body[0];
+        await ctx.render('banned', { userInfo: is_player_logged})
+        next();
+    })
 }
 
