@@ -1,0 +1,14 @@
+#modal__selection__admin(class="modal")
+    .meme__selection
+        a(href="#modal__admin__remove__meme" rel="modal:open")
+            p="Remove Meme"
+        a(href="#modal__admin__remove__user" rel="modal:open")
+            p="Ban User"
+        a(href="/moderate")
+            p='Meme queue'
+#modal__admin__remove__meme(class="modal")
+    form(action="/meme/moderate?_method=PATCH" method="POST" enctype="application/x-www-form-urlencoded")
+        input(type="input" name="meme_id" class="form__styled" placeholder="ID of meme to remove")
+        input(type="submit" value="Remove" name="decision")
+#modal__admin__remove__user(class="modal")
+    ='USER'
