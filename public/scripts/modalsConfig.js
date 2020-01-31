@@ -16,10 +16,8 @@ $('button.file__add').on('click', function(){
 });
 
 //admin removing meme, alert button
-$('.moderation__remove__meme button').on('click', function(e){
-    if (confirm('Are you sure you want to remove this meme from the database?')) {
-        return true;
-    } else {
-        return false;
-    }
+$('.modal__selection__admin').on('click', function(e){
+    $('#modal__selection__admin').modal({
+        fadeDuration:100
+    })
 })

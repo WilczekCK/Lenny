@@ -446,7 +446,7 @@ button.file__add {
   button.file__add:hover {
     opacity: .8; }
 
-input#meme_title, input#meme_video_id {
+input.form__styled {
   padding-bottom: 20px;
   background: #333333;
   border-radius: 4px;
