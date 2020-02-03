@@ -593,6 +593,12 @@ input.form__styled {
       font-size: .8em;
       color: white; }
 
+.banned_info {
+  color: white; }
+  .banned_info a {
+    color: #ff7f66;
+    text-decoration: none; }
+
 @keyframes alert-in {
   from {
     left: -25px;
