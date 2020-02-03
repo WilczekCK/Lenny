@@ -9,8 +9,8 @@ block content
         else
             each meme in memes
                 .meme__item(class='standard '+meme.tags)
-                    if meme.video_id != 0
-                        iframe(src=`http://www.youtube.com/embed/${meme.video_id}?controls=0&modestbranding=1` frameborder="0")
+                    if meme.video_id != null
+                        iframe(src=`https://www.youtube.com/embed/${meme.video_id}?controls=0&modestbranding=1` frameborder="0")
                     else    
                         img(src='/uploads/'+meme.id+'.jpg')
                     .details

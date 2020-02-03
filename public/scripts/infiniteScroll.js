@@ -129,7 +129,7 @@ $(window).on('load', _ => {
             </div>`
             }else{
                 return `<div class="meme__item ${meme.tags}">
-                <iframe src='http://www.youtube.com/embed/${meme.video_id}?controls=0&modestbranding=1' frameborder='0' />
+                <iframe src='https://www.youtube.com/embed/${meme.video_id}?controls=0&modestbranding=1' frameborder='0' />
                 <div class="details">
                     <span class="tag">
                         ${meme.tags}

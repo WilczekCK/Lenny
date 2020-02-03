@@ -46,7 +46,7 @@ module.exports = ({ memeRoute }) => {
         const { filename } = ctx.request.files.meme[0]; //image-id
         const { tags, author_id, author_username, meme_title } = ctx.request.body;
 
-        const uploadedSqlID = await meme.insertToDB(`${author_id}`, `${author_username}`, `${moment().format('YYYY-MM-DD HH:mm:ss')}`, `${tags}`, `${meme_title}`, 0)
+        const uploadedSqlID = await meme.insertToDB(`${author_id}`, `${author_username}`, `${moment().format('YYYY-MM-DD HH:mm:ss')}`, `${tags}`, `${meme_title}`, null)
         await meme.changeImageName(`${filename}`, `${uploadedSqlID}`);
 
         await ctx.redirect('/');
@@ -60,7 +60,7 @@ module.exports = ({ memeRoute }) => {
         }
 
         const { tags, author_id, author_username, meme_title, meme_video_id } = ctx.request.body;
-        const uploadedSqlID = await meme.insertToDB(`${author_id}`, `${author_username}`, `${moment().format('YYYY-MM-DD HH:mm:ss')}`, `${tags}`, `${meme_title}`, `${meme_video_id}`)
+        const uploadedSqlID = await meme.insertToDB(`${author_id}`, `${author_username}`, `${moment().format('YYYY-MM-DD HH:mm:ss')}`, `${tags}`, `${meme_title}`, `'${meme_video_id}'`)
 
         await ctx.redirect('/');
         await next();
