@@ -8,7 +8,10 @@ mixin meme_profile_item(memes)
                 if meme.video_id != null
                     img(src='/images/upload-video.png')
                 else
-                    img(src='/uploads/'+meme.id+'.jpg')
+                    if meme.status >= 0
+                        img(src='/uploads/'+meme.id+'.jpg')
+                    else
+                        img(src='/images/rejected-meme.png')
             .profile__container__content__memes__single--id
                 span='ID'
                 =meme.id
@@ -19,8 +22,10 @@ mixin meme_profile_item(memes)
                 span='STATUS'
                 if meme.status == 1
                     ='ACCEPTED'
-                else
+                else if meme.status == 0
                     ='WAITING'
+                else
+                    ='REJECTED'
             .profile__container__content__memes__single--pp
                 span='PP'
                 !=meme.likes
