@@ -4,7 +4,6 @@ mixin meme_profile_item(memes)
     each meme in memes
         .profile__container__content__memes__single
             .profile__container__content__memes__single--image
-                -console.log(meme.video_id)
                 if meme.video_id != null
                     img(src='/images/upload-video.png')
                 else
