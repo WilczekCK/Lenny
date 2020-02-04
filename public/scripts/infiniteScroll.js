@@ -10,12 +10,13 @@ $(window).on('load', _ => {
             $('body').css('overflow', 'hidden');
             myAlertSaving(true, "Wait, loading...", "myalert-info");
 
-            imagesLoaded('.meme__container', function () {
+            imagesLoaded(infiniteScroll.grid, function () {
                 $(infiniteScroll.grid).isotope().on('arrangeComplete', () => {
                     $('body').css('overflow', 'unset');
                     return myAlertSaving(false);
                 })
             })
+            
         },
         hasScrollbar: () => {
             if ($("body").height() > $(window).height()){
@@ -80,7 +81,9 @@ $(window).on('load', _ => {
         },
         loadMemes: function () {
             if(infiniteScroll.loadMoreSelector.hasClass('noMemes')) return 0;
-            if($('.meme__modal' || $('#modal__add__meme')).css('display') == 'none') infiniteScroll.loadingScreen()
+            if($('.meme__modal' || $('#modal__add__meme')).css('display') == 'none') return 0;
+
+            infiniteScroll.loadingScreen()
             infiniteScroll.loadTimes = infiniteScroll.loadTimes + 1;
 
             fetch(`meme/load`, {
