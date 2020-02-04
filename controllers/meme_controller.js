@@ -38,7 +38,7 @@ meme_controller = {
     },
     moderate: async (meme_id, decision) => {
         if(decision != 'Submit'){
-            mysql.delete(`images`, `id = ${meme_id}`);
+            mysql.update(`images`, `status = -1`, `id = ${meme_id}`);
             fs.unlinkSync(`./public/uploads/${meme_id}.jpg`);
         }else{
             mysql.update(`images`, `status = 1`, `id = ${meme_id}`);
