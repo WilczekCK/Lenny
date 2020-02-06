@@ -21,31 +21,86 @@
     }
 }
 
-.meme__modal{
-    text-align:center !important;
+#modal__meme__info{
+    max-width:80% !important;
+    padding:0px;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    background:$osupoli_black!important;
 
-    img{
-        width:100%;
-    }
-
-
-    .meme__modal__desc{
+    .meme__info__modal__container{
         display:flex;
-        padding-top:10px;
-
-        .pp__counter{
-            float:right;
-            padding-left:10px;
+        flex-direction:row;
+        
+        .meme__info__modal__media{
+            width:50%;
+            height:500px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            border-right:$osupoli_orange 1px;
+            overflow-y:auto;
+            img{
+                max-width:100%;
+                max-height:800px;
+            }
         }
 
-        h2{
-            width:100%;
-            text-align:right;
-            padding:0;
-            margin:0;
+        .meme__info__modal__desc{
+            flex-grow:2;
+
+            .meme__info__modal__desc--title{
+                font-size:2.2em;
+                padding-top:20px;
+                padding-bottom:10px;
+            }
+
+            .meme__info__details{
+                display:flex;
+                justify-content:space-between;
+                padding:10px 30px;
+                align-items: center;
+
+                .meme__info__modal__desc--author{
+                    a{
+                        color:$osupoli_orange;
+                        text-decoration:none;
+                    }
+                }
+            }
+
+            .meme__info__modal__desc--comments{
+                height:275px;
+                width:90%;
+                padding:0px 20px;
+                box-sizing: border-box;
+                margin:0 auto;
+                background:$osupoli_gray;
+                margin-top:15px;
+            }
+        }
+
+        .meme__socials{
+            display:flex;
+            justify-content:space-between;
+            padding:10px 30px;
+            align-items: center;
+            height:80px;
+            font-size:1.5em;
+
+            .meme__info__modal__desc--likes{
+                display:flex;
+                i{
+                    padding-right:10px;
+                }
+            }
         }
     }
+
 }
+
 
 .meme__selection{
     display:flex;

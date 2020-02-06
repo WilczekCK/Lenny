@@ -684,21 +684,61 @@ input.form__styled {
     padding-bottom: 20px;
     text-align: left; }
 
-.meme__modal {
-  text-align: center !important; }
-  .meme__modal img {
-    width: 100%; }
-  .meme__modal .meme__modal__desc {
+#modal__meme__info {
+  max-width: 80% !important;
+  padding: 0px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #191919 !important; }
+  #modal__meme__info .meme__info__modal__container {
     display: flex;
-    padding-top: 10px; }
-    .meme__modal .meme__modal__desc .pp__counter {
-      float: right;
-      padding-left: 10px; }
-    .meme__modal .meme__modal__desc h2 {
-      width: 100%;
-      text-align: right;
-      padding: 0;
-      margin: 0; }
+    flex-direction: row; }
+    #modal__meme__info .meme__info__modal__container .meme__info__modal__media {
+      width: 50%;
+      height: 500px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-right: #ff7f66 1px;
+      overflow-y: auto; }
+      #modal__meme__info .meme__info__modal__container .meme__info__modal__media img {
+        max-width: 100%;
+        max-height: 800px; }
+    #modal__meme__info .meme__info__modal__container .meme__info__modal__desc {
+      flex-grow: 2; }
+      #modal__meme__info .meme__info__modal__container .meme__info__modal__desc .meme__info__modal__desc--title {
+        font-size: 2.2em;
+        padding-top: 20px;
+        padding-bottom: 10px; }
+      #modal__meme__info .meme__info__modal__container .meme__info__modal__desc .meme__info__details {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 30px;
+        align-items: center; }
+        #modal__meme__info .meme__info__modal__container .meme__info__modal__desc .meme__info__details .meme__info__modal__desc--author a {
+          color: #ff7f66;
+          text-decoration: none; }
+      #modal__meme__info .meme__info__modal__container .meme__info__modal__desc .meme__info__modal__desc--comments {
+        height: 275px;
+        width: 90%;
+        padding: 0px 20px;
+        box-sizing: border-box;
+        margin: 0 auto;
+        background: #333333;
+        margin-top: 15px; }
+    #modal__meme__info .meme__info__modal__container .meme__socials {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 30px;
+      align-items: center;
+      height: 80px;
+      font-size: 1.5em; }
+      #modal__meme__info .meme__info__modal__container .meme__socials .meme__info__modal__desc--likes {
+        display: flex; }
+        #modal__meme__info .meme__info__modal__container .meme__socials .meme__info__modal__desc--likes i {
+          padding-right: 10px; }
 
 .meme__selection {
   display: flex;
