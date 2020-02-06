@@ -41,7 +41,7 @@
 		iframe{
 			width:350px;
 			height:250px;
-
+			pointer-events: none;
 			@media (max-width:768px){
 				width:280px;
 				height:220px;

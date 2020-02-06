@@ -19,11 +19,22 @@ $(window).on('load', function () {
             $('.meme__info__modal__desc--author').html(memeInfo.info)
             $('.meme__info__modal__desc--tags').html(memeInfo.tags)
             $('.meme__info__modal__desc--likes').html(memeInfo.likes)
-            $('.meme__info__modal__media').html(`<img src=/uploads/${memeInfo.id}.jpg />`)
+
+            if(memeInfo.videoLink){
+                $('.meme__info__modal__media').html(`<iframe src='${memeInfo.videoLink}' frameborder='0' />`)
+            }else{
+                $('.meme__info__modal__media').html(`<img src=/uploads/${memeInfo.id}.jpg />`)
+            }
+            
 
             $("#modal__meme__info").modal({
                 fadeDuration: zoomImage.config.fadeSpeed
             });
+        },
+        checkIfVideo: function(memeInfo){
+            const detailsSibling = $(memeInfo).siblings()[0];
+            if(detailsSibling.localName == 'iframe') return detailsSibling.src;
+            else return false;
         },
         getDetailedInfo: function (memeID) {
             if(memeID == 0) return $.modal.close();
@@ -35,6 +46,10 @@ $(window).on('load', function () {
                 likes: memeDetails.children[1].innerHTML,
                 title: memeDetails.children[2].innerHTML,
                 info: memeDetails.children[3].innerHTML
+            }
+
+            if(zoomImage.checkIfVideo(memeDetails)){
+                memeInfo.videoLink = zoomImage.checkIfVideo(memeDetails);
             }
 
             return memeInfo;

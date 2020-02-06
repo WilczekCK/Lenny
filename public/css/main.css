@@ -300,7 +300,8 @@
       transition-duration: .3s; }
     .meme__container .meme__item iframe {
       width: 350px;
-      height: 250px; }
+      height: 250px;
+      pointer-events: none; }
       @media (max-width: 768px) {
         .meme__container .meme__item iframe {
           width: 280px;
@@ -697,12 +698,14 @@ input.form__styled {
     flex-direction: row; }
     #modal__meme__info .meme__info__modal__container .meme__info__modal__media {
       width: 50%;
-      height: 500px;
+      height: 515px;
       display: flex;
       justify-content: center;
       align-items: center;
-      border-right: #ff7f66 1px;
       overflow-y: auto; }
+      #modal__meme__info .meme__info__modal__container .meme__info__modal__media iframe {
+        width: 100%;
+        height: 100%; }
       #modal__meme__info .meme__info__modal__container .meme__info__modal__media img {
         max-width: 100%;
         max-height: 800px; }
@@ -718,7 +721,7 @@ input.form__styled {
         padding: 10px 30px;
         align-items: center; }
         #modal__meme__info .meme__info__modal__container .meme__info__modal__desc .meme__info__details .meme__info__modal__desc--author a {
-          color: #ff7f66;
+          color: white;
           text-decoration: none; }
       #modal__meme__info .meme__info__modal__container .meme__info__modal__desc .meme__info__modal__desc--comments {
         height: 275px;
