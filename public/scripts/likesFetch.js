@@ -21,7 +21,7 @@ $(document).ready(function(){
             .then(resp => resp.json())
             .then(resp => {
                 let actualLikes = 0;
-               // if(resp) return myAlert("You already gave PP for this meme!", "myalert-warning");             
+                if(resp) return myAlert("You already gave PP for this meme!", "myalert-warning");             
                 actualLikes = parseInt($('.meme__item').find(`[meme_id="${likesFetch.memeLiked(el)}"]`).find(likesFetch.config.counterSelector)[0].innerHTML) + 1;
 
                 $('body').find(`[meme_id="${likesFetch.memeLiked(el)}"]`).find(likesFetch.config.counterSelector).each(function(){
