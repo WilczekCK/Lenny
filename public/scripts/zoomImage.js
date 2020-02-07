@@ -3,11 +3,12 @@ $(window).on('load', function () {
     zoomImage = {
         config: {
             clickableEl: '.meme__item',
-            fadeSpeed: 300,
+            fadeSpeed: 50,
         },
         getMemeID: function (clickedEl) {
-            if($(clickedEl)[0].className == 'pp__amount') return 0;
-
+            if($(clickedEl)[0].localName == 'i' || $(clickedEl)[0].className == 'pp__amount') return 0;
+            //likes click to not open modal
+            
             if ($(clickedEl).hasClass('meme__item')) {
                 return $(clickedEl).find('.pp__counter')[0].attributes.meme_id.value;
             } else {
@@ -18,7 +19,8 @@ $(window).on('load', function () {
             $('.meme__info__modal__desc--title').html(memeInfo.title)
             $('.meme__info__modal__desc--author').html(memeInfo.info)
             $('.meme__info__modal__desc--tags').html(memeInfo.tags)
-            $('.meme__info__modal__desc--likes').html(memeInfo.likes)
+            $('.meme__info__modal__desc--likes .pp__counter').attr('meme_id', memeInfo.id)
+            $('.meme__info__modal__desc--likes .pp__counter').html(memeInfo.likes)
 
             if(memeInfo.videoLink){
                 $('.meme__info__modal__media').html(`<iframe src='${memeInfo.videoLink}' frameborder='0' />`)
@@ -37,7 +39,6 @@ $(window).on('load', function () {
             else return false;
         },
         getDetailedInfo: function (memeID) {
-            if(memeID == 0) return $.modal.close();
             const memeDetails = $('.meme__container').find(`[meme_id="${memeID}"]`)[0].offsetParent;
 
             const memeInfo = {
@@ -58,8 +59,9 @@ $(window).on('load', function () {
 
     $(document).on('click', zoomImage.config.clickableEl, function (e) {
         var getMemeID = zoomImage.getMemeID(e.target);
+        if(getMemeID == 0) return 0;
+
         var getMemeInfo = zoomImage.getDetailedInfo(getMemeID)
-        
         zoomImage.displayModal(getMemeInfo);
     })
 })
