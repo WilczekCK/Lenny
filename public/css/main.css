@@ -738,10 +738,28 @@ input.form__styled {
       align-items: center;
       height: 80px;
       font-size: 1.5em; }
-      #modal__meme__info .meme__info__modal__container .meme__socials .meme__info__modal__desc--likes {
+      #modal__meme__info .meme__info__modal__container .meme__socials .meme__info__modal__desc--likes .pp__counter {
         display: flex; }
-        #modal__meme__info .meme__info__modal__container .meme__socials .meme__info__modal__desc--likes i {
-          padding-right: 10px; }
+      #modal__meme__info .meme__info__modal__container .meme__socials .meme__info__modal__desc--likes i {
+        padding-right: 10px; }
+  @media (max-width: 1000px) {
+    #modal__meme__info {
+      top: 80%; }
+      #modal__meme__info .meme__info__modal__container {
+        flex-direction: column; }
+        #modal__meme__info .meme__info__modal__container .meme__info__modal__media {
+          width: 100%;
+          height: 515px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          overflow-y: auto; }
+          #modal__meme__info .meme__info__modal__container .meme__info__modal__media iframe {
+            width: 100%;
+            height: 100%; }
+          #modal__meme__info .meme__info__modal__container .meme__info__modal__media img {
+            max-width: 100%;
+            max-height: 500px; } }
 
 .meme__selection {
   display: flex;
