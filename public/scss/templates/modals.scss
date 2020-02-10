@@ -78,12 +78,46 @@
 
             .meme__info__modal__desc--comments{
                 height:275px;
-                width:90%;
+                width:100%;
                 padding:0px 20px;
                 box-sizing: border-box;
                 margin:0 auto;
-                background:$osupoli_gray;
                 margin-top:15px;
+
+                .meme__info__modal__desc--comments--container{
+                    width:100%;
+                    height:100%;
+                    background:$osupoli_gray;
+                }
+
+                .meme__info__modal__desc--comments--input{
+                    width:95%;
+                    margin:0 auto;
+
+                    form{
+                        display:flex;
+                        flex-direction:row;
+                        margin-top:-35px;
+
+                        input{
+                            flex-grow:3;
+                            background:transparent;
+                            color:white;
+                            border:unset;
+                            border-bottom:2px solid rgba(255,255,255,.7);
+                        }
+    
+                        button{
+                            flex-grow:1;
+                            background:transparent;
+                            border:unset;
+
+                            i{
+                                color:white;
+                            }
+                        }
+                    }
+                }
             }
         }
 

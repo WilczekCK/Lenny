@@ -3,7 +3,9 @@ $(document).ready(function () {
     fetches = {
         commentsFetch: {
             config:{ 
-                isLogged: '.logged__add__meme',
+                userID: '.userId__comments',
+                postCommentButton: '.post__comment',
+                postCommentContainer: '.container__comment',
                 commentsLoadButton: '.show__comments',
                 commentsContainer: '.meme__info__modal__desc--comments--container',
                 commentsInput: '.meme__info__modal__desc--comments--input',
@@ -11,8 +13,13 @@ $(document).ready(function () {
             getComments: (meme_id) => {
                 console.log(meme_id)
             },
-            postComment: (meme_id) => {
-                console.log(meme_id)
+            postComment: (meme_id, comment) => {
+                fetch(`meme/comments/post/${meme_id}`, {
+                    method: "POST",
+                    headers:{
+                        content: comment
+                    }
+                });
             },
             deleteComment: (meme_id) => {
                 console.log(meme_id)
@@ -51,12 +58,23 @@ $(document).ready(function () {
     }
 
 
+    //likes
     $(document).on('click', fetches.likesFetch.config.buttonName, (e) => {
         fetches.likesFetch.giveLike(e)
     })
 
+    //getcomments
     $(document).on('click', fetches.commentsFetch.config.commentsLoadButton, (e) => {
         let memeID = e.currentTarget.attributes.meme_id.value;
         fetches.commentsFetch.getComments(memeID);
+    })
+
+    //postcomment
+    $(document).on('click', fetches.commentsFetch.config.postCommentButton, (e) => {
+        e.preventDefault();
+        let comment = $(fetches.commentsFetch.config.postCommentContainer)[0].value;
+        let memeID = $(fetches.commentsFetch.config.commentsLoadButton)[0].attributes.meme_id.value;
+        
+        fetches.commentsFetch.postComment(memeID, comment);
     })
 })

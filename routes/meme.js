@@ -99,10 +99,22 @@ module.exports = ({ memeRoute }) => {
         ctx.body = lastMemeID;
     })
 
-    memeRoute.get('/comments/:id', async (ctx, next) => {
+    memeRoute.get('/comments/load/:id', async (ctx, next) => {
         const idToFind = ctx.params.id;
         const commentsFromMeme = meme.getComments(idToFind);
         return commentsFromMeme;
+    })
+
+    memeRoute.post('/comments/post/:id', koaBody(), async (ctx, next) => {
+        const is_player_logged = ctx.req.body[0];
+        if (!is_player_logged) ctx.throw(401, 'User is not logged in! - UNAUTHORIZED');
+        
+        const comment = ctx.request.header.content;
+        const userID = ctx.req.body[0].ingame_id;
+        const idToFind = ctx.params.id;
+
+        meme.postComment(idToFind, userID, comment);
+        return true;
     })
 }
 
