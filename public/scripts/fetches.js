@@ -14,16 +14,31 @@ $(document).ready(function () {
                 console.log(meme_id)
             },
             postComment: (meme_id, comment) => {
+                if(fetches.commentsFetch.checkDelayBetweenComments('commentPosted')) return myAlert("You send a comment recently, wait a moment!", "myalert-danger");
+                if(comment.length < 5) return myAlert("Your comment is too short!", "myalert-danger");
+
+                fetches.commentsFetch.setDelayBetweenComments();
                 fetch(`meme/comments/post/${meme_id}`, {
                     method: "POST",
                     headers:{
                         content: comment
                     }
                 });
+
+                return myAlert('You successfully posted a comment!', "myalert-success")
             },
             deleteComment: (meme_id) => {
                 console.log(meme_id)
-            }
+            },
+            setDelayBetweenComments: () => {
+                var d = new Date();
+                d.setTime(d.getTime() + 30000);
+                var expires = "expires="+ d.toUTCString();
+                document.cookie =  "commentPosted=true;" + expires + ";path=/";
+            },
+            checkDelayBetweenComments: (name) => {
+               return document.cookie.replace(/(?:(?:^|.*;\s*)commentPosted\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+            },
         },
         likesFetch : {
             config: {
