@@ -58,6 +58,10 @@ meme_controller = {
 
         const lastMemeID = await mysql.query(`SELECT id, author_username, author_id, tags, likes, status, added_in, meme_title, video_id FROM images WHERE status = 1 ORDER BY added_in DESC LIMIT ${loadElements} OFFSET ${startFrom}`)
         return lastMemeID;
+    },
+    getComments: async (memeID) => {
+        const commentsMeme = await mysql.query();
+        return commentsName;
     }
 }
 

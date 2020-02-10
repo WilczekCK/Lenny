@@ -54,7 +54,6 @@ module.exports = ({ memeRoute }) => {
     })
 
     memeRoute.post('/add-video', getFields.none(),  async (ctx, next) => {
-        console.log(ctx.request.body)
         if (_.isEmpty(ctx.request.body.tags) || _.isEmpty(ctx.request.body.meme_title)) {
             return ctx.throw(400, {message: 'One of the fields are missing'})
         }
@@ -98,6 +97,12 @@ module.exports = ({ memeRoute }) => {
         const howManyElements = ctx.request.header.loadelements;
         const lastMemeID = await meme.infiniteScroll(howManyLoads, howManyElements)
         ctx.body = lastMemeID;
+    })
+
+    memeRoute.get('/comments/:id', async (ctx, next) => {
+        const idToFind = ctx.params.id;
+        const commentsFromMeme = meme.getComments(idToFind);
+        return commentsFromMeme;
     })
 }
 
