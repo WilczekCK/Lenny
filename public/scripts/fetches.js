@@ -4,17 +4,18 @@ $(document).ready(function () {
         commentsFetch: {
             config:{ 
                 isLogged: '.logged__add__meme',
+                commentsLoadButton: '.show__comments',
                 commentsContainer: '.meme__info__modal__desc--comments--container',
                 commentsInput: '.meme__info__modal__desc--comments--input',
             },
             getComments: (meme_id) => {
-
+                console.log(meme_id)
             },
             postComment: (meme_id) => {
-
+                console.log(meme_id)
             },
             deleteComment: (meme_id) => {
-                
+                console.log(meme_id)
             }
         },
         likesFetch : {
@@ -52,5 +53,10 @@ $(document).ready(function () {
 
     $(document).on('click', fetches.likesFetch.config.buttonName, (e) => {
         fetches.likesFetch.giveLike(e)
+    })
+
+    $(document).on('click', fetches.commentsFetch.config.commentsLoadButton, (e) => {
+        let memeID = e.currentTarget.attributes.meme_id.value;
+        fetches.commentsFetch.getComments(memeID);
     })
 })

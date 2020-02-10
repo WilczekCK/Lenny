@@ -63,5 +63,9 @@ $(window).on('load', function () {
 
         var getMemeInfo = zoomImage.getDetailedInfo(getMemeID)
         zoomImage.displayModal(getMemeInfo);
+
+        //for loading comments - fetches.js
+        $('.show__comments').attr('meme_id', getMemeID);
+        $('.show__comments').trigger('click');
     })
 })
