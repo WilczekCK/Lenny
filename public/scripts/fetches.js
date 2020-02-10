@@ -1,6 +1,22 @@
 $(document).ready(function () {
     var fetches = fetches || {};
     fetches = {
+        commentsFetch: {
+            config:{ 
+                isLogged: '.logged__add__meme',
+                commentsContainer: '.meme__info__modal__desc--comments--container',
+                commentsInput: '.meme__info__modal__desc--comments--input',
+            },
+            getComments: (meme_id) => {
+
+            },
+            postComment: (meme_id) => {
+
+            },
+            deleteComment: (meme_id) => {
+                
+            }
+        },
         likesFetch : {
             config: {
                 fadeTime: 300,
