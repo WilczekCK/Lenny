@@ -64,7 +64,7 @@ meme_controller = {
         return commentsMeme;
     },
     postComment: async (meme_id, ingame_id, content, date) => {
-        const uploadedSqlID = await mysql.insert(`comments`, `meme_id, ingame_id, content, date`, `${meme_id}, '${ingame_id}', '${_.escape(content)}', '${date}'`);
+        await mysql.insert(`comments`, `meme_id, ingame_id, content, date`, `${meme_id}, '${ingame_id}', '${_.escape(content)}', '${date}'`);
         return true;
     }
 }
