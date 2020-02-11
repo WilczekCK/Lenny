@@ -113,7 +113,7 @@ module.exports = ({ memeRoute }) => {
         const userID = ctx.req.body[0].ingame_id;
         const idToFind = ctx.params.id;
 
-        meme.postComment(idToFind, userID, comment);
+        meme.postComment(idToFind, userID, comment, moment().format('YYYY-MM-DD HH:mm:ss'));
         return true;
     })
 }

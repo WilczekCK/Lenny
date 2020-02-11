@@ -43,6 +43,7 @@ $(document).ready(function () {
                     }
                 });
 
+                //fetches.commentsFetch.getComments(meme_id);
                 return myAlert('You successfully posted a comment!', "myalert-success")
             },
             deleteComment: (meme_id) => {
