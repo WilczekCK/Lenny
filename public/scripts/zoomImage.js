@@ -66,6 +66,6 @@ $(window).on('load', function () {
 
         //for loading comments - fetches.js
         $('.show__comments').attr('meme_id', getMemeID);
-        $('.show__comments').trigger('click');
+        $('.show__comments').trigger('click', function(){});
     })
 })

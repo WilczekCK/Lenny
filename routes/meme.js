@@ -101,8 +101,8 @@ module.exports = ({ memeRoute }) => {
 
     memeRoute.get('/comments/load/:id', async (ctx, next) => {
         const idToFind = ctx.params.id;
-        const commentsFromMeme = meme.getComments(idToFind);
-        return commentsFromMeme;
+        const commentsFromMeme = await meme.getComments(idToFind);
+        ctx.body = commentsFromMeme;
     })
 
     memeRoute.post('/comments/post/:id', koaBody(), async (ctx, next) => {

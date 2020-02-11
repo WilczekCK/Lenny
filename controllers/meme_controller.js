@@ -60,11 +60,11 @@ meme_controller = {
         return lastMemeID;
     },
     getComments: async (meme_id) => {
-        const commentsMeme = await mysql.query();
-        return commentsName;
+        const commentsMeme = await mysql.query(`SELECT comments.*, users.username FROM comments, users WHERE meme_id=${meme_id} AND comments.ingame_id = users.ingame_id`);
+        return commentsMeme;
     },
-    postComment: async (meme_id, user_id, content) => {
-        const uploadedSqlID = await mysql.insert(`comments`, `meme_id, user_id, content`, `${meme_id}, '${user_id}', '${_.escape(content)}'`);
+    postComment: async (meme_id, ingame_id, content) => {
+        const uploadedSqlID = await mysql.insert(`comments`, `meme_id, ingame_id, content`, `${meme_id}, '${ingame_id}', '${_.escape(content)}'`);
         return true;
     }
 }

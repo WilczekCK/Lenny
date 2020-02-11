@@ -10,8 +10,26 @@ $(document).ready(function () {
                 commentsContainer: '.meme__info__modal__desc--comments--container',
                 commentsInput: '.meme__info__modal__desc--comments--input',
             },
+            clearCommentContainer: _ => $(fetches.commentsFetch.config.commentsContainer).html(''),
             getComments: (meme_id) => {
-                console.log(meme_id)
+                fetches.commentsFetch.clearCommentContainer();
+                fetch(`meme/comments/load/${meme_id}`, {
+                    method: "GET",
+                })
+                .then(resp => resp.json())
+                .then(resp => {
+                    $(resp).each(function(index){
+                        $(fetches.commentsFetch.config.commentsContainer).append(`
+                            <div class="single__comment">
+                                <div class="single__comment__avatar" style="background-image:url(https://a.ppy.sh/${resp[index].ingame_id})"></div>
+                                    <div class="single__comment__column">
+                                        <div class="single__comment__column__username">${resp[index].username} replied:</div>
+                                        <div class="single__comment__column__content">${resp[index].content}</div>
+                                    </div>
+                            </div>
+                        `)
+                    })
+                })
             },
             postComment: (meme_id, comment) => {
                 if(fetches.commentsFetch.checkDelayBetweenComments('commentPosted')) return myAlert("You send a comment recently, wait a moment!", "myalert-danger");
