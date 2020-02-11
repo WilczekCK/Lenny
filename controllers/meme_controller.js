@@ -60,7 +60,7 @@ meme_controller = {
         return lastMemeID;
     },
     getComments: async (meme_id) => {
-        const commentsMeme = await mysql.query(`SELECT comments.*, users.username FROM comments, users WHERE meme_id=${meme_id} AND comments.ingame_id = users.ingame_id`);
+        const commentsMeme = await mysql.query(`SELECT comments.*, users.username FROM comments, users WHERE meme_id=${meme_id} AND comments.ingame_id = users.ingame_id ORDER BY date DESC`);
         return commentsMeme;
     },
     postComment: async (meme_id, ingame_id, content, date) => {

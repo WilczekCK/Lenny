@@ -28,6 +28,8 @@ $(document).ready(function () {
                                     </div>
                             </div>
                         `)
+
+                        $('.single__comment').fadeTo('fast', 1);
                     })
                 })
             },
@@ -43,7 +45,7 @@ $(document).ready(function () {
                     }
                 });
 
-                //fetches.commentsFetch.getComments(meme_id);
+                fetches.commentsFetch.getComments(meme_id);
                 return myAlert('You successfully posted a comment!', "myalert-success")
             },
             deleteComment: (meme_id) => {
