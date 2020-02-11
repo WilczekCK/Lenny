@@ -23,7 +23,7 @@ $(document).ready(function () {
                             <div class="single__comment">
                                 <div class="single__comment__avatar" style="background-image:url(https://a.ppy.sh/${resp[index].ingame_id})"></div>
                                     <div class="single__comment__column">
-                                        <div class="single__comment__column__username">${resp[index].username} replied:</div>
+                                        <div class="single__comment__column__username"><a href="/profile/${resp[index].ingame_id}">${resp[index].username}</a> replied:</div>
                                         <div class="single__comment__column__content">${resp[index].content}</div>
                                     </div>
                             </div>
@@ -45,6 +45,7 @@ $(document).ready(function () {
                     }
                 });
 
+                $(fetches.commentsFetch.config.postCommentContainer).val('');
                 fetches.commentsFetch.getComments(meme_id);
                 return myAlert('You successfully posted a comment!', "myalert-success")
             },

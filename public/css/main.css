@@ -710,7 +710,7 @@ input.form__styled {
         max-width: 100%;
         max-height: 800px; }
     #modal__meme__info .meme__info__modal__container .meme__info__modal__desc {
-      flex-grow: 2; }
+      width: 50%; }
       #modal__meme__info .meme__info__modal__container .meme__info__modal__desc .meme__info__modal__desc--title {
         font-size: 2.2em;
         padding-top: 20px;
@@ -746,12 +746,13 @@ input.form__styled {
             padding: 10px;
             opacity: 0; }
             #modal__meme__info .meme__info__modal__container .meme__info__modal__desc .meme__info__modal__desc--comments .meme__info__modal__desc--comments--container .single__comment .single__comment__avatar {
-              width: 50px;
+              min-width: 50px;
               height: 50px;
               background-size: cover; }
             #modal__meme__info .meme__info__modal__container .meme__info__modal__desc .meme__info__modal__desc--comments .meme__info__modal__desc--comments--container .single__comment .single__comment__column {
               display: flex;
-              flex-direction: column; }
+              flex-direction: column;
+              max-width: 88%; }
               #modal__meme__info .meme__info__modal__container .meme__info__modal__desc .meme__info__modal__desc--comments .meme__info__modal__desc--comments--container .single__comment .single__comment__column > * {
                 padding-left: 10px;
                 text-align: left;
