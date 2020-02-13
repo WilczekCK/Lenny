@@ -32,7 +32,7 @@ $(document).ready(function () {
                         $('.single__comment').fadeTo('fast', 1);
                     })
 
-                    fetches.commentsFetch.setDeleteButtonForAuthor();
+                    fetches.commentsFetch.prepareDeleteButtons();
                 })
             },
             postComment: (meme_id, comment) => {
@@ -48,13 +48,13 @@ $(document).ready(function () {
                 .then(resp => resp.json())
                 .then(resp => {
                     //check if is not banned
+                    fetches.commentsFetch.setDelayBetweenComments();
+
                     if(resp){
                         fetches.commentsFetch.clearCommentContainer();
                         fetches.commentsFetch.getComments(meme_id);    
-                        fetches.commentsFetch.setDelayBetweenComments();
                         return myAlert('You successfully posted a comment!', "myalert-success")
                     }else{
-                        fetches.commentsFetch.setDelayBetweenComments();
                         return myAlert('You are banned! Unauthorized to do that!', "myalert-danger")
                     }
                 })
@@ -91,15 +91,23 @@ $(document).ready(function () {
             checkDelayBetweenComments: (name) => {
                return document.cookie.replace(/(?:(?:^|.*;\s*)commentPosted\s*\=\s*([^;]*).*$)|^.*$/, "$1");
             },
-            setDeleteButtonForAuthor: () => {
-                var getLoggedUserID = $('.menu__container__wrap__menu__user a').attr('data-attr-user-id');
-                $('.single__comment').each(function () {
-                    if(getLoggedUserID == $(this).attr('data-author-id')){
-                        $(this).find('.single__comment__column').append(`
-                            <button class="remove__comment">remove comment</button>
-                        `);
-                    }
-                })
+            prepareDeleteButtons: () => {
+                //if it's admin
+                if($('.modal__selection__admin').length > 0){
+                    $('.single__comment__column').append(`
+                        <button class="remove__comment">remove comment</button>
+                    `);
+                }else{
+                    var getLoggedUserID = $('.menu__container__wrap__menu__user a').attr('data-attr-user-id');
+                    $('.single__comment').each(function () {
+                        if(getLoggedUserID == $(this).attr('data-author-id')){
+                            $(this).find('.single__comment__column').append(`
+                                <button class="remove__comment">remove comment</button>
+                            `);
+                        }
+                    })
+                }
+
             },
             
         },
