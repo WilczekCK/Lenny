@@ -47,7 +47,7 @@ $(document).ready(function () {
                     }
                 });
 
-                $(fetches.commentsFetch.config.postCommentContainer).val('');
+                fetches.commentsFetch.clearCommentContainer();
                 fetches.commentsFetch.getComments(meme_id);
                 return myAlert('You successfully posted a comment!', "myalert-success")
             },
@@ -58,16 +58,18 @@ $(document).ready(function () {
                         headers:{
                             comment_id: comment_id,
                             actual_user: actual_user
-                        }
-                    })
-                    .then(resp => resp.json())
-                    .then(resp => {
-                        if(resp == true){
-                            
-                        }
-                    })
+                        }})
+                        .then(resp => resp.json())
+                        .then(resp => {
+                            if(resp){
+                                $(`.single__comment[data-comment-id="${comment_id}"]`).fadeOut();
+                                return myAlert('You successfully removed a comment!', "myalert-success")
+                            }else{
+                                return myAlert('Something gone wrong, unauthorized to do that!', "myalert-danger")
+                            }
+                        })
                     
-                    $(`.single__comment[data-comment-id="${comment_id}"]`).fadeOut();
+                    
                 } else {
                     return 0
                 }
@@ -90,7 +92,8 @@ $(document).ready(function () {
                         `);
                     }
                 })
-            }
+            },
+            
         },
         likesFetch : {
             config: {
@@ -139,8 +142,8 @@ $(document).ready(function () {
     //removecomment
     $(document).on('click', 'button.remove__comment', (e) =>{
         let parentComment = e.currentTarget.parentNode.parentNode;
-        var getLoggedUserID = $('.menu__container__wrap__menu__user a').attr('data-attr-user-id');
-        fetches.commentsFetch.deleteComment($(parentComment).attr('data-comment-id'), getLoggedUserID);
+        var authorIDComment = $(parentComment).attr('data-author-id')
+        fetches.commentsFetch.deleteComment($(parentComment).attr('data-comment-id'), authorIDComment);
     })
 
     //postcomment

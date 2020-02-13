@@ -1,6 +1,7 @@
 const meme = require('../controllers/meme_controller');
 const user = require('../controllers/user_controller');
 const _ = require('underscore');
+const passport = require('koa-passport');
 const koaBody = require('koa-body');
 
 module.exports = ({ profileRoute }) => {
@@ -33,4 +34,3 @@ module.exports = ({ profileRoute }) => {
         await next();
     })
 }
-
