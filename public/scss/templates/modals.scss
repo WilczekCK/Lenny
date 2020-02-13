@@ -56,6 +56,10 @@
         .meme__info__modal__desc{
             width:50%;
 
+            @media (max-width:1000px){
+                width:100% !important;
+            }
+
             .meme__info__modal__desc--title{
                 font-size:2.2em;
                 padding-top:20px;
@@ -131,7 +135,7 @@
                                     opacity: .3;
                                     margin-top:5px;
                                     cursor:pointer;
-                                    
+
                                     &:hover{
                                         opacity:.6;
                                     }
