@@ -36,20 +36,29 @@ $(document).ready(function () {
                 })
             },
             postComment: (meme_id, comment) => {
-                if(fetches.commentsFetch.checkDelayBetweenComments('commentPosted')) return myAlert("You send a comment recently, wait a moment!", "myalert-danger");
+                if(fetches.commentsFetch.checkDelayBetweenComments('commentPosted')) return myAlert("You send or tried to comment recently, wait a moment!", "myalert-danger");
                 if(comment.length < 5) return myAlert("Your comment is too short!", "myalert-danger");
 
-                fetches.commentsFetch.setDelayBetweenComments();
                 fetch(`meme/comments/post/${meme_id}`, {
                     method: "POST",
                     headers:{
                         content: comment
                     }
-                });
-
-                fetches.commentsFetch.clearCommentContainer();
-                fetches.commentsFetch.getComments(meme_id);
-                return myAlert('You successfully posted a comment!', "myalert-success")
+                })  
+                .then(resp => resp.json())
+                .then(resp => {
+                    //check if is not banned
+                    if(resp){
+                        fetches.commentsFetch.clearCommentContainer();
+                        fetches.commentsFetch.getComments(meme_id);    
+                        fetches.commentsFetch.setDelayBetweenComments();
+                        return myAlert('You successfully posted a comment!', "myalert-success")
+                    }else{
+                        fetches.commentsFetch.setDelayBetweenComments();
+                        return myAlert('You are banned! Unauthorized to do that!', "myalert-danger")
+                    }
+                })
+            
             },
             deleteComment: (comment_id, actual_user) => {
                 if (confirm('Are you sure that you want to remove comment?')) {
@@ -61,6 +70,7 @@ $(document).ready(function () {
                         }})
                         .then(resp => resp.json())
                         .then(resp => {
+                            //check, if comment which will be deleted is asked by the comment owner
                             if(resp){
                                 $(`.single__comment[data-comment-id="${comment_id}"]`).fadeOut();
                                 return myAlert('You successfully removed a comment!', "myalert-success")
@@ -68,8 +78,6 @@ $(document).ready(function () {
                                 return myAlert('Something gone wrong, unauthorized to do that!', "myalert-danger")
                             }
                         })
-                    
-                    
                 } else {
                     return 0
                 }
