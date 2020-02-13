@@ -66,6 +66,10 @@ meme_controller = {
     postComment: async (meme_id, ingame_id, content, date) => {
         await mysql.insert(`comments`, `meme_id, ingame_id, content, date`, `${meme_id}, '${ingame_id}', '${_.escape(content)}', '${date}'`);
         return true;
+    },
+    removeComment: async (comment_id) => {
+        await mysql.delete(`comments`, `id = ${comment_id}`)
+        return true;
     }
 }
 

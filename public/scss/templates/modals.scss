@@ -118,6 +118,25 @@
                                 width:100%;
                             }
 
+
+                            .remove__comment{
+                                    background:none;
+                                    border:unset;
+                                    position: relative;
+                                    content: 'remove comment';
+                                    height: 15px;
+                                    color:inherit;
+                                    font-size: .6em;
+                                    text-transform: uppercase;
+                                    opacity: .3;
+                                    margin-top:5px;
+                                    cursor:pointer;
+                                    
+                                    &:hover{
+                                        opacity:.6;
+                                    }
+                            }
+
                             .single__comment__column__username{
                                 a{
                                     color:inherit;

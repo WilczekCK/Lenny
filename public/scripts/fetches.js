@@ -20,7 +20,7 @@ $(document).ready(function () {
                 .then(resp => {
                     $(resp).each(function(index){
                         $(fetches.commentsFetch.config.commentsContainer).append(`
-                            <div class="single__comment">
+                            <div class="single__comment" data-comment-id="${resp[index].id}" data-author-id="${resp[index].ingame_id}">
                                 <div class="single__comment__avatar" style="background-image:url(https://a.ppy.sh/${resp[index].ingame_id})"></div>
                                     <div class="single__comment__column">
                                         <div class="single__comment__column__username"><a href="/profile/${resp[index].ingame_id}">${resp[index].username}</a> replied:</div>
@@ -31,6 +31,8 @@ $(document).ready(function () {
 
                         $('.single__comment').fadeTo('fast', 1);
                     })
+
+                    fetches.commentsFetch.setDeleteButtonForAuthor();
                 })
             },
             postComment: (meme_id, comment) => {
@@ -49,8 +51,26 @@ $(document).ready(function () {
                 fetches.commentsFetch.getComments(meme_id);
                 return myAlert('You successfully posted a comment!', "myalert-success")
             },
-            deleteComment: (meme_id) => {
-                console.log(meme_id)
+            deleteComment: (comment_id, actual_user) => {
+                if (confirm('Are you sure that you want to remove comment?')) {
+                    fetch(`meme/comments/delete/${comment_id}`, {
+                        method: "DELETE",
+                        headers:{
+                            comment_id: comment_id,
+                            actual_user: actual_user
+                        }
+                    })
+                    .then(resp => resp.json())
+                    .then(resp => {
+                        if(resp == true){
+                            
+                        }
+                    })
+                    
+                    $(`.single__comment[data-comment-id="${comment_id}"]`).fadeOut();
+                } else {
+                    return 0
+                }
             },
             setDelayBetweenComments: () => {
                 var d = new Date();
@@ -61,6 +81,16 @@ $(document).ready(function () {
             checkDelayBetweenComments: (name) => {
                return document.cookie.replace(/(?:(?:^|.*;\s*)commentPosted\s*\=\s*([^;]*).*$)|^.*$/, "$1");
             },
+            setDeleteButtonForAuthor: () => {
+                var getLoggedUserID = $('.menu__container__wrap__menu__user a').attr('data-attr-user-id');
+                $('.single__comment').each(function () {
+                    if(getLoggedUserID == $(this).attr('data-author-id')){
+                        $(this).find('.single__comment__column').append(`
+                            <button class="remove__comment">remove comment</button>
+                        `);
+                    }
+                })
+            }
         },
         likesFetch : {
             config: {
@@ -106,6 +136,13 @@ $(document).ready(function () {
         fetches.commentsFetch.getComments(memeID);
     })
 
+    //removecomment
+    $(document).on('click', 'button.remove__comment', (e) =>{
+        let parentComment = e.currentTarget.parentNode.parentNode;
+        var getLoggedUserID = $('.menu__container__wrap__menu__user a').attr('data-attr-user-id');
+        fetches.commentsFetch.deleteComment($(parentComment).attr('data-comment-id'), getLoggedUserID);
+    })
+
     //postcomment
     $(document).on('click', fetches.commentsFetch.config.postCommentButton, (e) => {
         e.preventDefault();
@@ -114,4 +151,6 @@ $(document).ready(function () {
         
         fetches.commentsFetch.postComment(memeID, comment);
     })
+
+
 })

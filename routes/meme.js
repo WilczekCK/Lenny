@@ -116,5 +116,17 @@ module.exports = ({ memeRoute }) => {
         meme.postComment(idToFind, userID, comment, moment().format('YYYY-MM-DD HH:mm:ss'));
         return true;
     })
+
+    memeRoute.delete('/comments/delete/:id', koaBody(), async (ctx, next) => {
+        const is_player_logged = ctx.req.body[0];
+        const comment_id = ctx.request.header.comment_id;
+        const asking_user = ctx.request.header.actual_user;
+        if (!is_player_logged) ctx.throw(401, 'User is not logged in! - UNAUTHORIZED');
+        if (asking_user != is_player_logged.ingame_id) ctx.throw(401, 'UNAUTHORIZED!');
+        
+        const idToFind = ctx.params.id;
+        await meme.removeComment(idToFind);
+    })
+
 }
 
