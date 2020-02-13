@@ -25,6 +25,8 @@ user_controller = {
         else return memesInfo;
     },
     blockUser: async (ingame_id) => {
+        //blocking user also removes all comments
+        await mysql.delete(`comments`, `ingame_id = ${ingame_id}`);
         return await mysql.update(`users`, `role = -1`, `ingame_id = ${ingame_id}`);
     }
 }
