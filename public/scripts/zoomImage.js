@@ -23,8 +23,10 @@ $(window).on('load', function () {
             $('.meme__info__modal__desc--likes .pp__counter').html(memeInfo.likes)
 
             if(memeInfo.videoLink){
+                $('.meme__info__modal__desc--sharebox').html(`<div class="fb-share-button" data-href="https://www.facebook.com/sharer/sharer.php?u=${memeInfo.videoLink}&amp;src=sdkpreparse" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=${memeInfo.videoLink}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">SHARE</a></div>`)
                 $('.meme__info__modal__media').html(`<iframe src='${memeInfo.videoLink}' frameborder='0' />`)
             }else{
+                $('.meme__info__modal__desc--sharebox').html(`<div class="fb-share-button" data-href="${window.location.href}uploads/${memeInfo.id}.jpg" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=${window.location.href}uploads/${memeInfo.id}.jpg&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">SHARE</a></div>`)
                 $('.meme__info__modal__media').html(`<img src=/uploads/${memeInfo.id}.jpg />`)
             }
             

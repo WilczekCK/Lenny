@@ -9,6 +9,7 @@ html(lang="en")
         meta(property="og:type"          content="website" )
         meta(property="og:title"         content="Osu!memes")
         meta(property="og:description"   content="The best osu memes on the web!")
+        meta(property="og:image"         content="/favicon/apple-touch-icon.png")
         link(rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png")
         link(rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png")
         link(rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png")
@@ -21,6 +22,7 @@ html(lang="en")
     body
         include blocks/menu.pug
         include blocks/fixed_controls.pug
+        include blocks/fb_integration.pug
         #slidingNotification(data-myalert data-myalert-max="5")
         .content__container
             block content
