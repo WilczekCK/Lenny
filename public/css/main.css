@@ -701,7 +701,7 @@ input.form__styled {
       height: 515px;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: first baseline;
       overflow-y: auto; }
       #modal__meme__info .meme__info__modal__container .meme__info__modal__media iframe {
         width: 100%;
