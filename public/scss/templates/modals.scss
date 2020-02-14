@@ -39,7 +39,7 @@
             height:515px;
             display:flex;
             justify-content:center;
-            align-items:first baseline;
+            align-items:center;
             overflow-y:auto;
 
             iframe{
@@ -48,8 +48,11 @@
             }
 
             img{
-                max-width:100%;
-                max-height:800px;
+                display: block;
+                width: 100%;
+                max-width: 500px; 
+                height: auto;
+                margin: auto
             }
         }
 
