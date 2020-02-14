@@ -841,7 +841,7 @@ input.form__styled {
         padding-right: 10px; }
   @media (max-width: 1000px) {
     #modal__meme__info {
-      top: 80%; }
+      top: 95%; }
       #modal__meme__info .meme__info__modal__container {
         flex-direction: column; }
         #modal__meme__info .meme__info__modal__container .meme__info__modal__media {
@@ -856,7 +856,8 @@ input.form__styled {
             height: 100%; }
           #modal__meme__info .meme__info__modal__container .meme__info__modal__media img {
             max-width: 100%;
-            max-height: 500px; } }
+            max-height: 500px;
+            width: unset; } }
 
 .meme__selection {
   display: flex;
