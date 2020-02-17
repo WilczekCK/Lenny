@@ -5,7 +5,9 @@ mixin meme_item(meme)
         else    
             img(src='/uploads/'+meme.id+'.jpg')
         .details
-            span.tag!=meme.tags
+            span
+                each tag in meme.tagsDivider
+                    .tag!=tag
             span.pp__counter(meme_id!=meme.id)
                 i(class='fab fa-pied-piper-pp')
                 .pp__amount

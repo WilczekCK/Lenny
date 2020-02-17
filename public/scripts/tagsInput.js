@@ -7,9 +7,9 @@ $(document).ready(function(){
     $input.focus();
     $input.on('input', function(e){
       let lastChar = e.target.value[e.target.value.length-1];
-
-      if(lastChar == ' ') {
+      if(lastChar == ' ' && e.target.value[0] != ' ') {
         if(e.preventDefault) {
+
           e.preventDefault();
           if($(this).val() == '' || $(this).val() == ' ') {
             return false;
@@ -18,8 +18,10 @@ $(document).ready(function(){
           if(providedTags.length >= 5){
             return false
           }
+          
           addTag($(this));
         }
+        
         return false;
       }
       
@@ -49,8 +51,8 @@ $(document).ready(function(){
       $(element).val('');
       const lowerCased = $tag[0].innerText.toLowerCase();
       $actualTags.push(lowerCased);
-      console.log(lowerCased)
       providedTags.push($(element).val());
+      $spaceTagPrevent = true;
     }
 
     $('.tags__submit').on('click', function(e){

@@ -4,12 +4,6 @@
 @import url(icons/css/icon-font-embedded.css);
 @import url(icons/css/icon-font-codes.css);
 @import url(icons/css/animation.css);
-@import url(icons/css/icon-font.css);
-@import url(icons/css/icon-font-ie7.css);
-@import url(icons/css/icon-font-ie7-codes.css);
-@import url(icons/css/icon-font-embedded.css);
-@import url(icons/css/icon-font-codes.css);
-@import url(icons/css/animation.css);
 @font-face {
   font-family: 'osu-regular';
   src: url("../fonts/Aller_Rg.ttf"); }
@@ -24,6 +18,77 @@
   text-align: center; }
   .osupoli-button:hover {
     opacity: .8; }
+
+@keyframes alert-in {
+  from {
+    left: -25px;
+    opacity: 0; }
+  to {
+    left: 0;
+    opacity: 1; } }
+
+.myalert-wrapper {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+  box-sizing: borderbox; }
+  .myalert-wrapper * {
+    box-sizing: border-box; }
+
+.myalert {
+  position: relative;
+  animation: alert-in .5s;
+  margin-top: 15px;
+  transition: .3s;
+  overflow: hidden;
+  opacity: 1; }
+
+.myalert-wrapper {
+  width: 200px;
+  font-family: 'osu-regular'; }
+
+.myalert {
+  background-color: #666;
+  color: #fff;
+  padding: 15px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 5px 1px rgba(34, 34, 34, 0.05);
+  border-left: 4px solid #474747; }
+  .myalert p {
+    margin: 0;
+    font-size: .9rem; }
+  .myalert:hover .myalert-close {
+    opacity: 1;
+    visibility: visible; }
+
+.myalert-close {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  font-size: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: .2s;
+  cursor: pointer; }
+
+.myalert-danger {
+  background-color: #E42727;
+  border-color: #b71717; }
+
+.myalert-warning {
+  background-color: #ff7f66;
+  border-color: #ff4c29; }
+
+.myalert-success {
+  background-color: #03B635;
+  border-color: #027a23; }
+
+.myalert-info {
+  background-color: #2B6CCC;
+  border-color: #205199; }
 
 .menu__container {
   width: 100%;
@@ -268,6 +333,97 @@
           background-position: center center;
           object-fit: cover; }
 
+.error__container {
+  color: white;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .error__container h3 {
+    color: #ff7f66;
+    font-size: 72px;
+    font-weight: 800;
+    margin-bottom: 0px; }
+
+.success__container {
+  color: white;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .success__container h3 {
+    color: #ff7f66;
+    font-size: 72px;
+    font-weight: 800;
+    margin-bottom: 0px; }
+
+.gdpr__container {
+  position: fixed;
+  background: #191919;
+  padding: 10px;
+  bottom: 0;
+  color: white;
+  width: 100%;
+  z-index: 99;
+  box-sizing: border-box;
+  left: 0; }
+  .gdpr__container a {
+    color: #ff7f66;
+    text-decoration: none; }
+  .gdpr__container .gdpr__container__close {
+    cursor: pointer;
+    background: #ff7f66;
+    padding: 5px;
+    width: 150px;
+    margin: 0 auto;
+    margin-top: 5px; }
+
+.rules__container {
+  color: white;
+  padding: 25px; }
+  @media (max-width: 768px) {
+    .rules__container {
+      padding: 10px; } }
+  @media (max-width: 768px) {
+    .rules__container ol {
+      padding-right: 25px;
+      padding-left: 25px; } }
+  .rules__container li {
+    padding-top: 15px;
+    max-width: 768px;
+    margin: 0 auto;
+    text-align: justify; }
+    .rules__container li::marker {
+      color: #ff7f66; }
+
+.info__container {
+  color: white;
+  margin: 0 auto;
+  text-align: justfy;
+  max-width: 768px; }
+  @media (max-width: 768px) {
+    .info__container ul {
+      padding-left: 25px; } }
+  .info__container li {
+    padding: 20px 0px;
+    text-align: left;
+    font-size: 1.2em;
+    color: #ff7f66; }
+    .info__container li a {
+      color: #ff7f66;
+      text-decoration: none;
+      font-size: 1em; }
+    .info__container li p {
+      margin: 0;
+      font-size: .8em;
+      color: white; }
+
+.banned_info {
+  color: white; }
+  .banned_info a {
+    color: #ff7f66;
+    text-decoration: none; }
+
 .meme__container {
   margin: 0 auto;
   z-index: 0; }
@@ -366,30 +522,6 @@
       transition-delay: 0.15s; }
     .meme__container .meme__item:focus .info, .meme__container .meme__item:hover .info {
       transition-delay: 0.25s; }
-
-.error__container {
-  color: white;
-  text-transform: uppercase;
-  display: flex;
-  flex-direction: column;
-  align-items: center; }
-  .error__container h3 {
-    color: #ff7f66;
-    font-size: 72px;
-    font-weight: 800;
-    margin-bottom: 0px; }
-
-.success__container {
-  color: white;
-  text-transform: uppercase;
-  display: flex;
-  flex-direction: column;
-  align-items: center; }
-  .success__container h3 {
-    color: #ff7f66;
-    font-size: 72px;
-    font-weight: 800;
-    margin-bottom: 0px; }
 
 .fixed__controls__content {
   color: white;
@@ -532,144 +664,6 @@ input.form__styled {
     .moderation__remove__meme button:hover {
       color: #ff7f66;
       cursor: pointer; }
-
-.gdpr__container {
-  position: fixed;
-  background: #191919;
-  padding: 10px;
-  bottom: 0;
-  color: white;
-  width: 100%;
-  z-index: 99;
-  box-sizing: border-box;
-  left: 0; }
-  .gdpr__container a {
-    color: #ff7f66;
-    text-decoration: none; }
-  .gdpr__container .gdpr__container__close {
-    cursor: pointer;
-    background: #ff7f66;
-    padding: 5px;
-    width: 150px;
-    margin: 0 auto;
-    margin-top: 5px; }
-
-.rules__container {
-  color: white;
-  padding: 25px; }
-  @media (max-width: 768px) {
-    .rules__container {
-      padding: 10px; } }
-  @media (max-width: 768px) {
-    .rules__container ol {
-      padding-right: 25px;
-      padding-left: 25px; } }
-  .rules__container li {
-    padding-top: 15px;
-    max-width: 768px;
-    margin: 0 auto;
-    text-align: justify; }
-    .rules__container li::marker {
-      color: #ff7f66; }
-
-.info__container {
-  color: white;
-  margin: 0 auto;
-  text-align: justfy;
-  max-width: 768px; }
-  @media (max-width: 768px) {
-    .info__container ul {
-      padding-left: 25px; } }
-  .info__container li {
-    padding: 20px 0px;
-    text-align: left;
-    font-size: 1.2em;
-    color: #ff7f66; }
-    .info__container li a {
-      color: #ff7f66;
-      text-decoration: none;
-      font-size: 1em; }
-    .info__container li p {
-      margin: 0;
-      font-size: .8em;
-      color: white; }
-
-.banned_info {
-  color: white; }
-  .banned_info a {
-    color: #ff7f66;
-    text-decoration: none; }
-
-@keyframes alert-in {
-  from {
-    left: -25px;
-    opacity: 0; }
-  to {
-    left: 0;
-    opacity: 1; } }
-
-.myalert-wrapper {
-  position: fixed;
-  bottom: 25px;
-  left: 25px;
-  display: flex;
-  flex-direction: column;
-  z-index: 999;
-  box-sizing: borderbox; }
-  .myalert-wrapper * {
-    box-sizing: border-box; }
-
-.myalert {
-  position: relative;
-  animation: alert-in .5s;
-  margin-top: 15px;
-  transition: .3s;
-  overflow: hidden;
-  opacity: 1; }
-
-.myalert-wrapper {
-  width: 200px;
-  font-family: 'osu-regular'; }
-
-.myalert {
-  background-color: #666;
-  color: #fff;
-  padding: 15px;
-  border-radius: 3px;
-  box-shadow: 1px 1px 5px 1px rgba(34, 34, 34, 0.05);
-  border-left: 4px solid #474747; }
-  .myalert p {
-    margin: 0;
-    font-size: .9rem; }
-  .myalert:hover .myalert-close {
-    opacity: 1;
-    visibility: visible; }
-
-.myalert-close {
-  position: absolute;
-  top: 7px;
-  right: 7px;
-  font-size: 10px;
-  opacity: 0;
-  visibility: hidden;
-  transition: .2s;
-  cursor: pointer; }
-
-.myalert-danger {
-  background-color: #E42727;
-  border-color: #b71717; }
-
-.myalert-warning {
-  background-color: #ff7f66;
-  border-color: #ff4c29; }
-
-.myalert-success {
-  background-color: #03B635;
-  border-color: #027a23; }
-
-.myalert-info {
-  background-color: #2B6CCC;
-  border-color: #205199; }
 
 .modal {
   background: #191919 !important;
