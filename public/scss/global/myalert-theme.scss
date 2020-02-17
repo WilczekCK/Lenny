@@ -1,0 +1,48 @@
+.myalert-wrapper {
+  width: 200px;
+  font-family: 'osu-regular';
+}
+
+.myalert {
+  background-color: #666;
+  color: #fff;
+  padding: 15px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 5px 1px rgba(#222, .05);
+  border-left: 4px solid darken(#666, 12);
+  p{
+    margin: 0;
+    font-size: .9rem;
+  }
+  &:hover .myalert-close {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+.myalert-close {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  font-size: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: .2s;
+  cursor: pointer;
+}
+
+.myalert-danger {
+  background-color: #E42727;
+  border-color: darken(#E42727, 12);
+}
+.myalert-warning {
+  background-color: $osupoli-orange;
+  border-color: darken($osupoli-orange, 12);
+}
+.myalert-success {
+  background-color: #03B635;
+  border-color: darken(#03B635, 12);
+}
+.myalert-info {
+  background-color: #2B6CCC;
+  border-color: darken(#2B6CCC, 12);
+}

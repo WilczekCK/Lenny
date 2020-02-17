@@ -1,0 +1,208 @@
+.menu__container{
+    @media (max-width:768px){
+        height:unset;
+        padding-bottom:10px;
+    }
+    
+    @media (hover: none) {
+        a:hover {
+           color: white;
+        }
+     }
+
+    width:100%;
+    height:75px;
+    display:flex;
+    flex-direction: row;
+    position:fixed;
+    z-index:999;
+    background:$osupoli_black;
+    color:white;
+
+    .menu__container__wrap{
+        width:100%;
+        display:flex;
+        
+        @media (max-width:768px){
+            flex-direction:column;
+        }
+
+    .menu__container__wrap__logo{
+        h1{
+            font-size:36px;
+            margin: 14px 14px;
+
+            a{
+                color:inherit;
+                text-decoration: unset;
+            }
+
+            span{
+                color:$osupoli-orange;
+            }
+        }
+    }
+
+    .menu__container__wrap__menu{
+        display:flex;
+        flex-direction: row;
+        width:100%;
+
+        ul{
+            padding:0;
+            margin:0;
+            width:100%;
+            text-align:right;
+
+            @media (max-width:768px){
+                text-align:center;
+            }
+
+            li{
+                max-width: inherit;
+                padding:20px 10px;
+                list-style-type: none;
+                display:inline-block;
+
+                &:nth-last-child(2){
+                    padding:20px 0px;
+                }
+                
+                @media (max-width:768px){
+                    font-size:1.2em;
+                    padding:5px 2.5px;
+
+                    &:last-of-type{
+                        display:none;
+                    }
+
+                    &:nth-last-child(2){
+                        display:none;
+                    }
+                }
+
+                input{
+
+                    @media (max-width:768px){
+                        display:block !important;
+                        min-width: 300px;
+                        max-width: 400px;
+                        margin:0 auto;
+                    }
+
+
+                    width: 85%;
+                    text-align: center;
+                    border: none;
+                    background:transparent;
+                    color:white;
+                    border-bottom:2px solid white;
+                }
+
+                a{
+                    text-decoration: none;
+                    font-size:24px;
+                    color:inherit;
+
+                    @media (max-width:768px){
+                        font-size:1em;
+                    }
+
+                &:hover{
+                    color:$osupoli-orange;
+                    -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
+                    transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+                }
+                }
+
+            }
+        }
+
+        .menu__container__wrap__menu__user{
+            display:flex;
+            flex-direction: row;
+            margin-left:20px;
+            margin-right:20px;
+
+            @media (max-width:786px){
+                display:none;
+            }
+
+            img{
+                margin-top:5px;
+                max-width: 55px;
+                max-height:55px;
+                border-radius: 50%;
+                border: 5px solid black;
+            }
+
+            .menu__dropdown{
+                width:30px;
+                align-self:center;
+            }
+
+            .menu__auth__button{
+                position: relative;
+                background: none;
+                color: white;
+                text-transform: uppercase;
+                text-decoration: none;
+                border: 0.2em solid $osupoli-orange;
+                height:35px;
+                padding: 0.5em 1em;
+                margin-top:8px;
+    
+                &::before {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    width: 10%;
+                    background: white;
+                    height: 0.3em;
+                    right: 20%;
+                    top: -0.21em;
+                    transform: skewX(-45deg);
+                    -webkit-transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+                    transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+                }
+    
+                &::after {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    width: 10%;
+                    background: white;
+                    height: 0.3em;
+                    left: 20%;
+                    bottom: -0.25em;
+                    transform: skewX(45deg);
+                    -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
+                    transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+                }
+    
+                &:hover {
+                    color:$osupoli-orange;
+                    -webkit-transition: all 0.45 cubic-bezier(0.86, 0, 0.07, 1);
+                    transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
+    
+                    &::before {
+                        right: 80%;
+                    }
+    
+                    &::after {
+                        left: 80%;
+                    }
+                }
+    
+            }
+        }
+        
+    }
+
+}
+    #modal__add__meme{
+        display:none;
+    }
+}
+
+

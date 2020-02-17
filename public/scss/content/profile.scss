@@ -1,0 +1,134 @@
+.profile__container{
+    min-width:300px;
+    max-width:500px;
+    background: $osupoli_black;
+    display:flex;
+    margin:0 auto;
+    margin-top:20px;
+    justify-content: center;
+    color:white;
+    border-radius: 6px;
+    padding-bottom:30px;
+    flex-direction: column;
+
+    .profile__container__header{
+        width:100%;
+
+        & > *:not(.profile__container__header--cover){
+            padding:10px;
+            padding-bottom:unset;
+        }
+
+        .profile__container__header--cover{
+            height:100px;
+            background-size:cover !important;
+            border-radius:6px;
+        }
+
+        .profile__container__header--avatar{
+            margin-top:-75px;
+            img{
+                max-height:100px;
+            }
+        }
+
+        .profile__container__header--nickname{
+            font-size:1.5em;
+        }
+
+        .profile__container__header--role{
+            font-size:1em;
+        }
+
+        .profile__container__header--joinedDate{
+            font-size:.8em;
+        }
+    }
+
+    .profile__container__content{
+        display: flex;
+        flex-direction: column;
+        padding-top: 20px;
+        width:90%;
+        margin:0 auto;
+
+        .profile__container__content__stats{
+            & > * {
+                display:flex;
+                flex-direction:row;
+                justify-content: space-between;
+
+                p{
+                    color:$osupoli-orange;
+                    margin:0;
+                }
+            }
+
+            .profile__container__content__stats--osuProfile{
+                a{
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .profile__container__content__memes{
+            height:150px;
+            overflow-y:auto;
+            margin-top:20px;
+
+            & > *:nth-child(odd){
+                background:$osupoli-gray;
+            }
+
+            .profile__container__content__memes__single{
+                display: flex;
+                flex-direction: row;
+                height:50px;
+                align-items:center;
+
+                & > *:not(.profile__container__content__memes__single--image){
+                    flex-grow:0;
+                    flex-basis:20%;
+                    display:flex;
+                    flex-direction:column;
+                    font-size:.9em;
+                    box-sizing: border-box;
+                    padding: 5px;
+
+                    span{
+                        color:$osupoli-orange;
+                        font-size:.8em;
+                    }
+                }
+
+                .profile__container__content__memes__single--image{
+                    img{
+                        height: 50px;
+                        width: 50px;
+                        background-position: center center;
+                        object-fit: cover;
+                    }
+                }
+
+                .profile__container__content__memes__single--id{
+
+                }
+
+
+                .profile__container__content__memes__single--date{
+
+                }
+
+
+                .profile__container__content__memes__single--status{
+
+                }
+
+
+                .profile__container__content__memes__single--pp{
+
+                }
+            }
+        }
+    }
+}
