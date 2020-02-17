@@ -1,24 +1,21 @@
-@import 'colors.scss';
-@import 'fonts.scss';
-@import 'buttons.scss';
+@import 'global/colors.scss';
+@import 'global/fonts.scss';
+@import 'global/buttons.scss';
+@import 'global/myalert.scss';
+@import 'global/myalert-theme.scss';
 
-@import 'templates/menu.scss';
-@import 'templates/content.scss';
-@import 'templates/footer.scss';
+@import 'content/menu.scss';
+@import 'content/content.scss';
+@import 'content/footer.scss';
+@import 'content/profile.scss';
+@import 'content/error.scss';
+@import 'content/login_success.scss';
+@import 'content/gdpr__rules.scss';
 
-@import 'templates/profile.scss';
-@import 'templates/meme.scss';
-@import 'templates/error.scss';
-@import 'templates/login_success.scss';
-@import 'templates/fixed_controls.scss';
-@import 'templates/inputs.scss';
-@import 'templates/gdpr__rules.scss';
-
-@import 'myalert.scss';
-@import 'myalert-theme.scss';
-@import 'templates/modals.scss';
-
-
+@import 'mixins/meme.scss';
+@import 'mixins/fixed_controls.scss';
+@import 'mixins/inputs.scss';
+@import 'mixins/modals.scss';
 
 html{
     padding:0;

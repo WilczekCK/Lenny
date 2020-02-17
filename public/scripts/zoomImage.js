@@ -18,7 +18,7 @@ $(window).on('load', function () {
         displayModal: function (memeInfo) {
             $('.meme__info__modal__desc--title').html(memeInfo.title)
             $('.meme__info__modal__desc--author').html(memeInfo.info)
-            $('.meme__info__modal__desc--tags').html(memeInfo.tags)
+            $('.meme__info__modal__desc--tags').html(`<span>${memeInfo.tags}</span>`)
             $('.meme__info__modal__desc--likes .pp__counter').attr('meme_id', memeInfo.id)
             $('.meme__info__modal__desc--likes .pp__counter').html(memeInfo.likes)
 
@@ -42,6 +42,8 @@ $(window).on('load', function () {
         },
         getDetailedInfo: function (memeID) {
             const memeDetails = $('.meme__container').find(`[meme_id="${memeID}"]`)[0].offsetParent;
+            console.log(memeDetails.children);
+
 
             const memeInfo = {
                 id: memeID,
