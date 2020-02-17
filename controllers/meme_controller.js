@@ -23,6 +23,9 @@ meme_controller = {
     },
     displayWaitingMemes: async _ => {
         const memesRecord = await mysql.query(`SELECT id, author_username, author_id,  tags, likes, status, added_in, meme_title, video_id  FROM images WHERE status = 0 ORDER BY added_in DESC `);
+        memesRecord.forEach(mem => {
+            mem.tagsDivider = mem.tags.split(' ');
+          })
         return memesRecord;
     },
     insertToDB: async (author_id, author_username, date, tags, meme_title, meme_video_id) => {
