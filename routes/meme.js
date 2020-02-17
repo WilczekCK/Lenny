@@ -70,7 +70,7 @@ module.exports = ({ memeRoute }) => {
         if (!is_player_logged || is_player_logged.role < 1) ctx.throw(401, {message:'User is not logged in or is not administrator'});
 
         const allMemesID = await meme.displayWaitingMemes();
-        await ctx.render('moderate', { userInfo: is_player_logged, memes: allMemesID });
+        await ctx.render('pages/moderate', { userInfo: is_player_logged, memes: allMemesID });
     })
 
     memeRoute.patch('/moderate', koaBody(), async (ctx, next) => {

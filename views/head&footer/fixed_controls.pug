@@ -7,14 +7,14 @@
             if userInfo.role > 0
                 a(class="modal__selection__admin" href='#modal__selection__admin')
                     i(class="fas fa-hammer")
-                include modals__admin.pug
+                include ../modals/modals__admin.pug
             
             a(class="logged__add__meme" href="#modal__add__meme")
                 i(class="fas fa-plus")
             a(href='/login/out')
                 i(class="fas fa-sign-out-alt")
             a(class='mobile__user__container logged' style=`background-image:url(https://a.ppy.sh/${userInfo.ingame_id}); height:20px; margin-bottom:-20px;`)
-            include modals__add__memes.pug
+            include ../modals/modals__add__memes.pug
 
         if userInfo.role == -1
             a(href='/info/banned')

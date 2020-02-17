@@ -12,7 +12,7 @@ module.exports = ({ loginRoute }) => {
     })
 
     loginRoute.get('/success', async (ctx, next) => {
-        await ctx.render('login_success');        
+        await ctx.render('pages/login_success');        
     })
 
     loginRoute.get('/out', async (ctx, next) => {

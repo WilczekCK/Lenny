@@ -10,7 +10,7 @@ module.exports = ({ homepageRoute }) => {
         const allMemesID = await meme.displayMemes(5);
 
 
-        await ctx.render('index', {userInfo: is_player_logged, memes: allMemesID});
+        await ctx.render('pages/index', {userInfo: is_player_logged, memes: allMemesID});
         next();
     });
 }

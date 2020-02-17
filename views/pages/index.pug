@@ -1,8 +1,8 @@
 extends layout.pug
-include blocks/meme.pug
+include ../content/meme.pug
 block content
-    include blocks/gdpr.pug
-    include blocks/modals__meme.pug
+    include ../head&footer/gdpr.pug
+    include ../modals/modals__meme.pug
     .meme__container()
         if(!memes)
             h3='Unfortunately, there is no memes yet'

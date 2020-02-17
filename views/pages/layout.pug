@@ -18,13 +18,13 @@ html(lang="en")
         meta(name="msapplication-TileColor" content="#191919")
         meta(name="theme-color" content="#191919")
         title Osu!memes - The best osu related memes on the web!
-        include blocks/head-link.pug
+        include ../head&footer/head-link.pug
     body
-        include blocks/menu.pug
-        include blocks/fixed_controls.pug
-        include blocks/fb_integration.pug
+        include ../content/menu.pug
+        include ../head&footer/fixed_controls.pug
+        include ../head&footer/fb_integration.pug
         #slidingNotification(data-myalert data-myalert-max="5")
         .content__container
             block content
         block footer
-            include blocks/footer.pug
+            include ../head&footer/footer.pug
