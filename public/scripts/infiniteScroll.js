@@ -103,15 +103,21 @@ $(window).on('load', _ => {
                 infiniteScroll.areMemesAvailable(resp);
             })
         },
+        tagsSpaceToComma: (tags) => {
+            let tagsString = '';
+
+            $(tags).each(index =>{
+                tagsString = tagsString + '<div class="tag">'+tags[index]+'</div>'
+            })
+
+            return tagsString;
+        },
         recognizeMemeType: function (meme){
             if(meme.video_id == null){
                 return `<div class="meme__item ${meme.tags}">
                 <img src="/uploads/${meme.id}.jpg"/>
                 <div class="details">
-                    <span class="tag">
-                        ${meme.tags}
-                    </span>
-
+                    <span>${infiniteScroll.tagsSpaceToComma(meme.tagsDivider)}</span>
                     <span class="pp__counter" meme_id=${meme.id}>
                         <i class="fab fa-pied-piper-pp"></i>
                         <div class="pp__amount">
@@ -134,9 +140,7 @@ $(window).on('load', _ => {
                 return `<div class="meme__item ${meme.tags}">
                 <iframe src='https://www.youtube.com/embed/${meme.video_id}?controls=0&modestbranding=1' frameborder='0' />
                 <div class="details">
-                    <span class="tag">
-                        ${meme.tags}
-                    </span>
+                    <span>${infiniteScroll.tagsSpaceToComma(meme.tagsDivider)}</span>
 
                     <span class="pp__counter" meme_id=${meme.id}>
                         <i class="fab fa-pied-piper-pp"></i>

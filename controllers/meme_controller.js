@@ -56,6 +56,10 @@ meme_controller = {
         const memesToLoad = parseInt(startFrom) + parseInt(loadElements) - 1;
 
         const lastMemeID = await mysql.query(`SELECT id, author_username, author_id, tags, likes, status, added_in, meme_title, video_id FROM images WHERE status = 1 ORDER BY added_in DESC LIMIT ${loadElements} OFFSET ${startFrom}`)
+        lastMemeID.forEach(meme => {
+            meme.tagsDivider = meme.tags.split(' ');
+        })
+        
         return lastMemeID;
     },
     getComments: async (meme_id) => {
