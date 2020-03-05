@@ -3,7 +3,7 @@ $(window).on('load', _ => {
     infiniteScroll = {
         loadTimes: 0,
         memesLoad: '',
-        howMuchToLoad: 5,
+        howMuchToLoad: 10,
         loadMoreSelector: $('.load__more__memes'),
         grid: $('.meme__container'),
         loadingScreen: () => {
@@ -105,7 +105,6 @@ $(window).on('load', _ => {
         },
         tagsSpaceToComma: (tags) => {
             let tagsString = '';
-
             $(tags).each(index =>{
                 tagsString = tagsString + '<div class="tag">'+tags[index]+'</div>'
             })

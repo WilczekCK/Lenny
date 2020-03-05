@@ -11,10 +11,7 @@ meme_controller = {
         const memesRecord = await mysql.query(`SELECT id, author_username, author_id, tags, likes, status, added_in, meme_title, video_id  FROM images WHERE status = 1 ORDER BY added_in DESC ${limit}`);
         
         //create array from simple string - for tags
-        memesRecord.forEach(mem => {
-          mem.tagsDivider = mem.tags.split(' ');
-        })
-        
+        memesRecord.tagsDivider = meme_controller.createArrayFromTags(memesRecord);
         return memesRecord;
     },
     displayMemesFromUser: async (user) => {
@@ -23,10 +20,17 @@ meme_controller = {
     },
     displayWaitingMemes: async _ => {
         const memesRecord = await mysql.query(`SELECT id, author_username, author_id,  tags, likes, status, added_in, meme_title, video_id  FROM images WHERE status = 0 ORDER BY added_in DESC `);
-        memesRecord.forEach(mem => {
-            mem.tagsDivider = mem.tags.split(' ');
-          })
+        memesRecord.tagsDivider = meme_controller.createArrayFromTags(memesRecord);
         return memesRecord;
+    },
+    createArrayFromTags: (meme_tags) => {
+        meme_tags.forEach(mem => {
+            if(mem.length == mem.length - 1) return 0;
+            mem.tagsDivider = mem.tags.split(' ');
+            mem.tagsDivider = _.without(mem.tagsDivider, ' ', '');
+        })
+
+        return meme_tags.tagsDivider
     },
     insertToDB: async (author_id, author_username, date, tags, meme_title, meme_video_id) => {
         const replacedTags = tags.replace(/,/g, " ");
@@ -56,14 +60,11 @@ meme_controller = {
     },
     infiniteScroll: async (loadCount, loadElements) => {
         const startFrom = (loadElements * loadCount);
-        const memesToLoad = parseInt(startFrom) + parseInt(loadElements) - 1;
 
-        const lastMemeID = await mysql.query(`SELECT id, author_username, author_id, tags, likes, status, added_in, meme_title, video_id FROM images WHERE status = 1 ORDER BY added_in DESC LIMIT ${loadElements} OFFSET ${startFrom}`)
-        lastMemeID.forEach(meme => {
-            meme.tagsDivider = meme.tags.split(' ');
-        })
+        const memesRecord = await mysql.query(`SELECT id, author_username, author_id, tags, likes, status, added_in, meme_title, video_id FROM images WHERE status = 1 ORDER BY added_in DESC LIMIT ${loadElements} OFFSET ${startFrom}`)
+        memesRecord.tagsDivider = meme_controller.createArrayFromTags(memesRecord);
         
-        return lastMemeID;
+        return memesRecord;
     },
     getComments: async (meme_id) => {
         const commentsMeme = await mysql.query(`SELECT comments.*, users.username FROM comments, users WHERE meme_id=${meme_id} AND comments.ingame_id = users.ingame_id ORDER BY date DESC`);
