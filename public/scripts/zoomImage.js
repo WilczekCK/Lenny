@@ -42,7 +42,6 @@ $(window).on('load', function () {
         },
         getDetailedInfo: function (memeID) {
             const memeDetails = $('.meme__container').find(`[meme_id="${memeID}"]`)[0].offsetParent;
-            console.log(memeDetails.children);
 
 
             const memeInfo = {
