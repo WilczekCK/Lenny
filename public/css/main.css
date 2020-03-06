@@ -1,9 +1,3 @@
-@import url(icons/css/icon-font.css);
-@import url(icons/css/icon-font-ie7.css);
-@import url(icons/css/icon-font-ie7-codes.css);
-@import url(icons/css/icon-font-embedded.css);
-@import url(icons/css/icon-font-codes.css);
-@import url(icons/css/animation.css);
 @font-face {
   font-family: 'osu-regular';
   src: url("../fonts/Aller_Rg.ttf"); }
@@ -367,6 +361,8 @@
   z-index: 99;
   box-sizing: border-box;
   left: 0; }
+  .gdpr__container h2 {
+    font-size: 16px; }
   .gdpr__container a {
     color: #ff7f66;
     text-decoration: none; }
