@@ -1,0 +1,13 @@
+# Grupa 1
+User-agent: Googlebot
+Disallow: /info/
+Disallow: /profile/
+Disallow: /error/
+Disallow: /meme/
+Disallow: /login/
+
+# Grupa 2
+User-agent: *
+Allow: /
+
+Sitemap: https://osumem.es/sitemap.xml
