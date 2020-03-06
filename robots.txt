@@ -10,4 +10,4 @@ Disallow: /login/
 User-agent: *
 Allow: /
 
-Sitemap: https://osumem.es/sitemap.xml
+Sitemap: https://www.osumem.es/sitemap.xml
