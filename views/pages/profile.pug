@@ -26,12 +26,8 @@ block content
                     ='Uploaded memes:'
                     p!=detailed.memes_count
                 .profile__container__content__stats--ppSum
-                    ='Total reach PP:'
+                    ='Total reach likes:'
                     p!=detailed.sum_likes  || '0'
-                .profile__container__content__stats--osuProfile
-                    ='OSU profile:'
-                    a(href=`https://osu.ppy.sh/u/${profile.ingame_id}` target="_blank")
-                        p='LINK'
             .profile__container__content__memes
                 +meme_profile_item(memes)
     script(src='/scripts/jquery.js')
