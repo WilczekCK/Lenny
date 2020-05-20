@@ -1,0 +1,307 @@
+.modal{
+    background:$osupoli_black !important;
+    text-align:center !important;
+    color:white !important;
+    
+    h2{
+        margin:0px;
+
+        span{
+            color:$osupoli-orange;
+        }
+    }
+
+
+
+    .tip{
+        font-size:0.8em;
+        font-style: italic !important;
+        padding-bottom:20px;
+        text-align:left;
+    }
+}
+
+#modal__meme__info{
+    max-width:80% !important;
+    padding:0px;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    background:$osupoli_black!important;
+
+    .meme__info__modal__container{
+        display:flex;
+        flex-direction:row;
+        
+        .meme__info__modal__media{
+            width:50%;
+            height:515px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            overflow-y:auto;
+
+            iframe{
+                width:100%;
+                height:100%;
+            }
+
+            img{
+                display: block;
+                width: 100%;
+                max-width: 500px; 
+                height: auto;
+                margin: auto
+            }
+        }
+
+        .meme__info__modal__desc{
+            width:50%;
+
+            @media (max-width:1000px){
+                width:100% !important;
+            }
+
+            .meme__info__modal__desc--title{
+                font-size:2.2em;
+                padding-top:20px;
+                padding-bottom:10px;
+            }
+
+            .meme__info__details{
+                display:flex;
+                justify-content:space-between;
+                padding:10px 30px;
+                align-items: center;
+
+                .meme__info__modal__desc--author{
+                    a{
+                        color:white;
+                        text-decoration:none;
+                    }
+                }
+            }
+
+            .meme__info__modal__desc--comments{
+                height:275px;
+                width:100%;
+                padding:0px 20px;
+                box-sizing: border-box;
+                margin:0 auto;
+                margin-top:15px;
+
+                .meme__info__modal__desc--comments--container{
+                    width:100%;
+                    height:95%;
+                    background:$osupoli_gray;
+                    display:flex;
+                    flex-direction:column;
+                    overflow-y:auto;
+
+                    .single__comment{
+                        width:100%;
+                        height:auto;
+                        display:flex;
+                        flex-direction:row;
+                        box-sizing: border-box;
+                        padding:10px;
+                        opacity:0;
+
+                        .single__comment__avatar{
+                            min-width:50px;
+                            height:50px;
+                            background-size:cover;
+                        }
+
+                        .single__comment__column{
+                            display:flex;
+                            flex-direction:column;
+                            max-width: 88%;
+
+                            & > * {
+                                padding-left:10px;
+                                text-align:left;
+                                width:100%;
+                            }
+
+
+                            .remove__comment{
+                                    background:none;
+                                    border:unset;
+                                    position: relative;
+                                    content: 'remove comment';
+                                    height: 15px;
+                                    color:inherit;
+                                    font-size: .6em;
+                                    text-transform: uppercase;
+                                    opacity: .3;
+                                    margin-top:5px;
+                                    cursor:pointer;
+
+                                    &:hover{
+                                        opacity:.6;
+                                    }
+                            }
+
+                            .single__comment__column__username{
+                                a{
+                                    color:inherit;
+                                    text-decoration:unset;
+                                }
+                            }
+    
+                            .single__comment__column__content{
+                                justify-content:flex-start;
+                            }
+                        }
+
+                    }
+                }
+
+                .meme__info__modal__desc--comments--input{
+                    width:100%;
+                    margin:0 auto;
+                    position:relative;
+                    background:$osupoli_gray;
+                    opacity:.8;
+                    padding:5px;
+                    box-sizing:border-box;
+
+                    form{
+                        display:flex;
+                        flex-direction:row;
+                        margin-top:-1px;
+
+                        input{
+                            flex-grow:3;
+                            background:transparent;
+                            color:white;
+                            border:unset;
+                            border-bottom:2px solid rgba(255,255,255,.7);
+                        }
+    
+                        button{
+                            flex-grow:1;
+                            background:transparent;
+                            border:unset;
+
+                            i{
+                                color:white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .meme__socials{
+            display:flex;
+            justify-content:space-between;
+            padding:0px 30px;
+            padding-top:20px;
+            align-items: center;
+            height:80px;
+            font-size:1.5em;
+
+            .meme__info__modal__desc--sharebox{
+                border: 2px solid #4267B2;
+                box-sizing: border-box;
+                padding: 5px 20px;
+                border-radius: 7px;
+                display:flex; 
+                transition: .3s all;
+
+                &:hover{
+                    background-color:#4267B2;
+                }
+
+                &::before{
+                    content:'';
+                    position:relative;
+                    right:8px;
+                    background-size:cover;
+                    background-image:url('https://cdn.usbrandcolors.com/images/logos/facebook-logo.svg');
+                    height:25px;
+                    width:25px;
+                    display:block;
+                }
+
+                a{
+                    color:white;
+                    text-decoration:none;
+                }
+            }
+
+            .meme__info__modal__desc--likes{
+                .pp__counter{
+                    display:flex;
+                }
+                
+                i{
+                    padding-right:10px;
+                }
+            }
+        }
+    }
+
+
+    @media (max-width:1000px){
+        top:95%;
+
+        .meme__info__modal__container{
+            flex-direction:column;
+
+            .meme__info__modal__media{
+                width:100%;
+                height:515px;
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                overflow-y:auto;
+    
+                iframe{
+                    width:100%;
+                    height:100%;
+                }
+    
+                img{
+                    max-width:100%;
+                    max-height:500px;
+                    width:unset;
+                }
+            }
+        }
+    }
+}
+
+
+.meme__selection{
+    display:flex;
+    flex-direction: row;
+
+    a{
+        color:white;
+        text-decoration:none;
+        padding-top:15px;
+
+        &:hover{
+            background:$osupoli-orange;
+            opacity:.9;
+        }
+    }
+    & *{
+        flex-grow:1;
+    }
+}
+
+
+#modal__add__meme__image--second{
+    padding-top:30px;
+}
+
+#modal__selection__admin{
+    a{
+        padding:0;
+    }
+}
