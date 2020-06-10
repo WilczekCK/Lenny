@@ -1,5 +1,5 @@
 const passport = require('koa-passport')
-  , OAuth2Strategy = require('passport-oauth2').Strategy;
+  , FacebookStrategy = require('passport-facebook').Strategy;
 const axios = require('axios');
 const session = require('koa-session');
 const mysql = require('./mysql_controller');
@@ -10,22 +10,19 @@ const _ = require('underscore');
 var auth_controller = auth_controller || {}
 auth_controller = {
   oAuth2: {
-    client_id: '426',
-    client_secret: 'du3b7Y3wqgaePeWX3ZkHU1k45hlg0exU7rEPdTH7',
-    callback_url: 'http://4fb1ffb9.ngrok.io/login/callback',
-    init: function () {
-      passport.use(new OAuth2Strategy({
-        authorizationURL: 'https://osu.ppy.sh/oauth/authorize',
-        tokenURL: 'https://osu.ppy.sh/oauth/token',
-        clientID: this.client_id,
-        clientSecret: this.client_secret,
-        callbackURL: this.callback_url
+    app_id: '2343223032645422',
+    secret: 'c5a0a134d962fce685a1671418f46920',
+    callback_url: 'https://5bd177b07dd7.ngrok.io/login/callback',
+    init: () => {
+      passport.use(new FacebookStrategy({
+        clientID: '2343223032645422',
+        clientSecret: 'c5a0a134d962fce685a1671418f46920',
+        callbackURL: 'https://5bd177b07dd7.ngrok.io/login/callback'
       },
-        function (accessToken, refreshToken, cd, profile, done) {
-          done(null, { accessToken: accessToken, refreshToken: refreshToken });
-        }
-      ));
-
+      function (accessToken, refreshToken, cd, profile, done) {
+        done(null, { accessToken: accessToken, refreshToken: refreshToken });
+      }
+    ));
       passport.serializeUser(function (user, done) {
         done(null, user);
       });
@@ -33,33 +30,19 @@ auth_controller = {
       passport.deserializeUser(function (user, done) {
         done(null, user);
       });
+      }
     },
     convertToken: async (main_sess, token, refreshToken) => {
       axios({
         method: 'GET',
-        url: 'https://osu.ppy.sh/api/v2/me',
-        headers: {
-          Authorization: 'Bearer ' + token
-        }
+        url: `https://graph.facebook.com/me?fields=id,name&access_token=${token}`,
       }).then( async ({data}) => {
-        const inGame = {
-          id: data.id,
-          username: data.username,
-          country: data.country,
-          joined: data.join_date,
-          avatar_url: data.avatar_url,
-          cover_url: data.cover_url,
-          playmode: data.playmode,
-          cover_img: data.cover_url,
-          country: data.country.code,
-          refresh_token : refreshToken, 
-        }
+        console.log(data)
 
-        await user.creation(inGame);
-        await auth_controller.sess.status(main_sess, inGame);
+       // await user.creation(inGame);
+        //await auth_controller.sess.status(main_sess, inGame);
       });
-    }
-  },
+    },
   sess: {
     status: async (main_sess, inGame) => {
       if(_.isEmpty(main_sess.passport)) return 0;
