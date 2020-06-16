@@ -9,7 +9,7 @@ module.exports = ({ loginRoute }) => {
 
     loginRoute.get('/callback', passport.authenticate('facebook'), async (ctx, next) => {
         await auth.convertToken(ctx.session, ctx.req.user.accessToken);
-        //await ctx.redirect('success')
+        await ctx.redirect('success')
     })
 
     loginRoute.get('/success', async (ctx, next) => {
