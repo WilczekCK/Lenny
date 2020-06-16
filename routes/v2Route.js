@@ -6,7 +6,7 @@ module.exports = ({ v2Route }) => {
     const koaBody = require('koa-body')
     
     v2Route.get('/', koaBody(), async (ctx, next) => {
-        ctx.body = 'Working route';
+        await ctx.render('v2/index')
         next();
     });
 }
