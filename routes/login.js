@@ -8,10 +8,8 @@ module.exports = ({ loginRoute }) => {
     loginRoute.get('/', passport.authenticate('facebook'));
 
     loginRoute.get('/callback', passport.authenticate('facebook'), async (ctx, next) => {
-        console.log(ctx.session)   
-        
-        await auth.convertToken(ctx.session, ctx.req.user.accessToken, ctx.req.user.refreshToken);
-        await ctx.redirect('success')
+        await auth.convertToken(ctx.session, ctx.req.user.accessToken);
+        //await ctx.redirect('success')
     })
 
     loginRoute.get('/success', async (ctx, next) => {

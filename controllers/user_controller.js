@@ -4,18 +4,17 @@ const moment = require('moment')
 
 var user_controller = user_controller || {}
 user_controller = {
-    creation: async (inGame) => {
-        const [results] = await mysql.query(`SELECT * FROM users WHERE ingame_id = ${inGame.id}`);
-        if(!results) return user_controller.newPlayer(inGame);
+    creation: async (userInfo) => {
+        const [results] = await mysql.query(`SELECT * FROM users WHERE fb_id = ${userInfo.fb_id}`);
+        if(!results) return user_controller.newPlayer(userInfo);
     },
-    newPlayer: async (inGame) => {
-        mysql.query(`SELECT * FROM users WHERE ingame_id = ${inGame.id}`);
+    newPlayer: async (userInfo) => {
         await mysql.insert(`users`,
-        `ingame_id, username, registered, role, refresh_token, cover_url, country`,
-        `${inGame.id}, '${inGame.username}','${moment().format('YYYY-MM-DD')}', 0, '${inGame.refresh_token}', '${inGame.cover_url}', '${inGame.country}'`);
+        `fb_id, username, registered, role, token`,
+        `${userInfo.fb_id}, '${userInfo.username}','${moment().format('YYYY-MM-DD')}', 0, '${userInfo.token}'`);
     },
     find: async (ingame_id) => {
-        const profileInfo = await mysql.query(`SELECT * FROM users WHERE Ingame_id = ${ingame_id}`);
+        const profileInfo = await mysql.query(`SELECT * FROM users WHERE id = ${ingame_id}`);
         if(_.isEmpty(profileInfo)) return false;
         else return profileInfo;
     },

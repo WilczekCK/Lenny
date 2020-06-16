@@ -6,7 +6,8 @@ const Pug = require('koa-pug')
 const serve = require('koa-static');
 var methodOverride = require('koa-methodoverride');
 const passport = require('koa-passport');
-const session = require('koa-session');
+const session = require('koa-session')
+, FacebookStrategy = require('passport-facebook').Strategy;
 const koaBody = require('koa-body');
 const auth = require('./controllers/auth_controller');
 const fs = require('fs');
@@ -41,6 +42,7 @@ app.use(session(app));
 
 const myLogger = async function(ctx, next){
   const myLogger = await auth.sess.status(ctx.session)
+  
   if(myLogger){
     ctx.req.body = myLogger;
   }else{
