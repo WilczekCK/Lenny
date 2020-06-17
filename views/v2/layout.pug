@@ -1,13 +1,14 @@
 html
     head
         title Vue Meme Recreation
-        include scripts
-        block scripts
     body
         header
             include header
         main
             include beforeBodyScripts
-            block content
+            #app
+                block content
         footer
             include footer
+            include scripts
+            block scripts

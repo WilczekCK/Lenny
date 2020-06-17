@@ -12,6 +12,7 @@ const koaBody = require('koa-body');
 const auth = require('./controllers/auth_controller');
 const fs = require('fs');
 
+
 const path = require('path')
 const app = new Koa();
 //dependencies
@@ -78,6 +79,7 @@ app.on('error', (err, ctx) => {
 //Addons
 app.use(logger());
 app.use(serve(__dirname + '/public'));
+app.use(serve(__dirname + '/dist'));
 
 const pug = new Pug({
   viewPath: path.resolve(__dirname, './views'),

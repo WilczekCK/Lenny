@@ -7,7 +7,8 @@
     "init": "node app.js",
     "test": "jest --watchAll --maxWorkers=1",
     "dev": "nodemon app.js",
-    "sass": "node-sass --include-path scss public/scss/main.scss public/css/main.css"
+    "sass": "node-sass --include-path scss public/scss/main.scss public/css/main.css",
+    "build": "webpack --config build/webpack.config.dev.js"
   },
   "keywords": [
     "osu",
@@ -22,6 +23,7 @@
     "@koa/multer": "^2.0.1",
     "axios": "^0.19.0",
     "connect": "^3.7.0",
+    "express-vue-builder": "^2.15.2",
     "facebook-sdk": "^0.3.3",
     "indexeddb": "0.0.0",
     "isotope-layout": "^3.0.6",
@@ -50,12 +52,44 @@
     "nodemon": "^2.0.0",
     "passport-facebook": "^3.0.0",
     "passport-oauth2": "^1.5.0",
-    "underscore": "^1.9.1"
+    "underscore": "^1.9.1",
+    "vue": "^2.6.11",
+    "vue-builder": "^1.7.2",
+    "vue-router": "^3.3.4",
+    "vue-server-renderer": "^2.6.11"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
+    "@babel/plugin-proposal-class-properties": "~7.3",
+    "@babel/plugin-proposal-decorators": "~7.3",
+    "@babel/plugin-proposal-json-strings": "~7.2",
+    "@babel/plugin-syntax-dynamic-import": "~7.2",
+    "@babel/plugin-syntax-import-meta": "~7.2",
+    "@babel/preset-env": "~7.3",
     "@babel/register": "^7.7.0",
+    "babel-loader": "~8.0",
+    "compression-webpack-plugin": "~2.0",
+    "cross-env": "~5.2",
+    "css-loader": "^0.28.11",
+    "friendly-errors-webpack-plugin": "~1.7",
+    "html-webpack-plugin": "~3.2",
     "jest": "^24.9.0",
-    "supertest": "^4.0.2"
+    "mini-css-extract-plugin": "~0.5",
+    "node-sass": "~4.11",
+    "optimize-css-assets-webpack-plugin": "~3.2",
+    "pug": "^3.0.0",
+    "pug-plain-loader": "^1.0.0",
+    "sass-loader": "~7.1",
+    "supertest": "^4.0.2",
+    "uglifyjs-webpack-plugin": "~1.2",
+    "vue-loader": "^15.6.4",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "~4.29",
+    "webpack-bundle-analyzer": "~3.0",
+    "webpack-cli": "~3.2",
+    "webpack-dev-server": "~3.1",
+    "webpack-hot-middleware": "~2.24",
+    "webpack-merge": "~4.2"
   }
 }

@@ -2,6 +2,8 @@ const auth = require('../controllers/auth_controller');
 const passport = require('koa-passport')
 , FacebookStrategy = require('passport-facebook').Strategy;
 const session = require('koa-session');
+
+
 module.exports = ({ loginRoute }) => {
     auth.oAuth2.init();
 
