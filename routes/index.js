@@ -6,12 +6,15 @@ module.exports = ({ homepageRoute }) => {
     const koaBody = require('koa-body')
     
     homepageRoute.get('/', koaBody(), async (ctx, next) => {
-        const is_player_logged = ctx.req.body[0];
+        // const is_player_logged = ctx.req.body[0];
         const allMemesID = await meme.displayMemes(10);
 
 
-        await ctx.render('pages/index', {userInfo: is_player_logged, memes: allMemesID});
-        next();
+        // await ctx.render('pages/index', {userInfo: is_player_logged, memes: allMemesID});
+        // next();
+        
+        ctx.body = allMemesID;
+        next()
     });
 }
 
