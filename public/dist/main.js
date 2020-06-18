@@ -461,7 +461,19 @@ eval("__webpack_require__.r(__webpack_exports__);\n//\n//\n//\n//\n\n/* harmony 
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);\n//\n//\n//\n//\n//\n//\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n    data: () => {\n        return {\n            memes: null\n        }\n    },\n    mounted () {\n        axios__WEBPACK_IMPORTED_MODULE_0___default.a\n            .get('http://localhost:3000/')\n            .then(response => (this.memes = response))\n    }\n});\n\n\n//# sourceURL=webpack:///./vue/components/meme.vue?./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _mixins_meme_item_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mixins/meme-item.vue */ \"./vue/components/mixins/meme-item.vue\");\n//\n//\n//\n//\n//\n\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n    data: () => {\n        return {\n            memes: null\n        }\n    },\n    mounted () {\n        axios__WEBPACK_IMPORTED_MODULE_0___default.a\n            .get('http://localhost:3000/')\n            .then(response => (this.memes = response))\n    },\n    components:{\n        memeItem: _mixins_meme_item_vue__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\n    }\n});\n\n\n//# sourceURL=webpack:///./vue/components/meme.vue?./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/index.js?!./vue/components/mixins/meme-item.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib??vue-loader-options!./vue/components/mixins/meme-item.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n    props: ['memeDetails']\n});\n\n\n//# sourceURL=webpack:///./vue/components/mixins/meme-item.vue?./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
@@ -497,7 +509,19 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"div\",\n    _vm._l(_vm.memes.data, function(post) {\n      return _c(\"div\", [_c(\"p\", [_vm._v(_vm._s(post.meme_title))])])\n    }),\n    0\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./vue/components/meme.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/pug-plain-loader!./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"div\",\n    { staticClass: \"meme__container\" },\n    _vm._l(_vm.memes.data, function(post) {\n      return _c(\"memeItem\", { key: post.id, attrs: { memeDetails: post } })\n    }),\n    1\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./vue/components/meme.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/pug-plain-loader!./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/pug-plain-loader/index.js!./node_modules/vue-loader/lib/index.js?!./vue/components/mixins/meme-item.vue?vue&type=template&id=68c85605&lang=pug&":
+/*!***************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/pug-plain-loader!./node_modules/vue-loader/lib??vue-loader-options!./vue/components/mixins/meme-item.vue?vue&type=template&id=68c85605&lang=pug& ***!
+  \***************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\"div\", { staticClass: \"meme__item\" }, [\n    _vm.memeDetails.video_id\n      ? _c(\"iframe\", {\n          attrs: {\n            src:\n              \"http://www.youtube.com/embed/\" +\n              _vm.memeDetails.video_id +\n              \"}?controls=0&modestbranding=1\",\n            frameborder: \"0\"\n          }\n        })\n      : _c(\"img\", {\n          attrs: { src: \"/uploads/\" + _vm.memeDetails.id + \".jpg\" }\n        }),\n    _c(\"div\", { staticClass: \"details\" }, [\n      _c(\n        \"span\",\n        { staticClass: \"pp__counter\", attrs: { meme_id: _vm.memeDetails.id } },\n        [\n          _c(\"i\", { staticClass: \"fab fa-pied-piper-pp\" }),\n          _c(\"div\", { staticClass: \"pp__amount\" }, [\n            _vm._v(_vm._s(_vm.memeDetails.likes))\n          ])\n        ]\n      ),\n      _c(\"span\", { staticClass: \"title\" }, [\n        _vm._v(_vm._s(_vm.memeDetails.meme_title))\n      ]),\n      _c(\"span\", { staticClass: \"info\" }, [\n        _vm._v(_vm._s(_vm.memeDetails.author_username))\n      ])\n    ])\n  ])\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./vue/components/mixins/meme-item.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/pug-plain-loader!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
@@ -665,6 +689,42 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _nod
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_pug_plain_loader_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_meme_vue_vue_type_template_id_37012be2_lang_pug___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../node_modules/pug-plain-loader!../../node_modules/vue-loader/lib??vue-loader-options!./meme.vue?vue&type=template&id=37012be2&lang=pug& */ \"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/pug-plain-loader/index.js!./node_modules/vue-loader/lib/index.js?!./vue/components/meme.vue?vue&type=template&id=37012be2&lang=pug&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_pug_plain_loader_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_meme_vue_vue_type_template_id_37012be2_lang_pug___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_pug_plain_loader_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_meme_vue_vue_type_template_id_37012be2_lang_pug___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n\n//# sourceURL=webpack:///./vue/components/meme.vue?");
+
+/***/ }),
+
+/***/ "./vue/components/mixins/meme-item.vue":
+/*!*********************************************!*\
+  !*** ./vue/components/mixins/meme-item.vue ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _meme_item_vue_vue_type_template_id_68c85605_lang_pug___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./meme-item.vue?vue&type=template&id=68c85605&lang=pug& */ \"./vue/components/mixins/meme-item.vue?vue&type=template&id=68c85605&lang=pug&\");\n/* harmony import */ var _meme_item_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./meme-item.vue?vue&type=script&lang=js& */ \"./vue/components/mixins/meme-item.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ \"./node_modules/vue-loader/lib/runtime/componentNormalizer.js\");\n\n\n\n\n\n/* normalize component */\n\nvar component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(\n  _meme_item_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  _meme_item_vue_vue_type_template_id_68c85605_lang_pug___WEBPACK_IMPORTED_MODULE_0__[\"render\"],\n  _meme_item_vue_vue_type_template_id_68c85605_lang_pug___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"],\n  false,\n  null,\n  null,\n  null\n  \n)\n\n/* hot reload */\nif (false) { var api; }\ncomponent.options.__file = \"vue/components/mixins/meme-item.vue\"\n/* harmony default export */ __webpack_exports__[\"default\"] = (component.exports);\n\n//# sourceURL=webpack:///./vue/components/mixins/meme-item.vue?");
+
+/***/ }),
+
+/***/ "./vue/components/mixins/meme-item.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./vue/components/mixins/meme-item.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_index_js_vue_loader_options_meme_item_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib??vue-loader-options!./meme-item.vue?vue&type=script&lang=js& */ \"./node_modules/vue-loader/lib/index.js?!./vue/components/mixins/meme-item.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_vue_loader_lib_index_js_vue_loader_options_meme_item_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[\"default\"]); \n\n//# sourceURL=webpack:///./vue/components/mixins/meme-item.vue?");
+
+/***/ }),
+
+/***/ "./vue/components/mixins/meme-item.vue?vue&type=template&id=68c85605&lang=pug&":
+/*!*************************************************************************************!*\
+  !*** ./vue/components/mixins/meme-item.vue?vue&type=template&id=68c85605&lang=pug& ***!
+  \*************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_pug_plain_loader_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_meme_item_vue_vue_type_template_id_68c85605_lang_pug___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/pug-plain-loader!../../../node_modules/vue-loader/lib??vue-loader-options!./meme-item.vue?vue&type=template&id=68c85605&lang=pug& */ \"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/pug-plain-loader/index.js!./node_modules/vue-loader/lib/index.js?!./vue/components/mixins/meme-item.vue?vue&type=template&id=68c85605&lang=pug&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_pug_plain_loader_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_meme_item_vue_vue_type_template_id_68c85605_lang_pug___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_pug_plain_loader_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_meme_item_vue_vue_type_template_id_68c85605_lang_pug___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n\n//# sourceURL=webpack:///./vue/components/mixins/meme-item.vue?");
 
 /***/ }),
 
