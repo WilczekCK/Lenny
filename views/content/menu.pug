@@ -3,8 +3,8 @@
         .menu__container__wrap__logo
             h1(class="logo")
                 a(href="/")
-                    span=`osu!`
-                    =`memes`
+                    i(class="fas fa-poo")
+                    ="Semem"
         .menu__container__wrap__menu
             ul.filters
                 li
@@ -21,7 +21,7 @@
                     i(id="tag__finder__icon" class="fas fa-search")
             .menu__container__wrap__menu__user
                 if userInfo
-                    a(href=`/profile/${userInfo.ingame_id}` data-attr-user-id=`${userInfo.ingame_id}`)
-                        img(src=`https://a.ppy.sh/${userInfo.ingame_id}` alt=`${userInfo.username}_avatar`)
+                    a(href=`/profile/${userInfo.id}` data-attr-user-id=`${userInfo.id}`)
+                        img(src=`https://a.ppy.sh/${userInfo.id}` alt=`${userInfo.id}_avatar`)
                 else
                     a.menu__auth__button(href="/login")="Login with osu!"

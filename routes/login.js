@@ -1,14 +1,17 @@
 const auth = require('../controllers/auth_controller');
 const passport = require('koa-passport')
+, FacebookStrategy = require('passport-facebook').Strategy;
 const session = require('koa-session');
+
+
 module.exports = ({ loginRoute }) => {
     auth.oAuth2.init();
 
-    loginRoute.get('/', passport.authenticate('oauth2'));
+    loginRoute.get('/', passport.authenticate('facebook'));
 
-    loginRoute.get('/callback', passport.authenticate('oauth2'), async (ctx, next) => {
-            await auth.oAuth2.convertToken(ctx.session, ctx.req.user.accessToken, ctx.req.user.refreshToken);
-            await ctx.redirect('success')
+    loginRoute.get('/callback', passport.authenticate('facebook'), async (ctx, next) => {
+        await auth.convertToken(ctx.session, ctx.req.user.accessToken);
+        await ctx.redirect('success')
     })
 
     loginRoute.get('/success', async (ctx, next) => {

@@ -6,10 +6,12 @@ const Pug = require('koa-pug')
 const serve = require('koa-static');
 var methodOverride = require('koa-methodoverride');
 const passport = require('koa-passport');
-const session = require('koa-session');
+const session = require('koa-session')
+, FacebookStrategy = require('passport-facebook').Strategy;
 const koaBody = require('koa-body');
 const auth = require('./controllers/auth_controller');
 const fs = require('fs');
+
 
 const path = require('path')
 const app = new Koa();
@@ -26,6 +28,7 @@ const memeRoute = new Router({ prefix: '/meme' });
 const errorRoute = new Router({ prefix: '/error' });
 const profileRoute = new Router({ prefix: '/profile' });
 const infoRoute = new Router({ prefix: '/info' });
+const v2Route = new Router({ prefix: '/v2' });
 
 require('./routes/index')({ homepageRoute });
 require('./routes/login')({ loginRoute });
@@ -33,6 +36,7 @@ require('./routes/meme')({ memeRoute });
 require('./routes/error')({ errorRoute });
 require('./routes/profile')({ profileRoute });
 require('./routes/info')({ infoRoute });
+require('./routes/v2Route')({ v2Route });
 //Router
 
 //SESSIONS
@@ -41,6 +45,7 @@ app.use(session(app));
 
 const myLogger = async function(ctx, next){
   const myLogger = await auth.sess.status(ctx.session)
+  
   if(myLogger){
     ctx.req.body = myLogger;
   }else{
@@ -74,6 +79,7 @@ app.on('error', (err, ctx) => {
 //Addons
 app.use(logger());
 app.use(serve(__dirname + '/public'));
+app.use(serve(__dirname + '/dist'));
 
 const pug = new Pug({
   viewPath: path.resolve(__dirname, './views'),
@@ -110,6 +116,9 @@ app.use(profileRoute.allowedMethods());
 
 app.use(infoRoute.routes());
 app.use(infoRoute.allowedMethods());
+
+app.use(v2Route.routes());
+app.use(v2Route.allowedMethods());
 //Routes
 
 const server = app.listen(3000);

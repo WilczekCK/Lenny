@@ -1,5 +1,5 @@
 const passport = require('koa-passport')
-  , OAuth2Strategy = require('passport-oauth2').Strategy;
+  , FacebookStrategy = require('passport-facebook').Strategy;
 const axios = require('axios');
 const session = require('koa-session');
 const mysql = require('./mysql_controller');
@@ -10,22 +10,19 @@ const _ = require('underscore');
 var auth_controller = auth_controller || {}
 auth_controller = {
   oAuth2: {
-    client_id: '426',
-    client_secret: 'du3b7Y3wqgaePeWX3ZkHU1k45hlg0exU7rEPdTH7',
-    callback_url: 'http://4fb1ffb9.ngrok.io/login/callback',
-    init: function () {
-      passport.use(new OAuth2Strategy({
-        authorizationURL: 'https://osu.ppy.sh/oauth/authorize',
-        tokenURL: 'https://osu.ppy.sh/oauth/token',
-        clientID: this.client_id,
-        clientSecret: this.client_secret,
-        callbackURL: this.callback_url
+    app_id: '2343223032645422',
+    secret: 'c5a0a134d962fce685a1671418f46920',
+    callback_url: 'https://fa94ec332721.ngrok.io/login/callback',
+    init: () => {
+      passport.use(new FacebookStrategy({
+        clientID: '2343223032645422',
+        clientSecret: 'c5a0a134d962fce685a1671418f46920',
+        callbackURL: 'https://fa94ec332721.ngrok.io/login/callback'
       },
-        function (accessToken, refreshToken, cd, profile, done) {
-          done(null, { accessToken: accessToken, refreshToken: refreshToken });
-        }
-      ));
-
+      function (accessToken, refreshToken, cd, profile, done) {
+        done(null, { accessToken: accessToken, refreshToken: refreshToken });
+      }
+    ));
       passport.serializeUser(function (user, done) {
         done(null, user);
       });
@@ -33,44 +30,36 @@ auth_controller = {
       passport.deserializeUser(function (user, done) {
         done(null, user);
       });
+      }
     },
-    convertToken: async (main_sess, token, refreshToken) => {
+    convertToken: async (main_sess, token) => {
       axios({
         method: 'GET',
-        url: 'https://osu.ppy.sh/api/v2/me',
-        headers: {
-          Authorization: 'Bearer ' + token
-        }
+        url: `https://graph.facebook.com/me?fields=id,email,short_name&access_token=${token}`,
       }).then( async ({data}) => {
-        const inGame = {
-          id: data.id,
-          username: data.username,
-          country: data.country,
-          joined: data.join_date,
-          avatar_url: data.avatar_url,
-          cover_url: data.cover_url,
-          playmode: data.playmode,
-          cover_img: data.cover_url,
-          country: data.country.code,
-          refresh_token : refreshToken, 
+        var data = {
+          username: data.short_name,
+          fb_id: data.id,
+          email: data.email,
+          token: token
         }
-
-        await user.creation(inGame);
-        await auth_controller.sess.status(main_sess, inGame);
+        await user.creation(data, token);
+        await auth_controller.sess.status(main_sess, data);
       });
-    }
-  },
-  sess: {
-    status: async (main_sess, inGame) => {
-      if(_.isEmpty(main_sess.passport)) return 0;
-      const findRefreshToken = await mysql.query(`SELECT * FROM users WHERE refresh_token = '${main_sess.passport.user.refreshToken}'`);
-
-      if(_.isEmpty(findRefreshToken)) return await auth_controller.sess.refresh(main_sess.passport.user.refreshToken, inGame);
-      return findRefreshToken;
     },
-    refresh: async (refreshToken, inGame) => {
-      if(_.isEmpty(inGame) || _.isEmpty(refreshToken)) return 0;
-      await mysql.update(`users`, `refresh_token = '${refreshToken}'`, `ingame_id = ${inGame.id}`);
+  sess: {
+    status: async ({passport}, data) => {
+      if(_.isEmpty(passport)) return 0;
+      
+      const {accessToken} = passport.user;
+      const findOldToken = await mysql.query(`SELECT * FROM users WHERE token = '${accessToken}'`);
+
+      if(_.isEmpty(findOldToken)) return await auth_controller.sess.refresh(accessToken, data);
+      return findOldToken;
+    },
+    refresh: async (token, data) => {
+      if(_.isEmpty(data) || _.isEmpty(token)) return 0;
+      await mysql.update(`users`, `token = '${token}'`, `fb_id = ${data.fb_id}`);
     }
   }, 
   logout: function(main_sess){

@@ -1,4 +1,5 @@
 mixin meme_item(meme)
+    -console.log(meme)
     .meme__item(class!=meme.tags)
         if meme.video_id != NULL
             iframe(src=`http://www.youtube.com/embed/${meme.video_id}?controls=0&modestbranding=1` frameborder="0")
