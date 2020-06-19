@@ -15,11 +15,11 @@ export default {
     },
     mounted () {
         axios
-            .get('http://localhost:3000/')
+            .post('http://localhost:3000/meme')
             .then(response => (this.memes = response))
     },
     components:{
-        memeItem
+        memeItem: memeItem
     }
 }
 </script>

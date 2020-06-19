@@ -23,6 +23,17 @@ module.exports = ({ memeRoute }) => {
         await ctx.render('newMeme', true);
     });
 
+    memeRoute.post('/', async (ctx, next) => {
+        const allMemesID = await meme.displayMemes(10);
+
+
+        // await ctx.render('pages/index', {userInfo: is_player_logged, memes: allMemesID});
+        // next();
+        
+        ctx.body = allMemesID;
+        next()
+    });
+
     memeRoute.get('/add', async (ctx, next) => {
         const is_player_logged = ctx.req.body[0];
         if (!is_player_logged) ctx.throw(400, 'User is not logged in');

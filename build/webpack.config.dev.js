@@ -1,7 +1,7 @@
 'use strict'
 const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const PrerenderSPAPlugin = require('prerender-spa-plugin')
 
 module.exports = {
   mode: 'development',
@@ -28,6 +28,10 @@ module.exports = {
         use: 'vue-loader'
       },
       {
+        test: /\.(html)$/i,
+        loader: 'file-loader'
+      } ,     
+      {
         test: /\.pug$/,
         oneOf: [{
             resourceQuery: /^\?vue/,
@@ -43,6 +47,12 @@ module.exports = {
     ]
   },
   plugins: [
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new PrerenderSPAPlugin({
+      // Required - The path to the webpack-outputted app to prerender.
+      staticDir: path.join(__dirname, '../public/views'),
+      // Required - Routes to render.
+      routes: [ '/', '/index', '/home', '/memes' ],
+    })
   ]
 }
