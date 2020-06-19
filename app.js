@@ -126,12 +126,12 @@ app.use(passport.session());
 app.use(spa(path.join(__dirname, './views/v2/'), {
    index: 'index.html',
    routeBase: '/',
-   routes: ['/memes']
+   routes: ['/memes', '/user']
 }));
 
 app.use(ctx => {
   if (ctx.status == 404) {
-    ctx.body = 'Nothing Here.';
+    ctx.body = 'Nothing Here';
   }
 });
 
