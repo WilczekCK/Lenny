@@ -441,6 +441,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n//\n//\n//\n//\n//\n//\n//\n/
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/index.js?!./vue/components/NotFound.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib??vue-loader-options!./vue/components/NotFound.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n//\n//\n//\n//\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n});\n\n\n//# sourceURL=webpack:///./vue/components/NotFound.vue?./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/index.js?!./vue/components/home.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib??vue-loader-options!./vue/components/home.vue?vue&type=script&lang=js& ***!
@@ -461,7 +473,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n//\n//\n//\n//\n\n/* harmony 
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _mixins_meme_item_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mixins/meme-item.vue */ \"./vue/components/mixins/meme-item.vue\");\n//\n//\n//\n//\n//\n\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n    data: () => {\n        return {\n            memes: null\n        }\n    },\n    mounted () {\n        axios__WEBPACK_IMPORTED_MODULE_0___default.a\n            .get('http://localhost:3000/')\n            .then(response => (this.memes = response))\n    },\n    components:{\n        memeItem: _mixins_meme_item_vue__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\n    }\n});\n\n\n//# sourceURL=webpack:///./vue/components/meme.vue?./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _mixins_meme_item_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mixins/meme-item.vue */ \"./vue/components/mixins/meme-item.vue\");\n//\n//\n//\n//\n//\n\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n    data: () => {\n        return {\n            memes: null\n        }\n    },\n    mounted () {\n        axios__WEBPACK_IMPORTED_MODULE_0___default.a\n            .post('http://localhost:3000/meme')\n            .then(response => (this.memes = response))\n    },\n    components:{\n        memeItem: _mixins_meme_item_vue__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\n    }\n});\n\n\n//# sourceURL=webpack:///./vue/components/meme.vue?./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
@@ -485,7 +497,19 @@ eval("__webpack_require__.r(__webpack_exports__);\n//\n//\n//\n//\n//\n//\n//\n/
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"div\",\n    [\n      _c(\"h1\", [_vm._v(\"Hello App!\")]),\n      _c(\n        \"p\",\n        [\n          _c(\"router-link\", { attrs: { to: \"/foo\" } }, [_vm._v(\"go to foo\")]),\n          _c(\"router-link\", { attrs: { to: \"/bar\" } }, [_vm._v(\"go to bar\")])\n        ],\n        1\n      ),\n      _c(\"router-view\")\n    ],\n    1\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./vue/App.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/pug-plain-loader!./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"div\",\n    [\n      _c(\"h1\", [_vm._v(\"Hello App!\")]),\n      _c(\n        \"p\",\n        [\n          _c(\"router-link\", { attrs: { to: \"/memes\" } }, [\n            _vm._v(\"go to memes\")\n          ]),\n          _c(\"router-link\", { attrs: { to: \"/home\" } }, [_vm._v(\"go to home\")])\n        ],\n        1\n      ),\n      _c(\"router-view\")\n    ],\n    1\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./vue/App.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/pug-plain-loader!./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/pug-plain-loader/index.js!./node_modules/vue-loader/lib/index.js?!./vue/components/NotFound.vue?vue&type=template&id=1734427e&lang=pug&":
+/*!*******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/pug-plain-loader!./node_modules/vue-loader/lib??vue-loader-options!./vue/components/NotFound.vue?vue&type=template&id=1734427e&lang=pug& ***!
+  \*******************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\"h1\", [_vm._v(\"404 page not found\")])\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./vue/components/NotFound.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/pug-plain-loader!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
@@ -617,6 +641,42 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _nod
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createApp\", function() { return createApp; });\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n/* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./App.vue */ \"./vue/App.vue\");\n/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./router */ \"./vue/router.js\");\n// app.js\n\n\n\n\nfunction createApp () {\n  // create router instance\n  const router = Object(_router__WEBPACK_IMPORTED_MODULE_2__[\"createRouter\"])()\n\n  const app = new vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"]({\n    // inject router into root Vue instance\n    router,\n    render: h => h(_App_vue__WEBPACK_IMPORTED_MODULE_1__[\"default\"])\n  })\n\n  // return both the app and the router\n  return { app, router }\n}\n\n\n//# sourceURL=webpack:///./vue/app.js?");
+
+/***/ }),
+
+/***/ "./vue/components/NotFound.vue":
+/*!*************************************!*\
+  !*** ./vue/components/NotFound.vue ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _NotFound_vue_vue_type_template_id_1734427e_lang_pug___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NotFound.vue?vue&type=template&id=1734427e&lang=pug& */ \"./vue/components/NotFound.vue?vue&type=template&id=1734427e&lang=pug&\");\n/* harmony import */ var _NotFound_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NotFound.vue?vue&type=script&lang=js& */ \"./vue/components/NotFound.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ \"./node_modules/vue-loader/lib/runtime/componentNormalizer.js\");\n\n\n\n\n\n/* normalize component */\n\nvar component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(\n  _NotFound_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  _NotFound_vue_vue_type_template_id_1734427e_lang_pug___WEBPACK_IMPORTED_MODULE_0__[\"render\"],\n  _NotFound_vue_vue_type_template_id_1734427e_lang_pug___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"],\n  false,\n  null,\n  null,\n  null\n  \n)\n\n/* hot reload */\nif (false) { var api; }\ncomponent.options.__file = \"vue/components/NotFound.vue\"\n/* harmony default export */ __webpack_exports__[\"default\"] = (component.exports);\n\n//# sourceURL=webpack:///./vue/components/NotFound.vue?");
+
+/***/ }),
+
+/***/ "./vue/components/NotFound.vue?vue&type=script&lang=js&":
+/*!**************************************************************!*\
+  !*** ./vue/components/NotFound.vue?vue&type=script&lang=js& ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_index_js_vue_loader_options_NotFound_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-loader/lib??vue-loader-options!./NotFound.vue?vue&type=script&lang=js& */ \"./node_modules/vue-loader/lib/index.js?!./vue/components/NotFound.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_vue_loader_lib_index_js_vue_loader_options_NotFound_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[\"default\"]); \n\n//# sourceURL=webpack:///./vue/components/NotFound.vue?");
+
+/***/ }),
+
+/***/ "./vue/components/NotFound.vue?vue&type=template&id=1734427e&lang=pug&":
+/*!*****************************************************************************!*\
+  !*** ./vue/components/NotFound.vue?vue&type=template&id=1734427e&lang=pug& ***!
+  \*****************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_pug_plain_loader_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_NotFound_vue_vue_type_template_id_1734427e_lang_pug___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../node_modules/pug-plain-loader!../../node_modules/vue-loader/lib??vue-loader-options!./NotFound.vue?vue&type=template&id=1734427e&lang=pug& */ \"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/pug-plain-loader/index.js!./node_modules/vue-loader/lib/index.js?!./vue/components/NotFound.vue?vue&type=template&id=1734427e&lang=pug&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_pug_plain_loader_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_NotFound_vue_vue_type_template_id_1734427e_lang_pug___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_pug_plain_loader_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_NotFound_vue_vue_type_template_id_1734427e_lang_pug___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n\n//# sourceURL=webpack:///./vue/components/NotFound.vue?");
 
 /***/ }),
 
@@ -760,7 +820,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _app
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createRouter\", function() { return createRouter; });\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ \"./node_modules/vue-router/dist/vue-router.esm.js\");\n/* harmony import */ var _components_home_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/home.vue */ \"./vue/components/home.vue\");\n/* harmony import */ var _components_meme_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/meme.vue */ \"./vue/components/meme.vue\");\n\n\n\n\n\n\nvue__WEBPACK_IMPORTED_MODULE_0__[\"default\"].use(vue_router__WEBPACK_IMPORTED_MODULE_1__[\"default\"])\n\nfunction createRouter () {\n  return new vue_router__WEBPACK_IMPORTED_MODULE_1__[\"default\"]({\n    mode: 'history',\n    routes: [\n      { path: '/foo', component: _components_home_vue__WEBPACK_IMPORTED_MODULE_2__[\"default\"] },\n      { path: '/bar', component: _components_meme_vue__WEBPACK_IMPORTED_MODULE_3__[\"default\"] },\n    ]\n  })\n}\n\n\n//# sourceURL=webpack:///./vue/router.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createRouter\", function() { return createRouter; });\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ \"./node_modules/vue-router/dist/vue-router.esm.js\");\n/* harmony import */ var _components_home_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/home.vue */ \"./vue/components/home.vue\");\n/* harmony import */ var _components_meme_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/meme.vue */ \"./vue/components/meme.vue\");\n/* harmony import */ var _components_NotFound_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/NotFound.vue */ \"./vue/components/NotFound.vue\");\n\n\n\n\n\n\n\nvue__WEBPACK_IMPORTED_MODULE_0__[\"default\"].use(vue_router__WEBPACK_IMPORTED_MODULE_1__[\"default\"])\n\nfunction createRouter () {\n  return new vue_router__WEBPACK_IMPORTED_MODULE_1__[\"default\"]({\n    mode: 'history',\n    routes: [\n      { path: '/home', component: _components_home_vue__WEBPACK_IMPORTED_MODULE_2__[\"default\"] },\n      { path: '/memes', component: _components_meme_vue__WEBPACK_IMPORTED_MODULE_3__[\"default\"] },\n      { path: '*', component: _components_NotFound_vue__WEBPACK_IMPORTED_MODULE_4__[\"default\"] },\n    ],\n    watch: {\n      $route(to, from){\n        console.log([to, from])\n      }\n    }\n  })\n}\n\n\n//# sourceURL=webpack:///./vue/router.js?");
 
 /***/ }),
 

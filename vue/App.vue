@@ -2,8 +2,8 @@
     div
         h1="Hello App!"
         p
-            router-link(to='/foo')="go to foo"
-            router-link(to='/bar')="go to bar"
+            router-link(to='/memes')="go to memes"
+            router-link(to='/home')="go to home"
         router-view
 </template>
 

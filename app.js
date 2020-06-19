@@ -11,7 +11,7 @@ const session = require('koa-session')
 const koaBody = require('koa-body');
 const auth = require('./controllers/auth_controller');
 const fs = require('fs');
-
+var spa = require('koa-spa');
 
 const path = require('path')
 const app = new Koa();
@@ -58,21 +58,21 @@ app.use(myLogger);
 //SESSIONS
 
 //Error handler
-app.use(async (ctx, next) => {
-    try {
-        await next();
-    } catch (err) {
-        ctx.status = err.status || 500;
-        ctx.body = err.message;
-        ctx.app.emit('error', err, ctx);
-    }
-});
+// app.use(async (ctx, next) => {
+//     try {
+//         await next();
+//     } catch (err) {
+//         ctx.status = err.status || 500;
+//         ctx.body = err.message;
+//         ctx.app.emit('error', err, ctx);
+//     }
+// });
 
 
-app.on('error', (err, ctx) => {
-  ctx.session.error = err.message;
-  return ctx.redirect('/error')
-})
+// app.on('error', (err, ctx) => {
+//   ctx.session.error = err.message;
+//   return ctx.redirect('/error')
+// })
 //Error handler
 
 
@@ -81,16 +81,16 @@ app.use(logger());
 app.use(serve(__dirname + '/public'));
 app.use(serve(__dirname + '/dist'));
 
-const pug = new Pug({
-  viewPath: path.resolve(__dirname, './views'),
-  basedir: './views',
-  locals: { },
-  helperPath: [
-    { _: require('underscore')},
-    { moment: require('moment')},
-  ],
-  app: app 
-})
+// const pug = new Pug({
+//   viewPath: path.resolve(__dirname, './views'),
+//   basedir: './views',
+//   locals: { },
+//   helperPath: [
+//     { _: require('underscore')},
+//     { moment: require('moment')},
+//   ],
+//   app: app 
+// })
 //Addons
 
 //Passport
@@ -99,27 +99,42 @@ app.use(passport.session());
 //Passport
 
 //Routes
-app.use(homepageRoute.routes());
-app.use(homepageRoute.allowedMethods());
+// app.use(homepageRoute.routes());
+// app.use(homepageRoute.allowedMethods());
 
-app.use(loginRoute.routes());
-app.use(loginRoute.allowedMethods());
+// app.use(loginRoute.routes());
+// app.use(loginRoute.allowedMethods());
 
-app.use(memeRoute.routes());
-app.use(memeRoute.allowedMethods());
+ app.use(memeRoute.routes());
+ app.use(memeRoute.allowedMethods());
 
-app.use(errorRoute.routes());
-app.use(errorRoute.allowedMethods());
+// app.use(errorRoute.routes());
+// app.use(errorRoute.allowedMethods());
 
-app.use(profileRoute.routes());
-app.use(profileRoute.allowedMethods());
+// app.use(profileRoute.routes());
+// app.use(profileRoute.allowedMethods());
 
-app.use(infoRoute.routes());
-app.use(infoRoute.allowedMethods());
+// app.use(infoRoute.routes());
+// app.use(infoRoute.allowedMethods());
 
-app.use(v2Route.routes());
-app.use(v2Route.allowedMethods());
+// app.use(v2Route.routes());
+// app.use(v2Route.allowedMethods());
 //Routes
 
+
+
+app.use(spa(path.join(__dirname, './views/v2/'), {
+   index: 'index.html',
+   routeBase: '/',
+   routes: ['/memes']
+}));
+
+app.use(ctx => {
+  if (ctx.status == 404) {
+    ctx.body = 'Nothing Here.';
+  }
+});
+
 const server = app.listen(3000);
+
 module.exports = server;
