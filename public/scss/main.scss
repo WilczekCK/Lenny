@@ -27,7 +27,7 @@ body{
     font-family:'osu-regular';
     display:flex;
     flex-direction: column;
-    background:$osupoli_gray;
+    background:$background;
 }
 
 [v-cloak] {
@@ -35,7 +35,7 @@ body{
 }
 
 .active{
-    color: $osupoli-orange !important;
+    color: $highlight !important;
 }
 
 //mobile hover fix
