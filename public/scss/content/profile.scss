@@ -1,7 +1,7 @@
 .profile__container{
     min-width:300px;
     max-width:500px;
-    background: $osupoli_black;
+    background: $header-background;
     display:flex;
     margin:0 auto;
     margin-top:20px;
@@ -59,7 +59,7 @@
                 justify-content: space-between;
 
                 p{
-                    color:$osupoli-orange;
+                    color:$highlight;
                     margin:0;
                 }
             }
@@ -77,7 +77,7 @@
             margin-top:20px;
 
             & > *:nth-child(odd){
-                background:$osupoli-gray;
+                background:$meme-font-color;
             }
 
             .profile__container__content__memes__single{
@@ -96,7 +96,7 @@
                     padding: 5px;
 
                     span{
-                        color:$osupoli-orange;
+                        color:$highlight;
                         font-size:.8em;
                     }
                 }

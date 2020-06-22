@@ -28,7 +28,6 @@ const memeRoute = new Router({ prefix: '/meme' });
 const errorRoute = new Router({ prefix: '/error' });
 const profileRoute = new Router({ prefix: '/profile' });
 const infoRoute = new Router({ prefix: '/info' });
-const v2Route = new Router({ prefix: '/v2' });
 
 require('./routes/index')({ homepageRoute });
 require('./routes/login')({ loginRoute });
@@ -36,7 +35,6 @@ require('./routes/meme')({ memeRoute });
 require('./routes/error')({ errorRoute });
 require('./routes/profile')({ profileRoute });
 require('./routes/info')({ infoRoute });
-require('./routes/v2Route')({ v2Route });
 //Router
 
 //SESSIONS
@@ -99,29 +97,24 @@ app.use(passport.session());
 //Passport
 
 //Routes
-// app.use(homepageRoute.routes());
-// app.use(homepageRoute.allowedMethods());
+app.use(homepageRoute.routes());
+app.use(homepageRoute.allowedMethods());
 
-// app.use(loginRoute.routes());
-// app.use(loginRoute.allowedMethods());
+app.use(loginRoute.routes());
+app.use(loginRoute.allowedMethods());
 
- app.use(memeRoute.routes());
- app.use(memeRoute.allowedMethods());
+app.use(memeRoute.routes());
+app.use(memeRoute.allowedMethods());
 
-// app.use(errorRoute.routes());
-// app.use(errorRoute.allowedMethods());
+app.use(errorRoute.routes());
+app.use(errorRoute.allowedMethods());
 
-// app.use(profileRoute.routes());
-// app.use(profileRoute.allowedMethods());
+app.use(profileRoute.routes());
+app.use(profileRoute.allowedMethods());
 
-// app.use(infoRoute.routes());
-// app.use(infoRoute.allowedMethods());
-
-// app.use(v2Route.routes());
-// app.use(v2Route.allowedMethods());
+app.use(infoRoute.routes());
+app.use(infoRoute.allowedMethods());
 //Routes
-
-
 
 app.use(spa(path.join(__dirname, './views/v2/'), {
    index: 'index.html',

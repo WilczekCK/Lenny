@@ -9,7 +9,7 @@
         margin:5px;
         float:none;
         clear:both;
-        background-color:$osupoli_black;
+        background-color:$header-background;
         border-radius:50%;
         padding:15px;
         display:inline-block;
@@ -21,7 +21,7 @@
         }
 
         &:hover{
-            color:$osupoli_orange;
+            color:$highlight;
         }
     }
 

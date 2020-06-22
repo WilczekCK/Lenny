@@ -1,6 +1,6 @@
 .gdpr__container{
     position:fixed;
-    background:$osupoli_black;
+    background:$header-background;
     padding:10px;
     bottom:0;
     color:white;
@@ -12,13 +12,13 @@
     h2{ font-size:16px }
 
     a{
-        color:$osupoli_orange;
+        color:$highlight;
         text-decoration: none;
     }
 
     .gdpr__container__close{
         cursor:pointer;
-        background:$osupoli_orange;
+        background:$highlight;
         padding:5px;
         width:150px;
         margin:0 auto;
@@ -48,7 +48,7 @@
         text-align: justify;
 
         &::marker{
-            color:$osupoli_orange;
+            color:$highlight;
         }
     }
 }
@@ -69,10 +69,10 @@
         padding:20px 0px;
         text-align:left;
         font-size:1.2em;
-        color:$osupoli_orange;
+        color:$highlight;
 
         a{
-            color:$osupoli_orange;
+            color:$highlight;
             text-decoration:none;
             font-size:1em;
         }
@@ -89,7 +89,7 @@
     color:white;
     
     a{
-        color:$osupoli_orange;
+        color:$highlight;
         text-decoration:none;
     }
 }
