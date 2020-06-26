@@ -12,23 +12,23 @@ export async function query (query) {
     return rows;
 };
 
-// export async function insert (table, rowNames, rowValue) {
-//     const connection = await mysql_controller.connection();
-//     const [results] = await connection.execute(`INSERT INTO ${table} (${rowNames}) VALUES (${rowValue})`);
-//     connection.end();
+export async function insert (table, rowNames, rowValue) {
+    const connection = await connect();
+    const [results] = await connection.execute(`INSERT INTO ${table} (${rowNames}) VALUES (${rowValue})`);
+    connection.end();
 
-//     return results.insertId;
-// }
+    return results.insertId;
+}
 
-// export async function update (table, changingRows, condition) {
-//     //example mysql.update("images", "tags = 'mania'", "id = 12332")
-//     await query(`UPDATE ${table} SET ${changingRows} WHERE ${condition}`);
-// }
+export async function update (table, changingRows, condition) {
+    //example mysql.update("images", "tags = 'mania'", "id = 12332")
+    await query(`UPDATE ${table} SET ${changingRows} WHERE ${condition}`);
+}
 
-// export async function remove (table, condition) {
-//     //example mysql.delete("images", "id = 12332")
-//     await mysql_controller.query(`DELETE FROM ${table} WHERE ${condition}`);
-// }
+export async function remove (table, condition) {
+    //example mysql.delete("images", "id = 12332")
+    await query(`DELETE FROM ${table} WHERE ${condition}`);
+}
 
 /*
     STRUCTURE:
