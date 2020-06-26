@@ -1,23 +1,32 @@
-<template>
-  <div>
-    <h1>{{ message }}</h1>
-    <p>This is Nuxt + Koa.</p>
-  </div>
+<template lang="pug">
+  .meme__container
+    memeItem(v-for="post in memes" :memeDetails="post" :key="post.id")
 </template>
 
 <script>
 import axios from '~/plugins/axios'
-
+import memeItem from '~/layouts/components/mixins/meme-item.vue'
 export default {
-  async asyncData () {
-    let {data} = await axios.get('/api')
-    console.log(data.data)
-    return data.data
-  },
   head () {
     return {
       title: 'Nuxt + Koa'
     }
+  },
+  data: () => {
+    return { 
+      memes: []
+    }
+  },
+  components:{
+    memeItem: memeItem
+  },
+  mounted() {
+    axios
+    .get('/api/meme')
+    .then( ( {data} ) => {
+      let memes = data.data;
+      memes.forEach((meme) => { this.memes.push(meme) })
+    })
   }
 }
 </script>

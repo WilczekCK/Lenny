@@ -22,6 +22,9 @@ export default {
     root: './static',
     options: {}
   },
+  upload_dir: {
+    root: './static',
+  },
   session: {
     secretKey: 'something'
   }

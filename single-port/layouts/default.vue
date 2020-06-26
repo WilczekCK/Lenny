@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <img src="~/assets/img/logo.png" alt="Nuxt.js Logo" class="logo" />
     <!-- Make sure to add the <nuxt/> component when creating a layout to display the page component. -->
     <!-- https://nuxtjs.org/guide/views#layouts -->
     <nuxt/>
