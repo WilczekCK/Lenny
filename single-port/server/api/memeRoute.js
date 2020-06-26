@@ -1,5 +1,6 @@
 export function printRoutes (router) {
     return router.get('/meme', async (ctx, next) => {
+            if(err) return err;
             ctx.type = 'json'
             ctx.body = 'meme page'
         }),

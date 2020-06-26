@@ -1,21 +1,19 @@
 'use strict'
 
-const dbname = process.env.NODE_ENV === 'test' ? 'koatest' : 'koa'
-
 export default {
   app: {
     name: 'something',
     version: '1.0.0'
   },
   database: {
-    driver: 'mongo',
+    //driver: 'mysql',
     host: 'localhost',
-    port: 27017,
-    dbname: dbname,
-    username: 'admin',
-    password: '123456',
-    options: {
-    }
+    port: 3306,
+    database: 'memepage',
+    user: 'root',
+    password: 'rootpass',
+    //options: {
+    //}
   },
   server: {
     port: 3000
