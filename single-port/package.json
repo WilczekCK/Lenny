@@ -28,13 +28,17 @@
     "multer": "^1.4.2",
     "mysql2": "^2.1.0",
     "nuxt": "^1.0.0-rc3",
+    "nuxt-sass-resources-loader": "^2.0.5",
     "underscore": "^1.10.2"
   },
   "devDependencies": {
+    "@nuxtjs/style-resources": "^1.0.0",
     "babel-eslint": "^7.2.3",
     "backpack-core": "^0.4.1",
+    "node-sass": "^4.14.1",
     "pug": "^3.0.0",
-    "pug-plain-loader": "^1.0.0"
+    "pug-plain-loader": "^1.0.0",
+    "sass-loader": "^7.3.1"
   },
   "scripts": {
     "dev": "backpack dev",

@@ -20,5 +20,15 @@ module.exports = {
   /*
   ** Global CSS
   */
-  css: ['~/assets/css/main.css']
+  css: [
+    '~/assets/scss/main.scss'
+  ],
+  modules: [
+    [
+        'nuxt-sass-resources-loader', 
+        [
+            '~/assets/scss/main.scss'
+        ]
+    ]
+  ]
 }
