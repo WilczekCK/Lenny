@@ -14,9 +14,9 @@
   "template-author": {
     "name": "lau tiam kok",
     "email": "contact@lauthiamkok.net",
-    "url": "https://github.com/lautiamkok"
+    "url": "https://github.com/lautiamkok",
     "repository": "https://github.com/lautiamkok/nuxt-koa",
-    "homepage": "https://github.com/lautiamkok",
+    "homepage": "https://github.com/lautiamkok"
   },
   "dependencies": {
     "@koa/multer": "^3.0.0",
