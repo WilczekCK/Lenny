@@ -1,18 +1,23 @@
 {
-  "name": "nuxt-koa",
+  "name": "Meme Page",
   "version": "1.0.0",
-  "description": "Creating a Nuxt application with Koa",
+  "description": "Creating a Nuxt application with Koa - Meme Page",
   "main": "server/index.js",
   "directories": {
     "test": "test"
   },
-  "homepage": "https://github.com/lautiamkok",
   "author": {
+    "name": "Paweł Wilk",
+    "email": "pwilk0108@gmail.com",
+    "url": "https://github.com/wilczekck"
+  },
+  "template-author": {
     "name": "lau tiam kok",
     "email": "contact@lauthiamkok.net",
     "url": "https://github.com/lautiamkok"
+    "repository": "https://github.com/lautiamkok/nuxt-koa",
+    "homepage": "https://github.com/lautiamkok",
   },
-  "repository": "https://github.com/lautiamkok/nuxt-koa",
   "dependencies": {
     "@koa/multer": "^3.0.0",
     "axios": "^0.16.2",
