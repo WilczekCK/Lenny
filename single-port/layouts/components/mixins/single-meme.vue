@@ -1,21 +1,20 @@
-<template lang="pug">
-    .meme__container
-        .meme__item
-            .meme__item__header
-                .meme__item__header__meta 
-                    span {{infoAboutMemeFromDb.author_username}}
-                    span {{moment(infoAboutMemeFromDb.added_in)}}
-                .meme__item__header__title
-                    h1 {{infoAboutMemeFromDb.meme_title}}   
-            iframe(v-if="infoAboutMemeFromDb.video_id" :src="'http://www.youtube.com/embed/'+memeDetails.video_id+'?controls=0&modestbranding=1'" frameborder="0")
-            img(v-else :src="'/uploads/'+infoAboutMemeFromDb.id+'.jpg'")
-            .meme__item__footer
-                .meme__item__footer__tags
-                    h6(v-for="tag in infoAboutMemeFromDb.tagsDivider" :hashtag="tag") {{tag}}
-                .meme__item__footer__likes
-                    span.pp__counter(:meme_id="infoAboutMemeFromDb.id")
-                        i(class='fab fa-pied-piper-pp')
-                        .pp__amount {{infoAboutMemeFromDb.likes}}
+<template lang="pug"> 
+    .meme__item(v-if="dataReady")
+        .meme__item__header
+            .meme__item__header__meta 
+                span {{memeDetails.author_username}}
+                span {{moment(memeDetails.added_in)}}
+            .meme__item__header__title
+                h1 {{memeDetails.meme_title}}   
+        iframe(v-if="memeDetails.video_id" :src="'http://www.youtube.com/embed/'+memeDetails.video_id+'?controls=0&modestbranding=1'" frameborder="0")
+        img(v-else :src='"~/assets/img/uploads/"+memeDetails.id+".jpg"')
+        .meme__item__footer
+            .meme__item__footer__tags
+                h6(v-for="tag in memeDetails.tagsDivider" :hashtag="tag") {{tag}}
+            .meme__item__footer__likes
+                span.pp__counter(:meme_id="memeDetails.id")
+                    i(class='fab fa-pied-piper-pp')
+                    .pp__amount {{memeDetails.likes}}
 </template>
 
 <script>
@@ -25,16 +24,16 @@ import moment from "moment";
 export default {
     data: () => {
         return {
-            actualVisibleMemeID: null,
-            infoAboutMemeFromDb: null,
+            dataReady: false,
+            memeDetails: null
         }
     },
-    mounted () {
-        this.actualVisibleMemeID = parseInt(this.$route.params.id);
-        
-        axios
-            .post(`/meme/single/${this.actualVisibleMemeID}`)
-            .then( ({data}) => {this.infoAboutMemeFromDb = data[0]})
+    async mounted () {
+            await axios
+                .get(`/api/meme/${this.$route.params.id}`)
+                .then(({data}) => {this.memeDetails = data.data[0]})
+
+            this.dataReady = true;
     },
     methods: {
         moment: function(date){
