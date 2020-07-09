@@ -12,10 +12,13 @@
         .meme__item__footer
             .meme__item__footer__tags
                 h6(v-for="tag in memeDetails.tagsDivider" :hashtag="tag") {{tag}}
-            .meme__item__footer__likes
-                span.pp__counter(:meme_id="memeDetails.id")
-                    i(class='fab fa-pied-piper-pp')
-                    .pp__amount {{memeDetails.likes}}
+            .meme__item__footer__stats
+                .meme__item__footer__likes
+                    span.pp__counter(:meme_id="memeDetails.id")
+                        i(class='fa fa-thumbs-up')
+                        .pp__amount {{memeDetails.likes}}
+                .meme__item__footer__comments
+                    i(class='fa fa-comments')
         .details(style="display:none")
         
 </template>
