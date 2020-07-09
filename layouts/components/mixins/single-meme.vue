@@ -16,6 +16,8 @@
                 span.pp__counter(:meme_id="memeDetails.id")
                     i(class='fab fa-pied-piper-pp')
                     .pp__amount {{memeDetails.likes}}
+.meme__container(v-else)
+    h2="Wait, meme is loading..."
 </template>
 
 <script>

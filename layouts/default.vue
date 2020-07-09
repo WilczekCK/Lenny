@@ -2,19 +2,23 @@
   transition
     .container
       headerComp
-      nuxt
+      .content
+        sidebarComp
+        nuxt
 </template>
 
 <script>
 
 import header from "./components/header";
+import sidebar from "./components/sidebar";
 export default {
   transition: {
     name: 'page',
     mode: 'out-in'
   },
   components:{
-    headerComp: header
+    headerComp: header,
+    sidebarComp: sidebar
   }
 }
 </script>
@@ -27,4 +31,9 @@ export default {
   opacity: 0;
   transform-origin: 50% 50%;
 }
+
+.container{
+  display:flex;
+  flex-direction:column;
+  }
 </style>
