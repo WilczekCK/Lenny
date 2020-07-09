@@ -1,14 +1,9 @@
-<template>
-  <transition>
-    <div class="container">
-      <nuxt-link to="/">
-        <img src="~/assets/img/logo.png" alt="Nuxt.js Logo" class="logo" />
-      </nuxt-link>
-      <!-- Make sure to add the <nuxt/> component when creating a layout to display the page component. -->
-      <!-- https://nuxtjs.org/guide/views#layouts -->
-      <nuxt/>
-    </div>
-  </transition>
+<template lang="pug">
+  transition
+    .container
+      nuxt-link(to="/")
+        img(src="~/assets/img/logo.png")
+      nuxt
 </template>
 
 <script>
