@@ -1,21 +1,37 @@
 <template>
-  <div class="container">
-    <img src="~/assets/img/logo.png" alt="Nuxt.js Logo" class="logo" />
-    <!-- Make sure to add the <nuxt/> component when creating a layout to display the page component. -->
-    <!-- https://nuxtjs.org/guide/views#layouts -->
-    <nuxt/>
-  </div>
+  <transition>
+    <div class="container">
+      <nuxt-link to="/">
+        <img src="~/assets/img/logo.png" alt="Nuxt.js Logo" class="logo" />
+      </nuxt-link>
+      <!-- Make sure to add the <nuxt/> component when creating a layout to display the page component. -->
+      <!-- https://nuxtjs.org/guide/views#layouts -->
+      <nuxt/>
+    </div>
+  </transition>
 </template>
 
 <script>
 
 export default {
+  transition: {
+    name: 'page',
+    mode: 'out-in'
+  },
   components: {
   }
 }
 </script>
 
 <style>
+.page-enter-active, .page-leave-active {
+ transition: all .30s ease-out;
+}
+.page-enter, .page-leave-active {
+  opacity: 0;
+  transform-origin: 50% 50%;
+}
+
 .container
 {
   margin: 0;
