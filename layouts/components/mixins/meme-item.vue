@@ -19,6 +19,7 @@
                         .pp__amount {{memeDetails.likes}}
                 .meme__item__footer__comments
                     i(class='fa fa-comments')
+                    span {{memeDetails.comments_sum}}
         .details(style="display:none")
         
 </template>
