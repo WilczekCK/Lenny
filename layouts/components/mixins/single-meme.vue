@@ -1,5 +1,6 @@
-<template lang="pug"> 
-    .meme__item(v-if="dataReady")
+<template lang="pug">
+.meme__container(v-if="isPageLoaded")
+    .meme__item
         .meme__item__header
             .meme__item__header__meta 
                 span {{memeDetails.author_username}}
@@ -18,22 +19,14 @@
 </template>
 
 <script>
-import axios from "axios";
 import moment from "moment";
-
+import axios from 'axios'
 export default {
-    data: () => {
-        return {
-            dataReady: false,
-            memeDetails: null
+    data(){
+        return{
+            memeDetails: null,
+            isPageLoaded: false
         }
-    },
-    async mounted () {
-            await axios
-                .get(`/api/meme/${this.$route.params.id}`)
-                .then(({data}) => {this.memeDetails = data.data[0]})
-
-            this.dataReady = true;
     },
     methods: {
         moment: function(date){
@@ -41,7 +34,19 @@ export default {
             const incomingDate = moment(date);
             return " · "+incomingDate.from(today);
         }
-    }
+    },
+    async mounted (error) {
+        await axios
+            .get(`/api/meme/${this.$route.params.id}`)
+            .then(({data}) => {
+                return this.memeDetails = data.data[0];
+            })
+            .catch((error) => {
+                error({statusCode: 404, message: 'Meme not found!'})
+            })
+
+        this.isPageLoaded = true;
+    },
 }
 </script>
 
