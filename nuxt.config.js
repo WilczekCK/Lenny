@@ -24,6 +24,9 @@ module.exports = {
     '~/assets/scss/main.scss',
     '~/assets/css/normalize.css'
   ],
+  loading:{
+    color:'#9165BC'
+  },
   modules: [
     [
         'nuxt-sass-resources-loader', 

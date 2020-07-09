@@ -1,6 +1,7 @@
 @import 'global/colors.scss';
 @import 'mixins/meme-item.scss';
+@import 'components/header.scss';
 
 body{
-    background: $example_color;
+    background: $background;
 }

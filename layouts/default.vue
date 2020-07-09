@@ -1,8 +1,13 @@
 <template lang="pug">
   transition
-    .container
-      nuxt-link(to="/")
-        img(src="~/assets/img/logo.png")
+    .header
+      .header__wrapper
+        nuxt-link(to="/").header__wrapper__menuItem--logo
+          img(src="~/assets/img/logo.png")
+          span!="Semes<br>Koa + Nuxt meme template"
+        .header__wrapper__menuItem--searchBar
+          input(type="text" placeholder="Browse by #tags")
+        a.header__wrapper__menuItem--accountManagement="Login using facebook"
       nuxt
 </template>
 
@@ -12,8 +17,6 @@ export default {
   transition: {
     name: 'page',
     mode: 'out-in'
-  },
-  components: {
   }
 }
 </script>
