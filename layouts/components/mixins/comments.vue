@@ -13,8 +13,11 @@
       .comment__feature--noComments(v-else)
         h3="No comments yet - be first to do it!"
       .comment__feature--newComment
-        form
-            input(type="text" placeholder="Your reply to this meme" maxlength="100")
+        p(v-if="errors.length")
+          ul
+            li(v-for="error in errors") {{ error }}
+        form(@submit="checkForm")
+            input(type="text" v-model="incomingNewComment" placeholder="Your reply to this meme" maxlength="100")
             button(class="post__comment")
                 i(class='fas fa-comment')
 </template>
@@ -25,6 +28,8 @@ export default {
   props: ['commentList'],
   data: function() {
     return {
+      errors: [],
+      incomingNewComment: '',
       comments: this.commentList
     }
   },
@@ -33,6 +38,15 @@ export default {
         const today = moment();
         const incomingDate = moment(date);
         return " · "+incomingDate.from(today);
+    },
+    checkForm: function(e){
+      this.errors = [];
+
+      if(this.incomingNewComment.length < 1){
+        this.errors.push('Missing comment content!')
+      }
+
+      e.preventDefault();
     }
   }
 }
