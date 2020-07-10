@@ -1,5 +1,5 @@
 import passport from 'koa-passport'
-import FacebookStrategy from ('passport-facebook'.Strategy);
+import FacebookStrategy from 'passport-facebook';
 import axios from 'axios';
 import session from 'koa-session';
 import _ from 'underscore';
