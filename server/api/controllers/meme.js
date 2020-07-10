@@ -6,7 +6,7 @@ export async function displayMemes (limit) {
     if(limit) limit = `limit ${limit}`
     else limit = '';
     
-    const memesRecord = await mysql.query(`SELECT id, author_username, author_id, tags, likes, status, added_in, meme_title, video_id  FROM images WHERE status = 1 ORDER BY added_in DESC ${limit}`);
+    const memesRecord = await mysql.query(`SELECT *, (select count(*) from comments where images.id = comments.meme_id) AS comments_sum FROM images WHERE status = 1 ORDER BY added_in DESC ${limit}`);
 
     //create array from simple string - for tags
     memesRecord.tagsDivider = createArrayFromTags(memesRecord);
@@ -41,6 +41,7 @@ export async function createArrayFromTags (meme_tags) {
 
     return meme_tags.tagsDivider
 }
+
 export async function insertToDB (author_id, author_username, date, tags, meme_title, meme_video_id) {
     const replacedTags = tags.replace(/,/g, " ");
     const uploadedSqlID = await mysql.insert(`images`, `author_id, author_username, added_in, tags, meme_title, video_id`, `${author_id}, '${author_username}' ,'${date}', '${_.escape(replacedTags)}', '${_.escape(meme_title)}', ${meme_video_id}`);

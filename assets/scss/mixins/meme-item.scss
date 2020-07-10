@@ -67,6 +67,22 @@
 				}
 				
 			}
+
+			.meme__item__footer__stats{
+				display:flex;
+
+				> div {
+					margin-right:10px;
+				}
+
+				svg{
+					margin-right:5px;
+				}
+
+				* {
+					display:flex;	
+				}
+			}
 		}
 	}
 }

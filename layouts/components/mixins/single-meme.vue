@@ -16,17 +16,27 @@
                 span.pp__counter(:meme_id="memeDetails.id")
                     i(class='fab fa-pied-piper-pp')
                     .pp__amount {{memeDetails.likes}}
+        .meme__item__comments
+            commentComp(:commentList="memeComments")
+.meme__container(v-else)
+    h2="Wait, meme is loading..."
 </template>
 
 <script>
+import comment from "./comments";
+
 import moment from "moment";
 import axios from 'axios'
 export default {
     data(){
         return{
             memeDetails: null,
+            memeComments: null,
             isPageLoaded: false
         }
+    },
+    components: {
+        commentComp: comment
     },
     methods: {
         moment: function(date){
@@ -38,12 +48,24 @@ export default {
     async mounted (error) {
         await axios
             .get(`/api/meme/${this.$route.params.id}`)
-            .then(({data}) => {
-                return this.memeDetails = data.data[0];
+            .then(async ({data}) => {
+                this.memeDetails = data.data[0];
+
+                //load comments below
+                await axios
+                    .get(`/api/meme/comments/load/${this.$route.params.id}`)
+                    .then(({data}) => {
+                        if(data.data.length) this.memeComments = [];
+                        data.data.forEach(comment => {
+                            this.memeComments.push(comment)
+                        }) 
+                    })
+                //comments loaded
             })
             .catch((error) => {
                 error({statusCode: 404, message: 'Meme not found!'})
             })
+
 
         this.isPageLoaded = true;
     },
