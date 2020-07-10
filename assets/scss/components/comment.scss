@@ -54,4 +54,30 @@
             }
         }
     }
+
+    .comment__feature--newComment{
+        form{
+            display:flex;
+            flex-direction:row;
+            margin-top:-1px;
+
+            input{
+                flex-grow:3;
+                background:transparent;
+                color:$lightBlackTone;
+                border:unset;
+                border-bottom:2px solid $lightBlackTone;
+            }
+
+            button{
+                flex-grow:1;
+                background:transparent;
+                border:unset;
+
+                i{
+                    color:white;
+                }
+            }
+        }
+    }
 }
