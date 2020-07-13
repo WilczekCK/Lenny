@@ -6,7 +6,7 @@
           span!="Semes<br>Koa + Nuxt meme template"
         .header__wrapper__menuItem--searchBar
           input(type="text" placeholder="Browse by #tags")
-        a.header__wrapper__menuItem--accountManagement="Login using facebook"
+          a(href="/api/login").header__wrapper__menuItem--accountManagement="Login using facebook"
 </template>
 
 <script>

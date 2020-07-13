@@ -4,7 +4,7 @@ import Koa from 'koa'
 import { Nuxt, Builder } from 'nuxt'
 import config from './config'
 import middlewares from './middlewares'
-import * as auth from './controllers/auth'
+import * as auth from './api/controllers/auth'
 import passport from 'koa-passport'
 import FacebookStrategy from 'passport-facebook'
 import session from 'koa-session'
@@ -19,7 +19,7 @@ app.use(session(app));
 
 const myLogger = async function(ctx, next){
   const myLogger = await auth.sess.status(ctx.session)
-  
+
   if(myLogger){
     ctx.req.body = myLogger;
   }else{

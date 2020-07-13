@@ -6,14 +6,15 @@ import session from 'koa-session'
 export function printRoutes (router) {
     auth.oAuth2.init();
 
-    return router.get('/', passport.authenticate('facebook')),
+    return router.get('/login', passport.authenticate('facebook')),
 
-    router.get('/callback', passport.authenticate('facebook'), async (ctx, next) => {
+    router.get('/login/callback', passport.authenticate('facebook'), async (ctx, next) => {
+        console.log('imhrere')
         await auth.convertToken(ctx.session, ctx.req.user.accessToken);
         await ctx.redirect('success')
     }),
 
-    router.get('/success', async (ctx, next) => {
+    router.get('/login/success', async (ctx, next) => {
         await ctx.render('pages/login_success');        
     }),
 
