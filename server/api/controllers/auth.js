@@ -4,8 +4,8 @@ import axios from 'axios';
 import session from 'koa-session';
 import _ from 'underscore';
 
-import mysql from './mysql';
-import user from './user';
+import * as mysql from './mysql';
+import * as user from './user';
 
 const oAuth2 = {
     app_id: '2343223032645422',
@@ -44,7 +44,7 @@ export async function convertToken (main_sess, token) {
             token: token
         }
 
-          console.log(tokenData)
+        
         await user.creation(tokenData, token);
         await sess.status(main_sess, tokenData);
     });
@@ -52,22 +52,31 @@ export async function convertToken (main_sess, token) {
 
 
 const sess = {
-    status: async ({passport}, data) => {
-        if(_.isEmpty(passport)) return 0;
-        
+    status: async (session, data) => {
+        if(_.isEmpty(session.passport)) return 0;
+
+        var {passport} = session;
         const {accessToken} = passport.user;
         const findOldToken = await mysql.query(`SELECT * FROM users WHERE token = '${accessToken}'`);
+        //await sess.forUser(data, passport);
 
         if(_.isEmpty(findOldToken)) return await sess.refresh(accessToken, data);
         return findOldToken;
     },
+    forUser: async function (data, session) {
+      if(!data) return 0;
+      session.userData = {username: data.username, id: data.fb_id}
+      console.log(session.userData)
+    },
     refresh: async (token, data) => {
         if(_.isEmpty(data) || _.isEmpty(token)) return 0;
+        
         await mysql.update(`users`, `token = '${token}'`, `fb_id = ${data.fb_id}`);
     }, 
     logout: function (sess) {
         sess.session = null;
         sess.req.body = null;
+        return true;
     }
 }
 

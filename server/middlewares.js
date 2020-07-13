@@ -6,6 +6,10 @@ import serve from 'koa-static'
 import bodyParser from 'koa-bodyparser'
 import config from './config'
 import routes from './routes'
+import * as auth from './api/controllers/auth'
+import passport from 'koa-passport'
+import FacebookStrategy from 'passport-facebook'
+import session from 'koa-session'
 
 export default (app) => {
   // Catch and format the error in the upstream.
@@ -53,6 +57,30 @@ export default (app) => {
   // https://github.com/koajs/bodyparser
   // https://github.com/koajs/koa/issues/719
   app.use(bodyParser())
+
+  //SESSIONS
+  app.keys = ['your-session-secret']
+  app.use(session(app));
+
+  const myLogger = async function(ctx, next){
+    const myLogger = await auth.sess.status(ctx.session)
+
+    if(myLogger){
+      ctx.session.userData = {username: myLogger[0].username, id: myLogger[0].fb_id}
+      ctx.req.body = myLogger;
+    }else{
+      ctx.req.body = {};
+    }
+    await next()
+  };
+
+  app.use(myLogger);
+  //SESSIONS
+
+  //Passport
+  app.use(passport.initialize());
+  app.use(passport.session());
+  //Passport
 
   // Add routes by group.
   const mount = require('koa-mount')

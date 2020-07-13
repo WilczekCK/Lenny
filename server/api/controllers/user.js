@@ -4,7 +4,7 @@ import * as mysql from './mysql.js';
 
 export async function creation (userInfo) {
     const [results] = await mysql.query(`SELECT * FROM users WHERE fb_id = ${userInfo.fb_id}`);
-    if(!results) return user_controller.newPlayer(userInfo);
+    if(!results) return newPlayer(userInfo);
 }
 
 export async function newPlayer (userInfo) {

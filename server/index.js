@@ -4,38 +4,12 @@ import Koa from 'koa'
 import { Nuxt, Builder } from 'nuxt'
 import config from './config'
 import middlewares from './middlewares'
-import * as auth from './api/controllers/auth'
-import passport from 'koa-passport'
-import FacebookStrategy from 'passport-facebook'
-import session from 'koa-session'
+
 
 const app = new Koa()
 const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || config.server.port
-
-//SESSIONS
-app.keys = ['your-session-secret']
-app.use(session(app));
-
-const myLogger = async function(ctx, next){
-  const myLogger = await auth.sess.status(ctx.session)
-
-  if(myLogger){
-    ctx.req.body = myLogger;
-  }else{
-    ctx.req.body = {};
-  }
-  await next()
-};
-
-app.use(myLogger);
-//SESSIONS
-
-//Passport
-app.use(passport.initialize());
-app.use(passport.session());
-//Passport
-
+const { clearCookie, setCookie } = require('koa-cookies')
 
 // Import and Set Nuxt.js options
 let nuxtConfig = require('../nuxt.config.js')
