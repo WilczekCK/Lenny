@@ -9,10 +9,12 @@ export function printRoutes (router) {
 
     router.get('/login/callback', passport.authenticate('facebook'), async (ctx, next) => {
         await auth.convertToken(ctx.session, ctx.req.user.accessToken);
+        await ctx.redirect('/');
+        await next();
     }),
 
     router.get('/auth/check', async (ctx, next) => {
-        return ctx.body = ctx.session.userData;
+        return ctx.body = ctx.req.body[1];
     }),
 
     router.get('/auth/logout', async (ctx, next) => {
