@@ -35,7 +35,10 @@ module.exports = {
         'nuxt-sass-resources-loader', 
         [
             '~/assets/scss/main.scss'
-        ]
-    ]
+        ],
+    ],
+    [
+      'cookie-universal-nuxt'
+    ],
   ]
 }

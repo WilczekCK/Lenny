@@ -92,6 +92,6 @@ export async function postComment (meme_id, ingame_id, content, date) {
 }
  
 export async function removeComment (comment_id) {
-    await mysql.delete(`comments`, `id = ${comment_id}`)
+    await mysql.remove(`comments`, `id = ${comment_id}`)
     return true;
 }

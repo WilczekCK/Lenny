@@ -1,22 +1,31 @@
+import * as auth from './controllers/auth'
+import passport from 'koa-passport'
+import FacebookStrategy from 'passport-facebook'
+
 export function printRoutes (router) {
-    const users = [
-        { name: 'Alexandre' },
-        { name: 'Pooya' },
-        { name: 'Sébastien' },
-    ]
+    auth.oAuth2.init();
 
-    return router.get('/users', async (ctx, next) => {
-            ctx.type = 'json'
-            ctx.body = users
-        }),
+    return router.get('/login', passport.authenticate('facebook')),
 
-        router.get('/users/:id', async (ctx, next) => {
-            const id = parseInt(ctx.params.id)
-            console.log(users[id])
-            if (id >= 0 && id < users.length) {
-              ctx.body = users[id]
-            } else {
-              ctx.throw(404)
-            }
-        })
+    router.get('/login/callback', passport.authenticate('facebook'), async (ctx, next) => {
+        await auth.convertToken(ctx.session, ctx.req.user.accessToken);
+        await ctx.redirect('/');
+    }),
+
+    router.get('/auth/check', async (ctx, next) => {
+        return ctx.body = ctx.req.body[1];
+    }),
+
+    router.get('/auth/logout', async (ctx, next) => {
+        auth.sess.logout(ctx);
+        ctx.body = true;
+    }),
+
+    router.get('/login/success', async (ctx, next) => {
+        await ctx.render('pages/login_success');        
+    }),
+
+    router.get('/failed', async (ctx, next) => {
+        ctx.throw(400, 'Error while logging')
+    })
 } 

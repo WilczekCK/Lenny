@@ -61,6 +61,27 @@
             flex-direction: row;
             flex-basis:15%;
             background:$mainColor;
+
+            .header__wrapper__menuItem--accountManagement-logged{
+                h3{
+                    margin-bottom:5px;
+                    margin-top:0px;
+                }
+
+                .header__wrapper__menuItem--accountManagement-logged-settings{
+                    display:flex;
+                    flex-direction:row;
+                    justify-content:space-between;
+
+                    svg{
+                        cursor:pointer;
+
+                        &:hover{
+                            color:$blackTone;
+                        }
+                    }
+                }
+            }
         }
     }
 }

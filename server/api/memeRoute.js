@@ -93,7 +93,7 @@ export function printRoutes (router) {
         return ctx.body = true;
     }),
 
-    router.delete('/meme/comments/delete/:id', koaBody(), async (ctx, next) => {
+    router.delete('/meme/comments/remove/:id', koaBody(), async (ctx, next) => {
         const is_player_logged = ctx.req.body[0];
         const comment_author_id = ctx.request.header.actual_user;
 
