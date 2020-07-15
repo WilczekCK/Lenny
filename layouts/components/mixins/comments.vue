@@ -12,7 +12,7 @@
             .comment__content--text  {{comment.content}}
       .comment__feature--noComments(v-else)
         h3="No comments yet - be first to do it!"
-      .comment__feature--newComment
+      .comment__feature--newComment(v-if="this.$store.state.isLogged")
         p(v-if="errors.length")
           ul
             li(v-for="error in errors") {{ error }}
