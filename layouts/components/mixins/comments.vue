@@ -57,7 +57,6 @@ export default {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
             'content': this.incomingNewComment,
-            'userID':  123414
           },
           url: `/api/meme/comments/post/${this.$route.params.id}`,
         }).then(({data}) => {

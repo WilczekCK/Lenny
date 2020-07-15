@@ -82,11 +82,11 @@ export function printRoutes (router) {
 
 
     router.post('/meme/comments/post/:id', async (ctx, next) => {
-        //const is_player_logged = ctx.req.body[0];
-       // if (!is_player_logged || is_player_logged.role < 0) return ctx.body = false;
+        const is_player_logged = ctx.req.body[0];
+        if (!is_player_logged || is_player_logged.role < 0) return ctx.body = false;
         
         const comment = ctx.request.header.content;
-        const userID = ctx.request.header.userid;
+        const userID = ctx.req.body[0][0].id;
         const idToFind = ctx.params.id;
 
         meme.postComment(idToFind, userID, comment, moment().format('YYYY-MM-DD HH:mm:ss'));
