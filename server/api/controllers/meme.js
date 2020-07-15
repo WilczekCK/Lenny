@@ -82,7 +82,7 @@ export async function infiniteScroll (loadCount, loadElements) {
 }
 
 export async function getComments (meme_id) {
-    const commentsMeme = await mysql.query(`SELECT comments.*, users.username FROM comments, users WHERE meme_id=${meme_id} ORDER BY date DESC`);
+    const commentsMeme = await mysql.query(`SELECT comments.*, users.username FROM comments, users WHERE meme_id=${meme_id} AND comments.fb_id = users.fb_id ORDER BY date DESC`);
     return commentsMeme;
 }
     
