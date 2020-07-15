@@ -10,6 +10,9 @@
               .comment__content__socials--author {{comment.username}}
               .comment__content__socials--date {{moment(comment.date)}}
             .comment__content--text  {{comment.content}}
+            .comment__content--removeButton(v-if="$store.state.isLogged.id == comment.fb_id")
+              i(class="fa fa-times")
+              ="REMOVE YOUR COMMENT"
       .comment__feature--noComments(v-else)
         h3="No comments yet - be first to do it!"
       .comment__feature--newComment(v-if="this.$store.state.isLogged")

@@ -86,20 +86,20 @@ export function printRoutes (router) {
         if (!is_player_logged || is_player_logged.role < 0) return ctx.body = false;
         
         const comment = ctx.request.header.content;
-        const userID = ctx.req.body[0][0].id;
+        const userID = ctx.req.body[0][0].fb_id;
         const idToFind = ctx.params.id;
-
+        
         meme.postComment(idToFind, userID, comment, moment().format('YYYY-MM-DD HH:mm:ss'));
         return ctx.body = true;
     }),
 
     router.delete('/meme/comments/remove/:id', koaBody(), async (ctx, next) => {
         const is_player_logged = ctx.req.body[0];
-        const comment_author_id = ctx.request.header.actual_user;
+        const comment_author_id = ctx.req.body[0][0].id;
 
         if (is_player_logged.role == 1){
             //nothing, go further!
-        } else if (comment_author_id != is_player_logged.ingame_id || !is_player_logged || is_player_logged.role < 0) {
+        } else if (comment_author_id != is_player_logged.fb_id|| !is_player_logged || is_player_logged.role < 0) {
             return ctx.body = false;
         }
 

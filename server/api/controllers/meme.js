@@ -86,8 +86,8 @@ export async function getComments (meme_id) {
     return commentsMeme;
 }
     
-export async function postComment (meme_id, ingame_id, content, date) {
-    await mysql.insert(`comments`, `meme_id, ingame_id, content, date`, `${meme_id}, '${ingame_id}', '${_.escape(content)}', '${date}'`);
+export async function postComment (meme_id, fb_id, content, date) {
+    await mysql.insert(`comments`, `meme_id, fb_id, content, date`, `${meme_id}, '${fb_id}', '${_.escape(content)}', '${date}'`);
     return true;
 }
  
