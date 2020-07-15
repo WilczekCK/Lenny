@@ -27,6 +27,7 @@ export async function update (table, changingRows, condition) {
 
 export async function remove (table, condition) {
     //example mysql.delete("images", "id = 12332")
+
     await query(`DELETE FROM ${table} WHERE ${condition}`);
 }
 

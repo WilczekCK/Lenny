@@ -10,7 +10,7 @@
               .comment__content__socials--author {{comment.username}}
               .comment__content__socials--date {{moment(comment.date)}}
             .comment__content--text  {{comment.content}}
-            .comment__content--removeButton(v-if="$store.state.isLogged.id == comment.fb_id")
+            .comment__content--removeButton(@click="removeComment($store.state.isLogged.id, comment.id)" v-if="$store.state.isLogged.id == comment.fb_id")
               i(class="fa fa-times")
               ="REMOVE YOUR COMMENT"
       .comment__feature--noComments(v-else)
@@ -63,9 +63,24 @@ export default {
           },
           url: `/api/meme/comments/post/${this.$route.params.id}`,
         }).then(({data}) => {
-          if(data.data == true) return; //tbc - auth must be done first
-          //TODO: Display comment while sending a comment
+          if(data.data == true) return; 
+          //TODO: Display comment (DOM) while sending a comment
           else this.errors.push('Something went wrong! Try to send your comment later!')
+        })
+    },
+    removeComment: async function(getLoggedUserID, commentID) {
+        await axios({
+          method: 'delete',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'loggedUserID': getLoggedUserID,
+            'commentid': commentID
+          },
+          url: `/api/meme/comments/remove/${this.$route.params.id}`,
+        }).then(({data}) => {
+          if(data.data == true) return; 
+          //TODO: Remove comment (DOM) 
+          else this.errors.push('Something went wrong! Try to remove your comment later!')
         })
     }
   }
