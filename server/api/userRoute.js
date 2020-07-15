@@ -13,6 +13,7 @@ export function printRoutes (router) {
     }),
 
     router.get('/auth/check', async (ctx, next) => {
+        if(!ctx.req.body[1]) return false;
         return ctx.body = ctx.req.body[1];
     }),
 

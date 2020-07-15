@@ -8,14 +8,11 @@ import * as mysql from './mysql';
 import * as user from './user';
 
 const oAuth2 = {
-    app_id: '2343223032645422',
-    secret: 'c5a0a134d962fce685a1671418f46920',
-    callback_url: 'https://055291bfa2a7.ngrok.io/api/login/callback',
     init: () => {
       passport.use(new FacebookStrategy({
         clientID: '2343223032645422',
         clientSecret: 'c5a0a134d962fce685a1671418f46920',
-        callbackURL: 'https://055291bfa2a7.ngrok.io/api/login/callback'
+        callbackURL: 'https://44023e9f9a5d.ngrok.io/api/login/callback'
       },
       function (accessToken, refreshToken, cd, profile, done) {
         done(null, { accessToken: accessToken, refreshToken: refreshToken });

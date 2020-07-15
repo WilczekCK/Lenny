@@ -12,7 +12,6 @@
 import header from "./components/header";
 import sidebar from "./components/sidebar";
 import axios from "axios";
-
 export default {
   transition: {
     name: 'page',
@@ -27,18 +26,15 @@ export default {
       userLogged: null
     }
   },
+
   mounted: function(){
-    this.checkUserSessionStatus('status')
+     this.$store.commit('login')
   },
   methods: {
     checkUserSessionStatus: async function(reply){
       switch (reply){
         case 'status':
-          await axios
-            .get(`/api/auth/check`)
-            .then(async ({data}) => {
-              this.userLogged = data.data;
-            })
+          this.$store.commit('login')
           break;
         case 'logout':
           await axios

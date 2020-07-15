@@ -7,9 +7,9 @@
         .header__wrapper__menuItem--searchBar
           input(type="text" placeholder="Browse by #tags")
         .header__wrapper__menuItem--accountManagement
-          a(href="/api/login" v-if="!this.user")="Login using facebook"
+          a(v-if="!this.$store.state.isLogged" href="/api/login")="Login using facebook"
           a(class="header__wrapper__menuItem--accountManagement-logged" v-else)
-            h3='Hello {{this.user.username}}'
+            h3='Hello {{this.$store.state.isLogged.username}}'
             .header__wrapper__menuItem--accountManagement-logged-settings
               i(class="fas fa-list")
               i(class="fas fa-user-cog")
@@ -20,13 +20,11 @@
 
 <script>
 import axios from "axios";
-
+import { mapGetters } from 'vuex'
 export default {
   props: ['user'],
   data: function(){
     return {}
-  },
-  async mounted() {
   },
   methods: {
     logout: async function() {
