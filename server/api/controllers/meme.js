@@ -82,12 +82,12 @@ export async function infiniteScroll (loadCount, loadElements) {
 }
 
 export async function getComments (meme_id) {
-    const commentsMeme = await mysql.query(`SELECT comments.*, users.username FROM comments, users WHERE meme_id=${meme_id} ORDER BY date DESC`);
+    const commentsMeme = await mysql.query(`SELECT comments.*, users.username FROM comments, users WHERE meme_id=${meme_id} AND comments.fb_id = users.fb_id ORDER BY date DESC`);
     return commentsMeme;
 }
     
-export async function postComment (meme_id, ingame_id, content, date) {
-    await mysql.insert(`comments`, `meme_id, ingame_id, content, date`, `${meme_id}, '${ingame_id}', '${_.escape(content)}', '${date}'`);
+export async function postComment (meme_id, fb_id, content, date) {
+    await mysql.insert(`comments`, `meme_id, fb_id, content, date`, `${meme_id}, '${fb_id}', '${_.escape(content)}', '${date}'`);
     return true;
 }
  

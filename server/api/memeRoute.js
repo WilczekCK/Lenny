@@ -82,11 +82,11 @@ export function printRoutes (router) {
 
 
     router.post('/meme/comments/post/:id', async (ctx, next) => {
-        //const is_player_logged = ctx.req.body[0];
-       // if (!is_player_logged || is_player_logged.role < 0) return ctx.body = false;
+        const is_player_logged = ctx.req.body[0];
+        if (!is_player_logged || is_player_logged.role < 0) return ctx.body = false;
         
         const comment = ctx.request.header.content;
-        const userID = ctx.request.header.userid;
+        const userID = ctx.req.body[0][0].fb_id;
         const idToFind = ctx.params.id;
 
         meme.postComment(idToFind, userID, comment, moment().format('YYYY-MM-DD HH:mm:ss'));
@@ -94,17 +94,16 @@ export function printRoutes (router) {
     }),
 
     router.delete('/meme/comments/remove/:id', koaBody(), async (ctx, next) => {
-        const is_player_logged = ctx.req.body[0];
-        const comment_author_id = ctx.request.header.actual_user;
+        const {fb_id, id, role} = ctx.req.body[0][0];
+        const {loggeduserid, commentid} = ctx.request.header;
 
-        if (is_player_logged.role == 1){
+        if (role == 1){
             //nothing, go further!
-        } else if (comment_author_id != is_player_logged.ingame_id || !is_player_logged || is_player_logged.role < 0) {
+        } else if (loggeduserid != fb_id|| !fb_id || role < 0) {
             return ctx.body = false;
         }
 
-        const idToFind = ctx.params.id;
-        await meme.removeComment(idToFind);
+        await meme.removeComment(commentid);
         return ctx.body = true;
     })
 } 

@@ -47,9 +47,21 @@
                         font-weight:800;
                         margin-left:5px;
                     }
+
                 }
 
                 .comment__content--text{
+                }
+
+                .comment__content--removeButton{
+                    margin-top:10px;
+                    font-size:.6em;
+                    color:$lightBlackTone;
+                    cursor:pointer;
+
+                    svg{
+                        padding-right:5px;
+                    }
                 }
             }
         }

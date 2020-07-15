@@ -8,7 +8,6 @@
 </template>
 
 <script>
-
 import header from "./components/header";
 import sidebar from "./components/sidebar";
 import axios from "axios";

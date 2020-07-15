@@ -17,7 +17,7 @@
                     i(class='fab fa-pied-piper-pp')
                     .pp__amount {{memeDetails.likes}}
         .meme__item__comments
-            commentComp(:commentList="memeComments")
+            commentComp()
 .meme__container(v-else)
     h2="Wait, meme is loading..."
 </template>
