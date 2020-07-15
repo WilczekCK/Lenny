@@ -66,7 +66,7 @@ export default (app) => {
     const myLogger = await auth.sess.status(ctx.session)
 
     if(myLogger){
-      ctx.req.body = [myLogger,{username: myLogger[0].username, id: myLogger[0].fb_id}];
+      ctx.req.body = [myLogger,{username: myLogger[0].username, id: myLogger[0].fb_id, role: myLogger[0].role}];
     }else{
       ctx.req.body = {};
     }
