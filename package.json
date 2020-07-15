@@ -30,7 +30,7 @@
     "moment": "^2.27.0",
     "multer": "^1.4.2",
     "mysql2": "^2.1.0",
-    "nuxt": "^1.0.0",
+    "nuxt": "^1.4.5",
     "nuxt-sass-resources-loader": "^2.0.5",
     "passport-facebook": "^3.0.0",
     "underscore": "^1.10.2",

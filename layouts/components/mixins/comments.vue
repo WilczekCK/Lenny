@@ -2,7 +2,7 @@
     .comment__feature
       .comment__feature--list(v-if="this.comments")
         h3="Comments:"
-        .comment__feature--list__comment(v-for="comment in this.comments")
+        .comment__feature--list__comment(v-for="comment in this.comments" :key="comment.id")
           .comment__avatar
             img(src="~/assets/img/logo.png")
           .comment__content
@@ -10,7 +10,7 @@
               .comment__content__socials--author {{comment.username}}
               .comment__content__socials--date {{moment(comment.date)}}
             .comment__content--text  {{comment.content}}
-            .comment__content--removeButton(@click="removeComment($store.state.isLogged.id, comment.id)" v-if="$store.state.isLogged.id == comment.fb_id")
+            .comment__content--removeButton(@click="removeComment($store.state.isLogged.id, comment.id)" v-if="$store.state.isLogged.id == comment.fb_id || $store.state.isLogged.role === 1")
               i(class="fa fa-times")
               ="REMOVE YOUR COMMENT"
       .comment__feature--noComments(v-else)
@@ -26,15 +26,24 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import moment from "moment";
 import axios from 'axios'
 export default {
-  props: ['commentList'],
   data: function() {
     return {
       errors: [],
       incomingNewComment: '',
-      comments: this.commentList
+      comments: null,
+      commentsAmount: 0,
+    }
+  },
+  mounted: async function () {
+    await this.loadComments();
+  },
+  watch: {
+    commentsAmount: async function(){
+      await this.loadComments();
     }
   },
   methods: {
@@ -54,6 +63,20 @@ export default {
 
       e.preventDefault();
     },
+    loadComments: async function(){
+      await axios
+        .get(`/api/meme/comments/load/${this.$route.params.id}`)
+        .then(({data}) => {
+            if(data.data.length) this.comments = [];
+            data.data.forEach(comment => {
+                this.commentsAmount++;
+                this.comments.push(comment)
+            }) 
+        })
+      .catch((error) => {
+          error({statusCode: 404, message: 'Meme not found!'})
+      })
+    },
     sendComment: async function() {
         await axios({
           method: 'post',
@@ -63,8 +86,7 @@ export default {
           },
           url: `/api/meme/comments/post/${this.$route.params.id}`,
         }).then(({data}) => {
-          if(data.data == true) return; 
-          //TODO: Display comment (DOM) while sending a comment
+          if(data.data == true) return this.commentsAmount++;
           else this.errors.push('Something went wrong! Try to send your comment later!')
         })
     },
@@ -78,8 +100,7 @@ export default {
           },
           url: `/api/meme/comments/remove/${this.$route.params.id}`,
         }).then(({data}) => {
-          if(data.data == true) return; 
-          //TODO: Remove comment (DOM) 
+          if(data.data == true) return this.commentsAmount--;
           else this.errors.push('Something went wrong! Try to remove your comment later!')
         })
     }
