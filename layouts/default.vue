@@ -5,11 +5,15 @@
       .content
         sidebarComp
         nuxt(:user="userLogged")
+
+        addMemeModal(:modalStatus="this.modalState" v-on:childStatusChanged="modalTrigger")
+        button(id="show-modal" @click="modalTrigger();")
 </template>
 
 <script>
 import header from "./components/header";
 import sidebar from "./components/sidebar";
+import memeModal from "./components/modals/addMeme";
 import axios from "axios";
 export default {
   transition: {
@@ -18,18 +22,22 @@ export default {
   },
   components:{
     headerComp: header,
-    sidebarComp: sidebar
+    sidebarComp: sidebar,
+    addMemeModal: memeModal
   },
   data: function() {
     return {
-      userLogged: null
+      userLogged: null,
+      modalState: false
     }
   },
-
   mounted: function(){
      this.$store.commit('login')
   },
   methods: {
+    modalTrigger: function(){
+      this.modalState = !this.modalState;
+    },
     checkUserSessionStatus: async function(reply){
       switch (reply){
         case 'status':
