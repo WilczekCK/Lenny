@@ -12,27 +12,31 @@
                     .modal-footer
                         slot(class="footer")
                             ="default footer"
-                        button(class="modal-default-button" @click="changeModalStatus()")
+                        button(class="modal-default-button" @click="changeState()")
                             ="CLOSE"
 </template>
 
 <script>
 export default {
-    props: ['modalStatus'],
-    data: () => {
-        return {
-            modalState: false,
+    data: function(){
+        return{
+            modalState: this.$store.state.addMemeModal
         }
     },
     watch: {
-        modalStatus: function(){
-            this.modalState = this.modalStatus;
+        storeModalState: function(newVal, oldVal){
+            this.modalState = newVal;
+        }
+    },
+    computed: {
+        storeModalState: function(){
+            return this.$store.state.addMemeModal;
         }
     },
     methods:{
-        changeModalStatus: async function(){
-            this.$emit('childStatusChanged', true)
-            this.modalStatus = !this.modalStatus;
+        changeState: function(){
+            this.$store.commit('addMemeModalTrigger');
+            this.modalState = this.$store.state.addMemeModal;
         }
     }
 }

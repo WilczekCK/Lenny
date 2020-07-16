@@ -5,7 +5,8 @@ import axios from 'axios'
 const authStore = () => {
   return new Vuex.Store({
     state: () => ({
-        isLogged: false
+        isLogged: false,
+        addMemeModal: false,
     }),
     mutations: {
         login (state) {
@@ -15,6 +16,9 @@ const authStore = () => {
                     if(!data) return;
                     state.isLogged = data.data;
                 })
+        },
+        addMemeModalTrigger(state){
+          state.addMemeModal = !state.addMemeModal;
         }
     }
   })

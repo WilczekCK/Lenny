@@ -6,8 +6,8 @@
         sidebarComp
         nuxt(:user="userLogged")
 
-        addMemeModal(:modalStatus="this.modalState" v-on:childStatusChanged="modalTrigger")
-        button(id="show-modal" @click="modalTrigger();")
+        addMemeModal()
+        button(id="show-modal" @click="$store.commit('addMemeModalTrigger')")
 </template>
 
 <script>
@@ -28,16 +28,12 @@ export default {
   data: function() {
     return {
       userLogged: null,
-      modalState: false
     }
   },
   mounted: function(){
      this.$store.commit('login')
   },
   methods: {
-    modalTrigger: function(){
-      this.modalState = !this.modalState;
-    },
     checkUserSessionStatus: async function(reply){
       switch (reply){
         case 'status':
