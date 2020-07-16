@@ -1,15 +1,15 @@
 <template lang="pug">
     transition(name="modal" v-if="this.modalState")
-        .modal-mask()
-            .modal-wrapper
-                .modal-container
-                    .modal-header
+        .modal__mask()
+            .modal__mask__wrapper
+                .modal__mask__wrapper__container
+                    .modal__mask__wrapper__container--header
                         slot(class="header")
                             ='default header'
-                    .modal-body
+                    .modal__mask__wrapper__container--body
                         slot(class="body")
                             ="default body"
-                    .modal-footer
+                    .modal__mask__wrapper__container--footer
                         slot(class="footer")
                             ="default footer"
                         button(class="modal-default-button" @click="changeState()")
