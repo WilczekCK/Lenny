@@ -31,6 +31,10 @@ export function printRoutes (router) {
             ctx.body = await meme.displayMeme(ctx.params.id)
         }),
 
+        router.post('/meme/add-image2', async (ctx, next) => {
+            console.log(ctx)
+        }),
+
         router.post('/meme/add-image', upload.fields([
             {
                 name: 'meme',
@@ -40,7 +44,8 @@ export function printRoutes (router) {
                 name: 'tags',
                 maxCount: 1
             }
-        ]), async (ctx, next) => {
+        ]), async (ctx) => {
+            console.log(ctx)
             if (_.isEmpty(ctx.request.files) || _.isEmpty(ctx.request.body.tags) || _.isEmpty(ctx.request.body.meme_title)) {
                 ctx.type = 'json';
                 return ctx.body = {status: 400, message: 'One of the fields are missing'};
@@ -51,8 +56,6 @@ export function printRoutes (router) {
     
             const uploadedSqlID = await meme.insertToDB(`${author_id}`, `${author_username}`, `${moment().format('YYYY-MM-DD HH:mm:ss')}`, `${tags}`, `${meme_title}`, null)
             await meme.changeImageName(`${filename}`, `${uploadedSqlID}`);
-    
-            await next();
         }),
 
         router.post('/meme/add-video', getFields.none(),  async (ctx, next) => {
