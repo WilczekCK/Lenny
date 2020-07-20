@@ -5,20 +5,16 @@ import koaBody from 'koa-body';
 import multer from 'multer';
 import moment from 'moment';
 import _ from 'underscore';
+import http from 'http';
+import path from 'path'
+import os from 'os';
+import fs from 'fs';
+import BusBoy from 'koa-busboy';
 
-
-var upload = multer({ 
-    fileFilter: function (ctx, file, cb) {
-        if (file.mimetype !== 'image/jpeg') {
-            return cb(new Error('Only .jpg extension is allowed on that page!', {}));
-        }
-        cb(null, true);
-    },
-    dest: './public/uploads/',
-    limits: { fileSize: 1000000 } 
-});
-const getFields = multer();
-
+const uploader = BusBoy({
+    dest: './', // default is system temp folder (`os.tmpdir()`)
+    fnDestFilename: (fieldname, filename) => uuid() + filename
+})
 
 export function printRoutes (router) {
     return router.get('/meme', async (ctx, next) => {
@@ -32,33 +28,28 @@ export function printRoutes (router) {
         }),
 
         router.post('/meme/add-image2', async (ctx, next) => {
-            console.log(ctx)
         }),
 
-        router.post('/meme/add-image', upload.fields([
-            {
-                name: 'meme',
-                maxCount: 1
-            },
-            {
-                name: 'tags',
-                maxCount: 1
-            }
-        ]), async (ctx) => {
-            console.log(ctx)
-            if (_.isEmpty(ctx.request.files) || _.isEmpty(ctx.request.body.tags) || _.isEmpty(ctx.request.body.meme_title)) {
-                ctx.type = 'json';
-                return ctx.body = {status: 400, message: 'One of the fields are missing'};
-            }
-    
-            const { filename } = ctx.request.files.meme[0]; //image-id
-            const { tags, author_id, author_username, meme_title } = ctx.request.body;
-    
-            const uploadedSqlID = await meme.insertToDB(`${author_id}`, `${author_username}`, `${moment().format('YYYY-MM-DD HH:mm:ss')}`, `${tags}`, `${meme_title}`, null)
-            await meme.changeImageName(`${filename}`, `${uploadedSqlID}`);
+        router.post('/meme/uploadImage', async (ctx, next) => {
+            console.log('POST')
+            console.log(ctx.request.body)
+            console.log(ctx.request.files)
+            console.log('POST')
+            return ctx.throw(200)
         }),
 
-        router.post('/meme/add-video', getFields.none(),  async (ctx, next) => {
+        router.post('/meme/addimage', uploader, function (ctx, next){
+            console.log(ctx.request.body)  
+            console.log(ctx.request.files)
+            //const { filename } = ctx.request.files.meme[0]; //image-id
+            //const { tags, author_id, author_username, meme_title } = ctx.request.body;
+    
+            //const uploadedSqlID = await meme.insertToDB(`${author_id}`, `${author_username}`, `${moment().format('YYYY-MM-DD HH:mm:ss')}`, `${tags}`, `${meme_title}`, null)
+            //await meme.changeImageName(`${filename}`, `${uploadedSqlID}`);
+            return ctx.throw(200);
+        }),
+
+        router.post('/meme/add-video',  async (ctx, next) => {
             if (_.isEmpty(ctx.request.body.tags) || _.isEmpty(ctx.request.body.meme_title)) {
                 return ctx.throw(400, {message: 'One of the fields are missing'})
             }

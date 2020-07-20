@@ -18,7 +18,7 @@ module.exports = {
     ]
   },
   env: {
-    HOST_URL: process.env.HOST_URL || 'http://127.0.0.1:3000'
+    HOST_URL: process.env.HOST_URL || 'http://localhost:3000'
   },
   /*
   ** Global CSS
@@ -31,6 +31,7 @@ module.exports = {
     color:'#9165BC'
   },
   modules: [
+    ['@nuxtjs/axios'],
     [
         'nuxt-sass-resources-loader', 
         [
