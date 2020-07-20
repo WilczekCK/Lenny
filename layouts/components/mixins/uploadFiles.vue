@@ -1,19 +1,9 @@
-<template>
- <div>
-    <div v-if="currentFile" class="progress">
-        {{ progress }}%
-    </div>
-
-    <label class="btn btn-default">
-      <input type="file" ref="file" @change="selectFile" />
-    </label>
-
-    <button class="btn btn-success" :disabled="!selectedFiles" @click="upload">
-      Upload
-    </button>
-
-    <div class="alert alert-light" role="alert">{{ message }}</div>
-  </div>
+<template lang="pug">
+    form
+        div(v-if="currentFile" class="progress") {{ progress }}
+        input(type="file" ref="file" @change="selectFile")
+        button(class="btn btn-success" :disabled="!selectedFiles" @click.prevent="upload")="Upload"
+        p {{ message }}
 </template>
 
 <script>
@@ -31,11 +21,6 @@ export default {
         fileInfos: []
     };
     },
-    mounted() {
-        UploadService.getFiles().then(response => {
-            this.fileInfos = response.data;
-        });
-    },
     methods: {
         selectFile(e) {
             this.selectedFiles = e.target.files[0];
@@ -44,7 +29,7 @@ export default {
         upload() {
             this.progress = 0;
             this.currentFile = this.selectedFiles;
-            
+
             UploadService.upload(this.currentFile, event => {
                 this.progress = Math.round((100 * event.loaded) / event.total);
             })

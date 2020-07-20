@@ -12,10 +12,6 @@ class UploadFilesService {
       onUploadProgress
     });
   }
-
-  getFiles() {
-    return axios.get("/files");
-  }
 }
 
 export default new UploadFilesService();

@@ -30,17 +30,16 @@ export function printRoutes (router) {
         router.post('/meme/add-image2', async (ctx, next) => {
         }),
 
-        router.post('/meme/uploadImage', async (ctx, next) => {
-            console.log('POST')
-            console.log(ctx.request.body)
+        router.post('/meme/uploadImage', koaBody({multipart: true}), async (ctx, next) => {
+            console.log('upload image')
             console.log(ctx.request.files)
-            console.log('POST')
+            console.log('end of uploading')
+
             return ctx.throw(200)
         }),
 
-        router.post('/meme/addimage', uploader, function (ctx, next){
+        router.post('/meme/addimage', function (ctx, next){
             console.log(ctx.request.body)  
-            console.log(ctx.request.files)
             //const { filename } = ctx.request.files.meme[0]; //image-id
             //const { tags, author_id, author_username, meme_title } = ctx.request.body;
     

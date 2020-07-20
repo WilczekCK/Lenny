@@ -59,9 +59,11 @@ export default (app) => {
   // https://github.com/koajs/koa/issues/719
   app.use(bodyParser())
   
-  // Allow the multipart body parsing 
-  // it's used for uploading images into the server
-  app.use(koaBody({multipart: true}))
+    // Allow the multipart body parsing 
+    // it's used for uploading images into the server
+  // koaBody({multipart: true})
+    // had to comment out it, because setting it global
+    // makes troubles with forms, use it always on route!
 
   //SESSIONS
   app.keys = ['your-session-secret']
