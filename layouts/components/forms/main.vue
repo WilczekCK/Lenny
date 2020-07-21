@@ -1,23 +1,24 @@
 <template lang="pug">
     form(@submit.prevent="sendForm")
-        memeForm(v-on:inputChanged="setValueFromExternalForm")
-
+        memeForm(v-on:inputChanged="setValueFromExternalForm" v-if="formType == 'meme'")
+        avatarForm(v-if="formType == 'avatar'")
+        
         .imageUploader(v-if="formType == 'meme'")
             div(v-if="currentFile" class="progress") {{ progress }}
             input(type="file" ref="file" @change="selectFile")
-            button(class="btn btn-success" :disabled="!selectedFiles" @click.prevent="upload")="Upload"
             p {{ message }}    
             img(v-if="base64image" :src="base64image" style="width:100%;")
+            button(class="btn btn-success" :disabled="!selectedFiles" @click.prevent="upload")="Upload"
 </template>
 
 <script>
 import axios from 'axios';
-//import avatarForm from "./types/avatar-form.vue"
+import avatarForm from "./types/avatar-form.vue"
 import memeForm from "./types/meme-form.vue"
 
 export default {
     name: "upload-files",
-    components:{memeForm},
+    components:{memeForm, avatarForm},
     props: ["typeOfForm"],
     data() {
         return {
@@ -48,10 +49,7 @@ export default {
             var {url, headers} = this.prepareDataFromFormType()
 
             return axios.post(url, formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                    headers
-                },
+                headers,
                 onUploadProgress
             })
         },
@@ -61,6 +59,7 @@ export default {
                 case 'meme':
                     dataToSet.url = '/api/meme/uploadImage'
                     dataToSet.headers = {
+                        "Content-Type": "multipart/form-data",
                         "title": this.memeTitle,
                         "desc": this.memeDesc,
                         "tags": this.memeTags

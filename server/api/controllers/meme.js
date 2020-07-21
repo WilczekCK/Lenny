@@ -48,10 +48,12 @@ export async function insertToDB (author_id, author_username, date, tags, meme_t
     return uploadedSqlID;
 }
 
-export async function changeImageName (oldName, newName) {
-    fs.rename(`./public/uploads/${oldName}`, `./public/uploads/${newName}.jpg`, (err) => {
+export async function uploadImage (file, newName) {
+    fs.rename(`${file}`, `assets/img/uploads/${newName}.jpg`, (err) => {
         if (err) throw err;
     });
+
+    return true;
 }
     
 export async function moderate (meme_id, decision)  {

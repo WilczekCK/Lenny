@@ -1,5 +1,5 @@
 <template lang="pug">
-    div
+    .meme__uploader__form
         input(type="text" v-model="memeTitle" placeholder="title" @change="$emit('inputChanged', {paramToChange: 'memeTitle', value: memeTitle})")
         input(type="text" v-model="memeDesc"  placeholder="desc" @change="$emit('inputChanged', {paramToChange: 'memeDesc', value: memeDesc})")
         input(type="text" v-model="memeTags" placeholder="tags" @change="$emit('inputChanged', {paramToChange: 'memeTags', value: memeTags})")

@@ -31,10 +31,18 @@ export function printRoutes (router) {
         }),
 
         router.post('/meme/uploadImage', koaBody({multipart: true}), async (ctx, next) => {
-            console.log(ctx.request.files)
-            console.log(ctx.request.header)  
+            const {file} = ctx.request.files;
+            const {title, desc, tags} = ctx.request.header;
+            const {fb_id, username} = ctx.req.body[0][0];
 
-            return ctx.throw(200)
+            try{
+                const uploadedSqlID = await meme.insertToDB(`${fb_id}`, `${username}`, `${moment().format('YYYY-MM-DD HH:mm:ss')}`, `${tags}`, `${title}`, null)
+                await meme.uploadImage(`${file.path}`, uploadedSqlID);
+                return ctx.throw(200)
+            }catch(err){
+                return ctx.throw(400)
+            }
+
         }),
 
         router.post('/meme/addimage', function (ctx, next){
@@ -43,7 +51,7 @@ export function printRoutes (router) {
             //const { tags, author_id, author_username, meme_title } = ctx.request.body;
     
             //const uploadedSqlID = await meme.insertToDB(`${author_id}`, `${author_username}`, `${moment().format('YYYY-MM-DD HH:mm:ss')}`, `${tags}`, `${meme_title}`, null)
-            //await meme.changeImageName(`${filename}`, `${uploadedSqlID}`);
+            //await meme.uploadImage(`${filename}`, `${uploadedSqlID}`);
             return ctx.throw(200);
         }),
 
