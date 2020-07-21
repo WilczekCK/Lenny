@@ -5,7 +5,7 @@
                 .modal__mask__wrapper__container
                     .modal__mask__wrapper__container--header
                     .modal__mask__wrapper__container--body
-                        formComp(:typeOfForm="meme")
+                        formComp(:typeOfForm="'meme'")
                     .modal__mask__wrapper__container--footer
                         button(class="modal-default-button" @click="changeState()")
                             ="CLOSE"

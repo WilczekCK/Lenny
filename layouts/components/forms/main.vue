@@ -1,11 +1,13 @@
 <template lang="pug">
     form(@submit.prevent="sendForm")
         memeForm(v-on:inputChanged="setValueFromExternalForm")
-        div(v-if="currentFile" class="progress") {{ progress }}
-        input(type="file" ref="file" @change="selectFile")
-        button(class="btn btn-success" :disabled="!selectedFiles" @click.prevent="upload")="Upload"
-        p {{ message }}    
-        img(v-if="base64image" :src="base64image" style="width:100%;")
+
+        .imageUploader(v-if="formType == 'meme'")
+            div(v-if="currentFile" class="progress") {{ progress }}
+            input(type="file" ref="file" @change="selectFile")
+            button(class="btn btn-success" :disabled="!selectedFiles" @click.prevent="upload")="Upload"
+            p {{ message }}    
+            img(v-if="base64image" :src="base64image" style="width:100%;")
 </template>
 
 <script>
@@ -31,9 +33,11 @@ export default {
             memeDesc: undefined,
             memeTags: undefined,
 
+            //for type user
+            authorNewName: undefined,
+
             //for type avatar
-            authorTitle: undefined,
-            authorAvatar: undefined,
+            //only file
         };
     },
     methods: {
@@ -41,15 +45,39 @@ export default {
             let formData = new FormData();
             formData.append("file", file);
 
-            return axios.post("/api/meme/uploadImage", formData, {
+            var {url, headers} = this.prepareDataFromFormType()
+
+            return axios.post(url, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
-                    "title": this.memeTitle,
-                    "desc": this.memeDesc,
-                    "tags": this.memeTags
+                    headers
                 },
                 onUploadProgress
             })
+        },
+        prepareDataFromFormType(){
+            let dataToSet = {};
+            switch(this.formType) {
+                case 'meme':
+                    dataToSet.url = '/api/meme/uploadImage'
+                    dataToSet.headers = {
+                        "title": this.memeTitle,
+                        "desc": this.memeDesc,
+                        "tags": this.memeTags
+                    }
+                    break;
+                case 'avatar':
+                    dataToSet.url = '/api/user/tbc-a'
+                    break;
+                case 'username':
+                    dataToSet.url = '/api/user/tbc-t'
+                    dataToSet.headers = {
+                        newUsername: this.authorNewName
+                    }
+                    break;
+            }
+
+            return dataToSet;
         },
         selectFile(e) {
             this.selectedFiles = e.target.files[0];
