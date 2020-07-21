@@ -31,18 +31,18 @@ export function printRoutes (router) {
         }),
 
         router.post('/meme/uploadImage', koaBody({multipart: true}), async (ctx, next) => {
-            const {file} = ctx.request.files;
-            const {title, desc, tags} = ctx.request.header;
-            const {fb_id, username} = ctx.req.body[0][0];
-
             try{
+                const {file} = ctx.request.files;
+                const {title, desc, tags} = ctx.request.header;
+                const {fb_id, username} = ctx.req.body[0][0];
+                
                 const uploadedSqlID = await meme.insertToDB(`${fb_id}`, `${username}`, `${moment().format('YYYY-MM-DD HH:mm:ss')}`, `${tags}`, `${title}`, null)
                 await meme.uploadImage(`${file.path}`, uploadedSqlID);
-                return ctx.throw(200)
             }catch(err){
                 return ctx.throw(400)
             }
 
+            return ctx.throw(200)
         }),
 
         router.post('/meme/addimage', function (ctx, next){

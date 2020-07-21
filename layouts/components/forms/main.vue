@@ -100,9 +100,11 @@ export default {
                 this.progress = Math.round((100 * event.loaded) / event.total);
             })
             .then(response => {
+                console.log(response)
                 this.message = response.data.message;
             })
             .catch((e) => {
+                console.log(e)
                 this.progress = 0;
                 this.message = "Could not upload the file!";
                 this.currentFile = undefined;
