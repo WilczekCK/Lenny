@@ -31,9 +31,8 @@ export function printRoutes (router) {
         }),
 
         router.post('/meme/uploadImage', koaBody({multipart: true}), async (ctx, next) => {
-            console.log('upload image')
             console.log(ctx.request.files)
-            console.log('end of uploading')
+            console.log(ctx.request.header)  
 
             return ctx.throw(200)
         }),
