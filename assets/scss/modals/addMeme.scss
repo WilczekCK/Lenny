@@ -14,7 +14,7 @@
         vertical-align: middle;
     
         .modal__mask__wrapper__container {
-            width: 300px;
+            width: 768px;
             margin: 0px auto;
             padding: 20px 30px;
             background-color: #fff;
@@ -22,7 +22,7 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
             transition: all 0.3s ease;
             font-family: Helvetica, Arial, sans-serif;
-  
+
             .modal__mask__wrapper__container--header {
                 h3 {
                     margin-top: 0;
@@ -32,6 +32,33 @@
             
             .modal__mask__wrapper__container--body {
                 margin: 20px 0;
+
+                form{
+                  display:flex;
+                  flex-direction: row;
+
+                  div{
+                    width:50%;
+                  }
+
+                  label{
+                    padding:10px;
+                    padding-left:0px;
+                  }
+
+                  input{
+                    width:80%;
+                  }
+                }
+
+                button{
+                  margin-top:10px;
+                }
+
+                .meme__uploader__form{
+                  display:flex;
+                  flex-direction: column;
+                }
             }
 
             .modal__mask__wrapper__container--footer{

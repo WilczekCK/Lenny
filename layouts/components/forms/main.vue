@@ -1,14 +1,20 @@
 <template lang="pug">
-    form(@submit.prevent="sendForm")
-        memeForm(v-on:inputChanged="setValueFromExternalForm" v-if="formType == 'meme'")
-        avatarForm(v-if="formType == 'avatar'")
-        
-        .imageUploader(v-if="formType == 'meme'")
-            div(v-if="currentFile" class="progress") {{ progress }}
-            input(type="file" ref="file" @change="selectFile")
-            p {{ message }}    
-            img(v-if="base64image" :src="base64image" style="width:100%;")
-            button(class="btn btn-success" :disabled="!selectedFiles" @click.prevent="upload")="Upload"
+    div
+        form(@submit.prevent="sendForm")
+            memeForm(v-on:inputChanged="setValueFromExternalForm" v-if="formType == 'meme'")
+            avatarForm(v-if="formType == 'avatar'")
+            
+            .imageUploader(v-if="formType == 'meme'")
+                div(v-if="currentFile" class="progress") {{ progress }}
+                input(type="file" ref="file" @change="selectFile" style="display:none")
+                .imageUploader__button
+                    h2="Upload your meme"
+                    button.file__add(@click.prevent="$refs.file.click()")
+                        ='BROWSE'
+                p {{ message }}    
+                img(v-if="base64image" :src="base64image" style="width:100%;")
+            
+        button(class="btn btn-success" :disabled="!selectedFiles" @click.prevent="upload")="Upload"
 </template>
 
 <script>
@@ -42,6 +48,9 @@ export default {
         };
     },
     methods: {
+        clickOnInputFileButton: () => {
+
+        },
         uploadToServer (file, onUploadProgress) {
             let formData = new FormData();
             formData.append("file", file);

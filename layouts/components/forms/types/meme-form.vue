@@ -1,8 +1,13 @@
 <template lang="pug">
     .meme__uploader__form
-        input(type="text" v-model="memeTitle" placeholder="title" @change="$emit('inputChanged', {paramToChange: 'memeTitle', value: memeTitle})")
-        input(type="text" v-model="memeDesc"  placeholder="desc" @change="$emit('inputChanged', {paramToChange: 'memeDesc', value: memeDesc})")
-        input(type="text" v-model="memeTags" placeholder="tags" @change="$emit('inputChanged', {paramToChange: 'memeTags', value: memeTags})")
+        label(for="memeTitle")='Provide the title of the meme'
+        input(type="text" v-model="memeTitle" id="memeTitle" placeholder="Title of your meme" @change="$emit('inputChanged', {paramToChange: 'memeTitle', value: memeTitle})")
+        
+        label(for="memeDesc")='Provide the description of the meme'
+        input(type="text" v-model="memeDesc" id="memeDesc"  placeholder="Description of your meme" @change="$emit('inputChanged', {paramToChange: 'memeDesc', value: memeDesc})")
+
+        label(for="memeTags")='Provide tags of the meme'
+        input(type="text" v-model="memeTags" id="memeTags" placeholder="Tags which are related to your meme" @change="$emit('inputChanged', {paramToChange: 'memeTags', value: memeTags})")
 </template>
 
 <script>
