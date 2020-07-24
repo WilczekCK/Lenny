@@ -66,10 +66,10 @@ export async function moderate (meme_id, decision)  {
 }
 
 export async function like (meme_id, who_liked) {
-    let responseFromDB = await mysql.query(`SELECT id FROM likes WHERE ingame_id = ${who_liked} AND meme_id = ${meme_id}`);
+    let responseFromDB = await mysql.query(`SELECT id FROM likes WHERE fb_id = ${who_liked} AND meme_id = ${meme_id}`);
     if(!_.isEmpty(responseFromDB)) return true;
 
-    mysql.insert(`likes`, `meme_id, ingame_id`, `${meme_id}, ${who_liked}`);
+    mysql.insert(`likes`, `meme_id, fb_id`, `${meme_id}, ${who_liked}`);
     mysql.update(`images`, `likes = likes + 1`, `id = ${meme_id}`);
     return false;
 }

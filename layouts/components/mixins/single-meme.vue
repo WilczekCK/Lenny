@@ -12,10 +12,10 @@
         .meme__item__footer
             .meme__item__footer__tags
                 h6(v-for="tag in memeDetails.tagsDivider" :hashtag="tag") {{tag}}
-            .meme__item__footer__likes
+            .meme__item__footer__likes(@click="giveLikeToMeme(memeDetails.id)")
                 span.pp__counter(:meme_id="memeDetails.id")
-                    i(class='fab fa-pied-piper-pp')
-                    .pp__amount {{memeDetails.likes}}
+                    i(class='fa fa-thumbs-up')
+                    .pp__amount {{this.likes}}
         .meme__item__comments
             commentComp()
 .meme__container(v-else)
@@ -32,7 +32,8 @@ export default {
         return{
             memeDetails: null,
             memeComments: null,
-            isPageLoaded: false
+            isPageLoaded: false,
+            likes: null
         }
     },
     components: {
@@ -43,6 +44,16 @@ export default {
             const today = moment();
             const incomingDate = moment(date);
             return " · "+incomingDate.from(today);
+        },
+        giveLikeToMeme: async function(meme_id){
+            if(!this.$store.state.isLogged) return this.$toast.error('You have to be logged to like memes!')
+            await axios({
+                url:`/api/meme/like/${meme_id}`,
+                method:'PATCH'
+            }).then(({data}) => {
+                if(data.data){return this.$toast.error('You already gave a like!')} 
+                else this.likes++;
+            })
         }
     },
     async mounted (error) {
@@ -50,7 +61,7 @@ export default {
             .get(`/api/meme/${this.$route.params.id}`)
             .then(async ({data}) => {
                 this.memeDetails = data.data[0];
-
+                this.likes = this.memeDetails.likes
                 //load comments below
                 await axios
                     .get(`/api/meme/comments/load/${this.$route.params.id}`)

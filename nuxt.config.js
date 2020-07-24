@@ -32,6 +32,7 @@ module.exports = {
   },
   modules: [
     ['@nuxtjs/axios'],
+    ['@nuxtjs/toast'],
     [
         'nuxt-sass-resources-loader', 
         [
@@ -41,5 +42,14 @@ module.exports = {
     [
       'cookie-universal-nuxt'
     ],
-  ]
+  ],
+
+  toast: {
+    position: 'bottom-right',
+    register: [ 
+      //custom toasts!
+    ],
+    duration : 2000
+}
+
 }
