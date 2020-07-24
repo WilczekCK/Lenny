@@ -1,5 +1,7 @@
 <template lang="pug">
     .meme__uploader__form
+        h3="Please fill all of the fields below and upload an image"
+
         label(for="memeTitle")='Provide the title of the meme'
         input(type="text" v-model="memeTitle" id="memeTitle" placeholder="Title of your meme" @change="$emit('inputChanged', {paramToChange: 'memeTitle', value: memeTitle})")
         

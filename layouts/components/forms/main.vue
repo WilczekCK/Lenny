@@ -1,20 +1,26 @@
 <template lang="pug">
-    div
-        form(@submit.prevent="sendForm")
-            memeForm(v-on:inputChanged="setValueFromExternalForm" v-if="formType == 'meme'")
-            avatarForm(v-if="formType == 'avatar'")
-            
-            .imageUploader(v-if="formType == 'meme'")
-                div(v-if="currentFile" class="progress") {{ progress }}
-                input(type="file" ref="file" @change="selectFile" style="display:none")
-                .imageUploader__button
-                    h2="Upload your meme"
-                    button.file__add(@click.prevent="$refs.file.click()")
-                        ='BROWSE'
-                p {{ message }}    
-                img(v-if="base64image" :src="base64image" style="width:100%;")
-            
-        button(class="btn btn-success" :disabled="!selectedFiles" @click.prevent="upload")="Upload"
+    transition
+        div            
+            form(@submit.prevent="sendForm")
+                memeForm(v-on:inputChanged="setValueFromExternalForm" v-if="formType == 'meme'")
+                avatarForm(v-if="formType == 'avatar'")
+                
+                .imageUploader(v-if="formType == 'meme'")
+                    div(v-if="currentFile" class="progress") {{ progress }}
+                    input(type="file" ref="file" @change="selectFile" style="display:none") 
+                    img(v-if="base64image" :src="base64image" class="imageUploader__placeholder")
+                    .imageUploader__placeholder(v-else)
+                        ="Your image will be displayed here"
+                        button.file__add(@click.prevent="$refs.file.click()" v-if="!selectedFiles")
+                            i(class="fas fa-images")
+                            ="Select an image"
+            button(class="btn btn-success" @click.prevent="checkForm")
+                i(class="fas fa-cloud-upload-alt")
+                ="Upload"
+            .form__messages
+                p(v-if="message") {{ message }}
+                p(v-if="errors")
+                    span(v-for="error in errors") {{error}}
 </template>
 
 <script>
@@ -24,6 +30,10 @@ import memeForm from "./types/meme-form.vue"
 
 export default {
     name: "upload-files",
+    transition: {
+        name: 'page',
+        mode: 'out-in'
+    },
     components:{memeForm, avatarForm},
     props: ["typeOfForm"],
     data() {
@@ -31,6 +41,7 @@ export default {
             selectedFiles: undefined,
             currentFile: undefined,
             base64image: undefined,
+            errors: undefined,
             progress: 0,
             message: "",
             formType: this.typeOfForm,
@@ -48,8 +59,16 @@ export default {
         };
     },
     methods: {
-        clickOnInputFileButton: () => {
+        checkForm: function(e){
+        this.errors = [];
 
+        if(!this.memeTitle|| !this.memeDesc || !this.memeTags || !this.selectedFiles){
+            this.errors.push('You are missing one of the fields!')
+        }else{
+            this.upload();
+        }
+
+        e.preventDefault()
         },
         uploadToServer (file, onUploadProgress) {
             let formData = new FormData();
@@ -109,11 +128,9 @@ export default {
                 this.progress = Math.round((100 * event.loaded) / event.total);
             })
             .then(response => {
-                console.log(response)
                 this.message = response.data.message;
             })
             .catch((e) => {
-                console.log(e)
                 this.progress = 0;
                 this.message = "Could not upload the file!";
                 this.currentFile = undefined;

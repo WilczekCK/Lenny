@@ -3,12 +3,12 @@
         .modal__mask()
             .modal__mask__wrapper
                 .modal__mask__wrapper__container
+                    button(class="modal-default-button" @click="changeState()")
+                        i(class="fas fa-times")
                     .modal__mask__wrapper__container--header
                     .modal__mask__wrapper__container--body
                         formComp(:typeOfForm="'meme'")
                     .modal__mask__wrapper__container--footer
-                        button(class="modal-default-button" @click="changeState()")
-                            ="CLOSE"
 </template>
 
 <script>
