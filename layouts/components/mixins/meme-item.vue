@@ -47,7 +47,7 @@ export default {
                 url:`/api/meme/like/${meme_id}`,
                 method:'PATCH'
             }).then(({data}) => {
-                if(data.data){return} //already gave like
+                if(data.data){return this.$toast.error('You already gave a like!')} //already gave like
                 else this.likes++;
             })
         }
