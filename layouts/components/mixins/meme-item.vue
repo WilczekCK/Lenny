@@ -13,7 +13,7 @@
             .meme__item__footer__tags
                 h6(v-for="tag in memeDetails.tagsDivider" :hashtag="tag") {{tag}}
             .meme__item__footer__stats
-                .meme__item__footer__likes
+                .meme__item__footer__likes(@click="giveLikeToMeme(memeDetails.id)")
                     span.pp__counter(:meme_id="memeDetails.id")
                         i(class='fa fa-thumbs-up')
                         .pp__amount {{memeDetails.likes}}
@@ -26,6 +26,7 @@
 
 <script>
 import moment from 'moment';
+import axios from 'axios';
 
 export default {
     props: ['memeDetails'],
@@ -34,6 +35,14 @@ export default {
             const today = moment();
             const incomingDate = moment(date);
             return " · "+incomingDate.from(today);
+        },
+        giveLikeToMeme: async function(meme_id){
+            await axios({
+                url:`/api/meme/like/${meme_id}`,
+                method:'PATCH'
+            }).then(({data}) => {
+                console.log(data)
+            })
         }
     }
 }
