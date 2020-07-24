@@ -10,6 +10,7 @@ import * as auth from './api/controllers/auth'
 import passport from 'koa-passport'
 import FacebookStrategy from 'passport-facebook'
 import session from 'koa-session'
+import koaBody from 'koa-body';
 
 export default (app) => {
   // Catch and format the error in the upstream.
@@ -57,6 +58,12 @@ export default (app) => {
   // https://github.com/koajs/bodyparser
   // https://github.com/koajs/koa/issues/719
   app.use(bodyParser())
+  
+    // Allow the multipart body parsing 
+    // it's used for uploading images into the server
+  // koaBody({multipart: true})
+    // had to comment out it, because setting it global
+    // makes troubles with forms, use it always on route!
 
   //SESSIONS
   app.keys = ['your-session-secret']
@@ -80,7 +87,7 @@ export default (app) => {
   app.use(passport.initialize());
   app.use(passport.session());
   //Passport
-
+  
   // Add routes by group.
   const mount = require('koa-mount')
   app.use(mount('/api', routes(app)))

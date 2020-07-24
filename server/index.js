@@ -9,7 +9,7 @@ import middlewares from './middlewares'
 const app = new Koa()
 const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || config.server.port
-const { clearCookie, setCookie } = require('koa-cookies')
+
 
 // Import and Set Nuxt.js options
 let nuxtConfig = require('../nuxt.config.js')

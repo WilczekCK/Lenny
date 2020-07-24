@@ -5,11 +5,15 @@
       .content
         sidebarComp
         nuxt(:user="userLogged")
+
+        addMemeModal()
+        button(id="show-modal" @click="$store.commit('addMemeModalTrigger')")
 </template>
 
 <script>
 import header from "./components/header";
 import sidebar from "./components/sidebar";
+import memeModal from "./components/modals/addMeme";
 import axios from "axios";
 export default {
   transition: {
@@ -18,14 +22,14 @@ export default {
   },
   components:{
     headerComp: header,
-    sidebarComp: sidebar
+    sidebarComp: sidebar,
+    addMemeModal: memeModal
   },
   data: function() {
     return {
-      userLogged: null
+      userLogged: null,
     }
   },
-
   mounted: function(){
      this.$store.commit('login')
   },

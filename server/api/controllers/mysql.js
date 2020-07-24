@@ -14,6 +14,7 @@ export async function query (query) {
 
 export async function insert (table, rowNames, rowValue) {
     const connection = await connect();
+    console.log(`INSERT INTO ${table} (${rowNames}) VALUES (${rowValue})`)
     const [results] = await connection.execute(`INSERT INTO ${table} (${rowNames}) VALUES (${rowValue})`);
     connection.end();
 
