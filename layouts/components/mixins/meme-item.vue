@@ -16,7 +16,7 @@
                 .meme__item__footer__likes(@click="giveLikeToMeme(memeDetails.id)")
                     span.pp__counter(:meme_id="memeDetails.id")
                         i(class='fa fa-thumbs-up')
-                        .pp__amount {{memeDetails.likes}}
+                        .pp__amount {{this.likes}}
                 .meme__item__footer__comments
                     i(class='fa fa-comments')
                     span {{memeDetails.comments_sum}}
@@ -30,6 +30,11 @@ import axios from 'axios';
 
 export default {
     props: ['memeDetails'],
+    data () {
+        return{
+            likes : this.memeDetails.likes
+        }
+    },
     methods: {
         moment: function(date){
             const today = moment();
@@ -41,7 +46,8 @@ export default {
                 url:`/api/meme/like/${meme_id}`,
                 method:'PATCH'
             }).then(({data}) => {
-                console.log(data)
+                if(data.data){return} //already gave like
+                else this.likes++;
             })
         }
     }

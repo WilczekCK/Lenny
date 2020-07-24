@@ -96,7 +96,7 @@ export function printRoutes(router) {
 
         router.patch('/meme/like/:id', async (ctx, next) => {
             const meme_id = ctx.params.id;
-            const who_liked = ctx.req.body[0].fb_id;
+            const who_liked = ctx.req.body[0][0].fb_id;
             const alreadyGaveLike = await meme.like(meme_id, who_liked);
             if (alreadyGaveLike) { ctx.body = true; } else { ctx.body = false;}
         })
