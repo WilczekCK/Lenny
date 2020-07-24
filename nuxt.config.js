@@ -32,6 +32,7 @@ module.exports = {
   },
   modules: [
     ['@nuxtjs/axios'],
+    ['@nuxtjs/toast'],
     [
         'nuxt-sass-resources-loader', 
         [

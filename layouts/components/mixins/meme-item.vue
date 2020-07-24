@@ -42,6 +42,7 @@ export default {
             return " · "+incomingDate.from(today);
         },
         giveLikeToMeme: async function(meme_id){
+            if(!this.$store.state.isLogged) return 0;
             await axios({
                 url:`/api/meme/like/${meme_id}`,
                 method:'PATCH'
