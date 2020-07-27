@@ -19,7 +19,6 @@ export async function displayMemesWithCategory (category, limit) {
     
 
     const memesRecord = await mysql.query(`SELECT * FROM images WHERE status = 1 AND concat(' ',tags,' ') like '% ${category} %' ORDER BY added_in DESC ${limit}`);
-
     //create array from simple string - for tags
     memesRecord.tagsDivider = createArrayFromTags(memesRecord);
     return memesRecord;
