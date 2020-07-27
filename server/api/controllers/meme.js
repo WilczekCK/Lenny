@@ -94,6 +94,15 @@ export async function infiniteScroll (loadCount, loadElements) {
     return memesRecord;
 }
 
+export async function infiniteScrollCategory (loadCount, loadElements, category) {
+    const startFrom = (loadElements * loadCount);
+
+    const memesRecord = await mysql.query(`SELECT id, author_username, author_id, tags, likes, status, added_in, meme_title, video_id FROM images WHERE status = 1 AND concat(' ',tags,' ') like '% ${category} %' ORDER BY added_in DESC LIMIT ${loadElements} OFFSET ${startFrom}`)
+    memesRecord.tagsDivider = createArrayFromTags(memesRecord);
+        
+    return memesRecord;
+}
+
 export async function getComments (meme_id) {
     const commentsMeme = await mysql.query(`SELECT comments.*, users.username FROM comments, users WHERE meme_id=${meme_id} AND comments.fb_id = users.fb_id ORDER BY date DESC`);
     return commentsMeme;
