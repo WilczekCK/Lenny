@@ -56,7 +56,6 @@ export function printRoutes(router) {
         router.get('/meme/load', async (ctx, next) => {
             const howManyLoads = ctx.request.header.page;
             const howManyElements = ctx.request.header.loadelements;
-            console.log([howManyElements, howManyLoads])
             const lastMemeID = await meme.infiniteScroll(howManyLoads, howManyElements)
             
             ctx.body = lastMemeID;
