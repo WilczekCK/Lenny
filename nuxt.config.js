@@ -20,6 +20,9 @@ module.exports = {
   env: {
     HOST_URL: process.env.HOST_URL || 'http://localhost:3000'
   },
+  plugins: [
+    {src: '~/plugins/infiniteLoading.js', ssr: false}
+  ],
   /*
   ** Global CSS
   */

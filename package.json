@@ -44,6 +44,8 @@
     "passport-facebook": "^3.0.0",
     "underscore": "^1.10.2",
     "vue-cookies": "^1.7.2",
+    "vue-infinite-loading": "^2.4.5",
+    "vue-infinite-scroll": "^2.0.2",
     "vue-upload-component": "^2.8.20"
   },
   "devDependencies": {
