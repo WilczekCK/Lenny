@@ -56,7 +56,7 @@ export default {
             })
         }
     },
-    async mounted (error) {
+    async mounted () {
         await axios
             .get(`/api/meme/${this.$route.params.id}`)
             .then(async ({data}) => {
@@ -73,8 +73,8 @@ export default {
                     })
                 //comments loaded
             })
-            .catch((error) => {
-                error({statusCode: 404, message: 'Meme not found!'})
+            .catch(() => {
+                this.$nuxt.error({ statusCode: 404, message: 'No meme found!'})
             })
 
 
