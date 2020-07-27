@@ -27,6 +27,11 @@ export function printRoutes(router) {
             ctx.body = await meme.displayMeme(ctx.params.id)
         }),
 
+        router.get('/meme/cat/:name', async (ctx, next) => {
+            ctx.type = 'json'
+            ctx.body = await meme.displayMemesWithCategory(ctx.params.name, 5)
+        }),
+
         router.post('/meme/uploadImage', koaBody({ multipart: true }), async (ctx, next) => {
             try {
                 const { file } = ctx.request.files;
@@ -57,6 +62,17 @@ export function printRoutes(router) {
             const howManyLoads = ctx.request.header.page;
             const howManyElements = ctx.request.header.loadelements;
             const lastMemeID = await meme.infiniteScroll(howManyLoads, howManyElements)
+            
+            ctx.body = lastMemeID;
+
+            await next();
+        }),
+
+        router.get('/meme/load/cat', async (ctx, next) => {
+            const howManyLoads = ctx.request.header.page;
+            const howManyElements = ctx.request.header.loadelements;
+            const category = ctx.request.header.category;
+            const lastMemeID = await meme.infiniteScrollCategory(howManyLoads, howManyElements, category)
             
             ctx.body = lastMemeID;
 
