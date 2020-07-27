@@ -11,7 +11,8 @@
             img(v-else :src='"~/assets/img/uploads/"+memeDetails.id+".jpg"')
         .meme__item__footer
             .meme__item__footer__tags
-                h6(v-for="tag in memeDetails.tagsDivider" :hashtag="tag") {{tag}}
+                h6(v-for="tag in memeDetails.tagsDivider" :hashtag="tag") 
+                    nuxt-link(:to="'/meme/cat/'+tag") {{tag}}
             .meme__item__footer__stats
                 .meme__item__footer__likes(@click="giveLikeToMeme(memeDetails.id)")
                     span.pp__counter(:meme_id="memeDetails.id")
