@@ -19,7 +19,7 @@ const uploader = BusBoy({
 export function printRoutes(router) {
     return router.get('/meme', async (ctx, next) => {
         ctx.type = 'json'
-        ctx.body = await meme.displayMemes();
+        ctx.body = await meme.displayMemes(5);
     }),
 
         router.get('/meme/:id', async (ctx, next) => {
@@ -53,10 +53,11 @@ export function printRoutes(router) {
             await next();
         }),
 
-        router.get('/meme/load', koaBody(), async (ctx, next) => {
+        router.get('/meme/load', async (ctx, next) => {
             const howManyLoads = ctx.request.header.page;
             const howManyElements = ctx.request.header.loadelements;
             const lastMemeID = await meme.infiniteScroll(howManyLoads, howManyElements)
+            
             ctx.body = lastMemeID;
 
             await next();

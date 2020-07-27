@@ -1,6 +1,8 @@
 <template lang="pug">
   .meme__container
     memeItem(v-for="post in memes" :memeDetails="post" :key="post.id")
+    no-ssr
+      infinite-loading(@infinite="infiniteScroll")
 </template>
 
 <script>
@@ -14,7 +16,8 @@ export default {
   },
   data: () => {
     return { 
-      memes: []
+      memes: [],
+      page: 1
     }
   },
   components:{
@@ -27,16 +30,33 @@ export default {
       let memes = data.data;
       memes.forEach((meme) => { this.memes.push(meme) })
     })
-  }
-}
+  },
+  methods: {
+    infiniteScroll($state){
+      axios({
+        url:'/api/meme/load',
+        method:'GET',
+        headers:{
+          "page": this.page,
+          "loadElements":5
+        }
+      })
+      .then( ( {data} ) => {
+        if(data.data.length){
+          this.page += 1;
+
+          let memes = data.data;
+          memes.forEach((meme) => { this.memes.push(meme) })
+          $state.loaded();
+        }else{
+          $state.complete()
+        }
+
+      })
+
+    }
+}}
 </script>
 
 <style>
-h1 {
-  font-size: 40px;
-}
-
-p {
-  font-size: 20px;
-}
 </style>
