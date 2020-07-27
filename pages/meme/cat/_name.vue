@@ -22,8 +22,12 @@ export default {
          await axios
             .get(`/api/meme/cat/${this.$route.params.name}`)
             .then(async ({data}) => {
+                if(data.data.length == 0) return this.$nuxt.error({ statusCode: 404, message: 'No memes with that category found!'})
                 var memes = data.data;
                 memes.forEach(meme => this.memesInCat.push(meme))
+            })
+            .catch(() => {
+                this.$nuxt.error({ statusCode: 404, message: 'No memes with that category found!'})
             })
     },
     methods: {
