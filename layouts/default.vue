@@ -6,10 +6,11 @@
         sidebarComp
         nuxt(:user="userLogged")
 
-        addMemeModal()
-        button(id="show-modal" @click="$store.commit('addMemeModalTrigger')")
-          i(class="fas fa-plus")
-          ='Add meme'
+        .addMemeModal(v-if="$store.state.isLogged")
+          addMemeModal()
+          button(id="show-modal" @click="$store.commit('addMemeModalTrigger')")
+            i(class="fas fa-plus")
+            ='Add meme'
 </template>
 
 <script>
