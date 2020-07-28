@@ -16,7 +16,8 @@
                             ="Select an image"
                 .videoUploader(v-if="formType == 'meme' && memeType == 'video'")
                     .imageUploader__placeholder()
-                        ="Your video preview will be displayed here"
+                        span(v-if="!memeVideo")="Your video preview will be displayed here"
+                        iframe(v-else :src="'http://www.youtube.com/embed/'+memeVideo+'?controls=0&modestbranding=1'" frameborder="0")
                 .memePlaceholder(v-if="formType == 'meme' && !memeType")
                     .imageUploader__placeholder
                         ="Select a type of meme on the right"

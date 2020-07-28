@@ -13,7 +13,7 @@
         input(type="text" v-model="memeTitle" id="memeTitle" placeholder="Title of your meme" @change="$emit('inputChanged', {paramToChange: 'memeTitle', value: memeTitle})")
         
         label(for="memeDesc")='Provide the ID of video of the meme'
-        input(type="text" v-if="memeType == 'video'" v-model="memeDesc" id="memeDesc"  placeholder="ID of youtube video" @change="$emit('inputChanged', {paramToChange: 'memeDesc', value: memeDesc})")
+        input(type="text" v-if="memeType == 'video'" v-model="memeVideo" id="memeVideo"  placeholder="ID of youtube video" @change="$emit('inputChanged', {paramToChange: 'memeVideo', value: memeVideo})")
 
         label(for="memeTags")='Provide tags of the meme'
         input(type="text" v-model="memeTags" id="memeTags" placeholder="Tags which are related to your meme" @change="$emit('inputChanged', {paramToChange: 'memeTags', value: memeTags})")
@@ -26,6 +26,7 @@ export default {
         return {
             memeTitle: undefined,
             memeTags: undefined,
+            memeVideo: undefined,
             memeType: undefined,
         }
     }
