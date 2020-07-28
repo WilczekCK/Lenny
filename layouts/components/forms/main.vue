@@ -5,7 +5,7 @@
                 memeForm(v-on:inputChanged="setValueFromExternalForm" v-if="formType == 'meme'")
                 avatarForm(v-if="formType == 'avatar'")
                 
-                .imageUploader(v-if="formType == 'meme'")
+                .imageUploader(v-if="formType == 'meme' && memeType == 'image'")
                     div(v-if="currentFile" class="progress") {{ progress }}
                     input(type="file" ref="file" @change="selectFile" style="display:none") 
                     img(v-if="base64image" :src="base64image" class="imageUploader__placeholder")
@@ -14,6 +14,12 @@
                         button.file__add(@click.prevent="$refs.file.click()" v-if="!selectedFiles")
                             i(class="fas fa-images")
                             ="Select an image"
+                .videoUploader(v-if="formType == 'meme' && memeType == 'video'")
+                    .imageUploader__placeholder()
+                        ="Your video preview will be displayed here"
+                .memePlaceholder(v-if="formType == 'meme' && !memeType")
+                    .imageUploader__placeholder
+                        ="Select a type of meme on the right"
             button(class="btn btn-success" @click.prevent="checkForm")
                 i(class="fas fa-cloud-upload-alt")
                 ="Upload"
@@ -46,9 +52,11 @@ export default {
             message: "",
             formType: this.typeOfForm,
 
+
+            memeType: undefined,
             //for type meme
             memeTitle: undefined,
-            memeDesc: undefined,
+            memeVideo: undefined,
             memeTags: undefined,
 
             //for type user
@@ -62,8 +70,10 @@ export default {
         checkForm: function(e){
         this.errors = [];
 
-        if(!this.memeTitle|| !this.memeDesc || !this.memeTags || !this.selectedFiles){
+        if(!this.memeTitle || !this.memeTags || !this.selectedFiles){
             this.errors.push('You are missing one of the fields!')
+        }else if(this.memeVideo){
+            console.log('video!')
         }else{
             this.upload();
         }
