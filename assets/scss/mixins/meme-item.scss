@@ -58,7 +58,7 @@
 				flex-direction:row;
 				h6{
 					&:before{content:'#'};
-					&:hover{color:purple};
+					&:hover{color:$mainColor;};
 					margin:10px 0px;
 					margin-right:5px;
 					color: grey;
@@ -86,6 +86,10 @@
 
 				* {
 					display:flex;	
+					&:hover{
+						color:$mainColor;
+						cursor:pointer;
+					}
 				}
 			}
 		}
