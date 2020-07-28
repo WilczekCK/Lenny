@@ -1,6 +1,6 @@
 <template lang="pug">
     transition
-        div            
+        div(v-if="!formSent")            
             form(@submit.prevent="sendForm")
                 memeForm(v-on:inputChanged="setValueFromExternalForm" v-if="formType == 'meme'")
                 avatarForm(v-if="formType == 'avatar'")
@@ -28,6 +28,8 @@
                     span(v-for="error in errors") {{error}}
                 p(v-if="message")
                     span {{ message }}
+        div.modal__result(v-else)
+            h3 {{formSentMessage}}
 </template>
 
 <script>
@@ -45,6 +47,8 @@ export default {
     props: ["typeOfForm"],
     data() {
         return {
+            formSent: false,
+            formSentMessage: '',
             selectedFiles: undefined,
             currentFile: undefined,
             base64image: undefined,
@@ -96,7 +100,24 @@ export default {
                     videoid: this.memeVideo,
                     tags: this.memeTags
                 },
+            }).then(({data}) => {
+                this.uploadResponse(data)
             })
+        },
+        uploadResponse ({status}){
+            this.formSent = true;
+
+            switch(status){
+                case 200:
+                    this.formSentMessage = "Your meme is sent successfully!"
+                    break;
+                case 400:
+                    this.formSentMessage = "Something went bad, please try again later"
+                    break;
+                default:
+                    this.formSentMessage = "Something went bad, please try again later"
+                    break;
+            }
         },
         uploadToServer (file, onUploadProgress) {
             let formData = new FormData();
@@ -107,6 +128,8 @@ export default {
             return axios.post(url, formData, {
                 headers,
                 onUploadProgress
+            }).then(({data}) => {
+                this.uploadResponse(data)
             })
         },
         prepareDataFromFormType(){

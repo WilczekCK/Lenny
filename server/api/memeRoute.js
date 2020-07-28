@@ -51,7 +51,7 @@ export function printRoutes(router) {
             try{
                 const {title, videoid, tags} = ctx.request.body.body;
                 const { fb_id, username } = ctx.req.body[0][0];
-                console.log([title, videoid, tags, fb_id, username])
+
                 if(!fb_id || !username || !title || !videoid || !tags) return ctx.throw(400, { message: 'One of the fields are missing' })
                 await meme.insertToDB(`${fb_id}`, `${username}`, `${moment().format('YYYY-MM-DD HH:mm:ss')}`, `${tags}`, `${title}`, `'${videoid}'`)    
             }catch (err){
