@@ -69,17 +69,34 @@ export default {
     },
     methods: {
         checkForm: function(e){
-        this.errors = [];
+        this.errorHandler();
 
-        if(!this.memeTitle || !this.memeTags || !this.selectedFiles){
-            this.errors.push('You are missing one of the fields!')
-        }else if(this.memeVideo){
-            console.log('video!')
-        }else{
+        if(this.memeVideo){
+            //video meme
+            this.uploadVideo();
+        }else if(this.selectedFiles){
+            //image meme
             this.upload();
+        }else{
+            this.errors.push('You are missing one of the fields!')
         }
 
         e.preventDefault()
+        },
+        errorHandler: function(){
+            this.errors = [];
+            if(!this.memeTitle || !this.memeTags){
+                this.errors.push('You are missing one of the fields!')
+            } 
+        },
+        uploadVideo(){
+            return axios.post('/api/meme/uploadVideo', {
+                body:{
+                    title: this.memeTitle,
+                    videoid: this.memeVideo,
+                    tags: this.memeTags
+                },
+            })
         },
         uploadToServer (file, onUploadProgress) {
             let formData = new FormData();

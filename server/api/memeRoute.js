@@ -36,7 +36,7 @@ export function printRoutes(router) {
             try {
                 const { file } = ctx.request.files;
                 const { title, desc, tags } = ctx.request.header;
-                const { fb_id, username } = ctx.req.body[0][0];
+                const { fb_id, username } = ctx.request.body[0][0];
 
                 const uploadedSqlID = await meme.insertToDB(`${fb_id}`, `${username}`, `${moment().format('YYYY-MM-DD HH:mm:ss')}`, `${tags}`, `${title}`, null)
                 await meme.uploadImage(`${file.path}`, uploadedSqlID);
@@ -47,15 +47,18 @@ export function printRoutes(router) {
             return ctx.throw(200)
         }),
 
-        router.post('/meme/add-video', async (ctx, next) => {
-            if (_.isEmpty(ctx.request.body.tags) || _.isEmpty(ctx.request.body.meme_title)) {
-                return ctx.throw(400, { message: 'One of the fields are missing' })
+        router.post('/meme/uploadVideo', async (ctx, next) => {
+            try{
+                const {title, videoid, tags} = ctx.request.body.body;
+                const { fb_id, username } = ctx.req.body[0][0];
+                console.log([title, videoid, tags, fb_id, username])
+                if(!fb_id || !username || !title || !videoid || !tags) return ctx.throw(400, { message: 'One of the fields are missing' })
+                await meme.insertToDB(`${fb_id}`, `${username}`, `${moment().format('YYYY-MM-DD HH:mm:ss')}`, `${tags}`, `${title}`, `'${videoid}'`)    
+            }catch (err){
+                return ctx.throw(400)
             }
 
-            const { tags, author_id, author_username, meme_title, meme_video_id } = ctx.request.body;
-            const uploadedSqlID = await meme.insertToDB(`${author_id}`, `${author_username}`, `${moment().format('YYYY-MM-DD HH:mm:ss')}`, `${tags}`, `${meme_title}`, `'${meme_video_id}'`)
-
-            await next();
+            return ctx.throw(200)
         }),
 
         router.get('/meme/load', async (ctx, next) => {

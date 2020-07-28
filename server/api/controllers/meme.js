@@ -55,6 +55,7 @@ export async function createArrayFromTags (meme_tags) {
 
 export async function insertToDB (author_id, author_username, date, tags, meme_title, meme_video_id) {
     const replacedTags = tags.replace(/,/g, " ");
+    console.log(author_id, author_username, date, tags, meme_title, meme_video_id)
     const uploadedSqlID = await mysql.insert(`images`, `author_id, author_username, added_in, tags, meme_title, video_id`, `${author_id}, '${author_username}' ,'${date}', '${_.escape(replacedTags)}', '${_.escape(meme_title)}', ${meme_video_id}`);
     return uploadedSqlID;
 }
