@@ -6,7 +6,6 @@
                 avatarForm(v-if="formType == 'avatar'")
                 
                 .imageUploader(v-if="formType == 'meme' && memeType == 'image'")
-                    div(v-if="currentFile" class="progress") {{ progress }}
                     input(type="file" ref="file" @change="selectFile" style="display:none") 
                     img(v-if="base64image" :src="base64image" class="imageUploader__placeholder")
                     .imageUploader__placeholder(v-else)
@@ -24,10 +23,11 @@
             button(class="btn btn-success" @click.prevent="checkForm")
                 i(class="fas fa-cloud-upload-alt")
                 ="Upload"
-            .form__messages
-                p(v-if="message") {{ message }}
+            .form__messages 
                 p(v-if="errors")
                     span(v-for="error in errors") {{error}}
+                p(v-if="message")
+                    span {{ message }}
 </template>
 
 <script>

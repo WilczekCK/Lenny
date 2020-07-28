@@ -3,11 +3,11 @@
         h3="Please fill all of the fields below and upload a meme"
         
         div
-            input(type="radio" v-model="memeType" id="memeType" value="video" @change="$emit('inputChanged', {paramToChange: 'memeType', value: 'video'})")
-            label(style="display:block" for="memeType")="Video"
+            input(type="radio" v-model="memeType" id="memeType-video" value="video" @change="$emit('inputChanged', {paramToChange: 'memeType', value: 'video'}), refreshInputs()")
+            label(style="display:block" for="memeType-video")="Video"
 
-            input(type="radio" v-model="memeType" id="memeType" value="image" @change="$emit('inputChanged', {paramToChange: 'memeType', value: 'image'})")
-            label(style="display:block" for="memeType")="Image"
+            input(type="radio" v-model="memeType" id="memeType-image" value="image" @change="$emit('inputChanged', {paramToChange: 'memeType', value: 'image'}), refreshInputs()")
+            label(style="display:block" for="memeType-image")="Image"
 
         label(for="memeTitle")='Provide the title of the meme'
         input(type="text" v-model="memeTitle" id="memeTitle" placeholder="Title of your meme" @change="$emit('inputChanged', {paramToChange: 'memeTitle', value: memeTitle})")
@@ -28,6 +28,16 @@ export default {
             memeTags: undefined,
             memeVideo: undefined,
             memeType: undefined,
+        }
+    },
+    methods:{
+        refreshInputs () {
+            this.$emit('inputChanged', {paramToChange: 'memeTitle', value: ''})
+            this.$emit('inputChanged', {paramToChange: 'memeTags', value: ''})
+            this.$emit('inputChanged', {paramToChange: 'memeVideo', value: ''})
+            this.memeTitle = ''
+            this.memeVideo = ''
+            this.memeTags = ''
         }
     }
 }
