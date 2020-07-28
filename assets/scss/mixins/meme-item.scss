@@ -24,6 +24,7 @@
 
 		iframe{
 			height:300px;
+			width:100%;
 		}
 
 		&:after{
@@ -55,15 +56,19 @@
 			.meme__item__footer__tags{
 				display:flex;
 				flex-direction:row;
-
 				h6{
 					&:before{content:'#'};
-					&:hover{color:purple};
+					&:hover{color:$mainColor;};
 					margin:10px 0px;
 					margin-right:5px;
 					color: grey;
 					font-size:.8em;
 					font-weight:400;
+
+					a{
+						color:inherit;
+						text-decoration: none;
+					}
 				}
 				
 			}
@@ -81,6 +86,10 @@
 
 				* {
 					display:flex;	
+					&:hover{
+						color:$mainColor;
+						cursor:pointer;
+					}
 				}
 			}
 		}

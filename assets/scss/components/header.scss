@@ -23,13 +23,13 @@
             display:flex;
             flex-direction: row;
             align-items:center;
-            flex-basis:50%;
+            flex-basis:100%;
         }
 
         .header__wrapper__menuItem--searchBar{
+            display:none;
             justify-content:flex-end;
             align-items:center;
-            display:flex;
             flex-direction: row;
             flex-basis:35%;
             margin-right:10px;
