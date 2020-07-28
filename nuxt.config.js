@@ -21,7 +21,8 @@ module.exports = {
     HOST_URL: process.env.HOST_URL || 'http://localhost:3000'
   },
   plugins: [
-    {src: '~/plugins/infiniteLoading.js', ssr: false}
+    {src: '~/plugins/infiniteLoading.js', ssr: false},
+    {src: '~/plugins/iframe.js', ssr: false}
   ],
   /*
   ** Global CSS

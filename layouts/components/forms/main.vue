@@ -17,7 +17,7 @@
                 .videoUploader(v-if="formType == 'meme' && memeType == 'video'")
                     .imageUploader__placeholder()
                         span(v-if="!memeVideo")="Your video preview will be displayed here"
-                        iframe(v-else :src="'http://www.youtube.com/embed/'+memeVideo+'?controls=0&modestbranding=1'" frameborder="0")
+                        vue-friendly-iframe(v-else :src="'https://www.youtube.com/embed/'+memeVideo+'?controls=0&modestbranding=1'" @load="onLoad")
                 .memePlaceholder(v-if="formType == 'meme' && !memeType")
                     .imageUploader__placeholder
                         ="Select a type of meme on the right"
