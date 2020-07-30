@@ -1,15 +1,25 @@
-<template>
-  <section class="container">
-    <h1 class="title">
-      User
-    </h1>
-    <h2 class="info">
-      {{ user.name }}
-    </h2>
-    <nuxt-link class="button" to="/users">
-      Users
-    </nuxt-link>
-  </section>
+<template lang="pug">
+.profile__container(v-if="isPageLoaded")
+  .profile__container__header
+      .profile__container__header--cover()
+      .profile__container__header--avatar
+          //img(alt=`${user.username}_avatar`)
+      .profile__container__header--nickname {{user.username}}
+      .profile__container__header--role
+        p(v-if="user.role === 1")
+          ="Administrator"
+        p(v-else-if="user.role === -1")
+          ="Banned"
+        p(v-else)
+          ="User"
+      .profile__container__header--joinedDate
+          p="since: {{user.registered}}"
+  .profile__container__content
+      .profile__container__content__stats
+          .profile__container__content__stats--uploadedMemes
+              ="Uploaded memes: {{user.memes_count}}"
+          .profile__container__content__stats--ppSum
+              ="Total reach likes: {{user.sum_likes}}"
 </template>
 
 <script>
@@ -17,18 +27,28 @@ import axios from '~/plugins/axios'
 
 export default {
   name: 'id',
-  asyncData ({ params, error }) {
-    return axios.get('/api/users/' + params.id)
-      .then((res) => {
-        return { user: res.data.data }
-      })
-      .catch((e) => {
-        error({ statusCode: 404, message: 'User not found' })
-      })
+  data: function() {
+    return{ 
+      user: null,
+      isPageLoaded: false,
+    }
+  },
+  async mounted() {
+       await axios
+            .get(`/api/users/${this.$route.params.id}`)
+            .then(async ({data}) => {
+                this.user = data.data;
+            })
+            .catch(() => {
+                this.$nuxt.error({ statusCode: 404, message: 'No user found!'})
+            })
+
+
+        this.isPageLoaded = true;
   },
   head () {
     return {
-      title: `User: ${this.user.name}`
+
     }
   }
 }

@@ -27,8 +27,17 @@ export function printRoutes (router) {
         ctx.throw(400, 'Error while logging')
     }),
 
-    router.get('/user/:id', async (ctx, next) => {
-        const userInfo = await user.find(ctx.params.id);
-        return ctx.body = userInfo;
+    router.get('/users/:id', async (ctx, next) => {
+        const [{username, registered, role, fb_id}] = await user.find(ctx.params.id);
+        const [{memes_count, sum_likes}] = await user.profile_detailed_meme(ctx.params.id);
+
+        return ctx.body = {
+            username: username,
+            registered: registered,
+            role: role,
+            fb_id: fb_id,
+            memes_count:memes_count,
+            sum_likes:sum_likes
+        };
     })
 } 

@@ -19,8 +19,8 @@ export async function find(fb_id) {
     else return profileInfo;
 }
 
-export async function profile_detailed_meme (ingame_id) {
-    const memesInfo = await mysql.query(`SELECT COUNT(id) AS memes_count, SUM(likes) as sum_likes FROM images WHERE author_id = ${ingame_id}`);
+export async function profile_detailed_meme (fb_id) {
+    const memesInfo = await mysql.query(`SELECT COUNT(id) AS memes_count, SUM(likes) as sum_likes FROM images WHERE author_id = ${fb_id}`);
     if(_.isEmpty(memesInfo)) return false;
     else return memesInfo;
 }
