@@ -1,20 +1,7 @@
 import * as meme from './controllers/meme.js';
-import * as mysql from './controllers/mysql.js';
-import session from 'koa-session';
 import koaBody from 'koa-body';
-import multer from 'multer';
 import moment from 'moment';
 import _ from 'underscore';
-import http from 'http';
-import path from 'path'
-import os from 'os';
-import fs from 'fs';
-import BusBoy from 'koa-busboy';
-
-const uploader = BusBoy({
-    dest: './', // default is system temp folder (`os.tmpdir()`)
-    fnDestFilename: (fieldname, filename) => uuid() + filename
-})
 
 export function printRoutes(router) {
     return router.get('/meme', async (ctx, next) => {
