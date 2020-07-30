@@ -13,8 +13,8 @@ export async function newPlayer (userInfo) {
     `${userInfo.fb_id}, '${userInfo.username}','${moment().format('YYYY-MM-DD')}', 0, '${userInfo.token}'`);
 }
 
-export async function find(ingame_id) {
-    const profileInfo = await mysql.query(`SELECT * FROM users WHERE id = ${ingame_id}`);
+export async function find(fb_id) {
+    const profileInfo = await mysql.query(`SELECT * FROM users WHERE fb_id = ${fb_id}`);
     if(_.isEmpty(profileInfo)) return false;
     else return profileInfo;
 }

@@ -1,4 +1,5 @@
 import * as auth from './controllers/auth'
+import * as user from './controllers/user'
 import passport from 'koa-passport'
 import FacebookStrategy from 'passport-facebook'
 
@@ -22,11 +23,12 @@ export function printRoutes (router) {
         ctx.body = true;
     }),
 
-    router.get('/login/success', async (ctx, next) => {
-        await ctx.render('pages/login_success');        
-    }),
-
     router.get('/failed', async (ctx, next) => {
         ctx.throw(400, 'Error while logging')
+    }),
+
+    router.get('/user/:id', async (ctx, next) => {
+        const userInfo = await user.find(ctx.params.id);
+        return ctx.body = userInfo;
     })
 } 
