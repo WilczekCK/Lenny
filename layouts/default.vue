@@ -7,8 +7,8 @@
         nuxt(:user="userLogged")
 
         .addMemeModal(v-if="$store.state.isLogged")
-          addMemeModal()
-          button(id="show-modal" @click="$store.commit('addMemeModalTrigger')")
+          addMemeModal
+          button(id="show-modal" @click="$store.commit('modalToggle', 'meme')")
             i(class="fas fa-plus")
             ='Add meme'
 </template>
@@ -16,7 +16,7 @@
 <script>
 import header from "./components/header";
 import sidebar from "./components/sidebar";
-import memeModal from "./components/modals/addMeme";
+import memeModal from "./components/modals/modal";
 import axios from "axios";
 export default {
   transition: {

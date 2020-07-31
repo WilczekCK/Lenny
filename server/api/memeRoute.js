@@ -22,8 +22,8 @@ export function printRoutes(router) {
         router.post('/meme/uploadImage', koaBody({ multipart: true }), async (ctx, next) => {
             try {
                 const { file } = ctx.request.files;
-                const { title, desc, tags } = ctx.request.header;
-                const { fb_id, username } = ctx.request.body[0][0];
+                const { title, tags } = ctx.request.header;
+                const { fb_id, username } = ctx.req.body[0][0];
 
                 const uploadedSqlID = await meme.insertToDB(`${fb_id}`, `${username}`, `${moment().format('YYYY-MM-DD HH:mm:ss')}`, `${tags}`, `${title}`, null)
                 await meme.uploadImage(`${file.path}`, uploadedSqlID);

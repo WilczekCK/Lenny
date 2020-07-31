@@ -2,10 +2,10 @@
     transition
         div(v-if="!formSent")            
             form(@submit.prevent="sendForm")
-                memeForm(v-on:inputChanged="setValueFromExternalForm" v-if="formType == 'meme'")
-                avatarForm(v-if="formType == 'avatar'")
+                memeForm(v-on:inputChanged="setValueFromExternalForm" v-if="$store.state.modalType == 'meme'")
+                avatarForm(v-if="$store.state.modalType == 'avatar'")
                 
-                .imageUploader(v-if="formType == 'meme' && memeType == 'image'")
+                .imageUploader(v-if="$store.state.modalType == 'meme' && memeType == 'image'")
                     input(type="file" ref="file" @change="selectFile" style="display:none") 
                     img(v-if="base64image" :src="base64image" class="imageUploader__placeholder")
                     .imageUploader__placeholder(v-else)
@@ -13,11 +13,11 @@
                         button.file__add(@click.prevent="$refs.file.click()" v-if="!selectedFiles")
                             i(class="fas fa-images")
                             ="Select an image"
-                .videoUploader(v-if="formType == 'meme' && memeType == 'video'")
+                .videoUploader(v-if="$store.state.modalType == 'meme' && memeType == 'video'")
                     .imageUploader__placeholder()
                         span(v-if="!memeVideo")="Your video preview will be displayed here"
                         vue-friendly-iframe(v-else :src="'https://www.youtube.com/embed/'+memeVideo+'?controls=0&modestbranding=1'")
-                .memePlaceholder(v-if="formType == 'meme' && !memeType")
+                .memePlaceholder(v-if="$store.state.modalType == 'meme' && !memeType")
                     .imageUploader__placeholder
                         ="Select a type of meme on the right"
             button(class="btn btn-success" @click.prevent="checkForm")
@@ -44,7 +44,6 @@ export default {
         mode: 'out-in'
     },
     components:{memeForm, avatarForm},
-    props: ["typeOfForm"],
     data() {
         return {
             formSent: false,
@@ -55,7 +54,6 @@ export default {
             errors: undefined,
             progress: 0,
             message: "",
-            formType: this.typeOfForm,
 
 
             memeType: undefined,
@@ -134,13 +132,12 @@ export default {
         },
         prepareDataFromFormType(){
             let dataToSet = {};
-            switch(this.formType) {
+            switch(this.$store.state.modalType) {
                 case 'meme':
                     dataToSet.url = '/api/meme/uploadImage'
                     dataToSet.headers = {
                         "Content-Type": "multipart/form-data",
                         "title": this.memeTitle,
-                        "desc": this.memeDesc,
                         "tags": this.memeTags
                     }
                     break;

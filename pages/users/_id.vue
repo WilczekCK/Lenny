@@ -5,9 +5,9 @@
       .profile__container__header--avatar
         img(v-if="user.avatar_uploaded == 1" :src='"~/assets/img/avatars/"+user.fb_id+".jpg"')
         img(v-else :src='"~/assets/img/avatars/default.jpg"')
-        .avatar_config(v-if="user.fb_id === $store.state.isLogged.id" @click="$store.commit('addMemeModalTrigger')")
+        .avatar_config(v-if="user.fb_id === $store.state.isLogged.id" @click="$store.commit('modalToggle', 'avatar')")
           ="Config"
-          addAvatarModal
+        addAvatarModal(:modalType="'avatar'")
           
       .profile__container__header--nickname {{user.username}}
       .profile__container__header--role
@@ -29,7 +29,7 @@
 
 <script>
 import axios from '~/plugins/axios'
-import addAvatarModal from '~/layouts/components/modals/addAvatar'
+import addAvatarModal from '~/layouts/components/modals/modal'
 export default {
   name: 'id',
   components:{
