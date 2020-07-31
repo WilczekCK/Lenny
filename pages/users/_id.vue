@@ -5,6 +5,10 @@
       .profile__container__header--avatar
         img(v-if="user.avatar_uploaded == 1" :src='"~/assets/img/avatars/"+user.fb_id+".jpg"')
         img(v-else :src='"~/assets/img/avatars/default.jpg"')
+        .avatar_config(v-if="user.fb_id === $store.state.isLogged.id" @click="$store.commit('addMemeModalTrigger')")
+          ="Config"
+          addAvatarModal
+          
       .profile__container__header--nickname {{user.username}}
       .profile__container__header--role
         p(v-if="user.role === 1")
@@ -25,9 +29,12 @@
 
 <script>
 import axios from '~/plugins/axios'
-
+import addAvatarModal from '~/layouts/components/modals/addAvatar'
 export default {
   name: 'id',
+  components:{
+    addAvatarModal
+  },
   data: function() {
     return{
       avatarName: undefined,
