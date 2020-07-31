@@ -3,7 +3,8 @@
   .profile__container__header
       .profile__container__header--cover()
       .profile__container__header--avatar
-          //img(alt=`${user.username}_avatar`)
+        img(v-if="user.avatar_uploaded == 1" :src='"~/assets/img/avatars/"+user.fb_id+".jpg"')
+        img(v-else :src='"~/assets/img/avatars/default.jpg"')
       .profile__container__header--nickname {{user.username}}
       .profile__container__header--role
         p(v-if="user.role === 1")
@@ -28,7 +29,8 @@ import axios from '~/plugins/axios'
 export default {
   name: 'id',
   data: function() {
-    return{ 
+    return{
+      avatarName: undefined,
       user: null,
       isPageLoaded: false,
     }
@@ -43,8 +45,13 @@ export default {
                 this.$nuxt.error({ statusCode: 404, message: 'No user found!'})
             })
 
-
+        this.avatarName = this.user.fb_id;
         this.isPageLoaded = true;
+  },
+  methods:{
+    provideDefaultAvatar(){
+      this.avatarName = 'default'
+    }
   },
   head () {
     return {

@@ -28,7 +28,7 @@ export function printRoutes (router) {
     }),
 
     router.get('/users/:id', async (ctx, next) => {
-        const [{username, registered, role, fb_id}] = await user.find(ctx.params.id);
+        const [{username, registered, role, fb_id, avatar_uploaded}] = await user.find(ctx.params.id);
         const [{memes_count, sum_likes}] = await user.profile_detailed_meme(ctx.params.id);
 
         return ctx.body = {
@@ -37,7 +37,8 @@ export function printRoutes (router) {
             role: role,
             fb_id: fb_id,
             memes_count:memes_count,
-            sum_likes:sum_likes
+            sum_likes:sum_likes,
+            avatar_uploaded:avatar_uploaded
         };
     })
 } 
