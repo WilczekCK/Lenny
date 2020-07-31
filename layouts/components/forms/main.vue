@@ -79,8 +79,6 @@ export default {
         }else if(this.selectedFiles){
             //image meme
             this.upload();
-        }else{
-            this.errors.push('You are missing one of the fields!')
         }
 
         e.preventDefault()
