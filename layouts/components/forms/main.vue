@@ -5,7 +5,7 @@
                 memeForm(v-on:inputChanged="setValueFromExternalForm" v-if="$store.state.modalType == 'meme'")
                 avatarForm(v-if="$store.state.modalType == 'avatar'")
                 
-                .imageUploader(v-if="$store.state.modalType == 'meme' && memeType == 'image'")
+                .imageUploader(v-if="$store.state.modalType == 'meme' && memeType == 'image' || $store.state.modalType == 'avatar'")
                     input(type="file" ref="file" @change="selectFile" style="display:none") 
                     img(v-if="base64image" :src="base64image" class="imageUploader__placeholder")
                     .imageUploader__placeholder(v-else)
@@ -85,9 +85,14 @@ export default {
         },
         errorHandler: function(){
             this.errors = [];
-            if(!this.memeTitle || !this.memeTags){
+
+            if(this.$store.state.modalType === 'avatar' && this.selectedFiles){
+                return 0;
+            }else if(!this.memeTitle || !this.memeTags){
                 this.errors.push('You are missing one of the fields!')
-            } 
+            }else{
+                this.errors.push('You are missing one of the fields!')
+            }
         },
         uploadVideo(){
             return axios.post('/api/meme/uploadVideo', {
@@ -140,7 +145,10 @@ export default {
                     }
                     break;
                 case 'avatar':
-                    dataToSet.url = '/api/user/tbc-a'
+                    dataToSet.url = '/api/users/uploadAvatar'
+                    dataToSet.headers = {
+                        "Content-Type": "multipart/form-data"
+                    }
                     break;
                 case 'username':
                     dataToSet.url = '/api/user/tbc-t'
