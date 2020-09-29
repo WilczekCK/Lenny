@@ -7,7 +7,9 @@
             img(src="~/assets/img/logo.png")
           .comment__content
             .comment__content__socials
-              .comment__content__socials--author {{comment.username}}
+              .comment__content__socials--author 
+                span
+                  nuxt-link(:to="'/users/'+comment.fb_id") {{comment.username}}
               .comment__content__socials--date {{moment(comment.date)}}
             .comment__content--text  {{comment.content}}
             .comment__content--removeButton(@click="removeComment($store.state.isLogged.id, comment.id)" v-if="$store.state.isLogged.id == comment.fb_id || $store.state.isLogged.role === 1")
