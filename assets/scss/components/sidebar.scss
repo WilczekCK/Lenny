@@ -1,12 +1,14 @@
 .sidebar{
     display:flex;
     position: relative;
-    width:315px;
+    min-width:315px;
+    max-width:315px;
+    flex-grow:1;
     height:100vh;
     order:2;
     box-sizing: border-box;
     padding-top:75px;
-
+ 
     .sidebar__wrapper{
         position:fixed;
         padding:10px 10px;

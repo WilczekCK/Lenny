@@ -26,36 +26,50 @@
                 ="Uploaded memes: {{user.memes_count}}"
             .profile__container__content__stats--ppSum
                 ="Total reach likes: {{user.sum_likes}}"
+  .profile__memes__container
+    .meme__container
+      memeItem(v-for="post in userMemes" :memeDetails="post" :key="post.id")
 </template>
 
 <script>
 import axios from '~/plugins/axios'
 import moment from "moment";
 import addAvatarModal from '~/layouts/components/modals/modal'
+import memeItem from '~/layouts/components/mixins/meme-item.vue'
 export default {
   name: 'id',
   components:{
-    addAvatarModal
+    addAvatarModal,
+    memeItem
   },
   data: function() {
     return{
       avatarName: undefined,
       user: null,
       isPageLoaded: false,
+      userMemes: [],
+      page: 1,
     }
   },
   async mounted() {
-       await axios
-            .get(`/api/users/${this.$route.params.id}`)
-            .then(async ({data}) => {
-                this.user = data.data;
-            })
-            .catch(() => {
-                this.$nuxt.error({ statusCode: 404, message: 'No user found!'})
-            })
+    await axios
+      .get(`/api/users/${this.$route.params.id}`)
+      .then(async ({data}) => {
+          this.user = data.data;
+      })
+      .catch(() => {
+          this.$nuxt.error({ statusCode: 404, message: 'No user found!'})
+      })
 
-        this.avatarName = this.user.fb_id;
-        this.isPageLoaded = true;
+    await axios
+      .get('/api/meme')
+      .then( ( {data} ) => {
+        let userMemes = data.data;
+        userMemes.forEach((meme) => { this.userMemes.push(meme) })
+      })
+
+    this.avatarName = this.user.fb_id;
+    this.isPageLoaded = true;
   },
   methods:{
     provideDefaultAvatar(){
