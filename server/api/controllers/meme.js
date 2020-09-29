@@ -89,7 +89,7 @@ export async function like (meme_id, who_liked) {
 export async function infiniteScroll (loadCount, loadElements) {
     const startFrom = (loadElements * loadCount);
 
-    const memesRecord = await mysql.query(`SELECT id, author_username, author_id, tags, likes, status, added_in, meme_title, video_id FROM images WHERE status = 1 ORDER BY added_in DESC LIMIT ${loadElements} OFFSET ${startFrom}`)
+    const memesRecord = await mysql.query(`SELECT *, (select count(*) from comments where images.id = comments.meme_id) AS comments_sum FROM images WHERE status = 1 ORDER BY added_in DESC LIMIT ${loadElements} OFFSET ${startFrom}`)
     memesRecord.tagsDivider = createArrayFromTags(memesRecord);
         
     return memesRecord;
@@ -98,7 +98,7 @@ export async function infiniteScroll (loadCount, loadElements) {
 export async function infiniteScrollCategory (loadCount, loadElements, category) {
     const startFrom = (loadElements * loadCount);
 
-    const memesRecord = await mysql.query(`SELECT id, author_username, author_id, tags, likes, status, added_in, meme_title, video_id FROM images WHERE status = 1 AND concat(' ',tags,' ') like '% ${category} %' ORDER BY added_in DESC LIMIT ${loadElements} OFFSET ${startFrom}`)
+    const memesRecord = await mysql.query(`SELECT id, (select count(*) from comments where images.id = comments.meme_id), author_username, author_id, tags, likes, status, added_in, meme_title, video_id FROM images WHERE status = 1 AND concat(' ',tags,' ') like '% ${category} %' ORDER BY added_in DESC LIMIT ${loadElements} OFFSET ${startFrom}`)
     memesRecord.tagsDivider = createArrayFromTags(memesRecord);
         
     return memesRecord;
