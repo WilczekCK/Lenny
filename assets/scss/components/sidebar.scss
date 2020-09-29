@@ -1,9 +1,11 @@
 .sidebar{
     display:flex;
-    position:relative;
+    position: relative;
     width:315px;
     height:100vh;
     order:2;
+    box-sizing: border-box;
+    padding-top:75px;
 
     .sidebar__wrapper{
         position:fixed;

@@ -1,35 +1,36 @@
 <template lang="pug">
-.profile__container(v-if="isPageLoaded")
-  .profile__container__header
-      .profile__container__header--cover()
-      .profile__container__header--avatar
-        img(v-if="user.avatar_uploaded == 1" :src='"~/assets/img/avatars/"+user.fb_id+".jpg"')
-        img(v-else :src='"~/assets/img/avatars/default.jpg"')
-        .avatar_config(v-if="user.fb_id === $store.state.isLogged.id" @click="$store.commit('modalToggle', 'avatar')")
-          ="Config"
-        addAvatarModal(:modalType="'avatar'")
-          
-      .profile__container__header--nickname {{user.username}}
-      .profile__container__header--role
-        p(v-if="user.role === 1")
-          ="Administrator"
-        p(v-else-if="user.role === -1")
-          ="Banned"
-        p(v-else)
-          ="User"
-      .profile__container__header--joinedDate
-          p="since: {{user.registered}}"
-  .profile__container__content
-      .profile__container__content__stats
-          .profile__container__content__stats--uploadedMemes
-              ="Uploaded memes: {{user.memes_count}}"
-          .profile__container__content__stats--ppSum
-              ="Total reach likes: {{user.sum_likes}}"
-      .profile__container__content__memes
+.profile__page
+  .profile__container(v-if="isPageLoaded")
+    .profile__container__header
+        .profile__container__header--cover()
+        .profile__container__header--avatar
+          img(v-if="user.avatar_uploaded == 1" :src='"~/assets/img/avatars/"+user.fb_id+".jpg"')
+          img(v-else :src='"~/assets/img/avatars/default.jpg"')
+          .avatar_config(v-if="user.fb_id === $store.state.isLogged.id" @click="$store.commit('modalToggle', 'avatar')")
+            ="Config"
+          addAvatarModal(:modalType="'avatar'")
+            
+        .profile__container__header--nickname {{user.username}}
+        .profile__container__header--role
+          p(v-if="user.role === 1")
+            ="Administrator"
+          p(v-else-if="user.role === -1")
+            ="Banned"
+          p(v-else)
+            ="User"
+        .profile__container__header--joinedDate
+            p="Joined: {{moment(user.registered)}}"
+    .profile__container__content
+        .profile__container__content__stats
+            .profile__container__content__stats--uploadedMemes
+                ="Uploaded memes: {{user.memes_count}}"
+            .profile__container__content__stats--ppSum
+                ="Total reach likes: {{user.sum_likes}}"
 </template>
 
 <script>
 import axios from '~/plugins/axios'
+import moment from "moment";
 import addAvatarModal from '~/layouts/components/modals/modal'
 export default {
   name: 'id',
@@ -59,7 +60,12 @@ export default {
   methods:{
     provideDefaultAvatar(){
       this.avatarName = 'default'
-    }
+    },
+    moment: function(date){
+      const today = moment();
+      const incomingDate = moment(date);
+      return incomingDate.from(today);
+    },
   },
   head () {
     return {
