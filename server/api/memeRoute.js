@@ -19,6 +19,11 @@ export function printRoutes(router) {
             ctx.body = await meme.displayMemesWithCategory(ctx.params.name, 5)
         }),
 
+        router.get('/meme/user/:id', async (ctx, next) => {
+            ctx.type = 'json'
+            ctx.body = await meme.displayMemesFromUser(ctx.params.id, 5)
+        }),
+
         router.post('/meme/uploadImage', koaBody({ multipart: true }), async (ctx, next) => {
             try {
                 const { file } = ctx.request.files;

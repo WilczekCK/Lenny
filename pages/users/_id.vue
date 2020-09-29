@@ -62,7 +62,7 @@ export default {
       })
 
     await axios
-      .get('/api/meme')
+      .get(`/api/meme/user/${this.$route.params.id}`)
       .then( ( {data} ) => {
         let userMemes = data.data;
         userMemes.forEach((meme) => { this.userMemes.push(meme) })
