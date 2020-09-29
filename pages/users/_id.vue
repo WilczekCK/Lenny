@@ -25,6 +25,7 @@
               ="Uploaded memes: {{user.memes_count}}"
           .profile__container__content__stats--ppSum
               ="Total reach likes: {{user.sum_likes}}"
+      .profile__container__content__memes
 </template>
 
 <script>
