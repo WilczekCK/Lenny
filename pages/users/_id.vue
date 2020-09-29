@@ -89,7 +89,7 @@ export default {
         headers:{
           "page": this.page,
           "loadElements":5,
-          "userid": this.user.fb_id
+          "userid": this.$route.params.id
         }
       })
       .then( ( {data} ) => {
