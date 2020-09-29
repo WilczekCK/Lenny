@@ -29,6 +29,8 @@
   .profile__memes__container
     .meme__container
       memeItem(v-for="post in userMemes" :memeDetails="post" :key="post.id")
+      no-ssr
+        infinite-loading(@infinite="infiniteScroll")
 </template>
 
 <script>
@@ -80,6 +82,28 @@ export default {
       const incomingDate = moment(date);
       return incomingDate.from(today);
     },
+     infiniteScroll($state){
+      axios({
+        url:'/api/meme/load/user',
+        method:'GET',
+        headers:{
+          "page": this.page,
+          "loadElements":5,
+          "userid": this.user.fb_id
+        }
+      })
+      .then( ( {data} ) => {
+        if(data.data.length){
+          this.page += 1;
+
+          let memes = data.data;
+          memes.forEach((meme) => { this.userMemes.push(meme) })
+          $state.loaded();
+        }else{
+          $state.complete()
+        }
+      })
+    }
   },
   head () {
     return {

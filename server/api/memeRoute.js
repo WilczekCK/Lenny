@@ -74,6 +74,17 @@ export function printRoutes(router) {
             await next();
         }),
 
+        router.get('/meme/load/user', async (ctx, next) => {
+            const howManyLoads = ctx.request.header.page;
+            const howManyElements = ctx.request.header.loadelements;
+            const user = ctx.request.header.userid;
+            const lastMemeID = await meme.infiniteScrollUser(howManyLoads, howManyElements, user)
+            
+            ctx.body = lastMemeID;
+
+            await next();
+        }),
+
         router.get('/meme/comments/load/:id', async (ctx, next) => {
             ctx.type = 'json'
             ctx.body = await meme.getComments(ctx.params.id);
