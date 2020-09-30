@@ -4,8 +4,7 @@
     .profile__container__header
         .profile__container__header--cover()
         .profile__container__header--avatar
-          img(v-if="user.avatar_uploaded == 1" :src='"~/assets/img/avatars/"+user.fb_id+".jpg"')
-          img(v-else :src='"~/assets/img/avatars/default.jpg"')
+          img(:src="checkAvatar(user.fb_id)")
           .avatar_config(v-if="user.fb_id === $store.state.isLogged.id" @click="$store.commit('modalToggle', 'avatar')")
             ="Config"
             addAvatarModal(:modalType="'avatar'" :fb_id="user.fb_id")
@@ -74,8 +73,12 @@ export default {
     this.isPageLoaded = true;
   },
   methods:{
-    provideDefaultAvatar(){
-      this.avatarName = 'default'
+    checkAvatar: function(id){
+      try{
+        return require(`~/assets/img/avatars/${id}.jpg`);
+      }catch(err){
+        return require(`~/assets/img/avatars/default.jpg`);
+      }
     },
     moment: function(date){
       const today = moment();

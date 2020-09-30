@@ -49,7 +49,6 @@ export function printRoutes (router) {
             const { file } = ctx.request.files;
             
             await user.uploadAvatar(`${file.path}`, `${fb_id}`);
-            await user.changeInfo(`${fb_id}`, `avatar_uploaded = 1`);
         } catch (err) {
             return ctx.throw(400)
         }
