@@ -1,6 +1,7 @@
 import * as auth from './controllers/auth'
 import * as user from './controllers/user'
 import passport from 'koa-passport'
+import koaBody from 'koa-body'
 import FacebookStrategy from 'passport-facebook'
 
 export function printRoutes (router) {
@@ -40,5 +41,19 @@ export function printRoutes (router) {
             sum_likes:sum_likes,
             avatar_uploaded:avatar_uploaded
         };
+    }),
+
+    router.post('/users/uploadAvatar', koaBody({ multipart: true }), async (ctx, next) => {
+        try {    
+            const [{fb_id}] = ctx.req.body[0];
+            const { file } = ctx.request.files;
+            
+            await user.uploadAvatar(`${file.path}`, `${fb_id}`);
+            await user.changeInfo(`${fb_id}`, `avatar_uploaded = 1`);
+        } catch (err) {
+            return ctx.throw(400)
+        }
+
+        return ctx.throw(200)
     })
 } 

@@ -8,7 +8,7 @@
           img(v-else :src='"~/assets/img/avatars/default.jpg"')
           .avatar_config(v-if="user.fb_id === $store.state.isLogged.id" @click="$store.commit('modalToggle', 'avatar')")
             ="Config"
-          addAvatarModal(:modalType="'avatar'")
+            addAvatarModal(:modalType="'avatar'" :fb_id="user.fb_id")
             
         .profile__container__header--nickname {{user.username}}
         .profile__container__header--role
