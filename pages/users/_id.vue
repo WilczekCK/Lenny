@@ -1,14 +1,14 @@
 <template lang="pug">
 .profile__page
-  .profile__container(v-if="isPageLoaded")
-    .profile__container__header
+  .profile__container
+    .profile__container__header(v-if="isPageLoaded")
         .profile__container__header--cover()
         .profile__container__header--avatar
           img(:src="checkAvatar(user.fb_id)")
           .avatar_config(v-if="user.fb_id === $store.state.isLogged.id" @click="$store.commit('modalToggle', 'avatar')")
-            ="Config"
+            i(class="fas fa-wrench")
             addAvatarModal(:modalType="'avatar'" :fb_id="user.fb_id")
-            
+
         .profile__container__header--nickname {{user.username}}
         .profile__container__header--role
           p(v-if="user.role === 1")
@@ -19,7 +19,7 @@
             ="User"
         .profile__container__header--joinedDate
             p="Joined: {{moment(user.registered)}}"
-    .profile__container__content
+    .profile__container__content(v-if="isPageLoaded")
         .profile__container__content__stats
             .profile__container__content__stats--uploadedMemes
                 ="Uploaded memes: {{user.memes_count}}"

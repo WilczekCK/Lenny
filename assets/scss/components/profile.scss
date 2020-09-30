@@ -2,9 +2,10 @@
     display:flex;
     flex-direction: row;
     flex-grow:2;
+
     .profile__container{
         flex-grow:1;
-        min-width:315px;
+        width:315px;
         background: $blackTone;
         display:flex;
         margin:0 auto;
@@ -24,8 +25,26 @@
                 padding-top:25px;
                 padding-bottom:10px;
     
+                .avatar_config{
+                    position: relative;
+                    color: white;
+                    margin-top: -35px !important;
+                    background: rgba(0, 0, 0, .6);
+                    width: 100%;
+                    text-align: center;
+                    padding: 5px 0px;
+                    &:hover{
+                        color:#9165BC;
+                        transition: .3s ease-in-out;
+                        cursor:pointer;
+                        padding:7.5px 0px;
+                        margin-top:-40px !important;
+                        background: rgba(0, 0, 0, .8);
+                    }
+                }
+
                 img{
-                    max-height:100px;
+                    max-height:200px;
                 }
     
                 img:before { 
@@ -145,6 +164,6 @@
         overflow-y:scroll;
         height:100vh;
         display:flex;
-        flex-grow:3;
+        flex-grow:2;
     }
 }
