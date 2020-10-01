@@ -9,14 +9,14 @@ export function printRoutes(router) {
         ctx.body = await meme.displayMemes(5);
     }),
 
-        router.get('/meme/waiting', async (ctx, next) => {
-            ctx.type = 'json'
-            ctx.body = await meme.displayWaitingMemes(5)
-        }),
-
         router.get('/meme/:id', async (ctx, next) => {
             ctx.type = 'json'
             ctx.body = await meme.displayMeme(ctx.params.id)
+        }),
+
+        router.get('/meme/waiting', async (ctx, next) => {
+            ctx.type = 'json'
+            ctx.body = await meme.displayWaitingMemes(5)
         }),
 
         router.get('/meme/cat/:name', async (ctx, next) => {

@@ -1,6 +1,7 @@
 <template lang="pug">
     .meme__container
         h2=`All memes in waiting room`
+        small="Owners of this website does not take any responsibility for this content"
         memeItem(v-for="meme in waitingRoom" :memeDetails="meme" :key="meme.id")
         no-ssr
             infinite-loading(@infinite="infiniteScroll")
@@ -14,18 +15,15 @@ export default {
         return {
             waitingRoom: [],
             page: 1,
-            route: undefined
         }
     },
     components:{
         memeItem
     },
     async mounted () {
-         this.route = this.$route.params.name;
          await axios
-            .get(`/api/meme/waiting/`)
+            .get(`/api/meme/waiting`)
             .then(async ({data}) => {
-                if(data.data.length == 0) return this.$nuxt.error({ statusCode: 404, message: 'No memes with that category found!'})
                 var memes = data.data;
                 memes.forEach(meme => this.waitingRoom.push(meme))
             })
