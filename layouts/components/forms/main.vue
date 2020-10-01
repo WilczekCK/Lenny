@@ -2,10 +2,11 @@
     transition
         div(v-if="!formSent")            
             form(@submit.prevent="sendForm")
-                memeForm(v-on:inputChanged="setValueFromExternalForm" v-if="formType == 'meme'")
-                avatarForm(v-if="formType == 'avatar'")
+                memeForm(v-on:inputChanged="setValueFromExternalForm" v-if="$store.state.modalType == 'meme'")
+                avatarForm(v-if="$store.state.modalType == 'avatar'")
+                nicknameForm(v-on:inputChanged="setValueFromExternalForm" v-if="$store.state.modalType == 'nickname'")
                 
-                .imageUploader(v-if="formType == 'meme' && memeType == 'image'")
+                .imageUploader(v-if="$store.state.modalType == 'meme' && memeType == 'image' || $store.state.modalType == 'avatar'")
                     input(type="file" ref="file" @change="selectFile" style="display:none") 
                     img(v-if="base64image" :src="base64image" class="imageUploader__placeholder")
                     .imageUploader__placeholder(v-else)
@@ -13,11 +14,11 @@
                         button.file__add(@click.prevent="$refs.file.click()" v-if="!selectedFiles")
                             i(class="fas fa-images")
                             ="Select an image"
-                .videoUploader(v-if="formType == 'meme' && memeType == 'video'")
+                .videoUploader(v-if="$store.state.modalType == 'meme' && memeType == 'video'")
                     .imageUploader__placeholder()
                         span(v-if="!memeVideo")="Your video preview will be displayed here"
                         vue-friendly-iframe(v-else :src="'https://www.youtube.com/embed/'+memeVideo+'?controls=0&modestbranding=1'")
-                .memePlaceholder(v-if="formType == 'meme' && !memeType")
+                .memePlaceholder(v-if="$store.state.modalType == 'meme' && !memeType")
                     .imageUploader__placeholder
                         ="Select a type of meme on the right"
             button(class="btn btn-success" @click.prevent="checkForm")
@@ -35,6 +36,7 @@
 <script>
 import axios from 'axios';
 import avatarForm from "./types/avatar-form.vue"
+import nicknameForm from "./types/nickname-form.vue"
 import memeForm from "./types/meme-form.vue"
 
 export default {
@@ -43,8 +45,7 @@ export default {
         name: 'page',
         mode: 'out-in'
     },
-    components:{memeForm, avatarForm},
-    props: ["typeOfForm"],
+    components:{memeForm, avatarForm, nicknameForm},
     data() {
         return {
             formSent: false,
@@ -55,7 +56,6 @@ export default {
             errors: undefined,
             progress: 0,
             message: "",
-            formType: this.typeOfForm,
 
 
             memeType: undefined,
@@ -65,7 +65,7 @@ export default {
             memeTags: undefined,
 
             //for type user
-            authorNewName: undefined,
+            nickname: undefined,
 
             //for type avatar
             //only file
@@ -73,25 +73,33 @@ export default {
     },
     methods: {
         checkForm: function(e){
-        this.errorHandler();
+            this.errorHandler();
 
-        if(this.memeVideo){
-            //video meme
-            this.uploadVideo();
-        }else if(this.selectedFiles){
-            //image meme
-            this.upload();
-        }else{
-            this.errors.push('You are missing one of the fields!')
-        }
+            if(this.memeVideo){
+                //video
+                this.uploadVideo();
+            }else if(this.selectedFiles){
+                //image
+                this.upload();
+            }else if(this.nickname){
+                //text
+                this.uploadText()
+            }
 
         e.preventDefault()
         },
         errorHandler: function(){
             this.errors = [];
-            if(!this.memeTitle || !this.memeTags){
+
+            if(this.$store.state.modalType === 'avatar' && this.selectedFiles){
+                return 0;
+            }else if(this.$store.state.modalType === 'nickname' && this.nickname){
+                return 0;
+            }else if(!this.memeTitle || !this.memeTags){
                 this.errors.push('You are missing one of the fields!')
-            } 
+            }else{
+                this.errors.push('You are missing one of the fields!')
+            }
         },
         uploadVideo(){
             return axios.post('/api/meme/uploadVideo', {
@@ -99,6 +107,16 @@ export default {
                     title: this.memeTitle,
                     videoid: this.memeVideo,
                     tags: this.memeTags
+                },
+            }).then(({data}) => {
+                this.uploadResponse(data)
+            })
+        },
+        uploadText(){
+            return axios.post('/api/users/changeNickname', {
+                body:{
+                    user_id: this.$route.params.id,
+                    nickname: this.nickname,
                 },
             }).then(({data}) => {
                 this.uploadResponse(data)
@@ -122,7 +140,7 @@ export default {
         uploadToServer (file, onUploadProgress) {
             let formData = new FormData();
             formData.append("file", file);
-
+            let bundle;
             var {url, headers} = this.prepareDataFromFormType()
 
             return axios.post(url, formData, {
@@ -134,23 +152,20 @@ export default {
         },
         prepareDataFromFormType(){
             let dataToSet = {};
-            switch(this.formType) {
+            switch(this.$store.state.modalType) {
                 case 'meme':
                     dataToSet.url = '/api/meme/uploadImage'
                     dataToSet.headers = {
                         "Content-Type": "multipart/form-data",
                         "title": this.memeTitle,
-                        "desc": this.memeDesc,
                         "tags": this.memeTags
                     }
                     break;
                 case 'avatar':
-                    dataToSet.url = '/api/user/tbc-a'
-                    break;
-                case 'username':
-                    dataToSet.url = '/api/user/tbc-t'
+                    dataToSet.url = '/api/users/uploadAvatar'
                     dataToSet.headers = {
-                        newUsername: this.authorNewName
+                        "Content-Type": "multipart/form-data",
+                        "userid": this.$route.params.id
                     }
                     break;
             }

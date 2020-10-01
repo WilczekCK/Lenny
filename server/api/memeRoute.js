@@ -1,20 +1,7 @@
 import * as meme from './controllers/meme.js';
-import * as mysql from './controllers/mysql.js';
-import session from 'koa-session';
 import koaBody from 'koa-body';
-import multer from 'multer';
 import moment from 'moment';
 import _ from 'underscore';
-import http from 'http';
-import path from 'path'
-import os from 'os';
-import fs from 'fs';
-import BusBoy from 'koa-busboy';
-
-const uploader = BusBoy({
-    dest: './', // default is system temp folder (`os.tmpdir()`)
-    fnDestFilename: (fieldname, filename) => uuid() + filename
-})
 
 export function printRoutes(router) {
     return router.get('/meme', async (ctx, next) => {
@@ -32,11 +19,16 @@ export function printRoutes(router) {
             ctx.body = await meme.displayMemesWithCategory(ctx.params.name, 5)
         }),
 
+        router.get('/meme/user/:id', async (ctx, next) => {
+            ctx.type = 'json'
+            ctx.body = await meme.displayMemesFromUser(ctx.params.id, 5)
+        }),
+
         router.post('/meme/uploadImage', koaBody({ multipart: true }), async (ctx, next) => {
             try {
                 const { file } = ctx.request.files;
-                const { title, desc, tags } = ctx.request.header;
-                const { fb_id, username } = ctx.request.body[0][0];
+                const { title, tags } = ctx.request.header;
+                const { fb_id, username } = ctx.req.body[0][0];
 
                 const uploadedSqlID = await meme.insertToDB(`${fb_id}`, `${username}`, `${moment().format('YYYY-MM-DD HH:mm:ss')}`, `${tags}`, `${title}`, null)
                 await meme.uploadImage(`${file.path}`, uploadedSqlID);
@@ -76,6 +68,17 @@ export function printRoutes(router) {
             const howManyElements = ctx.request.header.loadelements;
             const category = ctx.request.header.category;
             const lastMemeID = await meme.infiniteScrollCategory(howManyLoads, howManyElements, category)
+            
+            ctx.body = lastMemeID;
+
+            await next();
+        }),
+
+        router.get('/meme/load/user', async (ctx, next) => {
+            const howManyLoads = ctx.request.header.page;
+            const howManyElements = ctx.request.header.loadelements;
+            const user = ctx.request.header.userid;
+            const lastMemeID = await meme.infiniteScrollUser(howManyLoads, howManyElements, user)
             
             ctx.body = lastMemeID;
 

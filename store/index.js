@@ -2,11 +2,12 @@ import Vuex from 'vuex'
 import axios from 'axios'
 
 
-const authStore = () => {
+const store = () => {
   return new Vuex.Store({
     state: () => ({
         isLogged: false,
-        addMemeModal: false,
+        modalState: false,
+        modalType: null,
     }),
     mutations: {
         login (state) {
@@ -17,11 +18,12 @@ const authStore = () => {
                     state.isLogged = data.data;
                 })
         },
-        addMemeModalTrigger(state){
-          state.addMemeModal = !state.addMemeModal;
+        modalToggle(state, additionalProps){
+          state.modalState = !state.modalState;
+          if(additionalProps) state.modalType = additionalProps;
         }
     }
   })
 }
 
-export default authStore
+export default store

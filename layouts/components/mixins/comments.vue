@@ -4,10 +4,12 @@
         h3="Comments:"
         .comment__feature--list__comment(v-for="comment in this.comments" :key="comment.id")
           .comment__avatar
-            img(src="~/assets/img/logo.png")
+            img(:src="checkAvatar(comment.fb_id)")
           .comment__content
             .comment__content__socials
-              .comment__content__socials--author {{comment.username}}
+              .comment__content__socials--author 
+                span
+                  nuxt-link(:to="'/users/'+comment.fb_id") {{comment.username}}
               .comment__content__socials--date {{moment(comment.date)}}
             .comment__content--text  {{comment.content}}
             .comment__content--removeButton(@click="removeComment($store.state.isLogged.id, comment.id)" v-if="$store.state.isLogged.id == comment.fb_id || $store.state.isLogged.role === 1")
@@ -47,6 +49,13 @@ export default {
     }
   },
   methods: {
+    checkAvatar: function(id){
+      try{
+        return require(`~/assets/img/avatars/${id}.jpg`);
+      }catch(err){
+        return require(`~/assets/img/avatars/default.jpg`);
+      }
+    },
     moment: function(date){
         const today = moment();
         const incomingDate = moment(date);

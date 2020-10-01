@@ -1,0 +1,183 @@
+.profile__page{
+    display:flex;
+    flex-direction: row;
+    flex-grow:2;
+
+    .profile__container{
+        flex-grow:1;
+        width:315px;
+        background: $blackTone;
+        display:flex;
+        margin:0 auto;
+        height:100%;
+        color:white;
+        justify-content:center;
+        border-radius: 6px;
+        flex-direction: column;
+    
+        .profile__container__header{
+            width:100%;
+            display:flex;
+            flex-direction: column;
+            align-items:center;
+    
+            .profile__container__header--avatar{
+                padding-top:25px;
+                padding-bottom:10px;
+    
+                .profile__container__header--avatar--config{
+                    position: relative;
+                    color: white;
+                    margin-top: -34px !important;
+                    background: rgba(0, 0, 0, .6);
+                    width: 100%;
+                    text-align: center;
+                    padding: 5px 0px;
+                    &:hover{
+                        color:#9165BC;
+                        transition: .3s ease-in-out;
+                        cursor:pointer;
+                        padding:7.5px 0px;
+                        margin-top:-39px !important;
+                        background: rgba(0, 0, 0, .8);
+                    }
+                }
+
+                img{
+                    max-height:200px;
+                }
+    
+                img:before { 
+                    content: "We're sorry, the image below is broken :(";
+                    display: block;
+                    margin-bottom: 10px;
+                  }
+                  
+                  img:after { 
+                    display: block;
+                    font-size: 12px;
+                  }
+            }
+    
+            .profile__container__header--nickname{
+                font-size:1.5em;
+
+                .profile__container__header--nickname--config{
+                    position: relative;
+                    color: white;
+                    float: right;
+                    margin-left: 10px;
+                    font-size: .6em;
+                    margin-top: 5px;
+                    &:hover{
+                        color:#9165BC;
+                        transition: .3s ease-in-out;
+                        cursor:pointer;
+                    }
+                }
+                
+                p{
+                    padding-top:0px;
+                    margin-top:0px            
+                }
+            }
+    
+            .profile__container__header--role{
+                font-size:1em;
+                
+                p {
+                    padding-top:5px;
+                    margin-top:0px            
+                }
+            }
+    
+            .profile__container__header--joinedDate{
+                font-size:1em;
+    
+                p {
+                    padding-top:0px;
+                    margin-top:0px            
+                }
+            }
+        }
+    
+        .profile__container__content{
+            display:flex;
+            flex-direction: column;
+            align-items:center;
+            width:90%;
+            margin:0 auto;
+    
+            .profile__container__content__stats{
+                & > * {
+                    display:flex;
+                    flex-direction:row;
+                    justify-content: space-between;
+    
+                    p{
+                        color:$mainColor;
+                        margin:0;
+                    }
+                }
+    
+                .profile__container__content__stats--osuProfile{
+                    a{
+                        text-decoration: none;
+                    }
+                }
+            }
+    
+            .profile__container__content__memes{
+                height:150px;
+                display:flex;
+                width:100%;
+                overflow-y:auto;
+                margin-top:20px;
+                margin-bottom:10px;
+                background:$lightBlackTone;
+                
+                & > *:nth-child(odd){
+                    background:$lightBlackTone;
+                }
+    
+                .profile__container__content__memes__single{
+                    display: flex;
+                    flex-direction: row;
+                    height:50px;
+                    align-items:center;
+    
+                    & > *:not(.profile__container__content__memes__single--image){
+                        flex-grow:0;
+                        flex-basis:20%;
+                        display:flex;
+                        flex-direction:column;
+                        font-size:.9em;
+                        box-sizing: border-box;
+                        padding: 5px;
+    
+                        span{
+                            color:$mainColor;
+                            font-size:.8em;
+                        }
+                    }
+    
+                    .profile__container__content__memes__single--image{
+                        img{
+                            height: 50px;
+                            width: 50px;
+                            background-position: center center;
+                            object-fit: cover;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .profile__memes__container{
+        overflow-y:scroll;
+        height:100vh;
+        display:flex;
+        flex-grow:2;
+    }
+}

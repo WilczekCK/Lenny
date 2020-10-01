@@ -7,7 +7,7 @@
                         i(class="fas fa-times")
                     .modal__mask__wrapper__container--header
                     .modal__mask__wrapper__container--body
-                        formComp(:typeOfForm="'meme'")
+                        formComp
                     .modal__mask__wrapper__container--footer
 </template>
 
@@ -20,7 +20,7 @@ export default {
     },
     data: function(){
         return{
-            modalState: this.$store.state.addMemeModal
+            modalState: this.$store.state.modalState
         }
     },
     watch: {
@@ -30,13 +30,13 @@ export default {
     },
     computed: {
         storeModalState: function(){
-            return this.$store.state.addMemeModal;
+            return this.$store.state.modalState;
         }
     },
     methods:{
         changeState: function(){
-            this.$store.commit('addMemeModalTrigger');
-            this.modalState = this.$store.state.addMemeModal;
+            this.$store.commit('modalToggle', 'avatar');
+            this.modalState = this.$store.state.modalState;
         }
     },
 

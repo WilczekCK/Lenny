@@ -1,5 +1,6 @@
 .meme__container{
-    margin:0 auto;
+	margin:0 auto;
+	margin-top:75px;
 	z-index:0;
 	width:768px;
 	flex-grow:2;
@@ -42,6 +43,11 @@
 			.meme__item__header__meta{
 				color: grey;
 				font-size:.8em;
+
+				a{
+					color:inherit;
+					text-decoration: none;
+				 }
 			}
 
 			.meme__item__header__title{

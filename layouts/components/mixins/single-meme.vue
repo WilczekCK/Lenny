@@ -3,7 +3,8 @@
     .meme__item
         .meme__item__header
             .meme__item__header__meta 
-                span {{memeDetails.author_username}}
+                span
+                    nuxt-link(:to="'/users/'+memeDetails.author_id") {{memeDetails.author_username}}
                 span {{moment(memeDetails.added_in)}}
             .meme__item__header__title
                 h1 {{memeDetails.meme_title}}
