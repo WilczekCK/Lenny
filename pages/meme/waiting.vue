@@ -59,5 +59,6 @@ export default {
 </script>
 
 <style>
-
+    h2{margin-bottom:0px; padding-bottom:0px;}
+    small{margin:0px; padding:0px;}
 </style>
