@@ -12,7 +12,7 @@ import axios from '~/plugins/axios'
 export default {
     data () {
         return {
-            memesInCat: [],
+            waitingRoom: [],
             page: 1,
             route: undefined
         }
@@ -27,7 +27,7 @@ export default {
             .then(async ({data}) => {
                 if(data.data.length == 0) return this.$nuxt.error({ statusCode: 404, message: 'No memes with that category found!'})
                 var memes = data.data;
-                memes.forEach(meme => this.memesInCat.push(meme))
+                memes.forEach(meme => this.waitingRoom.push(meme))
             })
             .catch(() => {
                 this.$nuxt.error({ statusCode: 404, message: 'No memes found!'})
@@ -49,7 +49,7 @@ export default {
                     this.page += 1;
 
                     let memes = data.data;
-                    memes.forEach((meme) => { this.memesInCat.push(meme) })
+                    memes.forEach((meme) => { this.waitingRoom.push(meme) })
                     $state.loaded();
                 }else{
                     $state.complete()
