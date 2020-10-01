@@ -11,8 +11,10 @@
           a(class="header__wrapper__menuItem--accountManagement-logged" v-else)
             h3='Hello {{this.$store.state.isLogged.username}}'
             .header__wrapper__menuItem--accountManagement-logged-settings
-              i(class="fas fa-list")
-              i(class="fas fa-user-cog")
+              nuxt-link(to=`/meme/waiting`)
+                i(class="fas fa-user-clock")
+              nuxt-link(:to="'/users/'+this.$store.state.isLogged.id")
+                i(class="fas fa-user")
               a(@click="logout()")
                 i(class="fas fa-sign-out-alt" )
 
