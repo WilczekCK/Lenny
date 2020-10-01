@@ -9,6 +9,11 @@ export function printRoutes(router) {
         ctx.body = await meme.displayMemes(5);
     }),
 
+        router.get('/meme/waiting', async (ctx, next) => {
+            ctx.type = 'json'
+            ctx.body = await meme.displayWaitingMemes(5)
+        }),
+
         router.get('/meme/:id', async (ctx, next) => {
             ctx.type = 'json'
             ctx.body = await meme.displayMeme(ctx.params.id)
@@ -79,6 +84,17 @@ export function printRoutes(router) {
             const howManyElements = ctx.request.header.loadelements;
             const user = ctx.request.header.userid;
             const lastMemeID = await meme.infiniteScrollUser(howManyLoads, howManyElements, user)
+            
+            ctx.body = lastMemeID;
+
+            await next();
+        }),
+
+        router.get('/meme/load/waiting', async (ctx, next) => {
+            const howManyLoads = ctx.request.header.page;
+            const howManyElements = ctx.request.header.loadelements;
+            const user = ctx.request.header.userid;
+            const lastMemeID = await meme.infiniteScrollWaiting(howManyLoads, howManyElements, user)
             
             ctx.body = lastMemeID;
 
