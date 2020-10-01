@@ -4,6 +4,7 @@
             form(@submit.prevent="sendForm")
                 memeForm(v-on:inputChanged="setValueFromExternalForm" v-if="$store.state.modalType == 'meme'")
                 avatarForm(v-if="$store.state.modalType == 'avatar'")
+                nicknameForm(v-on:inputChanged="setValueFromExternalForm" v-if="$store.state.modalType == 'nickname'")
                 
                 .imageUploader(v-if="$store.state.modalType == 'meme' && memeType == 'image' || $store.state.modalType == 'avatar'")
                     input(type="file" ref="file" @change="selectFile" style="display:none") 
@@ -35,6 +36,7 @@
 <script>
 import axios from 'axios';
 import avatarForm from "./types/avatar-form.vue"
+import nicknameForm from "./types/nickname-form.vue"
 import memeForm from "./types/meme-form.vue"
 
 export default {
@@ -43,7 +45,7 @@ export default {
         name: 'page',
         mode: 'out-in'
     },
-    components:{memeForm, avatarForm},
+    components:{memeForm, avatarForm, nicknameForm},
     data() {
         return {
             formSent: false,
@@ -63,7 +65,7 @@ export default {
             memeTags: undefined,
 
             //for type user
-            authorNewName: undefined,
+            nickname: undefined,
 
             //for type avatar
             //only file
@@ -71,15 +73,18 @@ export default {
     },
     methods: {
         checkForm: function(e){
-        this.errorHandler();
+            this.errorHandler();
 
-        if(this.memeVideo){
-            //video meme
-            this.uploadVideo();
-        }else if(this.selectedFiles){
-            //image meme
-            this.upload();
-        }
+            if(this.memeVideo){
+                //video
+                this.uploadVideo();
+            }else if(this.selectedFiles){
+                //image
+                this.upload();
+            }else if(this.nickname){
+                //text
+                this.uploadText()
+            }
 
         e.preventDefault()
         },
@@ -87,6 +92,8 @@ export default {
             this.errors = [];
 
             if(this.$store.state.modalType === 'avatar' && this.selectedFiles){
+                return 0;
+            }else if(this.$store.state.modalType === 'nickname' && this.nickname){
                 return 0;
             }else if(!this.memeTitle || !this.memeTags){
                 this.errors.push('You are missing one of the fields!')
@@ -100,6 +107,16 @@ export default {
                     title: this.memeTitle,
                     videoid: this.memeVideo,
                     tags: this.memeTags
+                },
+            }).then(({data}) => {
+                this.uploadResponse(data)
+            })
+        },
+        uploadText(){
+            return axios.post('/api/users/changeNickname', {
+                body:{
+                    user_id: this.$route.params.id,
+                    nickname: this.nickname,
                 },
             }).then(({data}) => {
                 this.uploadResponse(data)
@@ -123,7 +140,7 @@ export default {
         uploadToServer (file, onUploadProgress) {
             let formData = new FormData();
             formData.append("file", file);
-
+            let bundle;
             var {url, headers} = this.prepareDataFromFormType()
 
             return axios.post(url, formData, {
@@ -147,13 +164,8 @@ export default {
                 case 'avatar':
                     dataToSet.url = '/api/users/uploadAvatar'
                     dataToSet.headers = {
-                        "Content-Type": "multipart/form-data"
-                    }
-                    break;
-                case 'username':
-                    dataToSet.url = '/api/user/tbc-t'
-                    dataToSet.headers = {
-                        newUsername: this.authorNewName
+                        "Content-Type": "multipart/form-data",
+                        "userid": this.$route.params.id
                     }
                     break;
             }

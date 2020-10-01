@@ -5,11 +5,14 @@
         .profile__container__header--cover()
         .profile__container__header--avatar
           img(:src="checkAvatar(user.fb_id)")
-          .avatar_config(v-if="user.fb_id === $store.state.isLogged.id" @click="$store.commit('modalToggle', 'avatar')")
+          .profile__container__header--avatar--config(v-if="user.fb_id === $store.state.isLogged.id || $store.state.isLogged.role === 1" @click="$store.commit('modalToggle', 'avatar')")
             i(class="fas fa-wrench")
-            addAvatarModal(:modalType="'avatar'" :fb_id="user.fb_id")
+            addAvatarModal
 
         .profile__container__header--nickname {{user.username}}
+          .profile__container__header--nickname--config(v-if="user.fb_id === $store.state.isLogged.id || $store.state.isLogged.role === 1" @click="$store.commit('modalToggle', 'nickname')")
+            i(class="fas fa-wrench")
+            addAvatarModal
         .profile__container__header--role
           p(v-if="user.role === 1")
             ="Administrator"
@@ -66,7 +69,7 @@ export default {
       .get(`/api/meme/user/${this.$route.params.id}`)
       .then( ( {data} ) => {
         let userMemes = data.data;
-        userMemes.forEach((meme) => { this.userMemes.push(meme) })
+        if(userMemes.length) userMemes.forEach((meme) => { this.userMemes.push(meme) })
       })
 
     this.avatarName = this.user.fb_id;
