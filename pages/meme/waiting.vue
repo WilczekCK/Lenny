@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import memeItem from "../../../layouts/components/mixins/meme-item"
+import memeItem from "../../layouts/components/mixins/meme-item"
 import axios from '~/plugins/axios'
 export default {
     data () {
