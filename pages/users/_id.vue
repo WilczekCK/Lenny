@@ -69,7 +69,9 @@ export default {
       .get(`/api/meme/user/${this.$route.params.id}`)
       .then( ( {data} ) => {
         let userMemes = data.data;
-        if(userMemes.length) userMemes.forEach((meme) => { this.userMemes.push(meme) })
+        if(userMemes.length){
+          userMemes.forEach((meme) => { this.userMemes.push(meme) })
+        }
       })
 
     this.avatarName = this.user.fb_id;
