@@ -6,7 +6,8 @@
             ul(v-if="slideDown")
               li(@click="banUser()")="Ban Author"
               li(@click="removeMeme()")="Remove Meme"
-              li(@click="approveMeme()")="Approve meme"
+              li(@click="removeComment()")="Remove Comment"
+              li(@click="approveMeme()")="Approve Meme"
 </template>
 
 <script>
@@ -24,6 +25,9 @@ export default {
 
     },
     removeMeme: async function () {
+
+    },
+    removeComment: async function () {
 
     },
     approveMeme: async function () {

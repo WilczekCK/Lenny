@@ -1,0 +1,36 @@
+.admin_tools_wrapper{
+    max-width:200px;
+    min-width:100px;
+
+    p{
+        margin:0;
+        padding:0;
+        cursor:pointer;
+        &:hover{
+            color:$mainColor;
+            transition: .3s ease-out;
+        }
+    }
+
+    .admin_tools_container{
+        position:relative;
+        color:white;
+        ul{
+            margin:0;
+            padding:0;
+            position:absolute;
+
+            li{
+                background:$lightBlackTone;
+                padding:5px;
+                padding-right:10px;
+                cursor:pointer;
+                list-style-type: none;
+                &:hover{
+                    color:$mainColor;
+                    transition: .3s ease-out;
+                }
+            }
+        }
+    }
+}
