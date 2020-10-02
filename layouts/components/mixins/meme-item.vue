@@ -3,6 +3,8 @@
         .meme__item__header
             .meme__item__header__meta 
                 span
+                    admin-tools
+                span
                     nuxt-link(:to="'/users/'+memeDetails.author_id") {{memeDetails.author_username}}
                 span {{moment(memeDetails.added_in)}}
             .meme__item__header__title
@@ -29,9 +31,12 @@
 <script>
 import moment from 'moment';
 import axios from 'axios';
-
+import admintools from './admin-tools.vue';
 export default {
     props: ['memeDetails'],
+    components: {
+        'admin-tools': admintools
+    },
     data () {
         return{
             likes : this.memeDetails.likes
