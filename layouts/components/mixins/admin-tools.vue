@@ -1,12 +1,12 @@
 <template lang="pug">
     .admin_tools_wrapper
       p(@click="slideDown = !slideDown")='Admin tools'
-      transition(name='slideDown')
-        .admin_tools_container(v-if="slideDown")
-          ul
-            li(@click="banUser()")="Ban Author"
-            li(@click="removeMeme()")="Remove Meme"
-            li(@click="approveMeme()")="Approve meme"
+        .admin_tools_container
+          transition(name='slideDown')
+            ul(v-if="slideDown")
+              li(@click="banUser()")="Ban Author"
+              li(@click="removeMeme()")="Remove Meme"
+              li(@click="approveMeme()")="Approve meme"
 </template>
 
 <script>
@@ -41,6 +41,21 @@ export default {
 </script>
 
 <style>
-  .slideDown-enter-active, .slideDown-leave-active { transition: opacity .5s; }
-  .slideDown-enter, .slideDown-leave-active { opacity: 0; }
+.slideDown-enter,
+.slideDown-leave-to {
+  transform: scaleY(0.7);
+  opacity: 0;
+}
+
+.slideDown-enter-to,
+.slideDown-leave {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.slideDown-enter-active,
+.slideDown-leave-active {
+  transition: all 0.3s ease-out;
+  transform-origin: top center;
+}
 </style>
