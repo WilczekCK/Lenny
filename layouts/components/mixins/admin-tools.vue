@@ -13,6 +13,7 @@
 <script>
 import Vue from 'vue';
 export default {
+  props: ['whereUsed'],
   data: function() {
     return {
       slideDown: false,
