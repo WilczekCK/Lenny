@@ -4,6 +4,8 @@
         .meme__item__header
             .meme__item__header__meta 
                 span
+                    admin-tools(:whereUsed="'meme'")
+                span
                     nuxt-link(:to="'/users/'+memeDetails.author_id") {{memeDetails.author_username}}
                 span {{moment(memeDetails.added_in)}}
             .meme__item__header__title
@@ -28,7 +30,7 @@
 
 <script>
 import comment from "./comments";
-
+import admintools from './admin-tools.vue';
 import moment from "moment";
 import axios from 'axios'
 export default {
@@ -41,7 +43,8 @@ export default {
         }
     },
     components: {
-        commentComp: comment
+        commentComp: comment,
+        'admin-tools':admintools,
     },
     methods: {
         moment: function(date){

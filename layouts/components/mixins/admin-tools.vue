@@ -1,13 +1,13 @@
 <template lang="pug">
-    .admin_tools_wrapper
+    .admin_tools_wrapper(v-if="$store.state.isLogged.role === 1")
       p(@click="slideDown = !slideDown")='Admin tools'
         .admin_tools_container
           transition(name='slideDown')
             ul(v-if="slideDown")
               li(@click="banUser()")="Ban Author"
-              li(@click="removeMeme()")="Remove Meme"
-              li(@click="removeComment()")="Remove Comment"
-              li(@click="approveMeme()")="Approve Meme"
+              li(@click="removeMeme()" v-if="whereUsed === 'meme'")="Remove Meme"
+              li(@click="removeComment()" v-if="whereUsed === 'comments'")="Remove Comment"
+              li(@click="approveMeme()" v-if="whereUsed === 'meme'")="Change status"
 </template>
 
 <script>

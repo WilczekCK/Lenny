@@ -18,7 +18,7 @@ export default {
         }
     },
     components:{
-        memeItem
+        memeItem: memeItem,
     },
     async mounted () {
          await axios

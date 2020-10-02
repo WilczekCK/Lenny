@@ -11,6 +11,7 @@
                 span
                   nuxt-link(:to="'/users/'+comment.fb_id") {{comment.username}}
               .comment__content__socials--date {{moment(comment.date)}}
+              admin-tools(:whereUsed="'comments'")
             .comment__content--text  {{comment.content}}
             .comment__content--removeButton(@click="removeComment($store.state.isLogged.id, comment.id)" v-if="$store.state.isLogged.id == comment.fb_id || $store.state.isLogged.role === 1")
               i(class="fa fa-times")
@@ -30,7 +31,8 @@
 <script>
 import Vue from 'vue';
 import moment from "moment";
-import axios from 'axios'
+import axios from 'axios';
+import admintools from './admin-tools.vue';
 export default {
   data: function() {
     return {
@@ -39,6 +41,9 @@ export default {
       comments: null,
       commentsAmount: 0,
     }
+  },
+  components: {
+    'admin-tools': admintools
   },
   mounted: async function () {
     await this.loadComments();
