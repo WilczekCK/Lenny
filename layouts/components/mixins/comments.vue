@@ -11,7 +11,7 @@
                 span
                   nuxt-link(:to="'/users/'+comment.fb_id") {{comment.username}}
               .comment__content__socials--date {{moment(comment.date)}}
-              admin-tools(:whereUsed="'comments'")
+              admin-tools(:whereUsed="'comments'" :info="comment")
             .comment__content--text  {{comment.content}}
             .comment__content--removeButton(@click="removeComment($store.state.isLogged.id, comment.id)" v-if="$store.state.isLogged.id == comment.fb_id || $store.state.isLogged.role === 1")
               i(class="fa fa-times")

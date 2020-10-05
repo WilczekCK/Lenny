@@ -123,6 +123,7 @@ export function printRoutes(router) {
             const { fb_id, id, role } = ctx.req.body[0][0];
             const { loggeduserid, commentid } = ctx.request.header;
 
+            console.log(fb_id, id, role, loggeduserid, commentid);
             if (role == 1) {
                 //nothing, go further!
             } else if (loggeduserid != fb_id || !fb_id || role < 0) {
