@@ -1,4 +1,5 @@
 import * as meme from './controllers/meme.js';
+import * as user from './controllers/user.js';
 import koaBody from 'koa-body';
 import moment from 'moment';
 import _ from 'underscore';
@@ -139,5 +140,22 @@ export function printRoutes(router) {
             const who_liked = ctx.req.body[0][0].fb_id;
             const alreadyGaveLike = await meme.like(meme_id, who_liked);
             if (alreadyGaveLike) { ctx.body = true; } else { ctx.body = false;}
+        }),
+
+        router.delete('/meme/remove/:id', async (ctx, next) => {
+            try{
+                const meme_id = ctx.params.id;
+                const {moderator_id} = ctx.request.body;
+                const [{ role }] = await user.find(moderator_id);
+    
+                if(role === 1) {
+                    await meme.removeMeme(meme_id);
+                    return ctx.body = 200
+                };
+                    
+                return ctx.body = 400;
+            } catch (err){
+                return ctx.body = 400;
+            }
         })
 } 

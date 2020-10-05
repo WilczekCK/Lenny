@@ -13,6 +13,11 @@ export async function displayMemes (limit) {
     return memesRecord;
 }
 
+export async function removeMeme (meme_id) {
+    await mysql.update(`images`, `status = -1`, `id = ${meme_id}`);
+    return fs.unlinkSync(`assets/img/uploads/${meme_id}.jpg`);
+}
+
 export async function displayMemesWithCategory (category, limit) {
     if(limit) limit = `limit ${limit}`
     else limit = '';

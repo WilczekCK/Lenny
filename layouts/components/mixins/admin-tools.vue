@@ -39,9 +39,19 @@ export default {
       });
     },
     removeMeme: async function () {
-
+      await axios({
+        url: `/api/meme/remove/${this.info.id}`,
+        method: 'DELETE',
+        data: {
+          moderator_id: this.$store.state.isLogged.id
+        }
+      }).then((response) => {
+        if(response.status === 200) this.$toast.success('Meme removed!')
+        else this.$toast.error('Something went wrong, try again later')
+      });
     },
     removeComment: async function () {
+      //TODO --- remove comment from page
       await axios({
         url: `/api/meme/comments/remove/${this.info.id}`,
         method: 'DELETE',
