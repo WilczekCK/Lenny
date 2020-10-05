@@ -12,18 +12,31 @@
 
 <script>
 import Vue from 'vue';
+import axios from 'axios';
+
 export default {
-  props: ['whereUsed'],
+  props: ['whereUsed', 'info'],
   data: function() {
     return {
       slideDown: false,
+      userTriggered: null,
     }
   },
   mounted: async function () {
   },
   methods: {
-    banUser: async function () {
-
+    banUser: async function() {
+      await axios({
+        url: '/api/users/block',
+        method: 'PATCH',
+        data: {
+          user_id: this.info.author_id,
+          moderator_id: this.$store.state.isLogged.id
+        }
+      }).then((response) => {
+        if(response.status === 200) this.$toast.success('User banned!')
+        else this.$toast.error('Something went wrong, try again later')
+      });
     },
     removeMeme: async function () {
 
