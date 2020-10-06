@@ -20,6 +20,11 @@ export function printRoutes(router) {
             ctx.body = await meme.displayWaitingMemes(5)
         }),
 
+        router.get('/meme/tbm', async (ctx, next) => {
+            ctx.type = 'json'
+            ctx.body = await meme.displayTodayBestMeme( moment().format('YYYY-MM-DD') )
+        }),
+
         router.get('/meme/cat/:name', async (ctx, next) => {
             ctx.type = 'json'
             ctx.body = await meme.displayMemesWithCategory(ctx.params.name, 5)

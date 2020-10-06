@@ -11,7 +11,6 @@ export default {
     today_best_meme
   },
   mounted: function () {
-
   },
   methods: {
   }
