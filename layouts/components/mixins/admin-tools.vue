@@ -53,18 +53,7 @@ export default {
       });
     },
     removeComment: async function () {
-      //TODO --- remove comment from page (DOM)
-      await axios({
-        url: `/api/meme/comments/remove/${this.info.id}`,
-        method: 'DELETE',
-        headers: {
-            'loggedUserID': this.info.fb_id,
-            'commentid': this.info.id
-        }
-      }).then((response) => {
-        if(response.status === 200) this.$toast.success('Comment removed!')
-        else this.$toast.error('Something went wrong, try again later')
-      });
+      return this.$emit('adminRemoveComment');
     },
     approveMeme: async function () {
       await axios({
