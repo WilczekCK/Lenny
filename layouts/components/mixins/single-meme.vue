@@ -4,7 +4,7 @@
         .meme__item__header
             .meme__item__header__meta 
                 span
-                    admin-tools(:whereUsed="'meme'")
+                    admin-tools(:whereUsed="'meme'" :info="memeDetails")
                 span
                     nuxt-link(:to="'/users/'+memeDetails.author_id") {{memeDetails.author_username}}
                 span {{moment(memeDetails.added_in)}}
