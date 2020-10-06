@@ -40,7 +40,6 @@ export default {
       });
     },
     removeMeme: async function () {
-      //TODO --- remove meme from page (DOM)
       await axios({
         url: `/api/meme/remove/${this.info.id}`,
         method: 'DELETE',
@@ -69,9 +68,6 @@ export default {
         if(response.status === 200) this.$toast.success('Meme approved!')
         else this.$toast.error('Something went wrong, try again later')
       });
-    },
-    slideDownMenu: async function () {
-
     }
   },
   transition: {
