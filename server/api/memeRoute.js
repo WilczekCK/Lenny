@@ -1,4 +1,5 @@
 import * as meme from './controllers/meme.js';
+import * as user from './controllers/user.js';
 import koaBody from 'koa-body';
 import moment from 'moment';
 import _ from 'underscore';
@@ -35,7 +36,7 @@ export function printRoutes(router) {
                 const { title, tags } = ctx.request.header;
                 const { fb_id, username } = ctx.req.body[0][0];
 
-                const uploadedSqlID = await meme.insertToDB(`${fb_id}`, `${username}`, `${moment().format('YYYY-MM-DD HH:mm:ss')}`, `${tags}`, `${title}`, null)
+                const uploadedSqlID = await meme.insertToDB(`${fb_id}`, `${moment().format('YYYY-MM-DD HH:mm:ss')}`, `${tags}`, `${title}`, null)
                 await meme.uploadImage(`${file.path}`, uploadedSqlID);
             } catch (err) {
                 return ctx.throw(400)
@@ -47,10 +48,10 @@ export function printRoutes(router) {
         router.post('/meme/uploadVideo', async (ctx, next) => {
             try{
                 const {title, videoid, tags} = ctx.request.body.body;
-                const { fb_id, username } = ctx.req.body[0][0];
+                const { fb_id } = ctx.req.body[0][0];
 
-                if(!fb_id || !username || !title || !videoid || !tags) return ctx.throw(400, { message: 'One of the fields are missing' })
-                await meme.insertToDB(`${fb_id}`, `${username}`, `${moment().format('YYYY-MM-DD HH:mm:ss')}`, `${tags}`, `${title}`, `'${videoid}'`)    
+                if(!fb_id || !title || !videoid || !tags) return ctx.throw(400, { message: 'One of the fields are missing' })
+                await meme.insertToDB(`${fb_id}`, `${moment().format('YYYY-MM-DD HH:mm:ss')}`, `${tags}`, `${title}`, `'${videoid}'`)    
             }catch (err){
                 return ctx.throw(400)
             }
@@ -123,6 +124,7 @@ export function printRoutes(router) {
             const { fb_id, id, role } = ctx.req.body[0][0];
             const { loggeduserid, commentid } = ctx.request.header;
 
+            console.log(fb_id, id, role, loggeduserid, commentid);
             if (role == 1) {
                 //nothing, go further!
             } else if (loggeduserid != fb_id || !fb_id || role < 0) {
@@ -138,5 +140,39 @@ export function printRoutes(router) {
             const who_liked = ctx.req.body[0][0].fb_id;
             const alreadyGaveLike = await meme.like(meme_id, who_liked);
             if (alreadyGaveLike) { ctx.body = true; } else { ctx.body = false;}
+        }),
+
+        router.delete('/meme/remove/:id', async (ctx, next) => {
+            try{
+                const meme_id = ctx.params.id;
+                const {moderator_id} = ctx.request.body;
+                const [{ role }] = await user.find(moderator_id);
+    
+                if(role === 1) {
+                    await meme.removeMeme(meme_id);
+                    return ctx.body = 200
+                };
+                    
+                return ctx.body = 400;
+            } catch (err){
+                return ctx.body = 400;
+            }
+        }),
+
+        router.patch('/meme/approve/:id', async (ctx, next) => {
+            try{
+                const meme_id = ctx.params.id;
+                const {moderator_id} = ctx.request.body;
+                const [{ role }] = await user.find(moderator_id);
+    
+                if(role === 1) {
+                    await meme.approveMeme(meme_id);
+                    return ctx.body = 200
+                };
+                    
+                return ctx.body = 400;
+            } catch (err){
+                return ctx.body = 400;
+            }
         })
 } 

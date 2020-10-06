@@ -1,7 +1,9 @@
 <template lang="pug">
-    .meme__item
+    .meme__item(v-if="!isMemeRemoved")
         .meme__item__header
             .meme__item__header__meta 
+                span
+                    admin-tools(:whereUsed="'meme'" :info="memeDetails" v-on:adminRemoveMeme="isMemeRemoved = true")
                 span
                     nuxt-link(:to="'/users/'+memeDetails.author_id") {{memeDetails.author_username}}
                 span {{moment(memeDetails.added_in)}}
@@ -29,12 +31,16 @@
 <script>
 import moment from 'moment';
 import axios from 'axios';
-
+import admintools from './admin-tools.vue';
 export default {
     props: ['memeDetails'],
+    components: {
+        'admin-tools': admintools
+    },
     data () {
         return{
-            likes : this.memeDetails.likes
+            likes : this.memeDetails.likes,
+            isMemeRemoved: false,
         }
     },
     methods: {
@@ -52,7 +58,7 @@ export default {
                 if(data.data){return this.$toast.error('You already gave a like!')} //already gave like
                 else this.likes++;
             })
-        }
+        },
     }
 }
 </script>

@@ -13,6 +13,15 @@ export async function displayMemes (limit) {
     return memesRecord;
 }
 
+export async function removeMeme (meme_id) {
+    await mysql.update(`images`, `status = -1`, `id = ${meme_id}`);
+    return fs.unlinkSync(`assets/img/uploads/${meme_id}.jpg`);
+}
+
+export async function approveMeme (meme_id) {
+    return await mysql.update(`images`, `status = 1`, `id = ${meme_id}`);
+}
+
 export async function displayMemesWithCategory (category, limit) {
     if(limit) limit = `limit ${limit}`
     else limit = '';
@@ -58,10 +67,10 @@ export async function createArrayFromTags (meme_tags) {
     return meme_tags.tagsDivider
 }
 
-export async function insertToDB (author_id, author_username, date, tags, meme_title, meme_video_id) {
+export async function insertToDB (author_id, date, tags, meme_title, meme_video_id) {
     const replacedTags = tags.replace(/,/g, " ");
     
-    const uploadedSqlID = await mysql.insert(`images`, `author_id, author_username, added_in, tags, meme_title, video_id`, `${author_id}, '${author_username}' ,'${date}', '${_.escape(replacedTags)}', '${_.escape(meme_title)}', ${meme_video_id}`);
+    const uploadedSqlID = await mysql.insert(`images`, `author_id, added_in, tags, meme_title, video_id`, `${author_id}, '${date}', '${_.escape(replacedTags)}', '${_.escape(meme_title)}', ${meme_video_id}`);
     return uploadedSqlID;
 }
 

@@ -67,5 +67,21 @@ export function printRoutes (router) {
         }
 
         return ctx.throw(200)
+    }),
+
+    router.patch('/users/block', async (ctx, next) => {
+        try{
+            const {user_id, moderator_id} = ctx.request.body;
+            const [{ role }] = await user.find(moderator_id);
+
+            if(role === 1) {
+                await user.blockUser(user_id);
+                return ctx.body = 200
+            };
+                
+            return ctx.body = 400;
+        } catch (err){
+            return ctx.body = 400;
+        }
     })
 } 
