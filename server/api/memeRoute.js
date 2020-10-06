@@ -157,5 +157,22 @@ export function printRoutes(router) {
             } catch (err){
                 return ctx.body = 400;
             }
+        }),
+
+        router.patch('/meme/approve/:id', async (ctx, next) => {
+            try{
+                const meme_id = ctx.params.id;
+                const {moderator_id} = ctx.request.body;
+                const [{ role }] = await user.find(moderator_id);
+    
+                if(role === 1) {
+                    await meme.approveMeme(meme_id);
+                    return ctx.body = 200
+                };
+                    
+                return ctx.body = 400;
+            } catch (err){
+                return ctx.body = 400;
+            }
         })
 } 

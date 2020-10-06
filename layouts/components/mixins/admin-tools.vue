@@ -7,7 +7,7 @@
               li(@click="banUser()")="Ban Author"
               li(@click="removeMeme()" v-if="whereUsed === 'meme'")="Remove Meme"
               li(@click="removeComment()" v-if="whereUsed === 'comments'")="Remove Comment"
-              li(@click="approveMeme()" v-if="whereUsed === 'meme'")="Change status"
+              li(@click="approveMeme()" v-if="whereUsed === 'meme' && info.status === 0")="Approve Meme"
 </template>
 
 <script>
@@ -19,6 +19,7 @@ export default {
   data: function() {
     return {
       slideDown: false,
+      showChild: false,
       userTriggered: null,
     }
   },
@@ -39,6 +40,7 @@ export default {
       });
     },
     removeMeme: async function () {
+      //TODO --- remove meme from page (DOM)
       await axios({
         url: `/api/meme/remove/${this.info.id}`,
         method: 'DELETE',
@@ -51,7 +53,7 @@ export default {
       });
     },
     removeComment: async function () {
-      //TODO --- remove comment from page
+      //TODO --- remove comment from page (DOM)
       await axios({
         url: `/api/meme/comments/remove/${this.info.id}`,
         method: 'DELETE',
@@ -65,7 +67,16 @@ export default {
       });
     },
     approveMeme: async function () {
-
+      await axios({
+        url: `/api/meme/approve/${this.info.id}`,
+        method: 'PATCH',
+        data: {
+          moderator_id: this.$store.state.isLogged.id
+        }
+      }).then((response) => {
+        if(response.status === 200) this.$toast.success('Meme approved!')
+        else this.$toast.error('Something went wrong, try again later')
+      });
     },
     slideDownMenu: async function () {
 
