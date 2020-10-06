@@ -36,7 +36,7 @@ export function printRoutes(router) {
                 const { title, tags } = ctx.request.header;
                 const { fb_id, username } = ctx.req.body[0][0];
 
-                const uploadedSqlID = await meme.insertToDB(`${fb_id}`, `${username}`, `${moment().format('YYYY-MM-DD HH:mm:ss')}`, `${tags}`, `${title}`, null)
+                const uploadedSqlID = await meme.insertToDB(`${fb_id}`, `${moment().format('YYYY-MM-DD HH:mm:ss')}`, `${tags}`, `${title}`, null)
                 await meme.uploadImage(`${file.path}`, uploadedSqlID);
             } catch (err) {
                 return ctx.throw(400)
