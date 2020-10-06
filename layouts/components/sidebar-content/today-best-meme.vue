@@ -23,7 +23,8 @@ export default {
             url: '/api/meme/tbm',
             method: 'GET'
         }).then(({data}) => {
-            console.log(data)
+            var {id} = data.data;
+            return id;
         })
     }
   }
