@@ -48,10 +48,10 @@ export function printRoutes(router) {
         router.post('/meme/uploadVideo', async (ctx, next) => {
             try{
                 const {title, videoid, tags} = ctx.request.body.body;
-                const { fb_id, username } = ctx.req.body[0][0];
+                const { fb_id } = ctx.req.body[0][0];
 
-                if(!fb_id || !username || !title || !videoid || !tags) return ctx.throw(400, { message: 'One of the fields are missing' })
-                await meme.insertToDB(`${fb_id}`, `${username}`, `${moment().format('YYYY-MM-DD HH:mm:ss')}`, `${tags}`, `${title}`, `'${videoid}'`)    
+                if(!fb_id || !title || !videoid || !tags) return ctx.throw(400, { message: 'One of the fields are missing' })
+                await meme.insertToDB(`${fb_id}`, `${moment().format('YYYY-MM-DD HH:mm:ss')}`, `${tags}`, `${title}`, `'${videoid}'`)    
             }catch (err){
                 return ctx.throw(400)
             }
