@@ -48,7 +48,10 @@ export default {
           moderator_id: this.$store.state.isLogged.id
         }
       }).then((response) => {
-        if(response.status === 200) this.$toast.success('Meme removed!')
+        if(response.status === 200) {
+          this.$emit('adminRemoveMeme');
+          return this.$toast.success('Meme removed!')
+        }
         else this.$toast.error('Something went wrong, try again later')
       });
     },
