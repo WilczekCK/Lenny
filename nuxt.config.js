@@ -37,6 +37,9 @@ module.exports = {
   modules: [
     ['@nuxtjs/axios'],
     ['@nuxtjs/toast'],
+    ['@nuxtjs/google-adsense', {
+      id: 'ca-pub-#######'
+    }], 
     [
         'nuxt-sass-resources-loader', 
         [
