@@ -4,16 +4,22 @@
     min-width:315px;
     max-width:315px;
     flex-grow:1;
-    height:100vh;
+    min-height:100vh;
     order:2;
     box-sizing: border-box;
     padding-top:75px;
- 
-    .sidebar__wrapper{
-        position:fixed;
-        padding:10px 10px;
 
-        h4{margin:unset; padding:unset; margin-bottom:5px;}
+
+    .sidebar__wrapper{
+        top: 75px;
+        bottom:0;
+        position:fixed;
+        overflow-y:scroll;
+        overflow-x:hidden;
+        border-left:2px solid $lightBlackTone;
+        padding:20px;
+
+        h4{margin:unset; padding:unset; margin-bottom:5px; margin-top:5px;}
 
         .meme__container{
             margin-top:unset;        

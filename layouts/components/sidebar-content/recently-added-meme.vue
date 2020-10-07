@@ -1,6 +1,6 @@
 <template lang="pug">
     .ram__container
-        h4="Today best meme:"
+        h4="Recently added meme:"
         .ram__container__content(v-if="isPageLoaded")
             .meme__container(v-if="recentlyAddedMeme")
                 memeItem(:memeDetails="recentlyAddedMeme")
@@ -26,7 +26,7 @@ export default {
         url: '/api/meme/recent',
         method: 'GET'
     }).then(({data}) => {
-        this.todayBestMeme = data.data[0];
+        this.recentlyAddedMeme = data.data[0];
         this.isPageLoaded = true;
     })
 }
