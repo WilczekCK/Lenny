@@ -1,7 +1,7 @@
 <template lang="pug">
-    .tbm__container
+    .ram__container
         h4="Today best meme:"
-        .tbm__container__content(v-if="isPageLoaded")
+        .ram__container__content(v-if="isPageLoaded")
             .meme__container(v-if="recentlyAddedMeme")
                 memeItem(:memeDetails="recentlyAddedMeme")
             p(v-else)="There is no memes on that website!"
