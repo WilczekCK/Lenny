@@ -4,8 +4,8 @@
         .tbm__container__content(v-if="isPageLoaded")
             .meme__container(v-if="todayBestMeme")
                 memeItem(:memeDetails="todayBestMeme")
-            .no(v-else)="No best memes for today :("
-        .lol(v-else)="Loading..."
+            p(v-else)="No best memes for today :("
+        p(v-else)="Loading..."
 </template>
 
 <script>
