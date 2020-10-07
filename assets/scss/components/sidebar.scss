@@ -12,5 +12,23 @@
     .sidebar__wrapper{
         position:fixed;
         padding:10px 10px;
+
+        h4{margin:unset; padding:unset; margin-bottom:5px;}
+
+        .meme__container{
+            margin-top:unset;        
+            display:block;
+            padding:unset;
+
+            .meme__item__header__title{
+                font-size:.8em;
+            }
+
+            * {
+                margin:unset;
+                max-width:70%;
+            }
+        }
+
     }
 }
