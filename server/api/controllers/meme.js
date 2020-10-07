@@ -50,7 +50,7 @@ export async function displayTodayBestMeme (todayDate){
 }
 
 export async function displayRecentlyAddedMeme (){
-    const memesRecord = await mysql.query(`SELECT id, (select username from users where fb_id = author_id) AS author_username, (select count(*) from comments where images.id = comments.meme_id) AS comments_sum, author_id, tags, likes, status, added_in, meme_title, video_id  FROM images WHERE id=(SELECT max(id) FROM images)`);
+    const memesRecord = await mysql.query(`SELECT id, (select username from users where fb_id = author_id) AS author_username, (select count(*) from comments where images.id = comments.meme_id) AS comments_sum, author_id, tags, likes, status, added_in, meme_title, video_id  FROM images WHERE id=(SELECT max(id) FROM images) AND status = 1`);
     //create array from simple string - for tags
     if(_.isEmpty(memesRecord)) return false;
     memesRecord.tagsDivider = createArrayFromTags(memesRecord);
