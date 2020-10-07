@@ -18,8 +18,11 @@
         overflow-x:hidden;
         border-left:2px solid $lightBlackTone;
         padding:20px;
+        > * {
+            margin-bottom:25px;    
+        }
 
-        h4{margin:unset; padding:unset; margin-bottom:5px; margin-top:5px;}
+        h4{margin:unset; padding:unset; margin-bottom:5px; margin-top:5px; font-size:1.2em;}
 
         .meme__container{
             margin-top:unset;        
@@ -27,7 +30,11 @@
             padding:unset;
 
             .meme__item__header__title{
-                font-size:.8em;
+                font-size:.6em;
+            }
+
+            .meme__item::after{
+                display:none;
             }
 
             * {
