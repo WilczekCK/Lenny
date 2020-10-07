@@ -23,7 +23,7 @@ export default {
   },
   async mounted() {
     await axios({
-        url: '/api/meme/ram',
+        url: '/api/meme/recent',
         method: 'GET'
     }).then(({data}) => {
         this.todayBestMeme = data.data[0];
