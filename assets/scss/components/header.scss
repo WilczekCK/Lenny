@@ -8,7 +8,7 @@
     .header__wrapper{
         display:flex;
         flex-direction: row;
-        max-height:100%;
+        height:100%;
 
         img{
             max-height:50px;
@@ -71,32 +71,36 @@
         }
 
         .header__wrapper__menuItem--accountManagement{
+            flex-basis:33%;
             display:flex;
-            flex-direction: row;
-            flex-basis:15%;
- 
+            align-content: center;
             img{padding:0;}
 
             .header__wrapper__menuItem--accountManagement-logged{
-                background:$mainColor;
-                justify-content:center;
+                display:flex;
+                flex-direction: row;
                 align-items:center;
-
+                width:100%;
+                background:$lightBlackTone;
                 h3{
-                    margin-bottom:5px;
-                    margin-top:0px;
+                    margin:unset;
+                    padding:unset;
+                    flex-basis:77%;
+                    text-align:center;
                 }
 
                 .header__wrapper__menuItem--accountManagement-logged-settings{
                     display:flex;
                     flex-direction:row;
-                    justify-content:space-between;
+                    justify-content:center;
+                    flex-basis:23%;
 
                     svg{
                         cursor:pointer;
-
+                        padding-right:5px;
                         &:hover{
-                            color:$blackTone;
+                            color:$mainColor;
+                            transition: .3s ease-in-out;
                         }
                     }
                 }
