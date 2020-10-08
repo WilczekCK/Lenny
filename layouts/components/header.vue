@@ -5,7 +5,7 @@
           h1!="{{appInfo.name}}"
           h2="{{appInfo.description}}"
         .header__wrapper__menuItem--searchBar
-          input(type="text" placeholder="Browse by #tags")
+          input(type="text" placeholder="Search category" v-model="categorySearch" @keyup.enter="findCategory()")
         .header__wrapper__menuItem--accountManagement
           a(v-if="!this.$store.state.isLogged" href="/api/login")
             img(src="~/static/fb_login.png")
@@ -32,12 +32,17 @@ export default {
   },
   data: function(){
     return {
-      appInfo: config.default.app
+      appInfo: config.default.app,
+      categorySearch: undefined
     }
   },
   methods: {
     logout: async function() {
       this.$emit('checkUserSession', 'logout')
+    },
+    findCategory: async function() {
+      if(!this.categorySearch || this.categorySearch === '') return this.$router.push(`/`)
+      this.$router.push(`/meme/cat/${this.categorySearch}`)
     }
   },
 }
