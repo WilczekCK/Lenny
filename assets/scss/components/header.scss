@@ -10,7 +10,7 @@
         flex-direction: row;
 
         img{
-            max-height:40px;
+            max-height:50px;
             padding:5px 10px;
         }
 
@@ -66,14 +66,17 @@
         }
 
         .header__wrapper__menuItem--accountManagement{
-            justify-content:center;
-            align-items:center;
             display:flex;
             flex-direction: row;
             flex-basis:15%;
-            background:$mainColor;
+ 
+            img{padding:0;}
 
             .header__wrapper__menuItem--accountManagement-logged{
+                background:$mainColor;
+                justify-content:center;
+                align-items:center;
+
                 h3{
                     margin-bottom:5px;
                     margin-top:0px;
