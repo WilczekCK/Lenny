@@ -8,6 +8,7 @@
     .header__wrapper{
         display:flex;
         flex-direction: row;
+        max-height:100%;
 
         img{
             max-height:50px;
@@ -25,7 +26,6 @@
             align-self:flex-start;
             align-content:center;
             flex-basis:100%;
-            padding-top:5px;
             padding-left:10px;
             
             h1,h2,span{
@@ -33,35 +33,21 @@
                 padding:0;
             }
 
-            h1{font-size:1.2em;}
+            h1{font-size:1.2em; padding-top:5px;}
             h2{font-size:1em;}
         }
 
         .header__wrapper__menuItem--searchBar{
-            display:none;
             justify-content:flex-end;
-            align-items:center;
+            align-self: center;
             flex-direction: row;
-            flex-basis:35%;
-            margin-right:10px;
+            flex-basis:27%;
+
             input{
-                height:50%;
                 background:$lightBlackTone;
                 color:$whiteTone;
                 border:unset;
-                padding:3px 0px;
-            }
-
-            &:before{
-                position: relative;
-                content:'🔍';
-                left:0;
-                background:$lightBlackTone;
-                height:50%;
-                padding:3px 10px;
-                top:0;
-                display:flex;
-                align-items:center;
+                padding:7.5px 5px;
             }
         }
 
