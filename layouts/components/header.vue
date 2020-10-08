@@ -2,8 +2,9 @@
     .header
       .header__wrapper
         nuxt-link(to="/").header__wrapper__menuItem--logo
-          img(src="~/assets/img/logo.png")
-          span!="Semes<br>Koa + Nuxt meme template"
+          span="( ͡° ͜ʖ ͡°)"
+          h1!="Lenny"
+          span="Koa + Nuxt"
         .header__wrapper__menuItem--searchBar
           input(type="text" placeholder="Browse by #tags")
         .header__wrapper__menuItem--accountManagement
