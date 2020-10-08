@@ -6,6 +6,9 @@
           h2="{{appInfo.description}}"
         .header__wrapper__menuItem--searchBar
           input(type="text" placeholder="Search category" v-model="categorySearch" @keyup.enter="findCategory()")
+        .header__wrapper__menuItem--waitingRoom
+          nuxt-link(to="/meme/waiting")
+            i(class="far fa-hourglass")
         .header__wrapper__menuItem--accountManagement
           a(v-if="!this.$store.state.isLogged" href="/api/login")
             img(src="~/static/fb_login.png")

@@ -51,6 +51,24 @@
             }
         }
 
+        .header__wrapper__menuItem--waitingRoom{
+            font-size:1.5em;
+            justify-content:center;
+            align-self: center;
+            padding:10px;
+            cursor:pointer; 
+            
+            svg{
+                display:flex;
+                align-self: center;
+
+                &:hover{
+                    color:$mainColor;
+                    transition: .3s ease-in-out;
+                }
+            }
+        }
+
         .header__wrapper__menuItem--accountManagement{
             display:flex;
             flex-direction: row;
