@@ -3,8 +3,8 @@
       .header__wrapper
         nuxt-link(to="/").header__wrapper__menuItem--logo
           span="( ͡° ͜ʖ ͡°)"
-          h1!="Lenny"
-          span="Koa + Nuxt"
+          h1!="{{appInfo.name}}"
+          span="{{appInfo.description}}"
         .header__wrapper__menuItem--searchBar
           input(type="text" placeholder="Browse by #tags")
         .header__wrapper__menuItem--accountManagement
@@ -19,15 +19,21 @@
               a(@click="logout()")
                 i(class="fas fa-sign-out-alt" )
 
-</template>
+</template> 
 
 <script>
 import axios from "axios";
+import * as config from '../../server/config/index.js';
 import { mapGetters } from 'vuex'
 export default {
   props: ['user'],
+  components:{
+    config
+  },
   data: function(){
-    return {}
+    return {
+      appInfo: config.default.app
+    }
   },
   methods: {
     logout: async function() {
