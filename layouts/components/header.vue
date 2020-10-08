@@ -40,6 +40,7 @@ export default {
   methods: {
     logout: async function() {
       this.$emit('checkUserSession', 'logout')
+      this.$store.state.isLogged = false;
     },
     findCategory: async function() {
       if(!this.categorySearch || this.categorySearch === '') return this.$router.push(`/`)
