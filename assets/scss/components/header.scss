@@ -1,16 +1,17 @@
 .header{
     background-color:$blackTone;
     width:100%;
-    height:75px;
+    height:50px;
     position:fixed;
     z-index:999;
 
     .header__wrapper{
         display:flex;
         flex-direction: row;
+        height:100%;
 
         img{
-            max-height:65px;
+            max-height:50px;
             padding:5px 10px;
         }
 
@@ -21,63 +22,85 @@
 
         .header__wrapper__menuItem--logo{
             display:flex;
-            flex-direction: row;
-            align-items:center;
+            flex-direction: column;
+            align-self:flex-start;
+            align-content:center;
             flex-basis:100%;
+            padding-left:10px;
+            
+            h1,h2,span{
+                margin:0;
+                padding:0;
+            }
+
+            h1{font-size:1.2em; padding-top:5px;}
+            h2{font-size:1em;}
         }
 
         .header__wrapper__menuItem--searchBar{
-            display:none;
             justify-content:flex-end;
-            align-items:center;
+            align-self: center;
             flex-direction: row;
-            flex-basis:35%;
-            margin-right:10px;
+            flex-basis:24%;
+
             input{
-                height:50%;
                 background:$lightBlackTone;
                 color:$whiteTone;
                 border:unset;
-                padding:3px 0px;
+                padding:7.5px 5px;
             }
+        }
 
-            &:before{
-                position: relative;
-                content:'🔍';
-                left:0;
-                background:$lightBlackTone;
-                height:50%;
-                padding:3px 10px;
-                top:0;
+        .header__wrapper__menuItem--waitingRoom{
+            font-size:1.5em;
+            justify-content:center;
+            align-self: center;
+            padding:10px;
+            padding-right:15px;
+            cursor:pointer; 
+
+            svg{
                 display:flex;
-                align-items:center;
+                align-self: center;
+
+                &:hover{
+                    color:$mainColor;
+                    transition: .3s ease-in-out;
+                }
             }
         }
 
         .header__wrapper__menuItem--accountManagement{
-            justify-content:center;
-            align-items:center;
+            flex-basis:33%;
             display:flex;
-            flex-direction: row;
-            flex-basis:15%;
-            background:$mainColor;
+            align-content: center;
+            img{padding:0;}
 
             .header__wrapper__menuItem--accountManagement-logged{
+                display:flex;
+                flex-direction: row;
+                align-items:center;
+                width:100%;
+                background:$lightBlackTone;
                 h3{
-                    margin-bottom:5px;
-                    margin-top:0px;
+                    margin:unset;
+                    padding:unset;
+                    flex-basis:77%;
+                    text-align:center;
                 }
 
                 .header__wrapper__menuItem--accountManagement-logged-settings{
                     display:flex;
                     flex-direction:row;
-                    justify-content:space-between;
+                    justify-content:center;
+                    flex-basis:23%;
 
                     svg{
                         cursor:pointer;
-
+                        padding-right:5px;
                         &:hover{
-                            color:$blackTone;
+                            color:$mainColor;
+                            transition: .3s ease-in-out;
                         }
                     }
                 }

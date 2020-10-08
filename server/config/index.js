@@ -2,7 +2,8 @@
 
 export default {
   app: {
-    name: 'something',
+    name: 'Lenny',
+    description: 'Koa + Nuxt meme website template',
     version: '1.0.0'
   },
   database: {
