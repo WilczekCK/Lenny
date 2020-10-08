@@ -21,9 +21,20 @@
 
         .header__wrapper__menuItem--logo{
             display:flex;
-            flex-direction: row;
-            align-items:center;
+            flex-direction: column;
+            align-self:flex-start;
+            align-content:center;
             flex-basis:100%;
+            padding-top:5px;
+            padding-left:10px;
+            
+            h1,h2,span{
+                margin:0;
+                padding:0;
+            }
+
+            h1{font-size:1.2em;}
+            h2{font-size:1em;}
         }
 
         .header__wrapper__menuItem--searchBar{

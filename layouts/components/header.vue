@@ -2,9 +2,8 @@
     .header
       .header__wrapper
         nuxt-link(to="/").header__wrapper__menuItem--logo
-          span="( ͡° ͜ʖ ͡°)"
           h1!="{{appInfo.name}}"
-          span="{{appInfo.description}}"
+          h2="{{appInfo.description}}"
         .header__wrapper__menuItem--searchBar
           input(type="text" placeholder="Browse by #tags")
         .header__wrapper__menuItem--accountManagement
@@ -39,6 +38,16 @@ export default {
     logout: async function() {
       this.$emit('checkUserSession', 'logout')
     }
-  }
+  },
 }
 </script>
+
+<style>
+.header__wrapper__menuItem--logo h1::before{
+  content:'( ͡° ͜ʖ ͡°)';
+  position:relative;
+  left:0;
+  padding-right:10px;
+}
+
+</style>
