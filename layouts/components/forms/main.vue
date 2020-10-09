@@ -26,9 +26,9 @@
                 ="Upload"
             .form__messages 
                 p(v-if="errors")
-                    span(v-for="error in errors") {{error}}
+                    span(v-for="error in errors" class="form_messages_error") {{error}}
                 p(v-if="message")
-                    span {{ message }}
+                    span(class="form_message__pending") {{ message }}
         div.modal__result(v-else)
             h3 {{formSentMessage}}
 </template>
@@ -98,8 +98,9 @@ export default {
             }else if(!this.memeTitle || !this.memeTags){
                 this.errors.push('You are missing one of the fields!')
             }else{
-                this.errors.push('You are missing one of the fields!')
+                this.errors.push('Wait, uploading!')
             }
+
         },
         uploadVideo(){
             return axios.post('/api/meme/uploadVideo', {
