@@ -142,11 +142,25 @@
 
             .form__messages{
               text-align:center;
-              background:#ff0033;
               color:white;
               p{
-                padding:5px 0px;
+                padding:unset;
                 margin:unset;
+                width:100%;
+                height:100%;
+
+                .form__messages__pending{
+                  background:#db9943;
+                  display:block;
+                  padding:5px 0px;
+                  width:100%;
+                }
+                .form__messages__error{
+                  background:#ff0033;
+                  padding:5px 0px;
+                  display:block;
+                  width:100%;
+                }  
               }
             }
         }

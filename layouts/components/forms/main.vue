@@ -25,10 +25,10 @@
                 i(class="fas fa-cloud-upload-alt")
                 ="Upload"
             .form__messages 
-                p(v-if="errors")
-                    span(v-for="error in errors" class="form_messages_error") {{error}}
+                p(v-if="errors" )
+                    span(class='form__messages__error' v-for="error in errors") {{error}}
                 p(v-if="message")
-                    span(class="form_message__pending") {{ message }}
+                    span(class='form__messages__pending' v-for="info in message") {{ info }}
         div.modal__result(v-else)
             h3 {{formSentMessage}}
 </template>
@@ -55,7 +55,7 @@ export default {
             base64image: undefined,
             errors: undefined,
             progress: 0,
-            message: "",
+            message: undefined,
 
 
             memeType: undefined,
@@ -90,6 +90,7 @@ export default {
         },
         errorHandler: function(){
             this.errors = [];
+            this.message = [];
 
             if(this.$store.state.modalType === 'avatar' && this.selectedFiles){
                 return 0;
@@ -98,7 +99,7 @@ export default {
             }else if(!this.memeTitle || !this.memeTags){
                 this.errors.push('You are missing one of the fields!')
             }else{
-                this.errors.push('Wait, uploading!')
+                this.message.push('Wait, uploading!')
             }
 
         },
