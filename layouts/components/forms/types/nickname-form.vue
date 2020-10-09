@@ -6,6 +6,8 @@
 
         label(for="nickname" v-if="checkIfDelayPassed(nickname_delay)")
         input(type="text" v-if="checkIfDelayPassed(nickname_delay)" v-model="nickname" id="nickname" placeholder="Your new nickname!" @change="$emit('inputChanged', {paramToChange: 'nickname', value: nickname})")
+    .meme__uploader__form(v-else)
+        h3="Wait... loading!"
 </template>
 
 <script>
