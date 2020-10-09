@@ -93,9 +93,9 @@ export default {
             this.message = [];
 
             if(this.$store.state.modalType === 'avatar' && this.selectedFiles){
-                return 0;
+                return this.message.push('Wait, uploading!')
             }else if(this.$store.state.modalType === 'nickname' && this.nickname){
-                return 0;
+                return this.message.push('Wait, uploading!')
             }else if(!this.memeTitle || !this.memeTags){
                 this.errors.push('You are missing one of the fields!')
             }else{
