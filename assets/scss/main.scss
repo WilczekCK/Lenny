@@ -15,3 +15,8 @@ body{
     display:flex;
     flex-direction: row;
 }
+
+.__nuxt-error-page{
+    position: relative !important;
+    flex-grow:2 !important;
+}
