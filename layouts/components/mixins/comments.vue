@@ -100,8 +100,12 @@ export default {
           },
           url: `/api/meme/comments/post/${this.$route.params.id}`,
         }).then(({data}) => {
-          if(data.data == true) return this.commentsAmount++;
-          else this.errors.push('Something went wrong! Try to send your comment later!')
+          if(data.data == true) {
+            this.incomingNewComment = ''
+            return this.commentsAmount++
+          }else{
+            this.errors.push('Something went wrong! Try to send your comment later!')
+          }
         })
     },
     removeComment: async function(getLoggedUserID, commentID) {

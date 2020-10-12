@@ -25,10 +25,10 @@
                 i(class="fas fa-cloud-upload-alt")
                 ="Upload"
             .form__messages 
-                p(v-if="errors")
-                    span(v-for="error in errors") {{error}}
+                p(v-if="errors" )
+                    span(class='form__messages__error' v-for="error in errors") {{error}}
                 p(v-if="message")
-                    span {{ message }}
+                    span(class='form__messages__pending' v-for="info in message") {{ info }}
         div.modal__result(v-else)
             h3 {{formSentMessage}}
 </template>
@@ -55,7 +55,7 @@ export default {
             base64image: undefined,
             errors: undefined,
             progress: 0,
-            message: "",
+            message: undefined,
 
 
             memeType: undefined,
@@ -90,16 +90,18 @@ export default {
         },
         errorHandler: function(){
             this.errors = [];
+            this.message = [];
 
             if(this.$store.state.modalType === 'avatar' && this.selectedFiles){
-                return 0;
+                return this.message.push('Wait, uploading!')
             }else if(this.$store.state.modalType === 'nickname' && this.nickname){
-                return 0;
+                return this.message.push('Wait, uploading!')
             }else if(!this.memeTitle || !this.memeTags){
                 this.errors.push('You are missing one of the fields!')
             }else{
-                this.errors.push('You are missing one of the fields!')
+                this.message.push('Wait, uploading!')
             }
+
         },
         uploadVideo(){
             return axios.post('/api/meme/uploadVideo', {
@@ -127,7 +129,7 @@ export default {
 
             switch(status){
                 case 200:
-                    this.formSentMessage = "Your meme is sent successfully!"
+                    this.formSentMessage = "Your data is sent successfully!"
                     break;
                 case 400:
                     this.formSentMessage = "Something went bad, please try again later"
