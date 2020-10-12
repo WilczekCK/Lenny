@@ -1,14 +1,14 @@
 .sidebar{
     display:flex;
     position: relative;
-    min-width:315px;
-    max-width:315px;
     flex-grow:1;
     min-height:100vh;
+    min-width:310px;
+    max-width:315px;
     order:2;
     box-sizing: border-box;
     padding-top:50px;
-
+    background:$whiteTone;
 
     .sidebar__wrapper{
         top: 50px;
@@ -16,8 +16,8 @@
         position:fixed;
         overflow-y:scroll;
         overflow-x:hidden;
-        border-left:2px solid $lightBlackTone;
         padding:20px;
+        max-width:100%;
 
         > * {
             margin-bottom:25px;    
