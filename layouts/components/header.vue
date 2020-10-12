@@ -25,7 +25,8 @@
 <script>
 import axios from "axios";
 import * as config from '../../server/config/index.js';
-import { mapGetters } from 'vuex'
+import _ from 'underscore';
+
 export default {
   props: ['user'],
   components:{
@@ -43,7 +44,15 @@ export default {
       this.$store.state.isLogged = false;
     },
     findCategory: async function() {
-      if(!this.categorySearch || this.categorySearch === '') return this.$router.push(`/`)
+      var {name} = this.$router.history.current.params;
+      
+      //disable redirecting to the same page!
+      if(name === this.categorySearch || _.isEmpty(this.categorySearch) && _.isEmpty(name)){
+        return 0;
+      }else if(!this.categorySearch ){
+        return this.$router.push(`/`)
+      }
+
       this.$router.push(`/meme/cat/${this.categorySearch}`)
     }
   },
