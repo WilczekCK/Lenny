@@ -129,7 +129,7 @@ export default {
 
             switch(status){
                 case 200:
-                    this.formSentMessage = "Your meme is sent successfully!"
+                    this.formSentMessage = "Your data is sent successfully!"
                     break;
                 case 400:
                     this.formSentMessage = "Something went bad, please try again later"
