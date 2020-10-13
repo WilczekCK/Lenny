@@ -6,7 +6,7 @@ export async function displayMemes (limit) {
     if(limit) limit = `limit ${limit}`
     else limit = '';
     
-    const memesRecord = await mysql.query(`SELECT *, (select count(*) from comments where images.id = comments.meme_id) AS comments_sum, (select username from users where fb_id = author_id) AS author_username FROM images WHERE status = 1 ORDER BY added_in DESC ${limit}`);
+    const memesRecord = await mysql.query(`SELECT *, (select count(*) from comments where images.id = comments.meme_id) AS comments_sum, (select username from users where fb_id = author_id) AS author_username FROM images WHERE status = 1 ORDER BY accepted_in DESC ${limit}`);
 
     //create array from simple string - for tags
     memesRecord.tagsDivider = createArrayFromTags(memesRecord);
@@ -18,8 +18,8 @@ export async function removeMeme (meme_id) {
     return fs.unlinkSync(`assets/img/uploads/${meme_id}.jpg`);
 }
 
-export async function approveMeme (meme_id) {
-    return await mysql.update(`images`, `status = 1`, `id = ${meme_id}`);
+export async function approveMeme (meme_id, dateAccepted) {
+    return await mysql.update(`images`, `status = 1, accepted_in= '${dateAccepted}'`, `id = ${meme_id}`);
 }
 
 export async function displayMemesWithCategory (category, limit) {
@@ -27,7 +27,7 @@ export async function displayMemesWithCategory (category, limit) {
     else limit = '';
     
 
-    const memesRecord = await mysql.query(`SELECT *, (select username from users where fb_id = author_id) AS author_username FROM images WHERE status = 1 AND concat(' ',tags,' ') like '% ${category} %' ORDER BY added_in DESC ${limit}`);
+    const memesRecord = await mysql.query(`SELECT *, (select username from users where fb_id = author_id) AS author_username FROM images WHERE status = 1 AND concat(' ',tags,' ') like '% ${category} %' ORDER BY accepted_in DESC ${limit}`);
     //create array from simple string - for tags
     memesRecord.tagsDivider = createArrayFromTags(memesRecord);
     return memesRecord;
@@ -42,7 +42,7 @@ export async function displayMeme (id) {
 }
 
 export async function displayTodayBestMeme (todayDate){
-    const memesRecord = await mysql.query(`SELECT id, (select username from users where fb_id = author_id) AS author_username, (select count(*) from comments where images.id = comments.meme_id) AS comments_sum, author_id, tags, likes, status, added_in, meme_title, video_id  FROM images WHERE DATE(added_in) = '${todayDate}' ORDER BY likes LIMIT 1`);
+    const memesRecord = await mysql.query(`SELECT id, (select username from users where fb_id = author_id) AS author_username, (select count(*) from comments where images.id = comments.meme_id) AS comments_sum, author_id, tags, likes, status, added_in, meme_title, video_id  FROM images WHERE DATE(accepted_in) = '${todayDate}' AND status = 1 ORDER BY likes LIMIT 1`);
     //create array from simple string - for tags
     if(_.isEmpty(memesRecord)) return false;
     memesRecord.tagsDivider = createArrayFromTags(memesRecord);
@@ -59,7 +59,7 @@ export async function displayRecentlyAddedMeme (){
 
 
 export async function displayMemesFromUser (user, limit) {
-    const memesRecord = await mysql.query(`SELECT *, (select username from users where fb_id = author_id) AS author_username, (select count(*) from comments where images.id = comments.meme_id) AS comments_sum FROM images WHERE author_id = ${user} ORDER BY added_in DESC limit ${limit}`);
+    const memesRecord = await mysql.query(`SELECT *, (select username from users where fb_id = author_id) AS author_username, (select count(*) from comments where images.id = comments.meme_id) AS comments_sum FROM images WHERE author_id = ${user} ORDER BY accepted_in DESC limit ${limit}`);
     if(_.isEmpty(memesRecord)) return false;
     memesRecord.tagsDivider = createArrayFromTags(memesRecord);
     return memesRecord;
@@ -138,7 +138,7 @@ export async function infiniteScrollWaiting (loadCount, loadElements) {
 export async function infiniteScrollCategory (loadCount, loadElements, category) {
     const startFrom = (loadElements * loadCount);
 
-    const memesRecord = await mysql.query(`SELECT id, (select username from users where fb_id = author_id) AS author_username, (select count(*) from comments where images.id = comments.meme_id), author_id, tags, likes, status, added_in, meme_title, video_id FROM images WHERE status = 1 AND concat(' ',tags,' ') like '% ${category} %' ORDER BY added_in DESC LIMIT ${loadElements} OFFSET ${startFrom}`)
+    const memesRecord = await mysql.query(`SELECT id, (select username from users where fb_id = author_id) AS author_username, (select count(*) from comments where images.id = comments.meme_id), author_id, tags, likes, status, added_in, meme_title, video_id FROM images WHERE status = 1 AND concat(' ',tags,' ') like '% ${category} %' ORDER BY accepted_in DESC LIMIT ${loadElements} OFFSET ${startFrom}`)
     memesRecord.tagsDivider = createArrayFromTags(memesRecord);
         
     return memesRecord;
@@ -146,7 +146,7 @@ export async function infiniteScrollCategory (loadCount, loadElements, category)
 
 export async function infiniteScrollUser (loadCount, loadElements, user) {
     const startFrom = (loadElements * loadCount);
-    const memesRecord = await mysql.query(`SELECT id, (select username from users where fb_id = author_id) AS author_username, (select count(*) from comments where images.id = comments.meme_id), author_id, tags, likes, status, added_in, meme_title, video_id FROM images WHERE status = 1 AND author_id = ${user} ORDER BY added_in DESC LIMIT ${loadElements} OFFSET ${startFrom}`)
+    const memesRecord = await mysql.query(`SELECT id, (select username from users where fb_id = author_id) AS author_username, (select count(*) from comments where images.id = comments.meme_id), author_id, tags, likes, status, added_in, meme_title, video_id FROM images WHERE author_id = ${user} ORDER BY accepted_in DESC LIMIT ${loadElements} OFFSET ${startFrom}`)
     memesRecord.tagsDivider = createArrayFromTags(memesRecord);
 
     return memesRecord;

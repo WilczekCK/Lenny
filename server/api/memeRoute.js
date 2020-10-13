@@ -176,7 +176,7 @@ export function printRoutes(router) {
                 const [{ role }] = await user.find(moderator_id);
     
                 if(role === 1) {
-                    await meme.approveMeme(meme_id);
+                    await meme.approveMeme(meme_id, moment().format('YYYY-MM-DD HH:mm:ss'));
                     return ctx.body = 200
                 };
                     

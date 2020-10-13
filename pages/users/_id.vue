@@ -105,7 +105,9 @@ export default {
           this.page += 1;
 
           let memes = data.data;
-          memes.forEach((meme) => { this.userMemes.push(meme) })
+          memes.forEach((meme) => { 
+            this.userMemes.push(meme) 
+          })
           $state.loaded();
         }else{
           $state.complete()
