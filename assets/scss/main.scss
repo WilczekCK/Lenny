@@ -10,11 +10,14 @@
 body{
     background: $background;
     overflow-y:scroll;
+    font-family: 'Raleway', sans-serif;
+    font-size:15px;
 }
 
 .content{
     display:flex;
     flex-direction: row;
+    font-family: 'Raleway', sans-serif;
 }
 
 .__nuxt-error-page{
