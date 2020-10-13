@@ -19,7 +19,7 @@ export async function removeMeme (meme_id) {
 }
 
 export async function approveMeme (meme_id, dateAccepted) {
-    return await mysql.update(`images`, `status = 1, accepted_in=${dateAccepted}`, `id = ${meme_id}`);
+    return await mysql.update(`images`, `status = 1, accepted_in= '${dateAccepted}'`, `id = ${meme_id}`);
 }
 
 export async function displayMemesWithCategory (category, limit) {
