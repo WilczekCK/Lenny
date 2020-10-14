@@ -71,7 +71,8 @@
         }
 
         .header__wrapper__menuItem--accountManagement{
-            flex-basis:36%;
+            min-width:310px;
+            max-width:315px;
             display:flex;
             align-content: center;
             img{padding:0;}

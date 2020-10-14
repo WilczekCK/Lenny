@@ -7,6 +7,10 @@
 @import 'components/profile.scss';
 @import 'components/admin-tools.scss';
 
+$breakpoint-mobile: 768px;
+$breakpoint-tablet: 1280px;
+$breakpoint-desktop: 1400px;
+
 body{
     background: $background;
     overflow-y:scroll;
