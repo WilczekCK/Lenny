@@ -1,3 +1,4 @@
+@import 'global/breakpoints.scss';
 @import 'global/colors.scss';
 @import 'mixins/meme-item.scss';
 @import 'modals/addMeme.scss';
@@ -6,6 +7,7 @@
 @import 'components/comment.scss';
 @import 'components/profile.scss';
 @import 'components/admin-tools.scss';
+
 
 
 body{
