@@ -7,9 +7,6 @@
 @import 'components/profile.scss';
 @import 'components/admin-tools.scss';
 
-$breakpoint-mobile: 768px;
-$breakpoint-tablet: 1280px;
-$breakpoint-desktop: 1400px;
 
 body{
     background: $background;
@@ -22,6 +19,10 @@ body{
     display:flex;
     flex-direction: row;
     font-family: 'Raleway', sans-serif;
+
+    @media (max-width: $breakpoint-mobile){
+        flex-direction: column;
+    }
 }
 
 .__nuxt-error-page{
