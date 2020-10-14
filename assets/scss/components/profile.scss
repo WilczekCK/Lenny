@@ -3,9 +3,16 @@
     flex-direction: row;
     flex-grow:2;
 
+    @media (max-width: $breakpoint-desktop){
+        flex-direction: column;
+        flex-grow:unset;
+        width:60%;
+    }
+
     @media (max-width: $breakpoint-mobile){
         flex-direction: column;
         flex-grow:unset;
+        width:100%;
     }
 
     .profile__container{
@@ -20,6 +27,14 @@
         border-radius: 6px;
         flex-direction: column;
     
+        @media (max-width: $breakpoint-desktop){
+            flex-grow:1;
+            display:relative;
+            height:auto;
+            padding-top:40px;
+            width:100%;
+        }
+
         .profile__container__header{
             width:100%;
             display:flex;
