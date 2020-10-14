@@ -8,8 +8,11 @@
 	display:grid;
 	justify-content:center;
 
-	@media (max-width:320px){
-		width:315px !important;
+	@media (max-width: $breakpoint-mobile){
+		order:2;
+		margin-top:25px;
+		max-width:768px;
+		width:unset;
 	}
 
     .meme__item{
@@ -35,6 +38,15 @@
 			background: #272727;
 			height: 1px;
 			margin-top: 20px;
+		}
+
+		@media (max-width: $breakpoint-mobile){
+			width:90%;
+			margin:0 auto;
+
+			&:after{
+				width:unset;
+			}
 		}
 
 		.meme__item__header{
