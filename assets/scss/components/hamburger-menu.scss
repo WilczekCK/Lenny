@@ -1,0 +1,40 @@
+.hamburger__menu{
+    max-width:200px;
+    min-width:100px;
+    float:right;
+    p{
+        margin:0;
+        padding:0;
+        cursor:pointer;
+        text-align:right;
+        &:hover{
+            color:$mainColor;
+            transition: .3s ease-out;
+        }
+    }
+
+    .hamburger__menu__container{
+        position:relative;
+        color:white;
+        ul{
+            margin:0;
+            margin-top:5px;
+            padding:0;
+            position:absolute;
+            max-width:100%;
+            min-width:315px;
+            
+            li{
+                background:$lightBlackTone;
+                padding:5px;
+                padding-right:10px;
+                cursor:pointer;
+                list-style-type: none;
+                &:hover{
+                    color:$mainColor;
+                    transition: .3s ease-out;
+                }
+            }
+        }
+    }
+}

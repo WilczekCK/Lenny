@@ -19,6 +19,7 @@
                 i(class="fas fa-user")
               a(@click="logout()")
                 i(class="fas fa-sign-out-alt" )
+        hamburger
 
 </template> 
 
@@ -26,11 +27,13 @@
 import axios from "axios";
 import * as config from '../../server/config/index.js';
 import _ from 'underscore';
+import hamburger from './hamburger.vue';
 
 export default {
   props: ['user'],
   components:{
-    config
+    config,
+    hamburger
   },
   data: function(){
     return {
