@@ -6,9 +6,9 @@
             transition(name='slideDown')
                 ul(v-if="slideDown")
                     li="Waiting room"
+                    li="Login"
                     li
                         input(type="text" placeholder="Search category" v-model="categorySearch" @keyup.enter="findCategory()")
-                    li="Login"
 </template>
 
 <script>
