@@ -38,6 +38,10 @@
         }
 
         .header__wrapper__menuItem--searchBar{
+            display:none;
+            @media (min-width: $breakpoint-mobile){
+                display:block;
+            }
             justify-content:flex-end;
             align-self: center;
             flex-direction: row;
@@ -52,6 +56,10 @@
         }
 
         .header__wrapper__menuItem--waitingRoom{
+            display:none;
+            @media (min-width: $breakpoint-mobile){
+                display:block;
+            }
             font-size:1.5em;
             justify-content:center;
             align-self: center;
@@ -71,8 +79,12 @@
         }
 
         .header__wrapper__menuItem--accountManagement{
+            display:none;
+            @media (min-width: $breakpoint-mobile){
+                display:flex;
+            }
+
             flex-basis:33%;
-            display:flex;
             align-content: center;
             img{padding:0;}
 

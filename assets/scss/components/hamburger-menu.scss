@@ -1,4 +1,9 @@
 .hamburger__menu{
+    display:none;
+    @media (max-width: $breakpoint-mobile){
+        display:block;
+    }
+    
     max-width:200px;
     min-width:100px;
     float:right;
@@ -23,7 +28,7 @@
             position:absolute;
             max-width:100%;
             min-width:315px;
-            
+
             li{
                 background:$lightBlackTone;
                 padding:5px;
