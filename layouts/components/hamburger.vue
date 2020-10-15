@@ -1,12 +1,13 @@
 <template lang="pug">
     .hamburger__menu
-      p(@click="slideDown = !slideDown")='HAMBURGER'
+      p(@click="slideDown = !slideDown")
+        i(class="fas fa-bars")
         .hamburger__menu__container
-          transition(name='slideDown')
-            ul(v-if="slideDown")
-                li="Waiting room"
-                li="Search category"
-                li="Login"
+            transition(name='slideDown')
+                ul(v-if="slideDown")
+                    li="Waiting room"
+                    li="Search category"
+                    li="Login"
 </template>
 
 <script>
