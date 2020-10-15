@@ -1,4 +1,8 @@
 .hamburger__menu{
+    &.active p{
+      color:$mainColor;  
+    }
+    
     display:none;
     @media (max-width: $breakpoint-mobile){
         display:flex;

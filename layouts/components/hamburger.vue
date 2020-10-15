@@ -1,5 +1,5 @@
 <template lang="pug">
-    .hamburger__menu
+    .hamburger__menu(:class="{active: slideDown}")
       p(@click="slideDown = !slideDown")
         i(class="fas fa-bars")
         .hamburger__menu__container
@@ -18,6 +18,7 @@ export default {
   data: function() {
     return {
       slideDown: false,
+      active: false,
     }
   },
   mounted: async function () {
