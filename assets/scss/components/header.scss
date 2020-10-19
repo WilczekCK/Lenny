@@ -84,7 +84,8 @@
                 display:flex;
             }
 
-            flex-basis:33%;
+            min-width: 310px;
+            max-width: 315px;
             align-content: center;
             img{padding:0;}
 
