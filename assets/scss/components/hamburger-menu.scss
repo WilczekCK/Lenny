@@ -65,6 +65,19 @@
                     color:white;
                     border:none;
                 }
+
+                img{padding:5px 0px;}
+                
+                h3{margin:0; padding:0;}
+                
+                svg{
+                    margin-left:25px;
+                    font-size:1.3em;
+                    &:hover{
+                        color:$mainColor;
+                        transition: .3s ease-in-out;
+                    }
+                }
             }
         }
     }
