@@ -22,6 +22,10 @@
             transition: all 0.3s ease;
             font-family: Helvetica, Arial, sans-serif;
 
+            @media (max-width: $breakpoint-mobile){
+              width:100%;
+            }
+
             .modal__mask__wrapper__container--header {
                 h3 {
                     margin-top: 0;
@@ -37,10 +41,20 @@
                   flex-direction: row;
                   justify-content:center;
 
+                  @media (max-width: $breakpoint-mobile){
+                    flex-direction:column;
+                  }
+
                   div{
                     display:flex;
                     justify-content:center;
                     width:50%;
+
+                    @media (max-width: $breakpoint-mobile){
+                      width:90%;
+                      margin:0 auto;
+                      padding-top:10px;
+                    }
                   }
 
                   label{
@@ -58,6 +72,10 @@
 
                     &[type="radio"]{
                       margin-top:unset;
+                    }
+
+                    @media (max-width: $breakpoint-mobile){
+                      width:100%;
                     }
                   }
                 }
@@ -175,6 +193,7 @@
   background:$lightBlackTone;
   border:unset;
   color:white;
+  z-index:999;
   
   &:hover{
     cursor:pointer;
@@ -183,6 +202,11 @@
 
   svg{
     padding-right:10px;
+  }
+
+  @media (max-width: $breakpoint-mobile){
+    opacity:.9;
+    font-size:.8em;
   }
 }
 

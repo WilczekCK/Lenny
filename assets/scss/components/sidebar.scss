@@ -10,6 +10,16 @@
     padding-top:50px;
     background:$whiteTone;
 
+    @media (max-width: $breakpoint-mobile){
+        order:1;
+        min-height:unset;
+        max-width:100%;
+        margin-top:30px;
+        display:flex;
+        flex-direction: column;
+        background:$background;
+    }
+
     .sidebar__wrapper{
         top: 50px;
         bottom:0;
@@ -19,10 +29,30 @@
         padding:20px;
         max-width:100%;
 
-        > * {
-            margin-bottom:25px;    
-            min-width:100%;
+
+        @media (max-width: $breakpoint-mobile){
+            text-align:center;
+            top:unset;
+            bottom: unset;
+            padding:5px;
+            position:relative;
+
+            > *:not(.ads__container){
+                display:none;
+            }
+
+            > *{
+                max-width:unset;
+            }
         }
+
+        @media (min-width: $breakpoint-mobile){
+            > * {
+                margin-bottom:25px;    
+                min-width:100%;
+            }
+        }
+
 
         h4{margin:unset; padding:unset; margin-bottom:5px; margin-top:5px; font-size:1.2em;}
 

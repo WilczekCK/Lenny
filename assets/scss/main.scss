@@ -1,3 +1,4 @@
+@import 'global/breakpoints.scss';
 @import 'global/colors.scss';
 @import 'mixins/meme-item.scss';
 @import 'modals/addMeme.scss';
@@ -6,6 +7,9 @@
 @import 'components/comment.scss';
 @import 'components/profile.scss';
 @import 'components/admin-tools.scss';
+@import 'components/hamburger-menu.scss';
+
+
 
 body{
     background: $background;
@@ -18,6 +22,10 @@ body{
     display:flex;
     flex-direction: row;
     font-family: 'Raleway', sans-serif;
+
+    @media (max-width: $breakpoint-mobile){
+        flex-direction: column;
+    }
 }
 
 .__nuxt-error-page{
