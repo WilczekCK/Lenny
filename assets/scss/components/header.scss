@@ -45,8 +45,6 @@
             justify-content:flex-end;
             align-self: center;
             flex-direction: row;
-            flex-basis:24%;
-
             input{
                 background:$lightBlackTone;
                 color:$whiteTone;
@@ -63,8 +61,7 @@
             font-size:1.5em;
             justify-content:center;
             align-self: center;
-            padding:10px;
-            padding-right:15px;
+            padding:10px 15px;
             cursor:pointer; 
 
             svg{
