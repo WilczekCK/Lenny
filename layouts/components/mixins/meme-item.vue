@@ -8,7 +8,8 @@
                     nuxt-link(:to="'/users/'+memeDetails.author_id") {{memeDetails.author_username}}
                 span {{moment(memeDetails.added_in)}}
             .meme__item__header__title
-                h1 {{memeDetails.meme_title}}
+                nuxt-link( :to="'/meme/'+memeDetails.id")
+                    h1 {{memeDetails.meme_title}}
         nuxt-link( :to="'/meme/'+memeDetails.id")
             iframe(v-if="memeDetails.video_id" :src="'http://www.youtube.com/embed/'+memeDetails.video_id+'?controls=0&modestbranding=1'" frameborder="0")
             img(v-else :src="checkAvatar(memeDetails.id)")
@@ -24,7 +25,6 @@
                 .meme__item__footer__comments
                     i(class='fa fa-comments')
                     span {{memeDetails.comments_sum}}
-        .details(style="display:none")
         
 </template>
 
