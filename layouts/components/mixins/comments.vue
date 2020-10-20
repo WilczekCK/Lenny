@@ -17,7 +17,7 @@
               i(class="fa fa-times")
               ="REMOVE YOUR COMMENT"
       .comment__feature--noComments(v-else)
-        h3="No comments yet - be first to do it!"
+        h3="No comments yet"
       .comment__feature--newComment(v-if="this.$store.state.isLogged")
         p(v-if="errors.length")
           ul
@@ -26,6 +26,8 @@
             input(type="text" v-model="incomingNewComment" placeholder="Your reply to this meme" maxlength="100")
             button(class="post__comment")
                 i(class='fas fa-comment')
+      .comment__feature--newComment(v-else)
+        p="Please login to post comments! :)"
 </template>
 
 <script>
