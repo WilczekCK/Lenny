@@ -13,7 +13,7 @@
               .comment__content__socials--date {{moment(comment.date)}}
               admin-tools(:whereUsed="'comments'" :info="comment" v-on:adminRemoveComment="removeComment($store.state.isLogged.id, comment.id)")
             .comment__content--text  {{comment.content}}
-            .comment__content--removeButton(@click="removeComment($store.state.isLogged.id, comment.id)" v-if="$store.state.isLogged.id == comment.fb_id || $store.state.isLogged.role === 1")
+            .comment__content--removeButton(@click="removeComment($store.state.isLogged.id, comment.id)" v-if="$store.state.isLogged.id == comment.fb_id")
               i(class="fa fa-times")
               ="REMOVE YOUR COMMENT"
       .comment__feature--noComments(v-else)
@@ -90,7 +90,8 @@ export default {
             }) 
         })
       .catch((error) => {
-          error({statusCode: 404, message: 'Meme not found!'})
+         console.log(error)
+         this.errors.push('Something went wrong! Comments not found!')
       })
     },
     sendComment: async function() {
