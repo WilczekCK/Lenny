@@ -24,7 +24,6 @@
 </template> 
 
 <script>
-import axios from "axios";
 import * as config from '../../server/config/index.js';
 import _ from 'underscore';
 import hamburger from './hamburger.vue';

@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import moment from 'moment'
 export default {
     name:'nicknameForm',
@@ -24,7 +23,7 @@ export default {
         }
     },
     async mounted (){
-        await axios
+        await this.$axios
             .get(`/api/users/${this.user_id}`)
             .then(({data}) =>{
                 this.nickname_delay = data.data.nickname_delay

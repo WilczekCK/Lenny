@@ -32,7 +32,6 @@
 import comment from "./comments";
 import admintools from './admin-tools.vue';
 import moment from "moment";
-import axios from 'axios'
 export default {
     data(){
         return{
@@ -62,7 +61,7 @@ export default {
         },
         giveLikeToMeme: async function(meme_id){
             if(!this.$store.state.isLogged) return this.$toast.error('You have to be logged to like memes!')
-            await axios({
+            await this.$axios({
                 url:`/api/meme/like/${meme_id}`,
                 method:'PATCH'
             }).then(({data}) => {
@@ -72,13 +71,13 @@ export default {
         }
     },
     async mounted () {
-        await axios
+        await this.$axios
             .get(`/api/meme/${this.$route.params.id}`)
             .then(async ({data}) => {
                 this.memeDetails = data.data[0];
                 this.likes = this.memeDetails.likes
                 //load comments below
-                await axios
+                await this.$axios
                     .get(`/api/meme/comments/load/${this.$route.params.id}`)
                     .then(({data}) => {
                         if(data.data.length) this.memeComments = [];

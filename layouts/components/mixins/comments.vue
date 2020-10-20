@@ -31,9 +31,7 @@
 </template>
 
 <script>
-import Vue from 'vue';
 import moment from "moment";
-import axios from 'axios';
 import admintools from './admin-tools.vue';
 export default {
   data: function() {
@@ -80,7 +78,7 @@ export default {
       e.preventDefault();
     },
     loadComments: async function(){
-      await axios
+      await this.$axios
         .get(`/api/meme/comments/load/${this.$route.params.id}`)
         .then(({data}) => {
             if(data.data.length) this.comments = [];
@@ -95,7 +93,7 @@ export default {
       })
     },
     sendComment: async function() {
-        await axios({
+        await this.$axios({
           method: 'post',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -112,7 +110,7 @@ export default {
         })
     },
     removeComment: async function(getLoggedUserID, commentID) {
-        await axios({
+        await this.$axios({
           method: 'delete',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',

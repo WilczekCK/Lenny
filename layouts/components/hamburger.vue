@@ -21,8 +21,6 @@
 </template>
 
 <script>
-import Vue from 'vue';
-import axios from 'axios';
 import _ from 'underscore';
 export default {
   data: function() {

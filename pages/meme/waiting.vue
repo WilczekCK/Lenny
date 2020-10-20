@@ -9,7 +9,6 @@
 
 <script>
 import memeItem from "../../layouts/components/mixins/meme-item"
-import axios from '~/plugins/axios'
 export default {
     data () {
         return {
@@ -21,7 +20,7 @@ export default {
         memeItem: memeItem,
     },
     async mounted () {
-         await axios
+         await this.$axios
             .get(`/api/meme/waiting`)
             .then(async ({data}) => {
                 var memes = data.data;
@@ -33,7 +32,7 @@ export default {
     },
     methods: {
         infiniteScroll($state){
-            axios({
+            this.$axios({
                 url:'/api/meme/load/waiting',
                 method:'GET',
                 headers:{

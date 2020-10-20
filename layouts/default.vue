@@ -17,7 +17,6 @@
 import header from "./components/header";
 import sidebar from "./components/sidebar";
 import memeModal from "./components/modals/modal";
-import axios from "axios";
 export default {
   transition: {
     name: 'page',
@@ -43,7 +42,7 @@ export default {
           this.$store.commit('login')
           break;
         case 'logout':
-          await axios
+          await this.$axios
             .get(`/api/auth/logout`)
             .then(async (_) => {
               this.checkUserSessionStatus('status')

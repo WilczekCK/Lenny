@@ -6,7 +6,6 @@
 </template>
 
 <script>
-import axios from '~/plugins/axios'
 import memeItem from '~/layouts/components/mixins/meme-item.vue'
 export default {
   head () {
@@ -24,7 +23,7 @@ export default {
     memeItem: memeItem
   },
   mounted() {
-    axios
+    this.$axios
     .get('/api/meme')
     .then( ( {data} ) => {
       let memes = data.data;
@@ -33,7 +32,7 @@ export default {
   },
   methods: {
     infiniteScroll($state){
-      axios({
+      this.$axios({
         url:'/api/meme/load',
         method:'GET',
         headers:{
