@@ -38,6 +38,7 @@ module.exports = {
   modules: [
     ['@nuxtjs/axios'],
     ['@nuxtjs/toast'],
+    ['@nuxtjs/moment'],
     ['@nuxtjs/google-adsense', {
       id: 'ca-pub-#######'
     }], 
