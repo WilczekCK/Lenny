@@ -28,6 +28,7 @@ export default {
             memeTags: undefined,
             memeVideo: undefined,
             memeType: undefined,
+            isLimitUploadedCrossed: false,
         }
     },
     methods:{
@@ -38,6 +39,17 @@ export default {
             this.memeTitle = ''
             this.memeVideo = ''
             this.memeTags = ''
+        },
+        checkMemesInWaitingRoom: async () => {
+            var memesWaiting = await this.$axios
+                .get(`/api/meme/load/user/allWaiting`)
+                .then( ({data}) => {
+                    return data.data;
+                })
+
+                if(memesWaiting.length >= 5) this.isLimitUploadedCrossed = true;
+                else this.isLimitUploadedCrossed = false;
+            //just an example how it should work....
         }
     }
 }
