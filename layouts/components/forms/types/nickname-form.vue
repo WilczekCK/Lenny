@@ -11,8 +11,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-import moment from 'moment'
 export default {
     name:'nicknameForm',
     data (){
@@ -24,7 +22,7 @@ export default {
         }
     },
     async mounted (){
-        await axios
+        await this.$axios
             .get(`/api/users/${this.user_id}`)
             .then(({data}) =>{
                 this.nickname_delay = data.data.nickname_delay
@@ -40,7 +38,7 @@ export default {
         checkIfDelayPassed (date){
             if(!date || this.$store.state.isLogged.role === 1) return true;
             
-            const today = moment();
+            const today = this.$moment();
             return today.isAfter(date);
         },
     }

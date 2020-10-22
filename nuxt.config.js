@@ -38,6 +38,7 @@ module.exports = {
   modules: [
     ['@nuxtjs/axios'],
     ['@nuxtjs/toast'],
+    ['@nuxtjs/moment'],
     ['@nuxtjs/google-adsense', {
       id: 'ca-pub-#######'
     }], 
@@ -51,6 +52,14 @@ module.exports = {
       'cookie-universal-nuxt'
     ],
   ],
+
+  axios: {
+    proxy: true // Can be also an object with default options
+  },
+
+  proxy: {
+    '/api/': 'localhost:3000/api/'
+  },
 
   toast: {
     position: 'bottom-right',

@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import memeItem from '../mixins/meme-item.vue';
 export default {
   components: {
@@ -22,7 +21,7 @@ export default {
     }
   },
   async mounted() {
-    await axios({
+    await this.$axios({
         url: '/api/meme/tbm',
         method: 'GET'
     }).then(({data}) => {

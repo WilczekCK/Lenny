@@ -8,7 +8,6 @@
 
 <script>
 import memeItem from "../../../layouts/components/mixins/meme-item"
-import axios from '~/plugins/axios'
 export default {
     data () {
         return {
@@ -22,7 +21,7 @@ export default {
     },
     async mounted () {
          this.route = this.$route.params.name;
-         await axios
+         await this.$axios
             .get(`/api/meme/cat/${this.route}`)
             .then(async ({data}) => {
                 if(data.data.length == 0) return this.$nuxt.error({ statusCode: 404, message: 'No memes with that category found!'})
@@ -35,7 +34,7 @@ export default {
     },
     methods: {
         infiniteScroll($state){
-            axios({
+            this.$axios({
                 url:'/api/meme/load/cat',
                 method:'GET',
                 headers:{

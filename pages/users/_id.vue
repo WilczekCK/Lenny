@@ -36,8 +36,6 @@
 </template>
 
 <script>
-import axios from '~/plugins/axios'
-import moment from "moment";
 import addAvatarModal from '~/layouts/components/modals/modal'
 import memeItem from '~/layouts/components/mixins/meme-item.vue'
 export default {
@@ -56,7 +54,7 @@ export default {
     }
   },
   async mounted() {
-    await axios
+    await this.$axios
       .get(`/api/users/${this.$route.params.id}`)
       .then(async ({data}) => {
           this.user = data.data;
@@ -65,7 +63,7 @@ export default {
           this.$nuxt.error({ statusCode: 404, message: 'No user found!'})
       })
 
-    await axios
+    await this.$axios
       .get(`/api/meme/user/${this.$route.params.id}`)
       .then( ( {data} ) => {
         let userMemes = data.data;
@@ -86,12 +84,12 @@ export default {
       }
     },
     moment: function(date){
-      const today = moment();
-      const incomingDate = moment(date);
+      const today = this.$moment();
+      const incomingDate = this.$moment(date);
       return incomingDate.from(today);
     },
      infiniteScroll($state){
-      axios({
+      this.$axios({
         url:'/api/meme/load/user',
         method:'GET',
         headers:{

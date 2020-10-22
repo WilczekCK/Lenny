@@ -11,9 +11,6 @@
 </template>
 
 <script>
-import Vue from 'vue';
-import axios from 'axios';
-
 export default {
   props: ['whereUsed', 'info'],
   data: function() {
@@ -27,7 +24,7 @@ export default {
   },
   methods: {
     banUser: async function() {
-      await axios({
+      await this.$axios({
         url: '/api/users/block',
         method: 'PATCH',
         data: {
@@ -40,7 +37,7 @@ export default {
       });
     },
     removeMeme: async function () {
-      await axios({
+      await this.$axios({
         url: `/api/meme/remove/${this.info.id}`,
         method: 'DELETE',
         data: {
@@ -58,7 +55,7 @@ export default {
       return this.$emit('adminRemoveComment');
     },
     approveMeme: async function () {
-      await axios({
+      await this.$axios({
         url: `/api/meme/approve/${this.info.id}`,
         method: 'PATCH',
         data: {

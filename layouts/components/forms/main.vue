@@ -34,7 +34,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import avatarForm from "./types/avatar-form.vue"
 import nicknameForm from "./types/nickname-form.vue"
 import memeForm from "./types/meme-form.vue"
@@ -104,7 +103,7 @@ export default {
 
         },
         uploadVideo(){
-            return axios.post('/api/meme/uploadVideo', {
+            return this.$axios.post('/api/meme/uploadVideo', {
                 body:{
                     title: this.memeTitle,
                     videoid: this.memeVideo,
@@ -115,7 +114,7 @@ export default {
             })
         },
         uploadText(){
-            return axios.post('/api/users/changeNickname', {
+            return this.$axios.post('/api/users/changeNickname', {
                 body:{
                     user_id: this.$route.params.id,
                     nickname: this.nickname,
@@ -145,7 +144,7 @@ export default {
             let bundle;
             var {url, headers} = this.prepareDataFromFormType()
 
-            return axios.post(url, formData, {
+            return this.$axios.post(url, formData, {
                 headers,
                 onUploadProgress
             }).then(({data}) => {

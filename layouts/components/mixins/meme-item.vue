@@ -29,8 +29,6 @@
 </template>
 
 <script>
-import moment from 'moment';
-import axios from 'axios';
 import admintools from './admin-tools.vue';
 export default {
     props: ['memeDetails'],
@@ -52,13 +50,13 @@ export default {
             }
         },
         moment: function(date){
-            const today = moment();
-            const incomingDate = moment(date);
+            const today = this.$moment();
+            const incomingDate = this.$moment(date);
             return " · "+incomingDate.from(today);
         },
         giveLikeToMeme: async function(meme_id){
             if(!this.$store.state.isLogged) return this.$toast.error('You have to be logged to like memes!')
-            await axios({
+            await this.$axios({
                 url:`/api/meme/like/${meme_id}`,
                 method:'PATCH'
             }).then(({data}) => {

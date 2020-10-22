@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import formComp from "../forms/main.vue";
 export default {
     components: {
