@@ -36,7 +36,6 @@
 </template>
 
 <script>
-import moment from "moment";
 import addAvatarModal from '~/layouts/components/modals/modal'
 import memeItem from '~/layouts/components/mixins/meme-item.vue'
 export default {
@@ -85,8 +84,8 @@ export default {
       }
     },
     moment: function(date){
-      const today = moment();
-      const incomingDate = moment(date);
+      const today = this.$moment();
+      const incomingDate = this.$moment(date);
       return incomingDate.from(today);
     },
      infiniteScroll($state){

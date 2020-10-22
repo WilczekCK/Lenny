@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import moment from 'moment'
 export default {
     name:'nicknameForm',
     data (){
@@ -39,7 +38,7 @@ export default {
         checkIfDelayPassed (date){
             if(!date || this.$store.state.isLogged.role === 1) return true;
             
-            const today = moment();
+            const today = this.$moment();
             return today.isAfter(date);
         },
     }

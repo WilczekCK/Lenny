@@ -31,7 +31,6 @@
 <script>
 import comment from "./comments";
 import admintools from './admin-tools.vue';
-import moment from "moment";
 export default {
     data(){
         return{
@@ -55,8 +54,8 @@ export default {
             }
         },
         moment: function(date){
-            const today = moment();
-            const incomingDate = moment(date);
+            const today = this.$moment();
+            const incomingDate = this.$moment(date);
             return " · "+incomingDate.from(today);
         },
         giveLikeToMeme: async function(meme_id){

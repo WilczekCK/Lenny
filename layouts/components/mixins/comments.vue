@@ -31,7 +31,6 @@
 </template>
 
 <script>
-import moment from "moment";
 import admintools from './admin-tools.vue';
 export default {
   data: function() {
@@ -62,8 +61,8 @@ export default {
       }
     },
     moment: function(date){
-        const today = moment();
-        const incomingDate = moment(date);
+        const today = this.$moment();
+        const incomingDate = this.$moment(date);
         return " · "+incomingDate.from(today);
     },
     checkForm: function(e){
