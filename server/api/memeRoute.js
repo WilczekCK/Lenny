@@ -101,6 +101,11 @@ export function printRoutes(router) {
             await next();
         }),
 
+        router.get('/meme/load/user/allWaiting', async (ctx, next) => {
+            ctx.type = 'json'
+            ctx.body = await meme.displayWaitingMemesFromUser(ctx.request.header.userid, 5)
+        }),
+
         router.get('/meme/load/waiting', async (ctx, next) => {
             const howManyLoads = ctx.request.header.page;
             const howManyElements = ctx.request.header.loadelements;

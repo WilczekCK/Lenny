@@ -22,6 +22,9 @@
 <script>
 export default {
     name:'memeForm',
+    props: [
+        'userId'
+    ],
     data (){
         return {
             memeTitle: undefined,
@@ -30,6 +33,9 @@ export default {
             memeType: undefined,
             isLimitUploadedCrossed: false,
         }
+    },
+    async mounted() {
+        await this.checkMemesInWaitingRoom(this.$axios)
     },
     methods:{
         refreshInputs () {
@@ -40,11 +46,17 @@ export default {
             this.memeVideo = ''
             this.memeTags = ''
         },
-        checkMemesInWaitingRoom: async () => {
-            var memesWaiting = await this.$axios
-                .get(`/api/meme/load/user/allWaiting`)
+        checkMemesInWaitingRoom: async (axios) => {
+            let memesWaiting;
+            await axios({
+                    url: `/api/meme/load/user/allWaiting`,
+                    body:{
+                        userid: this.userId
+                    }
+                })
                 .then( ({data}) => {
-                    return data.data;
+                    console.log(data)
+                    return memesWaiting = data.data;
                 })
 
                 if(memesWaiting.length >= 5) this.isLimitUploadedCrossed = true;
