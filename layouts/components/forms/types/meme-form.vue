@@ -1,5 +1,5 @@
 <template lang="pug">
-    .meme__uploader__form
+    .meme__uploader__form(v-if="!isLimitUploadedCrossed")
         h3="Please fill all of the fields below and upload a meme"
         
         div
@@ -17,18 +17,30 @@
 
         label(for="memeTags")='Provide tags of the meme'
         input(type="text" v-model="memeTags" id="memeTags" placeholder="Tags which are related to your meme" @change="$emit('inputChanged', {paramToChange: 'memeTags', value: memeTags})")
+    .meme__uploader__form(v-else)
+        h3="You crossed the limit of uploaded memes!"
+        span="Please wait till moderator will judge your other memes in waiting room"
 </template>
 
 <script>
 export default {
     name:'memeForm',
+    props: [
+        'userId'
+    ],
     data (){
         return {
             memeTitle: undefined,
             memeTags: undefined,
             memeVideo: undefined,
             memeType: undefined,
+            isLimitUploadedCrossed: false,
         }
+    },
+    async mounted() {
+        //Prevent spam of memes - limit at the same time set to 5! (also set in query!!)
+        const amountWaitingMemes = await this.checkMemesInWaitingRoom(this.$axios);
+        this.isLimitUploadedCrossed = true ? amountWaitingMemes >= 5 : false;
     },
     methods:{
         refreshInputs () {
@@ -38,6 +50,19 @@ export default {
             this.memeTitle = ''
             this.memeVideo = ''
             this.memeTags = ''
+        },
+        checkMemesInWaitingRoom: async (axios) => {
+                const memesWaiting = await axios({
+                    url: `/api/meme/load/user/allWaiting`,
+                    body:{
+                        userid: this.userId
+                    }
+                })
+                .then( ({data}) => {
+                    return data;
+                })
+                
+            return memesWaiting.data.length;
         }
     }
 }

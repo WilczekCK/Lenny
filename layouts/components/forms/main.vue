@@ -2,7 +2,7 @@
     transition
         div(v-if="!formSent")            
             form(@submit.prevent="sendForm")
-                memeForm(v-on:inputChanged="setValueFromExternalForm" v-if="$store.state.modalType == 'meme'")
+                memeForm(v-on:inputChanged="setValueFromExternalForm" :userid="$store.state.isLogged.id" v-if="$store.state.modalType == 'meme'")
                 avatarForm(v-if="$store.state.modalType == 'avatar'")
                 nicknameForm(v-on:inputChanged="setValueFromExternalForm" v-if="$store.state.modalType == 'nickname'")
                 

@@ -12,7 +12,7 @@ const oAuth2 = {
       passport.use(new FacebookStrategy({
         clientID: '2343223032645422',
         clientSecret: 'c5a0a134d962fce685a1671418f46920',
-        callbackURL: 'https://0729fcbb4b80.ngrok.io/api/login/callback'
+        callbackURL: 'https://51a8f35fd703.ngrok.io/api/login/callback'
       },
       function (accessToken, refreshToken, cd, profile, done) {
         done(null, { accessToken: accessToken, refreshToken: refreshToken });
