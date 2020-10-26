@@ -35,7 +35,9 @@ export default {
         }
     },
     async mounted() {
-        await this.checkMemesInWaitingRoom(this.$axios)
+        //Prevent spam of memes
+        const amountWaitingMemes = await this.checkMemesInWaitingRoom(this.$axios);
+        this.isLimitUploadedCrossed = true ? amountWaitingMemes >= 5 : false;
     },
     methods:{
         refreshInputs () {
@@ -56,10 +58,8 @@ export default {
                 .then( ({data}) => {
                     return data;
                 })
-
-                console.log(memesWaiting)
-                if(memesWaiting.length >= 5) this.isLimitUploadedCrossed = true;
-                else this.isLimitUploadedCrossed = false;
+                
+            return memesWaiting.data.length;
         }
     }
 }
