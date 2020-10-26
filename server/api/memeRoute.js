@@ -103,7 +103,9 @@ export function printRoutes(router) {
 
         router.get('/meme/load/user/allWaiting', async (ctx, next) => {
             ctx.type = 'json'
-            ctx.body = await meme.displayWaitingMemesFromUser(ctx.request.header.userid, 5)
+            ctx.body = await meme.displayWaitingMemesFromUser(5, ctx.req.body[1].id)
+
+            return ctx.body;
         }),
 
         router.get('/meme/load/waiting', async (ctx, next) => {

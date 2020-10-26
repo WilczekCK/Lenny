@@ -47,21 +47,19 @@ export default {
             this.memeTags = ''
         },
         checkMemesInWaitingRoom: async (axios) => {
-            let memesWaiting;
-            await axios({
+                const memesWaiting = await axios({
                     url: `/api/meme/load/user/allWaiting`,
                     body:{
                         userid: this.userId
                     }
                 })
                 .then( ({data}) => {
-                    console.log(data)
-                    return memesWaiting = data.data;
+                    return data;
                 })
 
+                console.log(memesWaiting)
                 if(memesWaiting.length >= 5) this.isLimitUploadedCrossed = true;
                 else this.isLimitUploadedCrossed = false;
-            //just an example how it should work....
         }
     }
 }

@@ -78,6 +78,8 @@ export async function displayWaitingMemes (limit) {
     if(limit) limit = `limit ${limit}`
     else limit = '';
     
+    console.log(`SELECT *, (select count(*) from comments where images.id = comments.meme_id) AS comments_sum, (select username from users where fb_id = author_id) AS author_username FROM images WHERE status = 0 ORDER BY added_in DESC ${limit}`);
+    
     const memesRecord = await mysql.query(`SELECT *, (select count(*) from comments where images.id = comments.meme_id) AS comments_sum, (select username from users where fb_id = author_id) AS author_username FROM images WHERE status = 0 ORDER BY added_in DESC ${limit}`);
     memesRecord.tagsDivider = createArrayFromTags(memesRecord);
     return memesRecord;
