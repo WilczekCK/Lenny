@@ -8,11 +8,6 @@
 <script>
 import memeItem from '~/layouts/components/mixins/meme-item.vue'
 export default {
-  head () {
-    return {
-      title: 'Nuxt + Koa'
-    }
-  },
   data: () => {
     return { 
       memes: [],
