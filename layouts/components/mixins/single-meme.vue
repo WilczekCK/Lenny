@@ -34,7 +34,12 @@ import comment from "./comments";
 import admintools from './admin-tools.vue';
 export default {
     head() {
-        return { title: `${this.memeTitle} - ${config.default.app.description}` }
+        return {
+            title: `${this.memeTitle} - ${config.default.app.description}`,
+            meta: [
+                { property: "og:image", content: `${process.env.baseUrl}${this.checkImage(this.$route.params.id)}`}
+            ],
+        }
     },
     data: function(){
         return{

@@ -8,7 +8,11 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'KoaJS and NuxtJS meme template' }
+      { hid: 'description', name: 'description', content: 'KoaJS and NuxtJS meme template' },
+      { name: 'charset', content: 'utf-8' },
+
+      { property: "og:title", content: "Lenny"},
+      { property: "og:description", content: "KoaJS and NuxtJS meme template"},
     ],
     script: [
       {src: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/all.min.js'},
@@ -19,7 +23,7 @@ module.exports = {
     ]
   },
   env: {
-    HOST_URL: process.env.HOST_URL || 'http://localhost:3000'
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000'
   },
   plugins: [
     {src: '~/plugins/infiniteLoading.js', ssr: false},
