@@ -64,7 +64,7 @@ module.exports = {
   proxy: {
     '/api/': 'localhost:3000/api/'
   },
-
+  
   toast: {
     position: 'bottom-right',
     register: [ 
