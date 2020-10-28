@@ -29,20 +29,31 @@
 </template>
 
 <script>
+import * as config from '../../../server/config/index.js';
 import comment from "./comments";
 import admintools from './admin-tools.vue';
 export default {
-    data(){
+    head() {
+        return {
+            title: `${this.memeTitle} - ${config.default.app.description}`,
+            meta: [
+                { property: "og:image", content: `${process.env.baseUrl}${this.checkImage(this.$route.params.id)}`}
+            ],
+        }
+    },
+    data: function(){
         return{
             memeDetails: null,
             memeComments: null,
             isPageLoaded: false,
-            likes: null
+            likes: null,
+            memeTitle : 'Loading...',
         }
     },
     components: {
         commentComp: comment,
         'admin-tools':admintools,
+        config
     },
     methods: {
         checkImage: function(id){
@@ -74,6 +85,7 @@ export default {
             .get(`/api/meme/${this.$route.params.id}`)
             .then(async ({data}) => {
                 this.memeDetails = data.data[0];
+                this.memeTitle = data.data[0].meme_title;
                 this.likes = this.memeDetails.likes
                 //load comments below
                 await this.$axios
@@ -97,5 +109,7 @@ export default {
 </script>
 
 <style>
+
+ 
 
 </style>

@@ -38,9 +38,9 @@ export default {
         }
     },
     async mounted() {
-        //Prevent spam of memes - limit at the same time set to 5! (also set in query!!)
+        //Prevent spam of memes (also set in query!!)
         const amountWaitingMemes = await this.checkMemesInWaitingRoom(this.$axios);
-        this.isLimitUploadedCrossed = true ? amountWaitingMemes >= 5 : false;
+        this.isLimitUploadedCrossed = amountWaitingMemes >= 5;
     },
     methods:{
         refreshInputs () {

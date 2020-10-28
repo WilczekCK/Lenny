@@ -18,6 +18,7 @@ import header from "./components/header";
 import sidebar from "./components/sidebar";
 import memeModal from "./components/modals/modal";
 export default {
+
   transition: {
     name: 'page',
     mode: 'out-in'

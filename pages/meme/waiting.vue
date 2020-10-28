@@ -10,6 +10,11 @@
 <script>
 import memeItem from "../../layouts/components/mixins/meme-item"
 export default {
+    head: {
+        meta: [
+            {name:'robots', content: 'noindex, nofollow'},
+        ]
+    },
     data () {
         return {
             waitingRoom: [],
