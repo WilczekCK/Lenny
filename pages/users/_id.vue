@@ -40,6 +40,11 @@ import addAvatarModal from '~/layouts/components/modals/modal'
 import memeItem from '~/layouts/components/mixins/meme-item.vue'
 export default {
   name: 'id',
+  head: {
+    meta: [
+      {name:'robots', content: 'noindex, nofollow'},
+    ]
+  },
   components:{
     addAvatarModal,
     memeItem
@@ -120,3 +125,5 @@ export default {
   }
 }
 </script>
+
+ 
