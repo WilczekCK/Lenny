@@ -40,20 +40,6 @@ import addAvatarModal from '~/layouts/components/modals/modal'
 import memeItem from '~/layouts/components/mixins/meme-item.vue'
 export default {
   name: 'id',
-  head() {
-    return {
-      meta: [
-        {name:'robots', content: 'noindex, nofollow'},
-        {property: "og:image", content: `${process.env.baseUrl}${this.checkAvatar(this.$route.params.id)}`}
-      ]
-   }
-  },
-  head: {
-    meta: [
-      {name:'robots', content: 'noindex, nofollow'},
-      {property: "og:image", content: `${process.env.baseUrl}${this.checkAvatar(this.$route.params.id)}`}
-    ]
-  },
   components:{
     addAvatarModal,
     memeItem
