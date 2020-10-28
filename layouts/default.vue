@@ -18,11 +18,7 @@ import header from "./components/header";
 import sidebar from "./components/sidebar";
 import memeModal from "./components/modals/modal";
 export default {
-  head: {
-    meta: [
-      { property: "og:image", content: `${process.env.baseUrl}/og-image.png`}
-    ],
-  },
+
   transition: {
     name: 'page',
     mode: 'out-in'
