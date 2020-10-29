@@ -3,10 +3,11 @@ NuxtJS and KoaJS meme page (SSR)
 ===========
 <h2>At the beginning...</h2>
 <b>Built with:</b>
-- Backend is built with KoaJS(Node). It's copied from v1 version (known as osumemes) - https://github.com/WilczekCK/meme-page/releases/tag/1
-- Frontend is built with Vue(Nuxt), removed everything from v1 version. Started from scratch.
-Front and backend connected using https://github.com/lautiamkok/nuxt-koa from lautiamkok it was really helpful to understand how to do it :)
-
+<ul>
+  <li>Backend is built with KoaJS(Node). It's copied from v1 version (known as osumemes) - https://github.com/WilczekCK/meme-page/releases/tag/1</li>
+  <li>Frontend is built with Vue(Nuxt), removed everything from v1 version. Started from scratch.</li>
+  <li>Front and backend connected using https://github.com/lautiamkok/nuxt-koa from lautiamkok it was really helpful to understand how to do it :)</li>
+</ul>
 <h2>Configuration</h2>
 
 ``` bash
