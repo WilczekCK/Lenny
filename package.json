@@ -1,7 +1,7 @@
 {
   "name": "Lenny",
   "version": "1.0.0",
-  "description": "KoaJS and NuxtJS meme template",
+  "description": "KoaJS and NuxtJS meme template"
   "main": "server/index.js",
   "directories": {
     "test": "test"
@@ -15,9 +15,10 @@
   "author-of-nuxt-starter": {
     "name": "lau tiam kok",
     "email": "contact@lauthiamkok.net",
-    "url": "https://github.com/lautiamkok"
+    "url": "https://github.com/lautiamkok",
+    "repository": "https://github.com/lautiamkok/nuxt-koa",
+    "homepage": "https://github.com/lautiamkok"
   },
-  "repository": "https://github.com/lautiamkok/nuxt-koa",
   "dependencies": {
     "@koa/multer": "^3.0.0",
     "@nuxtjs/axios": "^5.12.0",
