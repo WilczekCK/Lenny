@@ -16,6 +16,11 @@ export default {
     //options: {
     //}
   },
+  fb_auth: {
+    clientID: '123456',
+    clientSecret: '123456',
+    callbackURL: 'https://yourlink.com/'+'/api/login/callback'
+  },
   server: {
     port: 3000
   },
