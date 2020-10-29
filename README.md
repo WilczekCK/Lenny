@@ -31,6 +31,7 @@ Also, sql structure is in the root directory.
   <li>To give yourself an admin, set the role of user to 1</li>
   <li>Open Source, do what you want with it ;)</li>
   <li>Ads profile id (Adsense) available to provide in nuxt.config file</li>
+  <li>Memes are going to waiting room first, then admin can approve or remove it</li>
 </ul>
 <h2>Whats missing?</h2>
 <ul>
