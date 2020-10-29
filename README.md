@@ -30,6 +30,7 @@ Also, sql structure is in the root directory.
   <li>Koa handles the controller and the model as an API. Nuxt handles the view and calls the API, e.g http://127.0.0.1:3000/ (from Nuxt) will call http://127.0.0.1:3000/api (from Koa)</li>
   <li>To give yourself an admin, set the role of user to 1</li>
   <li>Open Source, do what you want with it ;)</li>
+  <li>Ads profile id (Adsense) available to provide in nuxt.config file</li>
 </ul>
 <h2>Whats missing?</h2>
 <ul>
