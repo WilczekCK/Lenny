@@ -6,13 +6,15 @@ import _ from 'underscore';
 
 import * as mysql from './mysql';
 import * as user from './user';
+import config from '../../config/index.js';
 
+const fb = config.fb_auth;
 const oAuth2 = {
     init: () => {
       passport.use(new FacebookStrategy({
-        clientID: '2343223032645422',
-        clientSecret: 'c5a0a134d962fce685a1671418f46920',
-        callbackURL: 'https://51a8f35fd703.ngrok.io/api/login/callback'
+        clientID: fb.clientID,
+        clientSecret: fb.clientSecret,
+        callbackURL: fb.callbackURL
       },
       function (accessToken, refreshToken, cd, profile, done) {
         done(null, { accessToken: accessToken, refreshToken: refreshToken });
