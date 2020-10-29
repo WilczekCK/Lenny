@@ -61,7 +61,7 @@ export default {
                 return require(`~/assets/img/uploads/${id}.jpg`);
             }catch(err){
                 //create a mockup for remobved images!
-                return require(`~/assets/img/avatars/default.jpg`);
+                return require(`~/assets/img/uploads/not_found.jpg`);
             }
         },
         moment: function(date){
